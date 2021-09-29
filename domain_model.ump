@@ -1,0 +1,72 @@
+class User{
+  int   password;//only user can access its password so it should be private
+  unique immutable emailAddress;//immutable because it can't be changed
+}
+
+class MountainGuide{
+  isA User;
+  name;
+  int  weeklyCost;
+}
+
+class Member{
+  isA User;
+  boolean hotelStay;
+  boolean hireGuide;
+  name;
+  * member -- 0..1 MountainGuide mountainGuide;
+}
+
+class Admin{
+   
+  isA User;
+  1 admin -- * EquipmentBundle equipmentBundle;
+  1 admin -- * Equipment equipment;
+  1 admin --  1 ClimbingSeason climbingSeason;
+}
+
+
+
+class ClimbingSeason{
+  1<@>- * Member;
+  1<@>- * MountainGuide;
+  Date startDate;
+  Date endDate;
+  [startDate<endDate]
+  1 climbingSeason -- 1..* ClimbingWeek climbingWeek;
+}
+
+class ClimbingWeek{
+  unique int weekID;
+  1..* climbingWeek -- * Member member;
+}
+
+class EmergencyContact{
+  name;
+  int  phoneNumber;
+  emailAddress;
+  1 emergencyContact -- 1 MountainGuide mountainGuide;
+  1 emergencyContact --1 Member member;
+}
+
+class Hotel{
+  name;
+  address;
+  int  numStars;
+  [numStars>=1 && numStars<=5]
+   0..1 hotel -- *Member member;
+}
+
+class EquipmentBundle{
+  name;
+  int percentDiscount;
+  * equipmentBundle -- * Member member;
+}
+
+class Equipment{
+  double mass;
+  int price;
+  [mass>0 && price>0]
+  * equipment -- 1 Member member;
+  2..* equipment -- 0..1 EquipmentBundle equipment;
+}

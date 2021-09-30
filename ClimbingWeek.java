@@ -4,7 +4,7 @@
 
 import java.util.*;
 
-// line 39 "domain_model.ump"
+// line 40 "domain_model.ump"
 public class ClimbingWeek
 {
 
@@ -12,14 +12,14 @@ public class ClimbingWeek
   // STATIC VARIABLES
   //------------------------
 
-  private static Map<int, ClimbingWeek> climbingweeksByWeekID = new HashMap<int, ClimbingWeek>();
+  private static Map<int, ClimbingWeek> climbingweeksByWeekId = new HashMap<int, ClimbingWeek>();
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
   //ClimbingWeek Attributes
-  private int weekID;
+  private int weekId;
 
   //ClimbingWeek Associations
   private List<Member> members;
@@ -29,11 +29,11 @@ public class ClimbingWeek
   // CONSTRUCTOR
   //------------------------
 
-  public ClimbingWeek(int aWeekID, ClimbingSeason aClimbingSeason)
+  public ClimbingWeek(int aWeekId, ClimbingSeason aClimbingSeason)
   {
-    if (!setWeekID(aWeekID))
+    if (!setWeekId(aWeekId))
     {
-      throw new RuntimeException("Cannot create due to duplicate weekID. See http://manual.umple.org?RE003ViolationofUniqueness.html");
+      throw new RuntimeException("Cannot create due to duplicate weekId. See http://manual.umple.org?RE003ViolationofUniqueness.html");
     }
     members = new ArrayList<Member>();
     boolean didAddClimbingSeason = setClimbingSeason(aClimbingSeason);
@@ -47,38 +47,38 @@ public class ClimbingWeek
   // INTERFACE
   //------------------------
 
-  public boolean setWeekID(int aWeekID)
+  public boolean setWeekId(int aWeekId)
   {
     boolean wasSet = false;
-    int anOldWeekID = getWeekID();
-    if (anOldWeekID != null && anOldWeekID.equals(aWeekID)) {
+    int anOldWeekId = getWeekId();
+    if (anOldWeekId != null && anOldWeekId.equals(aWeekId)) {
       return true;
     }
-    if (hasWithWeekID(aWeekID)) {
+    if (hasWithWeekId(aWeekId)) {
       return wasSet;
     }
-    weekID = aWeekID;
+    weekId = aWeekId;
     wasSet = true;
-    if (anOldWeekID != null) {
-      climbingweeksByWeekID.remove(anOldWeekID);
+    if (anOldWeekId != null) {
+      climbingweeksByWeekId.remove(anOldWeekId);
     }
-    climbingweeksByWeekID.put(aWeekID, this);
+    climbingweeksByWeekId.put(aWeekId, this);
     return wasSet;
   }
 
-  public int getWeekID()
+  public int getWeekId()
   {
-    return weekID;
+    return weekId;
   }
   /* Code from template attribute_GetUnique */
-  public static ClimbingWeek getWithWeekID(int aWeekID)
+  public static ClimbingWeek getWithWeekId(int aWeekId)
   {
-    return climbingweeksByWeekID.get(aWeekID);
+    return climbingweeksByWeekId.get(aWeekId);
   }
   /* Code from template attribute_HasUnique */
-  public static boolean hasWithWeekID(int aWeekID)
+  public static boolean hasWithWeekId(int aWeekId)
   {
-    return getWithWeekID(aWeekID) != null;
+    return getWithWeekId(aWeekId) != null;
   }
   /* Code from template association_GetMany */
   public Member getMember(int index)
@@ -230,7 +230,7 @@ public class ClimbingWeek
 
   public void delete()
   {
-    climbingweeksByWeekID.remove(getWeekID());
+    climbingweeksByWeekId.remove(getWeekId());
     ArrayList<Member> copyOfMembers = new ArrayList<Member>(members);
     members.clear();
     for(Member aMember : copyOfMembers)
@@ -256,7 +256,7 @@ public class ClimbingWeek
   public String toString()
   {
     return super.toString() + "["+
-            "weekID" + ":" + getWeekID()+ "]" + System.getProperties().getProperty("line.separator") +
+            "weekId" + ":" + getWeekId()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "climbingSeason = "+(getClimbingSeason()!=null?Integer.toHexString(System.identityHashCode(getClimbingSeason())):"null");
   }
 }

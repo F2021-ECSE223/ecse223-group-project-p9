@@ -4,7 +4,7 @@
 
 import java.util.*;
 
-// line 60 "domain_model.ump"
+// line 61 "domain_model.ump"
 public class EquipmentBundle
 {
 

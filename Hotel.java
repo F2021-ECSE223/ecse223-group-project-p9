@@ -4,7 +4,7 @@
 
 import java.util.*;
 
-// line 52 "domain_model.ump"
+// line 53 "domain_model.ump"
 public class Hotel
 {
 
@@ -19,17 +19,23 @@ public class Hotel
 
   //Hotel Associations
   private List<Member> members;
+  private Admin admin;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Hotel(String aName, String aAddress, int aNumStars)
+  public Hotel(String aName, String aAddress, int aNumStars, Admin aAdmin)
   {
     name = aName;
     address = aAddress;
     numStars = aNumStars;
     members = new ArrayList<Member>();
+    boolean didAddAdmin = setAdmin(aAdmin);
+    if (!didAddAdmin)
+    {
+      throw new RuntimeException("Unable to create hotel due to admin. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+    }
   }
 
   //------------------------
@@ -104,6 +110,11 @@ public class Hotel
     int index = members.indexOf(aMember);
     return index;
   }
+  /* Code from template association_GetOne */
+  public Admin getAdmin()
+  {
+    return admin;
+  }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfMembers()
   {
@@ -175,12 +186,37 @@ public class Hotel
     }
     return wasAdded;
   }
+  /* Code from template association_SetOneToMany */
+  public boolean setAdmin(Admin aAdmin)
+  {
+    boolean wasSet = false;
+    if (aAdmin == null)
+    {
+      return wasSet;
+    }
+
+    Admin existingAdmin = admin;
+    admin = aAdmin;
+    if (existingAdmin != null && !existingAdmin.equals(aAdmin))
+    {
+      existingAdmin.removeHotel(this);
+    }
+    admin.addHotel(this);
+    wasSet = true;
+    return wasSet;
+  }
 
   public void delete()
   {
     while( !members.isEmpty() )
     {
       members.get(0).setHotel(null);
+    }
+    Admin placeholderAdmin = admin;
+    this.admin = null;
+    if(placeholderAdmin != null)
+    {
+      placeholderAdmin.removeHotel(this);
     }
   }
 
@@ -190,6 +226,7 @@ public class Hotel
     return super.toString() + "["+
             "name" + ":" + getName()+ "," +
             "address" + ":" + getAddress()+ "," +
-            "numStars" + ":" + getNumStars()+ "]";
+            "numStars" + ":" + getNumStars()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "admin = "+(getAdmin()!=null?Integer.toHexString(System.identityHashCode(getAdmin())):"null");
   }
 }

@@ -5,7 +5,7 @@
 import java.sql.Date;
 import java.util.*;
 
-// line 30 "domain_model.ump"
+// line 31 "domain_model.ump"
 public class ClimbingSeason
 {
 
@@ -331,9 +331,9 @@ public class ClimbingSeason
     return 1;
   }
   /* Code from template association_AddMandatoryManyToOne */
-  public ClimbingWeek addClimbingWeek(int aWeekID)
+  public ClimbingWeek addClimbingWeek(int aWeekId)
   {
-    ClimbingWeek aNewClimbingWeek = new ClimbingWeek(aWeekID, this);
+    ClimbingWeek aNewClimbingWeek = new ClimbingWeek(aWeekId, this);
     return aNewClimbingWeek;
   }
 

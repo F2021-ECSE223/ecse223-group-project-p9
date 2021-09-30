@@ -4,7 +4,7 @@
 
 import java.util.*;
 
-// line 44 "domain_model.ump"
+// line 45 "domain_model.ump"
 public class EmergencyContact
 {
 

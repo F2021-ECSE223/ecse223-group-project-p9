@@ -3,7 +3,7 @@
 
 
 
-// line 66 "domain_model.ump"
+// line 67 "domain_model.ump"
 public class Equipment
 {
 

@@ -23,6 +23,7 @@ class Admin{
   1 admin -- * EquipmentBundle equipmentBundles;
   1 admin -- * Equipment equipments;
   1 admin --  1 ClimbingSeason climbingSeason;
+  1 admin -- * Hotel hotels;
 }
 
 
@@ -37,7 +38,7 @@ class ClimbingSeason{
 }
 
 class ClimbingWeek{
-  unique int weekID;
+  unique int weekId;
   1..* climbingWeeks -- * Member members;
 }
 

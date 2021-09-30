@@ -17,6 +17,7 @@ public class Admin extends User
   private List<EquipmentBundle> equipmentBundles;
   private List<Equipment> equipments;
   private ClimbingSeason climbingSeason;
+  private List<Hotel> hotels;
 
   //------------------------
   // CONSTRUCTOR
@@ -32,6 +33,7 @@ public class Admin extends User
       throw new RuntimeException("Unable to create Admin due to aClimbingSeason. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     climbingSeason = aClimbingSeason;
+    hotels = new ArrayList<Hotel>();
   }
 
   public Admin(int aPassword, String aEmailAddress, Date aStartDateForClimbingSeason, Date aEndDateForClimbingSeason)
@@ -40,6 +42,7 @@ public class Admin extends User
     equipmentBundles = new ArrayList<EquipmentBundle>();
     equipments = new ArrayList<Equipment>();
     climbingSeason = new ClimbingSeason(aStartDateForClimbingSeason, aEndDateForClimbingSeason, this);
+    hotels = new ArrayList<Hotel>();
   }
 
   //------------------------
@@ -109,6 +112,36 @@ public class Admin extends User
   public ClimbingSeason getClimbingSeason()
   {
     return climbingSeason;
+  }
+  /* Code from template association_GetMany */
+  public Hotel getHotel(int index)
+  {
+    Hotel aHotel = hotels.get(index);
+    return aHotel;
+  }
+
+  public List<Hotel> getHotels()
+  {
+    List<Hotel> newHotels = Collections.unmodifiableList(hotels);
+    return newHotels;
+  }
+
+  public int numberOfHotels()
+  {
+    int number = hotels.size();
+    return number;
+  }
+
+  public boolean hasHotels()
+  {
+    boolean has = hotels.size() > 0;
+    return has;
+  }
+
+  public int indexOfHotel(Hotel aHotel)
+  {
+    int index = hotels.indexOf(aHotel);
+    return index;
   }
   /* Code from template association_MinimumNumberOfMethod */
   public static int minimumNumberOfEquipmentBundles()
@@ -254,6 +287,78 @@ public class Admin extends User
     }
     return wasAdded;
   }
+  /* Code from template association_MinimumNumberOfMethod */
+  public static int minimumNumberOfHotels()
+  {
+    return 0;
+  }
+  /* Code from template association_AddManyToOne */
+  public Hotel addHotel(String aName, String aAddress, int aNumStars)
+  {
+    return new Hotel(aName, aAddress, aNumStars, this);
+  }
+
+  public boolean addHotel(Hotel aHotel)
+  {
+    boolean wasAdded = false;
+    if (hotels.contains(aHotel)) { return false; }
+    Admin existingAdmin = aHotel.getAdmin();
+    boolean isNewAdmin = existingAdmin != null && !this.equals(existingAdmin);
+    if (isNewAdmin)
+    {
+      aHotel.setAdmin(this);
+    }
+    else
+    {
+      hotels.add(aHotel);
+    }
+    wasAdded = true;
+    return wasAdded;
+  }
+
+  public boolean removeHotel(Hotel aHotel)
+  {
+    boolean wasRemoved = false;
+    //Unable to remove aHotel, as it must always have a admin
+    if (!this.equals(aHotel.getAdmin()))
+    {
+      hotels.remove(aHotel);
+      wasRemoved = true;
+    }
+    return wasRemoved;
+  }
+  /* Code from template association_AddIndexControlFunctions */
+  public boolean addHotelAt(Hotel aHotel, int index)
+  {  
+    boolean wasAdded = false;
+    if(addHotel(aHotel))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfHotels()) { index = numberOfHotels() - 1; }
+      hotels.remove(aHotel);
+      hotels.add(index, aHotel);
+      wasAdded = true;
+    }
+    return wasAdded;
+  }
+
+  public boolean addOrMoveHotelAt(Hotel aHotel, int index)
+  {
+    boolean wasAdded = false;
+    if(hotels.contains(aHotel))
+    {
+      if(index < 0 ) { index = 0; }
+      if(index > numberOfHotels()) { index = numberOfHotels() - 1; }
+      hotels.remove(aHotel);
+      hotels.add(index, aHotel);
+      wasAdded = true;
+    } 
+    else 
+    {
+      wasAdded = addHotelAt(aHotel, index);
+    }
+    return wasAdded;
+  }
 
   public void delete()
   {
@@ -272,6 +377,11 @@ public class Admin extends User
     if (existingClimbingSeason != null)
     {
       existingClimbingSeason.delete();
+    }
+    for(int i=hotels.size(); i > 0; i--)
+    {
+      Hotel aHotel = hotels.get(i - 1);
+      aHotel.delete();
     }
     super.delete();
   }

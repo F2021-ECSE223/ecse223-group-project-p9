@@ -17,7 +17,7 @@ public class MountainGuide extends User
   private int weeklyCost;
 
   //MountainGuide Associations
-  private List<Member> member;
+  private List<Member> members;
   private ClimbingSeason climbingSeason;
   private EmergencyContact emergencyContact;
 
@@ -30,7 +30,7 @@ public class MountainGuide extends User
     super(aPassword, aEmailAddress);
     name = aName;
     weeklyCost = aWeeklyCost;
-    member = new ArrayList<Member>();
+    members = new ArrayList<Member>();
     boolean didAddClimbingSeason = setClimbingSeason(aClimbingSeason);
     if (!didAddClimbingSeason)
     {
@@ -48,7 +48,7 @@ public class MountainGuide extends User
     super(aPassword, aEmailAddress);
     name = aName;
     weeklyCost = aWeeklyCost;
-    member = new ArrayList<Member>();
+    members = new ArrayList<Member>();
     boolean didAddClimbingSeason = setClimbingSeason(aClimbingSeason);
     if (!didAddClimbingSeason)
     {
@@ -89,31 +89,31 @@ public class MountainGuide extends User
   /* Code from template association_GetMany */
   public Member getMember(int index)
   {
-    Member aMember = member.get(index);
+    Member aMember = members.get(index);
     return aMember;
   }
 
-  public List<Member> getMember()
+  public List<Member> getMembers()
   {
-    List<Member> newMember = Collections.unmodifiableList(member);
-    return newMember;
+    List<Member> newMembers = Collections.unmodifiableList(members);
+    return newMembers;
   }
 
-  public int numberOfMember()
+  public int numberOfMembers()
   {
-    int number = member.size();
+    int number = members.size();
     return number;
   }
 
-  public boolean hasMember()
+  public boolean hasMembers()
   {
-    boolean has = member.size() > 0;
+    boolean has = members.size() > 0;
     return has;
   }
 
   public int indexOfMember(Member aMember)
   {
-    int index = member.indexOf(aMember);
+    int index = members.indexOf(aMember);
     return index;
   }
   /* Code from template association_GetOne */
@@ -127,7 +127,7 @@ public class MountainGuide extends User
     return emergencyContact;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfMember()
+  public static int minimumNumberOfMembers()
   {
     return 0;
   }
@@ -135,7 +135,7 @@ public class MountainGuide extends User
   public boolean addMember(Member aMember)
   {
     boolean wasAdded = false;
-    if (member.contains(aMember)) { return false; }
+    if (members.contains(aMember)) { return false; }
     MountainGuide existingMountainGuide = aMember.getMountainGuide();
     if (existingMountainGuide == null)
     {
@@ -148,7 +148,7 @@ public class MountainGuide extends User
     }
     else
     {
-      member.add(aMember);
+      members.add(aMember);
     }
     wasAdded = true;
     return wasAdded;
@@ -157,9 +157,9 @@ public class MountainGuide extends User
   public boolean removeMember(Member aMember)
   {
     boolean wasRemoved = false;
-    if (member.contains(aMember))
+    if (members.contains(aMember))
     {
-      member.remove(aMember);
+      members.remove(aMember);
       aMember.setMountainGuide(null);
       wasRemoved = true;
     }
@@ -172,9 +172,9 @@ public class MountainGuide extends User
     if(addMember(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     }
     return wasAdded;
@@ -183,12 +183,12 @@ public class MountainGuide extends User
   public boolean addOrMoveMemberAt(Member aMember, int index)
   {
     boolean wasAdded = false;
-    if(member.contains(aMember))
+    if(members.contains(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     } 
     else 
@@ -219,9 +219,9 @@ public class MountainGuide extends User
 
   public void delete()
   {
-    while( !member.isEmpty() )
+    while( !members.isEmpty() )
     {
-      member.get(0).setMountainGuide(null);
+      members.get(0).setMountainGuide(null);
     }
     ClimbingSeason placeholderClimbingSeason = climbingSeason;
     this.climbingSeason = null;

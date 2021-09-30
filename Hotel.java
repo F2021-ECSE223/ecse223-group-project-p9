@@ -18,7 +18,7 @@ public class Hotel
   private int numStars;
 
   //Hotel Associations
-  private List<Member> member;
+  private List<Member> members;
 
   //------------------------
   // CONSTRUCTOR
@@ -29,11 +29,7 @@ public class Hotel
     name = aName;
     address = aAddress;
     numStars = aNumStars;
-    member = new ArrayList<Member>();
-    if (aNumStars<1||aNumStars>5)
-    {
-      throw new RuntimeException("Please provide a valid numStars [numStars>=1&&numStars<=5]");
-    }
+    members = new ArrayList<Member>();
   }
 
   //------------------------
@@ -59,11 +55,8 @@ public class Hotel
   public boolean setNumStars(int aNumStars)
   {
     boolean wasSet = false;
-    if (aNumStars>=1&&aNumStars<=5)
-    {
     numStars = aNumStars;
     wasSet = true;
-    }
     return wasSet;
   }
 
@@ -84,35 +77,35 @@ public class Hotel
   /* Code from template association_GetMany */
   public Member getMember(int index)
   {
-    Member aMember = member.get(index);
+    Member aMember = members.get(index);
     return aMember;
   }
 
-  public List<Member> getMember()
+  public List<Member> getMembers()
   {
-    List<Member> newMember = Collections.unmodifiableList(member);
-    return newMember;
+    List<Member> newMembers = Collections.unmodifiableList(members);
+    return newMembers;
   }
 
-  public int numberOfMember()
+  public int numberOfMembers()
   {
-    int number = member.size();
+    int number = members.size();
     return number;
   }
 
-  public boolean hasMember()
+  public boolean hasMembers()
   {
-    boolean has = member.size() > 0;
+    boolean has = members.size() > 0;
     return has;
   }
 
   public int indexOfMember(Member aMember)
   {
-    int index = member.indexOf(aMember);
+    int index = members.indexOf(aMember);
     return index;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfMember()
+  public static int minimumNumberOfMembers()
   {
     return 0;
   }
@@ -120,7 +113,7 @@ public class Hotel
   public boolean addMember(Member aMember)
   {
     boolean wasAdded = false;
-    if (member.contains(aMember)) { return false; }
+    if (members.contains(aMember)) { return false; }
     Hotel existingHotel = aMember.getHotel();
     if (existingHotel == null)
     {
@@ -133,7 +126,7 @@ public class Hotel
     }
     else
     {
-      member.add(aMember);
+      members.add(aMember);
     }
     wasAdded = true;
     return wasAdded;
@@ -142,9 +135,9 @@ public class Hotel
   public boolean removeMember(Member aMember)
   {
     boolean wasRemoved = false;
-    if (member.contains(aMember))
+    if (members.contains(aMember))
     {
-      member.remove(aMember);
+      members.remove(aMember);
       aMember.setHotel(null);
       wasRemoved = true;
     }
@@ -157,9 +150,9 @@ public class Hotel
     if(addMember(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     }
     return wasAdded;
@@ -168,12 +161,12 @@ public class Hotel
   public boolean addOrMoveMemberAt(Member aMember, int index)
   {
     boolean wasAdded = false;
-    if(member.contains(aMember))
+    if(members.contains(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     } 
     else 
@@ -185,9 +178,9 @@ public class Hotel
 
   public void delete()
   {
-    while( !member.isEmpty() )
+    while( !members.isEmpty() )
     {
-      member.get(0).setHotel(null);
+      members.get(0).setHotel(null);
     }
   }
 

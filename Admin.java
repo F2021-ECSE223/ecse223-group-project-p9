@@ -14,8 +14,8 @@ public class Admin extends User
   //------------------------
 
   //Admin Associations
-  private List<EquipmentBundle> equipmentBundle;
-  private List<Equipment> equipment;
+  private List<EquipmentBundle> equipmentBundles;
+  private List<Equipment> equipments;
   private ClimbingSeason climbingSeason;
 
   //------------------------
@@ -25,8 +25,8 @@ public class Admin extends User
   public Admin(int aPassword, String aEmailAddress, ClimbingSeason aClimbingSeason)
   {
     super(aPassword, aEmailAddress);
-    equipmentBundle = new ArrayList<EquipmentBundle>();
-    equipment = new ArrayList<Equipment>();
+    equipmentBundles = new ArrayList<EquipmentBundle>();
+    equipments = new ArrayList<Equipment>();
     if (aClimbingSeason == null || aClimbingSeason.getAdmin() != null)
     {
       throw new RuntimeException("Unable to create Admin due to aClimbingSeason. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
@@ -37,8 +37,8 @@ public class Admin extends User
   public Admin(int aPassword, String aEmailAddress, Date aStartDateForClimbingSeason, Date aEndDateForClimbingSeason)
   {
     super(aPassword, aEmailAddress);
-    equipmentBundle = new ArrayList<EquipmentBundle>();
-    equipment = new ArrayList<Equipment>();
+    equipmentBundles = new ArrayList<EquipmentBundle>();
+    equipments = new ArrayList<Equipment>();
     climbingSeason = new ClimbingSeason(aStartDateForClimbingSeason, aEndDateForClimbingSeason, this);
   }
 
@@ -48,61 +48,61 @@ public class Admin extends User
   /* Code from template association_GetMany */
   public EquipmentBundle getEquipmentBundle(int index)
   {
-    EquipmentBundle aEquipmentBundle = equipmentBundle.get(index);
+    EquipmentBundle aEquipmentBundle = equipmentBundles.get(index);
     return aEquipmentBundle;
   }
 
-  public List<EquipmentBundle> getEquipmentBundle()
+  public List<EquipmentBundle> getEquipmentBundles()
   {
-    List<EquipmentBundle> newEquipmentBundle = Collections.unmodifiableList(equipmentBundle);
-    return newEquipmentBundle;
+    List<EquipmentBundle> newEquipmentBundles = Collections.unmodifiableList(equipmentBundles);
+    return newEquipmentBundles;
   }
 
-  public int numberOfEquipmentBundle()
+  public int numberOfEquipmentBundles()
   {
-    int number = equipmentBundle.size();
+    int number = equipmentBundles.size();
     return number;
   }
 
-  public boolean hasEquipmentBundle()
+  public boolean hasEquipmentBundles()
   {
-    boolean has = equipmentBundle.size() > 0;
+    boolean has = equipmentBundles.size() > 0;
     return has;
   }
 
   public int indexOfEquipmentBundle(EquipmentBundle aEquipmentBundle)
   {
-    int index = equipmentBundle.indexOf(aEquipmentBundle);
+    int index = equipmentBundles.indexOf(aEquipmentBundle);
     return index;
   }
   /* Code from template association_GetMany */
   public Equipment getEquipment(int index)
   {
-    Equipment aEquipment = equipment.get(index);
+    Equipment aEquipment = equipments.get(index);
     return aEquipment;
   }
 
-  public List<Equipment> getEquipment()
+  public List<Equipment> getEquipments()
   {
-    List<Equipment> newEquipment = Collections.unmodifiableList(equipment);
-    return newEquipment;
+    List<Equipment> newEquipments = Collections.unmodifiableList(equipments);
+    return newEquipments;
   }
 
-  public int numberOfEquipment()
+  public int numberOfEquipments()
   {
-    int number = equipment.size();
+    int number = equipments.size();
     return number;
   }
 
-  public boolean hasEquipment()
+  public boolean hasEquipments()
   {
-    boolean has = equipment.size() > 0;
+    boolean has = equipments.size() > 0;
     return has;
   }
 
   public int indexOfEquipment(Equipment aEquipment)
   {
-    int index = equipment.indexOf(aEquipment);
+    int index = equipments.indexOf(aEquipment);
     return index;
   }
   /* Code from template association_GetOne */
@@ -111,20 +111,20 @@ public class Admin extends User
     return climbingSeason;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEquipmentBundle()
+  public static int minimumNumberOfEquipmentBundles()
   {
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public EquipmentBundle addEquipmentBundle(String aName, int aPercentDiscount, Equipment... allEquipment)
+  public EquipmentBundle addEquipmentBundle(String aName, int aPercentDiscount, Equipment... allEquipments)
   {
-    return new EquipmentBundle(aName, aPercentDiscount, this, allEquipment);
+    return new EquipmentBundle(aName, aPercentDiscount, this, allEquipments);
   }
 
   public boolean addEquipmentBundle(EquipmentBundle aEquipmentBundle)
   {
     boolean wasAdded = false;
-    if (equipmentBundle.contains(aEquipmentBundle)) { return false; }
+    if (equipmentBundles.contains(aEquipmentBundle)) { return false; }
     Admin existingAdmin = aEquipmentBundle.getAdmin();
     boolean isNewAdmin = existingAdmin != null && !this.equals(existingAdmin);
     if (isNewAdmin)
@@ -133,7 +133,7 @@ public class Admin extends User
     }
     else
     {
-      equipmentBundle.add(aEquipmentBundle);
+      equipmentBundles.add(aEquipmentBundle);
     }
     wasAdded = true;
     return wasAdded;
@@ -145,7 +145,7 @@ public class Admin extends User
     //Unable to remove aEquipmentBundle, as it must always have a admin
     if (!this.equals(aEquipmentBundle.getAdmin()))
     {
-      equipmentBundle.remove(aEquipmentBundle);
+      equipmentBundles.remove(aEquipmentBundle);
       wasRemoved = true;
     }
     return wasRemoved;
@@ -157,9 +157,9 @@ public class Admin extends User
     if(addEquipmentBundle(aEquipmentBundle))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipmentBundle()) { index = numberOfEquipmentBundle() - 1; }
-      equipmentBundle.remove(aEquipmentBundle);
-      equipmentBundle.add(index, aEquipmentBundle);
+      if(index > numberOfEquipmentBundles()) { index = numberOfEquipmentBundles() - 1; }
+      equipmentBundles.remove(aEquipmentBundle);
+      equipmentBundles.add(index, aEquipmentBundle);
       wasAdded = true;
     }
     return wasAdded;
@@ -168,12 +168,12 @@ public class Admin extends User
   public boolean addOrMoveEquipmentBundleAt(EquipmentBundle aEquipmentBundle, int index)
   {
     boolean wasAdded = false;
-    if(equipmentBundle.contains(aEquipmentBundle))
+    if(equipmentBundles.contains(aEquipmentBundle))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipmentBundle()) { index = numberOfEquipmentBundle() - 1; }
-      equipmentBundle.remove(aEquipmentBundle);
-      equipmentBundle.add(index, aEquipmentBundle);
+      if(index > numberOfEquipmentBundles()) { index = numberOfEquipmentBundles() - 1; }
+      equipmentBundles.remove(aEquipmentBundle);
+      equipmentBundles.add(index, aEquipmentBundle);
       wasAdded = true;
     } 
     else 
@@ -183,7 +183,7 @@ public class Admin extends User
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEquipment()
+  public static int minimumNumberOfEquipments()
   {
     return 0;
   }
@@ -196,7 +196,7 @@ public class Admin extends User
   public boolean addEquipment(Equipment aEquipment)
   {
     boolean wasAdded = false;
-    if (equipment.contains(aEquipment)) { return false; }
+    if (equipments.contains(aEquipment)) { return false; }
     Admin existingAdmin = aEquipment.getAdmin();
     boolean isNewAdmin = existingAdmin != null && !this.equals(existingAdmin);
     if (isNewAdmin)
@@ -205,7 +205,7 @@ public class Admin extends User
     }
     else
     {
-      equipment.add(aEquipment);
+      equipments.add(aEquipment);
     }
     wasAdded = true;
     return wasAdded;
@@ -217,7 +217,7 @@ public class Admin extends User
     //Unable to remove aEquipment, as it must always have a admin
     if (!this.equals(aEquipment.getAdmin()))
     {
-      equipment.remove(aEquipment);
+      equipments.remove(aEquipment);
       wasRemoved = true;
     }
     return wasRemoved;
@@ -229,9 +229,9 @@ public class Admin extends User
     if(addEquipment(aEquipment))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipment()) { index = numberOfEquipment() - 1; }
-      equipment.remove(aEquipment);
-      equipment.add(index, aEquipment);
+      if(index > numberOfEquipments()) { index = numberOfEquipments() - 1; }
+      equipments.remove(aEquipment);
+      equipments.add(index, aEquipment);
       wasAdded = true;
     }
     return wasAdded;
@@ -240,12 +240,12 @@ public class Admin extends User
   public boolean addOrMoveEquipmentAt(Equipment aEquipment, int index)
   {
     boolean wasAdded = false;
-    if(equipment.contains(aEquipment))
+    if(equipments.contains(aEquipment))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipment()) { index = numberOfEquipment() - 1; }
-      equipment.remove(aEquipment);
-      equipment.add(index, aEquipment);
+      if(index > numberOfEquipments()) { index = numberOfEquipments() - 1; }
+      equipments.remove(aEquipment);
+      equipments.add(index, aEquipment);
       wasAdded = true;
     } 
     else 
@@ -257,14 +257,14 @@ public class Admin extends User
 
   public void delete()
   {
-    for(int i=equipmentBundle.size(); i > 0; i--)
+    for(int i=equipmentBundles.size(); i > 0; i--)
     {
-      EquipmentBundle aEquipmentBundle = equipmentBundle.get(i - 1);
+      EquipmentBundle aEquipmentBundle = equipmentBundles.get(i - 1);
       aEquipmentBundle.delete();
     }
-    for(int i=equipment.size(); i > 0; i--)
+    for(int i=equipments.size(); i > 0; i--)
     {
-      Equipment aEquipment = equipment.get(i - 1);
+      Equipment aEquipment = equipments.get(i - 1);
       aEquipment.delete();
     }
     ClimbingSeason existingClimbingSeason = climbingSeason;

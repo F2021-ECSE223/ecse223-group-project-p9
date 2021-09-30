@@ -38,10 +38,6 @@ public class Equipment
     {
       throw new RuntimeException("Unable to create equipment due to admin. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    if (aMass<=0||aPrice<=0)
-    {
-      throw new RuntimeException("Please provide a valid mass and price [mass>0&&price>0]");
-    }
   }
 
   //------------------------
@@ -51,22 +47,16 @@ public class Equipment
   public boolean setMass(double aMass)
   {
     boolean wasSet = false;
-    if (aMass>0&&getPrice()>0)
-    {
     mass = aMass;
     wasSet = true;
-    }
     return wasSet;
   }
 
   public boolean setPrice(int aPrice)
   {
     boolean wasSet = false;
-    if (getMass()>0&&aPrice>0)
-    {
     price = aPrice;
     wasSet = true;
-    }
     return wasSet;
   }
 
@@ -145,7 +135,7 @@ public class Equipment
     {
       if (aEquipment == null)
       {
-        if (existingEquipment.minimumNumberOfEquipment() < existingEquipment.numberOfEquipment())
+        if (existingEquipment.minimumNumberOfEquipments() < existingEquipment.numberOfEquipments())
         {
           existingEquipment.removeEquipment(this);
           existingEquipment = aEquipment;  // aEquipment == null
@@ -154,7 +144,7 @@ public class Equipment
       } 
       else
       {
-        if (existingEquipment.minimumNumberOfEquipment() < existingEquipment.numberOfEquipment())
+        if (existingEquipment.minimumNumberOfEquipments() < existingEquipment.numberOfEquipments())
         {
           existingEquipment.removeEquipment(this);
           aEquipment.addEquipment(this);
@@ -199,7 +189,7 @@ public class Equipment
     }
     if (equipment != null)
     {
-      if (equipment.numberOfEquipment() <= 2)
+      if (equipment.numberOfEquipments() <= 2)
       {
         equipment.delete();
       }

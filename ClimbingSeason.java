@@ -20,7 +20,7 @@ public class ClimbingSeason
   //ClimbingSeason Associations
   private List<Member> members;
   private List<MountainGuide> mountainGuides;
-  private List<ClimbingWeek> climbingWeek;
+  private List<ClimbingWeek> climbingWeeks;
   private Admin admin;
 
   //------------------------
@@ -33,16 +33,12 @@ public class ClimbingSeason
     endDate = aEndDate;
     members = new ArrayList<Member>();
     mountainGuides = new ArrayList<MountainGuide>();
-    climbingWeek = new ArrayList<ClimbingWeek>();
+    climbingWeeks = new ArrayList<ClimbingWeek>();
     if (aAdmin == null || aAdmin.getClimbingSeason() != null)
     {
       throw new RuntimeException("Unable to create ClimbingSeason due to aAdmin. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     admin = aAdmin;
-    if (aStartDate.getTime()>=aEndDate.getTime())
-    {
-      throw new RuntimeException("Please provide a valid endDate and startDate [startDate<endDate]");
-    }
   }
 
   public ClimbingSeason(Date aStartDate, Date aEndDate, int aPasswordForAdmin, String aEmailAddressForAdmin)
@@ -51,12 +47,8 @@ public class ClimbingSeason
     endDate = aEndDate;
     members = new ArrayList<Member>();
     mountainGuides = new ArrayList<MountainGuide>();
-    climbingWeek = new ArrayList<ClimbingWeek>();
+    climbingWeeks = new ArrayList<ClimbingWeek>();
     admin = new Admin(aPasswordForAdmin, aEmailAddressForAdmin, this);
-    if (aStartDate.getTime()>=aEndDate.getTime())
-    {
-      throw new RuntimeException("Please provide a valid endDate and startDate [startDate<endDate]");
-    }
   }
 
   //------------------------
@@ -66,22 +58,16 @@ public class ClimbingSeason
   public boolean setStartDate(Date aStartDate)
   {
     boolean wasSet = false;
-    if (aStartDate.getTime()<getEndDate().getTime())
-    {
     startDate = aStartDate;
     wasSet = true;
-    }
     return wasSet;
   }
 
   public boolean setEndDate(Date aEndDate)
   {
     boolean wasSet = false;
-    if (getStartDate().getTime()<aEndDate.getTime())
-    {
     endDate = aEndDate;
     wasSet = true;
-    }
     return wasSet;
   }
 
@@ -157,31 +143,31 @@ public class ClimbingSeason
   /* Code from template association_GetMany */
   public ClimbingWeek getClimbingWeek(int index)
   {
-    ClimbingWeek aClimbingWeek = climbingWeek.get(index);
+    ClimbingWeek aClimbingWeek = climbingWeeks.get(index);
     return aClimbingWeek;
   }
 
-  public List<ClimbingWeek> getClimbingWeek()
+  public List<ClimbingWeek> getClimbingWeeks()
   {
-    List<ClimbingWeek> newClimbingWeek = Collections.unmodifiableList(climbingWeek);
-    return newClimbingWeek;
+    List<ClimbingWeek> newClimbingWeeks = Collections.unmodifiableList(climbingWeeks);
+    return newClimbingWeeks;
   }
 
-  public int numberOfClimbingWeek()
+  public int numberOfClimbingWeeks()
   {
-    int number = climbingWeek.size();
+    int number = climbingWeeks.size();
     return number;
   }
 
-  public boolean hasClimbingWeek()
+  public boolean hasClimbingWeeks()
   {
-    boolean has = climbingWeek.size() > 0;
+    boolean has = climbingWeeks.size() > 0;
     return has;
   }
 
   public int indexOfClimbingWeek(ClimbingWeek aClimbingWeek)
   {
-    int index = climbingWeek.indexOf(aClimbingWeek);
+    int index = climbingWeeks.indexOf(aClimbingWeek);
     return index;
   }
   /* Code from template association_GetOne */
@@ -195,9 +181,9 @@ public class ClimbingSeason
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Member addMember(int aPassword, String aEmailAddress, boolean aHotelStay, boolean aHireGuide, String aName, EmergencyContact aEmergencyContact, ClimbingWeek... allClimbingWeek)
+  public Member addMember(int aPassword, String aEmailAddress, boolean aHotelStay, boolean aHireGuide, String aName, EmergencyContact aEmergencyContact, ClimbingWeek... allClimbingWeeks)
   {
-    return new Member(aPassword, aEmailAddress, aHotelStay, aHireGuide, aName, this, aEmergencyContact, allClimbingWeek);
+    return new Member(aPassword, aEmailAddress, aHotelStay, aHireGuide, aName, this, aEmergencyContact, allClimbingWeeks);
   }
 
   public boolean addMember(Member aMember)
@@ -334,13 +320,13 @@ public class ClimbingSeason
     return wasAdded;
   }
   /* Code from template association_IsNumberOfValidMethod */
-  public boolean isNumberOfClimbingWeekValid()
+  public boolean isNumberOfClimbingWeeksValid()
   {
-    boolean isValid = numberOfClimbingWeek() >= minimumNumberOfClimbingWeek();
+    boolean isValid = numberOfClimbingWeeks() >= minimumNumberOfClimbingWeeks();
     return isValid;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfClimbingWeek()
+  public static int minimumNumberOfClimbingWeeks()
   {
     return 1;
   }
@@ -354,11 +340,11 @@ public class ClimbingSeason
   public boolean addClimbingWeek(ClimbingWeek aClimbingWeek)
   {
     boolean wasAdded = false;
-    if (climbingWeek.contains(aClimbingWeek)) { return false; }
+    if (climbingWeeks.contains(aClimbingWeek)) { return false; }
     ClimbingSeason existingClimbingSeason = aClimbingWeek.getClimbingSeason();
     boolean isNewClimbingSeason = existingClimbingSeason != null && !this.equals(existingClimbingSeason);
 
-    if (isNewClimbingSeason && existingClimbingSeason.numberOfClimbingWeek() <= minimumNumberOfClimbingWeek())
+    if (isNewClimbingSeason && existingClimbingSeason.numberOfClimbingWeeks() <= minimumNumberOfClimbingWeeks())
     {
       return wasAdded;
     }
@@ -368,7 +354,7 @@ public class ClimbingSeason
     }
     else
     {
-      climbingWeek.add(aClimbingWeek);
+      climbingWeeks.add(aClimbingWeek);
     }
     wasAdded = true;
     return wasAdded;
@@ -384,12 +370,12 @@ public class ClimbingSeason
     }
 
     //climbingSeason already at minimum (1)
-    if (numberOfClimbingWeek() <= minimumNumberOfClimbingWeek())
+    if (numberOfClimbingWeeks() <= minimumNumberOfClimbingWeeks())
     {
       return wasRemoved;
     }
 
-    climbingWeek.remove(aClimbingWeek);
+    climbingWeeks.remove(aClimbingWeek);
     wasRemoved = true;
     return wasRemoved;
   }
@@ -400,9 +386,9 @@ public class ClimbingSeason
     if(addClimbingWeek(aClimbingWeek))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfClimbingWeek()) { index = numberOfClimbingWeek() - 1; }
-      climbingWeek.remove(aClimbingWeek);
-      climbingWeek.add(index, aClimbingWeek);
+      if(index > numberOfClimbingWeeks()) { index = numberOfClimbingWeeks() - 1; }
+      climbingWeeks.remove(aClimbingWeek);
+      climbingWeeks.add(index, aClimbingWeek);
       wasAdded = true;
     }
     return wasAdded;
@@ -411,12 +397,12 @@ public class ClimbingSeason
   public boolean addOrMoveClimbingWeekAt(ClimbingWeek aClimbingWeek, int index)
   {
     boolean wasAdded = false;
-    if(climbingWeek.contains(aClimbingWeek))
+    if(climbingWeeks.contains(aClimbingWeek))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfClimbingWeek()) { index = numberOfClimbingWeek() - 1; }
-      climbingWeek.remove(aClimbingWeek);
-      climbingWeek.add(index, aClimbingWeek);
+      if(index > numberOfClimbingWeeks()) { index = numberOfClimbingWeeks() - 1; }
+      climbingWeeks.remove(aClimbingWeek);
+      climbingWeeks.add(index, aClimbingWeek);
       wasAdded = true;
     } 
     else 
@@ -442,9 +428,9 @@ public class ClimbingSeason
       mountainGuides.remove(aMountainGuide);
     }
     
-    for(int i=climbingWeek.size(); i > 0; i--)
+    for(int i=climbingWeeks.size(); i > 0; i--)
     {
-      ClimbingWeek aClimbingWeek = climbingWeek.get(i - 1);
+      ClimbingWeek aClimbingWeek = climbingWeeks.get(i - 1);
       aClimbingWeek.delete();
     }
     Admin existingAdmin = admin;

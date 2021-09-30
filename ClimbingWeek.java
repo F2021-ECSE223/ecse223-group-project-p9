@@ -22,7 +22,7 @@ public class ClimbingWeek
   private int weekID;
 
   //ClimbingWeek Associations
-  private List<Member> member;
+  private List<Member> members;
   private ClimbingSeason climbingSeason;
 
   //------------------------
@@ -35,7 +35,7 @@ public class ClimbingWeek
     {
       throw new RuntimeException("Cannot create due to duplicate weekID. See http://manual.umple.org?RE003ViolationofUniqueness.html");
     }
-    member = new ArrayList<Member>();
+    members = new ArrayList<Member>();
     boolean didAddClimbingSeason = setClimbingSeason(aClimbingSeason);
     if (!didAddClimbingSeason)
     {
@@ -83,31 +83,31 @@ public class ClimbingWeek
   /* Code from template association_GetMany */
   public Member getMember(int index)
   {
-    Member aMember = member.get(index);
+    Member aMember = members.get(index);
     return aMember;
   }
 
-  public List<Member> getMember()
+  public List<Member> getMembers()
   {
-    List<Member> newMember = Collections.unmodifiableList(member);
-    return newMember;
+    List<Member> newMembers = Collections.unmodifiableList(members);
+    return newMembers;
   }
 
-  public int numberOfMember()
+  public int numberOfMembers()
   {
-    int number = member.size();
+    int number = members.size();
     return number;
   }
 
-  public boolean hasMember()
+  public boolean hasMembers()
   {
-    boolean has = member.size() > 0;
+    boolean has = members.size() > 0;
     return has;
   }
 
   public int indexOfMember(Member aMember)
   {
-    int index = member.indexOf(aMember);
+    int index = members.indexOf(aMember);
     return index;
   }
   /* Code from template association_GetOne */
@@ -116,7 +116,7 @@ public class ClimbingWeek
     return climbingSeason;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfMember()
+  public static int minimumNumberOfMembers()
   {
     return 0;
   }
@@ -124,8 +124,8 @@ public class ClimbingWeek
   public boolean addMember(Member aMember)
   {
     boolean wasAdded = false;
-    if (member.contains(aMember)) { return false; }
-    member.add(aMember);
+    if (members.contains(aMember)) { return false; }
+    members.add(aMember);
     if (aMember.indexOfClimbingWeek(this) != -1)
     {
       wasAdded = true;
@@ -135,7 +135,7 @@ public class ClimbingWeek
       wasAdded = aMember.addClimbingWeek(this);
       if (!wasAdded)
       {
-        member.remove(aMember);
+        members.remove(aMember);
       }
     }
     return wasAdded;
@@ -144,13 +144,13 @@ public class ClimbingWeek
   public boolean removeMember(Member aMember)
   {
     boolean wasRemoved = false;
-    if (!member.contains(aMember))
+    if (!members.contains(aMember))
     {
       return wasRemoved;
     }
 
-    int oldIndex = member.indexOf(aMember);
-    member.remove(oldIndex);
+    int oldIndex = members.indexOf(aMember);
+    members.remove(oldIndex);
     if (aMember.indexOfClimbingWeek(this) == -1)
     {
       wasRemoved = true;
@@ -160,7 +160,7 @@ public class ClimbingWeek
       wasRemoved = aMember.removeClimbingWeek(this);
       if (!wasRemoved)
       {
-        member.add(oldIndex,aMember);
+        members.add(oldIndex,aMember);
       }
     }
     return wasRemoved;
@@ -172,9 +172,9 @@ public class ClimbingWeek
     if(addMember(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     }
     return wasAdded;
@@ -183,12 +183,12 @@ public class ClimbingWeek
   public boolean addOrMoveMemberAt(Member aMember, int index)
   {
     boolean wasAdded = false;
-    if(member.contains(aMember))
+    if(members.contains(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     } 
     else 
@@ -207,7 +207,7 @@ public class ClimbingWeek
       return wasSet;
     }
 
-    if (climbingSeason != null && climbingSeason.numberOfClimbingWeek() <= ClimbingSeason.minimumNumberOfClimbingWeek())
+    if (climbingSeason != null && climbingSeason.numberOfClimbingWeeks() <= ClimbingSeason.minimumNumberOfClimbingWeeks())
     {
       return wasSet;
     }
@@ -231,11 +231,11 @@ public class ClimbingWeek
   public void delete()
   {
     climbingweeksByWeekID.remove(getWeekID());
-    ArrayList<Member> copyOfMember = new ArrayList<Member>(member);
-    member.clear();
-    for(Member aMember : copyOfMember)
+    ArrayList<Member> copyOfMembers = new ArrayList<Member>(members);
+    members.clear();
+    for(Member aMember : copyOfMembers)
     {
-      if (aMember.numberOfClimbingWeek() <= Member.minimumNumberOfClimbingWeek())
+      if (aMember.numberOfClimbingWeeks() <= Member.minimumNumberOfClimbingWeeks())
       {
         aMember.delete();
       }

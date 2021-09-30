@@ -17,29 +17,29 @@ public class EquipmentBundle
   private int percentDiscount;
 
   //EquipmentBundle Associations
-  private List<Member> member;
+  private List<Member> members;
   private Admin admin;
-  private List<Equipment> equipment;
+  private List<Equipment> equipments;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public EquipmentBundle(String aName, int aPercentDiscount, Admin aAdmin, Equipment... allEquipment)
+  public EquipmentBundle(String aName, int aPercentDiscount, Admin aAdmin, Equipment... allEquipments)
   {
     name = aName;
     percentDiscount = aPercentDiscount;
-    member = new ArrayList<Member>();
+    members = new ArrayList<Member>();
     boolean didAddAdmin = setAdmin(aAdmin);
     if (!didAddAdmin)
     {
       throw new RuntimeException("Unable to create equipmentBundle due to admin. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    equipment = new ArrayList<Equipment>();
-    boolean didAddEquipment = setEquipment(allEquipment);
-    if (!didAddEquipment)
+    equipments = new ArrayList<Equipment>();
+    boolean didAddEquipments = setEquipments(allEquipments);
+    if (!didAddEquipments)
     {
-      throw new RuntimeException("Unable to create EquipmentBundle, must have at least 2 equipment. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create EquipmentBundle, must have at least 2 equipments. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
   }
 
@@ -75,31 +75,31 @@ public class EquipmentBundle
   /* Code from template association_GetMany */
   public Member getMember(int index)
   {
-    Member aMember = member.get(index);
+    Member aMember = members.get(index);
     return aMember;
   }
 
-  public List<Member> getMember()
+  public List<Member> getMembers()
   {
-    List<Member> newMember = Collections.unmodifiableList(member);
-    return newMember;
+    List<Member> newMembers = Collections.unmodifiableList(members);
+    return newMembers;
   }
 
-  public int numberOfMember()
+  public int numberOfMembers()
   {
-    int number = member.size();
+    int number = members.size();
     return number;
   }
 
-  public boolean hasMember()
+  public boolean hasMembers()
   {
-    boolean has = member.size() > 0;
+    boolean has = members.size() > 0;
     return has;
   }
 
   public int indexOfMember(Member aMember)
   {
-    int index = member.indexOf(aMember);
+    int index = members.indexOf(aMember);
     return index;
   }
   /* Code from template association_GetOne */
@@ -110,35 +110,35 @@ public class EquipmentBundle
   /* Code from template association_GetMany */
   public Equipment getEquipment(int index)
   {
-    Equipment aEquipment = equipment.get(index);
+    Equipment aEquipment = equipments.get(index);
     return aEquipment;
   }
 
-  public List<Equipment> getEquipment()
+  public List<Equipment> getEquipments()
   {
-    List<Equipment> newEquipment = Collections.unmodifiableList(equipment);
-    return newEquipment;
+    List<Equipment> newEquipments = Collections.unmodifiableList(equipments);
+    return newEquipments;
   }
 
-  public int numberOfEquipment()
+  public int numberOfEquipments()
   {
-    int number = equipment.size();
+    int number = equipments.size();
     return number;
   }
 
-  public boolean hasEquipment()
+  public boolean hasEquipments()
   {
-    boolean has = equipment.size() > 0;
+    boolean has = equipments.size() > 0;
     return has;
   }
 
   public int indexOfEquipment(Equipment aEquipment)
   {
-    int index = equipment.indexOf(aEquipment);
+    int index = equipments.indexOf(aEquipment);
     return index;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfMember()
+  public static int minimumNumberOfMembers()
   {
     return 0;
   }
@@ -146,8 +146,8 @@ public class EquipmentBundle
   public boolean addMember(Member aMember)
   {
     boolean wasAdded = false;
-    if (member.contains(aMember)) { return false; }
-    member.add(aMember);
+    if (members.contains(aMember)) { return false; }
+    members.add(aMember);
     if (aMember.indexOfEquipmentBundle(this) != -1)
     {
       wasAdded = true;
@@ -157,7 +157,7 @@ public class EquipmentBundle
       wasAdded = aMember.addEquipmentBundle(this);
       if (!wasAdded)
       {
-        member.remove(aMember);
+        members.remove(aMember);
       }
     }
     return wasAdded;
@@ -166,13 +166,13 @@ public class EquipmentBundle
   public boolean removeMember(Member aMember)
   {
     boolean wasRemoved = false;
-    if (!member.contains(aMember))
+    if (!members.contains(aMember))
     {
       return wasRemoved;
     }
 
-    int oldIndex = member.indexOf(aMember);
-    member.remove(oldIndex);
+    int oldIndex = members.indexOf(aMember);
+    members.remove(oldIndex);
     if (aMember.indexOfEquipmentBundle(this) == -1)
     {
       wasRemoved = true;
@@ -182,7 +182,7 @@ public class EquipmentBundle
       wasRemoved = aMember.removeEquipmentBundle(this);
       if (!wasRemoved)
       {
-        member.add(oldIndex,aMember);
+        members.add(oldIndex,aMember);
       }
     }
     return wasRemoved;
@@ -194,9 +194,9 @@ public class EquipmentBundle
     if(addMember(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     }
     return wasAdded;
@@ -205,12 +205,12 @@ public class EquipmentBundle
   public boolean addOrMoveMemberAt(Member aMember, int index)
   {
     boolean wasAdded = false;
-    if(member.contains(aMember))
+    if(members.contains(aMember))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfMember()) { index = numberOfMember() - 1; }
-      member.remove(aMember);
-      member.add(index, aMember);
+      if(index > numberOfMembers()) { index = numberOfMembers() - 1; }
+      members.remove(aMember);
+      members.add(index, aMember);
       wasAdded = true;
     } 
     else 
@@ -239,7 +239,7 @@ public class EquipmentBundle
     return wasSet;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEquipment()
+  public static int minimumNumberOfEquipments()
   {
     return 2;
   }
@@ -247,17 +247,17 @@ public class EquipmentBundle
   public boolean addEquipment(Equipment aEquipment)
   {
     boolean wasAdded = false;
-    if (equipment.contains(aEquipment)) { return false; }
+    if (equipments.contains(aEquipment)) { return false; }
     EquipmentBundle existingEquipment = aEquipment.getEquipment();
-    if (existingEquipment != null && existingEquipment.numberOfEquipment() <= minimumNumberOfEquipment())
+    if (existingEquipment != null && existingEquipment.numberOfEquipments() <= minimumNumberOfEquipments())
     {
       return wasAdded;
     }
     else if (existingEquipment != null)
     {
-      existingEquipment.equipment.remove(aEquipment);
+      existingEquipment.equipments.remove(aEquipment);
     }
-    equipment.add(aEquipment);
+    equipments.add(aEquipment);
     setEquipment(aEquipment,this);
     wasAdded = true;
     return wasAdded;
@@ -266,64 +266,64 @@ public class EquipmentBundle
   public boolean removeEquipment(Equipment aEquipment)
   {
     boolean wasRemoved = false;
-    if (equipment.contains(aEquipment) && numberOfEquipment() > minimumNumberOfEquipment())
+    if (equipments.contains(aEquipment) && numberOfEquipments() > minimumNumberOfEquipments())
     {
-      equipment.remove(aEquipment);
+      equipments.remove(aEquipment);
       setEquipment(aEquipment,null);
       wasRemoved = true;
     }
     return wasRemoved;
   }
   /* Code from template association_SetMNToOptionalOne */
-  public boolean setEquipment(Equipment... newEquipment)
+  public boolean setEquipments(Equipment... newEquipments)
   {
     boolean wasSet = false;
-    if (newEquipment.length < minimumNumberOfEquipment())
+    if (newEquipments.length < minimumNumberOfEquipments())
     {
       return wasSet;
     }
 
-    ArrayList<Equipment> checkNewEquipment = new ArrayList<Equipment>();
-    HashMap<EquipmentBundle,Integer> equipmentToNewEquipment = new HashMap<EquipmentBundle,Integer>();
-    for (Equipment aEquipment : newEquipment)
+    ArrayList<Equipment> checkNewEquipments = new ArrayList<Equipment>();
+    HashMap<EquipmentBundle,Integer> equipmentToNewEquipments = new HashMap<EquipmentBundle,Integer>();
+    for (Equipment aEquipment : newEquipments)
     {
-      if (checkNewEquipment.contains(aEquipment))
+      if (checkNewEquipments.contains(aEquipment))
       {
         return wasSet;
       }
       else if (aEquipment.getEquipment() != null && !this.equals(aEquipment.getEquipment()))
       {
         EquipmentBundle existingEquipment = aEquipment.getEquipment();
-        if (!equipmentToNewEquipment.containsKey(existingEquipment))
+        if (!equipmentToNewEquipments.containsKey(existingEquipment))
         {
-          equipmentToNewEquipment.put(existingEquipment, Integer.valueOf(existingEquipment.numberOfEquipment()));
+          equipmentToNewEquipments.put(existingEquipment, Integer.valueOf(existingEquipment.numberOfEquipments()));
         }
-        Integer currentCount = equipmentToNewEquipment.get(existingEquipment);
+        Integer currentCount = equipmentToNewEquipments.get(existingEquipment);
         int nextCount = currentCount - 1;
         if (nextCount < 2)
         {
           return wasSet;
         }
-        equipmentToNewEquipment.put(existingEquipment, Integer.valueOf(nextCount));
+        equipmentToNewEquipments.put(existingEquipment, Integer.valueOf(nextCount));
       }
-      checkNewEquipment.add(aEquipment);
+      checkNewEquipments.add(aEquipment);
     }
 
-    equipment.removeAll(checkNewEquipment);
+    equipments.removeAll(checkNewEquipments);
 
-    for (Equipment orphan : equipment)
+    for (Equipment orphan : equipments)
     {
       setEquipment(orphan, null);
     }
-    equipment.clear();
-    for (Equipment aEquipment : newEquipment)
+    equipments.clear();
+    for (Equipment aEquipment : newEquipments)
     {
       if (aEquipment.getEquipment() != null)
       {
-        aEquipment.getEquipment().equipment.remove(aEquipment);
+        aEquipment.getEquipment().equipments.remove(aEquipment);
       }
       setEquipment(aEquipment, this);
-      equipment.add(aEquipment);
+      equipments.add(aEquipment);
     }
     wasSet = true;
     return wasSet;
@@ -349,9 +349,9 @@ public class EquipmentBundle
     if(addEquipment(aEquipment))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipment()) { index = numberOfEquipment() - 1; }
-      equipment.remove(aEquipment);
-      equipment.add(index, aEquipment);
+      if(index > numberOfEquipments()) { index = numberOfEquipments() - 1; }
+      equipments.remove(aEquipment);
+      equipments.add(index, aEquipment);
       wasAdded = true;
     }
     return wasAdded;
@@ -360,12 +360,12 @@ public class EquipmentBundle
   public boolean addOrMoveEquipmentAt(Equipment aEquipment, int index)
   {
     boolean wasAdded = false;
-    if(equipment.contains(aEquipment))
+    if(equipments.contains(aEquipment))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipment()) { index = numberOfEquipment() - 1; }
-      equipment.remove(aEquipment);
-      equipment.add(index, aEquipment);
+      if(index > numberOfEquipments()) { index = numberOfEquipments() - 1; }
+      equipments.remove(aEquipment);
+      equipments.add(index, aEquipment);
       wasAdded = true;
     } 
     else 
@@ -377,9 +377,9 @@ public class EquipmentBundle
 
   public void delete()
   {
-    ArrayList<Member> copyOfMember = new ArrayList<Member>(member);
-    member.clear();
-    for(Member aMember : copyOfMember)
+    ArrayList<Member> copyOfMembers = new ArrayList<Member>(members);
+    members.clear();
+    for(Member aMember : copyOfMembers)
     {
       aMember.removeEquipmentBundle(this);
     }
@@ -389,11 +389,11 @@ public class EquipmentBundle
     {
       placeholderAdmin.removeEquipmentBundle(this);
     }
-    for(Equipment aEquipment : equipment)
+    for(Equipment aEquipment : equipments)
     {
       setEquipment(aEquipment,null);
     }
-    equipment.clear();
+    equipments.clear();
   }
 
 

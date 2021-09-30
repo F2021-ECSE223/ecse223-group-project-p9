@@ -42,13 +42,13 @@ public class EmergencyContact
     member = aMember;
   }
 
-  public EmergencyContact(String aName, int aPhoneNumber, String aEmailAddress, int aPasswordForMountainGuide, String aEmailAddressForMountainGuide, String aNameForMountainGuide, int aWeeklyCostForMountainGuide, ClimbingSeason aClimbingSeasonForMountainGuide, int aPasswordForMember, String aEmailAddressForMember, boolean aHotelStayForMember, boolean aHireGuideForMember, String aNameForMember, ClimbingSeason aClimbingSeasonForMember, ClimbingWeek... allClimbingWeekForMember)
+  public EmergencyContact(String aName, int aPhoneNumber, String aEmailAddress, int aPasswordForMountainGuide, String aEmailAddressForMountainGuide, String aNameForMountainGuide, int aWeeklyCostForMountainGuide, ClimbingSeason aClimbingSeasonForMountainGuide, int aPasswordForMember, String aEmailAddressForMember, boolean aHotelStayForMember, boolean aHireGuideForMember, String aNameForMember, ClimbingSeason aClimbingSeasonForMember, ClimbingWeek... allClimbingWeeksForMember)
   {
     name = aName;
     phoneNumber = aPhoneNumber;
     emailAddress = aEmailAddress;
     mountainGuide = new MountainGuide(aPasswordForMountainGuide, aEmailAddressForMountainGuide, aNameForMountainGuide, aWeeklyCostForMountainGuide, aClimbingSeasonForMountainGuide, this);
-    member = new Member(aPasswordForMember, aEmailAddressForMember, aHotelStayForMember, aHireGuideForMember, aNameForMember, aClimbingSeasonForMember, this, allClimbingWeekForMember);
+    member = new Member(aPasswordForMember, aEmailAddressForMember, aHotelStayForMember, aHireGuideForMember, aNameForMember, aClimbingSeasonForMember, this, allClimbingWeeksForMember);
   }
 
   //------------------------

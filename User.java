@@ -48,7 +48,7 @@ public class User
   }
 
   /**
-   * only user can access its password so it should be private
+   * only user can access its password so method that returns password should be private
    */
   public int getPassword()
   {

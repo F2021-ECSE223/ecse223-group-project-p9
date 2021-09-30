@@ -1,5 +1,5 @@
 class User{
-  int   password;//only user can access its password so it should be private
+  int   password;//only user can access its password so method that returns password should be private
   unique immutable emailAddress;//immutable because it can't be changed
 }
 
@@ -14,14 +14,14 @@ class Member{
   boolean hotelStay;
   boolean hireGuide;
   name;
-  * member -- 0..1 MountainGuide mountainGuide;
+  * members -- 0..1 MountainGuide mountainGuide;
 }
 
 class Admin{
    
   isA User;
-  1 admin -- * EquipmentBundle equipmentBundle;
-  1 admin -- * Equipment equipment;
+  1 admin -- * EquipmentBundle equipmentBundles;
+  1 admin -- * Equipment equipments;
   1 admin --  1 ClimbingSeason climbingSeason;
 }
 
@@ -32,13 +32,13 @@ class ClimbingSeason{
   1<@>- * MountainGuide;
   Date startDate;
   Date endDate;
-  [startDate<endDate]
-  1 climbingSeason -- 1..* ClimbingWeek climbingWeek;
+  
+  1 climbingSeason -- 1..* ClimbingWeek climbingWeeks;
 }
 
 class ClimbingWeek{
   unique int weekID;
-  1..* climbingWeek -- * Member member;
+  1..* climbingWeeks -- * Member members;
 }
 
 class EmergencyContact{
@@ -53,20 +53,20 @@ class Hotel{
   name;
   address;
   int  numStars;
-  [numStars>=1 && numStars<=5]
-   0..1 hotel -- *Member member;
+  
+   0..1 hotel -- *Member members;
 }
 
 class EquipmentBundle{
   name;
   int percentDiscount;
-  * equipmentBundle -- * Member member;
+  * equipmentBundles -- * Member members;
 }
 
 class Equipment{
   double mass;
   int price;
-  [mass>0 && price>0]
-  * equipment -- 1 Member member;
-  2..* equipment -- 0..1 EquipmentBundle equipment;
+  
+  * equipments -- 1 Member member;
+  2..* equipments -- 0..1 EquipmentBundle equipment;
 }

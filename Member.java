@@ -20,17 +20,17 @@ public class Member extends User
   //Member Associations
   private MountainGuide mountainGuide;
   private ClimbingSeason climbingSeason;
-  private List<ClimbingWeek> climbingWeek;
+  private List<ClimbingWeek> climbingWeeks;
   private EmergencyContact emergencyContact;
   private Hotel hotel;
-  private List<EquipmentBundle> equipmentBundle;
-  private List<Equipment> equipment;
+  private List<EquipmentBundle> equipmentBundles;
+  private List<Equipment> equipments;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public Member(int aPassword, String aEmailAddress, boolean aHotelStay, boolean aHireGuide, String aName, ClimbingSeason aClimbingSeason, EmergencyContact aEmergencyContact, ClimbingWeek... allClimbingWeek)
+  public Member(int aPassword, String aEmailAddress, boolean aHotelStay, boolean aHireGuide, String aName, ClimbingSeason aClimbingSeason, EmergencyContact aEmergencyContact, ClimbingWeek... allClimbingWeeks)
   {
     super(aPassword, aEmailAddress);
     hotelStay = aHotelStay;
@@ -41,22 +41,22 @@ public class Member extends User
     {
       throw new RuntimeException("Unable to create member due to climbingSeason. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    climbingWeek = new ArrayList<ClimbingWeek>();
-    boolean didAddClimbingWeek = setClimbingWeek(allClimbingWeek);
-    if (!didAddClimbingWeek)
+    climbingWeeks = new ArrayList<ClimbingWeek>();
+    boolean didAddClimbingWeeks = setClimbingWeeks(allClimbingWeeks);
+    if (!didAddClimbingWeeks)
     {
-      throw new RuntimeException("Unable to create Member, must have at least 1 climbingWeek. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create Member, must have at least 1 climbingWeeks. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     if (aEmergencyContact == null || aEmergencyContact.getMember() != null)
     {
       throw new RuntimeException("Unable to create Member due to aEmergencyContact. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     emergencyContact = aEmergencyContact;
-    equipmentBundle = new ArrayList<EquipmentBundle>();
-    equipment = new ArrayList<Equipment>();
+    equipmentBundles = new ArrayList<EquipmentBundle>();
+    equipments = new ArrayList<Equipment>();
   }
 
-  public Member(int aPassword, String aEmailAddress, boolean aHotelStay, boolean aHireGuide, String aName, ClimbingSeason aClimbingSeason, String aNameForEmergencyContact, int aPhoneNumberForEmergencyContact, String aEmailAddressForEmergencyContact, MountainGuide aMountainGuideForEmergencyContact, ClimbingWeek... allClimbingWeek)
+  public Member(int aPassword, String aEmailAddress, boolean aHotelStay, boolean aHireGuide, String aName, ClimbingSeason aClimbingSeason, String aNameForEmergencyContact, int aPhoneNumberForEmergencyContact, String aEmailAddressForEmergencyContact, MountainGuide aMountainGuideForEmergencyContact, ClimbingWeek... allClimbingWeeks)
   {
     super(aPassword, aEmailAddress);
     hotelStay = aHotelStay;
@@ -67,15 +67,15 @@ public class Member extends User
     {
       throw new RuntimeException("Unable to create member due to climbingSeason. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    climbingWeek = new ArrayList<ClimbingWeek>();
-    boolean didAddClimbingWeek = setClimbingWeek(allClimbingWeek);
-    if (!didAddClimbingWeek)
+    climbingWeeks = new ArrayList<ClimbingWeek>();
+    boolean didAddClimbingWeeks = setClimbingWeeks(allClimbingWeeks);
+    if (!didAddClimbingWeeks)
     {
-      throw new RuntimeException("Unable to create Member, must have at least 1 climbingWeek. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
+      throw new RuntimeException("Unable to create Member, must have at least 1 climbingWeeks. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
     emergencyContact = new EmergencyContact(aNameForEmergencyContact, aPhoneNumberForEmergencyContact, aEmailAddressForEmergencyContact, aMountainGuideForEmergencyContact, this);
-    equipmentBundle = new ArrayList<EquipmentBundle>();
-    equipment = new ArrayList<Equipment>();
+    equipmentBundles = new ArrayList<EquipmentBundle>();
+    equipments = new ArrayList<Equipment>();
   }
 
   //------------------------
@@ -139,31 +139,31 @@ public class Member extends User
   /* Code from template association_GetMany */
   public ClimbingWeek getClimbingWeek(int index)
   {
-    ClimbingWeek aClimbingWeek = climbingWeek.get(index);
+    ClimbingWeek aClimbingWeek = climbingWeeks.get(index);
     return aClimbingWeek;
   }
 
-  public List<ClimbingWeek> getClimbingWeek()
+  public List<ClimbingWeek> getClimbingWeeks()
   {
-    List<ClimbingWeek> newClimbingWeek = Collections.unmodifiableList(climbingWeek);
-    return newClimbingWeek;
+    List<ClimbingWeek> newClimbingWeeks = Collections.unmodifiableList(climbingWeeks);
+    return newClimbingWeeks;
   }
 
-  public int numberOfClimbingWeek()
+  public int numberOfClimbingWeeks()
   {
-    int number = climbingWeek.size();
+    int number = climbingWeeks.size();
     return number;
   }
 
-  public boolean hasClimbingWeek()
+  public boolean hasClimbingWeeks()
   {
-    boolean has = climbingWeek.size() > 0;
+    boolean has = climbingWeeks.size() > 0;
     return has;
   }
 
   public int indexOfClimbingWeek(ClimbingWeek aClimbingWeek)
   {
-    int index = climbingWeek.indexOf(aClimbingWeek);
+    int index = climbingWeeks.indexOf(aClimbingWeek);
     return index;
   }
   /* Code from template association_GetOne */
@@ -185,61 +185,61 @@ public class Member extends User
   /* Code from template association_GetMany */
   public EquipmentBundle getEquipmentBundle(int index)
   {
-    EquipmentBundle aEquipmentBundle = equipmentBundle.get(index);
+    EquipmentBundle aEquipmentBundle = equipmentBundles.get(index);
     return aEquipmentBundle;
   }
 
-  public List<EquipmentBundle> getEquipmentBundle()
+  public List<EquipmentBundle> getEquipmentBundles()
   {
-    List<EquipmentBundle> newEquipmentBundle = Collections.unmodifiableList(equipmentBundle);
-    return newEquipmentBundle;
+    List<EquipmentBundle> newEquipmentBundles = Collections.unmodifiableList(equipmentBundles);
+    return newEquipmentBundles;
   }
 
-  public int numberOfEquipmentBundle()
+  public int numberOfEquipmentBundles()
   {
-    int number = equipmentBundle.size();
+    int number = equipmentBundles.size();
     return number;
   }
 
-  public boolean hasEquipmentBundle()
+  public boolean hasEquipmentBundles()
   {
-    boolean has = equipmentBundle.size() > 0;
+    boolean has = equipmentBundles.size() > 0;
     return has;
   }
 
   public int indexOfEquipmentBundle(EquipmentBundle aEquipmentBundle)
   {
-    int index = equipmentBundle.indexOf(aEquipmentBundle);
+    int index = equipmentBundles.indexOf(aEquipmentBundle);
     return index;
   }
   /* Code from template association_GetMany */
   public Equipment getEquipment(int index)
   {
-    Equipment aEquipment = equipment.get(index);
+    Equipment aEquipment = equipments.get(index);
     return aEquipment;
   }
 
-  public List<Equipment> getEquipment()
+  public List<Equipment> getEquipments()
   {
-    List<Equipment> newEquipment = Collections.unmodifiableList(equipment);
-    return newEquipment;
+    List<Equipment> newEquipments = Collections.unmodifiableList(equipments);
+    return newEquipments;
   }
 
-  public int numberOfEquipment()
+  public int numberOfEquipments()
   {
-    int number = equipment.size();
+    int number = equipments.size();
     return number;
   }
 
-  public boolean hasEquipment()
+  public boolean hasEquipments()
   {
-    boolean has = equipment.size() > 0;
+    boolean has = equipments.size() > 0;
     return has;
   }
 
   public int indexOfEquipment(Equipment aEquipment)
   {
-    int index = equipment.indexOf(aEquipment);
+    int index = equipments.indexOf(aEquipment);
     return index;
   }
   /* Code from template association_SetOptionalOneToMany */
@@ -279,13 +279,13 @@ public class Member extends User
     return wasSet;
   }
   /* Code from template association_IsNumberOfValidMethod */
-  public boolean isNumberOfClimbingWeekValid()
+  public boolean isNumberOfClimbingWeeksValid()
   {
-    boolean isValid = numberOfClimbingWeek() >= minimumNumberOfClimbingWeek();
+    boolean isValid = numberOfClimbingWeeks() >= minimumNumberOfClimbingWeeks();
     return isValid;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfClimbingWeek()
+  public static int minimumNumberOfClimbingWeeks()
   {
     return 1;
   }
@@ -293,8 +293,8 @@ public class Member extends User
   public boolean addClimbingWeek(ClimbingWeek aClimbingWeek)
   {
     boolean wasAdded = false;
-    if (climbingWeek.contains(aClimbingWeek)) { return false; }
-    climbingWeek.add(aClimbingWeek);
+    if (climbingWeeks.contains(aClimbingWeek)) { return false; }
+    climbingWeeks.add(aClimbingWeek);
     if (aClimbingWeek.indexOfMember(this) != -1)
     {
       wasAdded = true;
@@ -304,7 +304,7 @@ public class Member extends User
       wasAdded = aClimbingWeek.addMember(this);
       if (!wasAdded)
       {
-        climbingWeek.remove(aClimbingWeek);
+        climbingWeeks.remove(aClimbingWeek);
       }
     }
     return wasAdded;
@@ -313,18 +313,18 @@ public class Member extends User
   public boolean removeClimbingWeek(ClimbingWeek aClimbingWeek)
   {
     boolean wasRemoved = false;
-    if (!climbingWeek.contains(aClimbingWeek))
+    if (!climbingWeeks.contains(aClimbingWeek))
     {
       return wasRemoved;
     }
 
-    if (numberOfClimbingWeek() <= minimumNumberOfClimbingWeek())
+    if (numberOfClimbingWeeks() <= minimumNumberOfClimbingWeeks())
     {
       return wasRemoved;
     }
 
-    int oldIndex = climbingWeek.indexOf(aClimbingWeek);
-    climbingWeek.remove(oldIndex);
+    int oldIndex = climbingWeeks.indexOf(aClimbingWeek);
+    climbingWeeks.remove(oldIndex);
     if (aClimbingWeek.indexOfMember(this) == -1)
     {
       wasRemoved = true;
@@ -334,38 +334,38 @@ public class Member extends User
       wasRemoved = aClimbingWeek.removeMember(this);
       if (!wasRemoved)
       {
-        climbingWeek.add(oldIndex,aClimbingWeek);
+        climbingWeeks.add(oldIndex,aClimbingWeek);
       }
     }
     return wasRemoved;
   }
   /* Code from template association_SetMStarToMany */
-  public boolean setClimbingWeek(ClimbingWeek... newClimbingWeek)
+  public boolean setClimbingWeeks(ClimbingWeek... newClimbingWeeks)
   {
     boolean wasSet = false;
-    ArrayList<ClimbingWeek> verifiedClimbingWeek = new ArrayList<ClimbingWeek>();
-    for (ClimbingWeek aClimbingWeek : newClimbingWeek)
+    ArrayList<ClimbingWeek> verifiedClimbingWeeks = new ArrayList<ClimbingWeek>();
+    for (ClimbingWeek aClimbingWeek : newClimbingWeeks)
     {
-      if (verifiedClimbingWeek.contains(aClimbingWeek))
+      if (verifiedClimbingWeeks.contains(aClimbingWeek))
       {
         continue;
       }
-      verifiedClimbingWeek.add(aClimbingWeek);
+      verifiedClimbingWeeks.add(aClimbingWeek);
     }
 
-    if (verifiedClimbingWeek.size() != newClimbingWeek.length || verifiedClimbingWeek.size() < minimumNumberOfClimbingWeek())
+    if (verifiedClimbingWeeks.size() != newClimbingWeeks.length || verifiedClimbingWeeks.size() < minimumNumberOfClimbingWeeks())
     {
       return wasSet;
     }
 
-    ArrayList<ClimbingWeek> oldClimbingWeek = new ArrayList<ClimbingWeek>(climbingWeek);
-    climbingWeek.clear();
-    for (ClimbingWeek aNewClimbingWeek : verifiedClimbingWeek)
+    ArrayList<ClimbingWeek> oldClimbingWeeks = new ArrayList<ClimbingWeek>(climbingWeeks);
+    climbingWeeks.clear();
+    for (ClimbingWeek aNewClimbingWeek : verifiedClimbingWeeks)
     {
-      climbingWeek.add(aNewClimbingWeek);
-      if (oldClimbingWeek.contains(aNewClimbingWeek))
+      climbingWeeks.add(aNewClimbingWeek);
+      if (oldClimbingWeeks.contains(aNewClimbingWeek))
       {
-        oldClimbingWeek.remove(aNewClimbingWeek);
+        oldClimbingWeeks.remove(aNewClimbingWeek);
       }
       else
       {
@@ -373,7 +373,7 @@ public class Member extends User
       }
     }
 
-    for (ClimbingWeek anOldClimbingWeek : oldClimbingWeek)
+    for (ClimbingWeek anOldClimbingWeek : oldClimbingWeeks)
     {
       anOldClimbingWeek.removeMember(this);
     }
@@ -387,9 +387,9 @@ public class Member extends User
     if(addClimbingWeek(aClimbingWeek))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfClimbingWeek()) { index = numberOfClimbingWeek() - 1; }
-      climbingWeek.remove(aClimbingWeek);
-      climbingWeek.add(index, aClimbingWeek);
+      if(index > numberOfClimbingWeeks()) { index = numberOfClimbingWeeks() - 1; }
+      climbingWeeks.remove(aClimbingWeek);
+      climbingWeeks.add(index, aClimbingWeek);
       wasAdded = true;
     }
     return wasAdded;
@@ -398,12 +398,12 @@ public class Member extends User
   public boolean addOrMoveClimbingWeekAt(ClimbingWeek aClimbingWeek, int index)
   {
     boolean wasAdded = false;
-    if(climbingWeek.contains(aClimbingWeek))
+    if(climbingWeeks.contains(aClimbingWeek))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfClimbingWeek()) { index = numberOfClimbingWeek() - 1; }
-      climbingWeek.remove(aClimbingWeek);
-      climbingWeek.add(index, aClimbingWeek);
+      if(index > numberOfClimbingWeeks()) { index = numberOfClimbingWeeks() - 1; }
+      climbingWeeks.remove(aClimbingWeek);
+      climbingWeeks.add(index, aClimbingWeek);
       wasAdded = true;
     } 
     else 
@@ -430,7 +430,7 @@ public class Member extends User
     return wasSet;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEquipmentBundle()
+  public static int minimumNumberOfEquipmentBundles()
   {
     return 0;
   }
@@ -438,8 +438,8 @@ public class Member extends User
   public boolean addEquipmentBundle(EquipmentBundle aEquipmentBundle)
   {
     boolean wasAdded = false;
-    if (equipmentBundle.contains(aEquipmentBundle)) { return false; }
-    equipmentBundle.add(aEquipmentBundle);
+    if (equipmentBundles.contains(aEquipmentBundle)) { return false; }
+    equipmentBundles.add(aEquipmentBundle);
     if (aEquipmentBundle.indexOfMember(this) != -1)
     {
       wasAdded = true;
@@ -449,7 +449,7 @@ public class Member extends User
       wasAdded = aEquipmentBundle.addMember(this);
       if (!wasAdded)
       {
-        equipmentBundle.remove(aEquipmentBundle);
+        equipmentBundles.remove(aEquipmentBundle);
       }
     }
     return wasAdded;
@@ -458,13 +458,13 @@ public class Member extends User
   public boolean removeEquipmentBundle(EquipmentBundle aEquipmentBundle)
   {
     boolean wasRemoved = false;
-    if (!equipmentBundle.contains(aEquipmentBundle))
+    if (!equipmentBundles.contains(aEquipmentBundle))
     {
       return wasRemoved;
     }
 
-    int oldIndex = equipmentBundle.indexOf(aEquipmentBundle);
-    equipmentBundle.remove(oldIndex);
+    int oldIndex = equipmentBundles.indexOf(aEquipmentBundle);
+    equipmentBundles.remove(oldIndex);
     if (aEquipmentBundle.indexOfMember(this) == -1)
     {
       wasRemoved = true;
@@ -474,7 +474,7 @@ public class Member extends User
       wasRemoved = aEquipmentBundle.removeMember(this);
       if (!wasRemoved)
       {
-        equipmentBundle.add(oldIndex,aEquipmentBundle);
+        equipmentBundles.add(oldIndex,aEquipmentBundle);
       }
     }
     return wasRemoved;
@@ -486,9 +486,9 @@ public class Member extends User
     if(addEquipmentBundle(aEquipmentBundle))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipmentBundle()) { index = numberOfEquipmentBundle() - 1; }
-      equipmentBundle.remove(aEquipmentBundle);
-      equipmentBundle.add(index, aEquipmentBundle);
+      if(index > numberOfEquipmentBundles()) { index = numberOfEquipmentBundles() - 1; }
+      equipmentBundles.remove(aEquipmentBundle);
+      equipmentBundles.add(index, aEquipmentBundle);
       wasAdded = true;
     }
     return wasAdded;
@@ -497,12 +497,12 @@ public class Member extends User
   public boolean addOrMoveEquipmentBundleAt(EquipmentBundle aEquipmentBundle, int index)
   {
     boolean wasAdded = false;
-    if(equipmentBundle.contains(aEquipmentBundle))
+    if(equipmentBundles.contains(aEquipmentBundle))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipmentBundle()) { index = numberOfEquipmentBundle() - 1; }
-      equipmentBundle.remove(aEquipmentBundle);
-      equipmentBundle.add(index, aEquipmentBundle);
+      if(index > numberOfEquipmentBundles()) { index = numberOfEquipmentBundles() - 1; }
+      equipmentBundles.remove(aEquipmentBundle);
+      equipmentBundles.add(index, aEquipmentBundle);
       wasAdded = true;
     } 
     else 
@@ -512,7 +512,7 @@ public class Member extends User
     return wasAdded;
   }
   /* Code from template association_MinimumNumberOfMethod */
-  public static int minimumNumberOfEquipment()
+  public static int minimumNumberOfEquipments()
   {
     return 0;
   }
@@ -525,7 +525,7 @@ public class Member extends User
   public boolean addEquipment(Equipment aEquipment)
   {
     boolean wasAdded = false;
-    if (equipment.contains(aEquipment)) { return false; }
+    if (equipments.contains(aEquipment)) { return false; }
     Member existingMember = aEquipment.getMember();
     boolean isNewMember = existingMember != null && !this.equals(existingMember);
     if (isNewMember)
@@ -534,7 +534,7 @@ public class Member extends User
     }
     else
     {
-      equipment.add(aEquipment);
+      equipments.add(aEquipment);
     }
     wasAdded = true;
     return wasAdded;
@@ -546,7 +546,7 @@ public class Member extends User
     //Unable to remove aEquipment, as it must always have a member
     if (!this.equals(aEquipment.getMember()))
     {
-      equipment.remove(aEquipment);
+      equipments.remove(aEquipment);
       wasRemoved = true;
     }
     return wasRemoved;
@@ -558,9 +558,9 @@ public class Member extends User
     if(addEquipment(aEquipment))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipment()) { index = numberOfEquipment() - 1; }
-      equipment.remove(aEquipment);
-      equipment.add(index, aEquipment);
+      if(index > numberOfEquipments()) { index = numberOfEquipments() - 1; }
+      equipments.remove(aEquipment);
+      equipments.add(index, aEquipment);
       wasAdded = true;
     }
     return wasAdded;
@@ -569,12 +569,12 @@ public class Member extends User
   public boolean addOrMoveEquipmentAt(Equipment aEquipment, int index)
   {
     boolean wasAdded = false;
-    if(equipment.contains(aEquipment))
+    if(equipments.contains(aEquipment))
     {
       if(index < 0 ) { index = 0; }
-      if(index > numberOfEquipment()) { index = numberOfEquipment() - 1; }
-      equipment.remove(aEquipment);
-      equipment.add(index, aEquipment);
+      if(index > numberOfEquipments()) { index = numberOfEquipments() - 1; }
+      equipments.remove(aEquipment);
+      equipments.add(index, aEquipment);
       wasAdded = true;
     } 
     else 
@@ -598,9 +598,9 @@ public class Member extends User
     {
       placeholderClimbingSeason.removeMember(this);
     }
-    ArrayList<ClimbingWeek> copyOfClimbingWeek = new ArrayList<ClimbingWeek>(climbingWeek);
-    climbingWeek.clear();
-    for(ClimbingWeek aClimbingWeek : copyOfClimbingWeek)
+    ArrayList<ClimbingWeek> copyOfClimbingWeeks = new ArrayList<ClimbingWeek>(climbingWeeks);
+    climbingWeeks.clear();
+    for(ClimbingWeek aClimbingWeek : copyOfClimbingWeeks)
     {
       aClimbingWeek.removeMember(this);
     }
@@ -616,15 +616,15 @@ public class Member extends User
       this.hotel = null;
       placeholderHotel.removeMember(this);
     }
-    ArrayList<EquipmentBundle> copyOfEquipmentBundle = new ArrayList<EquipmentBundle>(equipmentBundle);
-    equipmentBundle.clear();
-    for(EquipmentBundle aEquipmentBundle : copyOfEquipmentBundle)
+    ArrayList<EquipmentBundle> copyOfEquipmentBundles = new ArrayList<EquipmentBundle>(equipmentBundles);
+    equipmentBundles.clear();
+    for(EquipmentBundle aEquipmentBundle : copyOfEquipmentBundles)
     {
       aEquipmentBundle.removeMember(this);
     }
-    for(int i=equipment.size(); i > 0; i--)
+    for(int i=equipments.size(); i > 0; i--)
     {
-      Equipment aEquipment = equipment.get(i - 1);
+      Equipment aEquipment = equipments.get(i - 1);
       aEquipment.delete();
     }
     super.delete();

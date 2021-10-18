@@ -36,6 +36,9 @@ public class P9StepDefinitions {
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
+	  bundle=climbSafe.getEquipment();
+	  error="";
+	  errorCntr=0;
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
     // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or

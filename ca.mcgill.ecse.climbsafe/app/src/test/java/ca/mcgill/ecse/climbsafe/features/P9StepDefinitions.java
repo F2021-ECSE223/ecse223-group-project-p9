@@ -27,7 +27,6 @@ public class P9StepDefinitions {
 	  e=climbSafe.getEquipment();
 	  error="";
 	  errorCntr=0;
-    throw new io.cucumber.java.PendingException();
   }
 
   @Given("the following equipment bundles exist in the system: \\(p9)")
@@ -49,7 +48,6 @@ public class P9StepDefinitions {
 	  members = ClimbSafe.getMembers();
 	  error = "";
 	  errorCntr = 0;
-    
   }
 
   @Given("the following guides exist in the system: \\(p9)")
@@ -58,14 +56,6 @@ public class P9StepDefinitions {
 	  guides = ClimbSafe.getGuides();
 	  error = "";
 	  errorCntr = 0;
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
   }
 
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
@@ -86,11 +76,7 @@ public class P9StepDefinitions {
 
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer int1) {
-	  
-    // Write code here that turns the phrase above into concrete actions
-	  
 	  assertEquals(int1, climbSafe.numberOfMembers());
-    
   }
 
   @Then("the following {string} shall be raised. \\(p9)")
@@ -101,7 +87,6 @@ public class P9StepDefinitions {
 
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String string) {
-    // Write code here that turns the phrase above into concrete actions\
 	 List<Member> members =  climbSafe.getMembers();
 	 boolean done = false;
 	 int i=0;

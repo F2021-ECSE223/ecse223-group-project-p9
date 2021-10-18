@@ -9,12 +9,11 @@ public class P9StepDefinitions {
 	private String error;
 
 	private int errorCntr;
-	private List<Member> members;
+	private List<Member> members = climbSafe.getMembers();
 
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
-
 	  error = "";
 	  errorCntr = 0;
   }
@@ -101,7 +100,7 @@ public class P9StepDefinitions {
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String string) {
     // Write code here that turns the phrase above into concrete actions\
-	 List<Member> members =  climbSafe.getMembers();
+	 members;
 	 boolean done = false;
 	 int i=0;
 	 while (!done) {
@@ -109,6 +108,7 @@ public class P9StepDefinitions {
 			 assertEqual(members.get(i).getName(), string);
 			 done = true;
 		 }
+		 i++;
 	 }
   }
 }

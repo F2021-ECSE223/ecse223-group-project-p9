@@ -16,9 +16,7 @@ public class P9StepDefinitions {
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
-
-	 climbSafe = ClimbSafeApplication.getClimbSafe();
-
+	  climbSafe = ClimbSafeApplication.getClimbSafe();
 	  error = "";
 	  errorCntr = 0;
   }
@@ -34,18 +32,9 @@ public class P9StepDefinitions {
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
-
 	  bundle=climbSafe.getEquipment();
 	  error="";
 	  errorCntr=0;
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-
   }
 
   @Given("the following members exist in the system: \\(p9)")
@@ -62,7 +51,6 @@ public class P9StepDefinitions {
 	  guides = ClimbSafe.getGuides();
 	  error = "";
 	  errorCntr = 0;
-
   }
 
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
@@ -92,8 +80,8 @@ public class P9StepDefinitions {
 
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+//	  I am assuming this is the same as the error
+	  assertTrue(error.contains(string))
   }
 
   @Then("there is no member account for {string} \\(p9)")

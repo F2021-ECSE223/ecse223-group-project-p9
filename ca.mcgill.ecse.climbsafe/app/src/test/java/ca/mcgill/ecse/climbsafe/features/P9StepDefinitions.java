@@ -10,6 +10,7 @@ public class P9StepDefinitions {
 
 	private int errorCntr;
 	private List<Member> members;
+	private List<Guide> guides;
 
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
@@ -57,6 +58,9 @@ public class P9StepDefinitions {
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
+	  guides = ClimbSafe.getGuides();
+	  error = "";
+	  errorCntr = 0;
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
     // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or

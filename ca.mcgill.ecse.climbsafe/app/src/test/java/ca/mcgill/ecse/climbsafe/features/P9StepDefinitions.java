@@ -52,6 +52,7 @@ public class P9StepDefinitions {
 	  errorCntr = 0;
   }
 
+<<<<<<< Updated upstream
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
 	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
@@ -62,6 +63,15 @@ public class P9StepDefinitions {
     	error += e.getMessage();
     	errorCntr++;
     }
+=======
+  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
+  public void a_new_member_attempts_to_register_with_and_p9(String string, String string2,
+      String string3, String string4, String string5, String string6, String string7,
+      String string8, String string9) {
+    // Write code here that turns the phrase above into concrete actions
+	  //probably need a try catch here with errCounter++ in catch statement
+    throw new io.cucumber.java.PendingException();
+>>>>>>> Stashed changes
   }
 
   @Then("a new member account shall exist with {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
@@ -85,9 +95,8 @@ public class P9StepDefinitions {
 
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String string) {
-
+//not sure if it is correct
 	 List<Member> members =  climbSafe.getMembers();
-
 	 boolean done = false;
 	 int i=0;
 	 while (!done) {

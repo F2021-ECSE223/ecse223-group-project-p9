@@ -5,15 +5,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class P9StepDefinitions {
-	private ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+	private ClimbSafe climbSafe;
 	private String error;
 
 	private int errorCntr;
-	private List<Member> members = climbSafe.getMembers();
+	private List<Member> members;
 
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
+	 climbSafe = ClimbSafeApplication.getClimbSafe();
 	  error = "";
 	  errorCntr = 0;
   }
@@ -47,7 +48,7 @@ public class P9StepDefinitions {
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable List<Member>) {
-	  members = ClimbSafe.getMembers();
+	  members = climbSafe.getMembers();
 	  error = "";
 	  errorCntr = 0;
     
@@ -99,7 +100,7 @@ public class P9StepDefinitions {
 
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String string) {
-    // Write code here that turns the phrase above into concrete actions\
+    //not sure if this is correct
 	 members;
 	 boolean done = false;
 	 int i=0;

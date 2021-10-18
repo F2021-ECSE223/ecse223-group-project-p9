@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 public class P9StepDefinitions {
 	private ClimbSafe climbSafe;
 	private String error;
-	private List <Equipment> e; 
+	private List <Equipment> equipment; 
 
 	private int errorCntr;
 	private List<Member> members;

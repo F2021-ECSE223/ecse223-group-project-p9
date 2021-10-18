@@ -15,7 +15,7 @@ public class P9StepDefinitions {
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
-
+	  climbSafe = ClimbSafeApplication.getClimbSafe();
 	  error = "";
 	  errorCntr = 0;
   }

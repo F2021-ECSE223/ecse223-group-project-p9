@@ -5,10 +5,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class P9StepDefinitions {
-	private ClimbSafe climbSafe;
+	private ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	private String error;
-	int errorCntr;
 	private List <Equipment> e; 
+
+	private int errorCntr;
+	private List<Member> members;
+	private List<Guide> guides;
+
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -41,20 +45,19 @@ public class P9StepDefinitions {
 
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+      io.cucumber.datatable.DataTable List<Member>) {
+	  members = ClimbSafe.getMembers();
+	  error = "";
+	  errorCntr = 0;
+    
   }
 
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
+	  guides = ClimbSafe.getGuides();
+	  error = "";
+	  errorCntr = 0;
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
     // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
@@ -85,9 +88,9 @@ public class P9StepDefinitions {
   public void there_are_members_in_the_system_p9(Integer int1) {
 	  
     // Write code here that turns the phrase above into concrete actions
-	  climbSafe = ClimbSafeApplication.getClimbSafe();
+	  
 	  assertEquals(int1, climbSafe.numberOfMembers());
-    throw new io.cucumber.java.PendingException();
+    
   }
 
   @Then("the following {string} shall be raised. \\(p9)")
@@ -98,7 +101,15 @@ public class P9StepDefinitions {
 
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    // Write code here that turns the phrase above into concrete actions\
+	 List<Member> members =  climbSafe.getMembers();
+	 boolean done = false;
+	 int i=0;
+	 while (!done) {
+		 if (members.get(i).getName().equals(string)) {
+			 assertEqual(members.get(i).getName(), string);
+			 done = true;
+		 }
+	 }
   }
 }

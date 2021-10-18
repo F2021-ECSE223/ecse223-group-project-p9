@@ -7,7 +7,7 @@ import io.cucumber.java.en.When;
 public class P9StepDefinitions {
 	private ClimbSafe climbSafe;
 	private String error;
-	private int errorCntr;
+	int errorCntr;
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -86,7 +86,10 @@ public class P9StepDefinitions {
 
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer int1) {
+	  
     // Write code here that turns the phrase above into concrete actions
+	  climbSafe = ClimbSafeApplication.getClimbSafe();
+	  assertEquals(int1, climbSafe.numberOfMembers());
     throw new io.cucumber.java.PendingException();
   }
 

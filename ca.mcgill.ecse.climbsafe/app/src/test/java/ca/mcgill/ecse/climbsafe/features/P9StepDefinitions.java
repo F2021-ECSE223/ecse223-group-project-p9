@@ -19,9 +19,10 @@ public class P9StepDefinitions {
 
   @Given("the following equipment exists in the system: \\(p9)")
   public void the_following_equipment_exists_in_the_system_p9(
-		  io.cucumber.datatable.DataTable dataTable) {
+	io.cucumber.datatable.DataTable dataTable) {
 	  e=climbSafe.getEquipment();
-	  
+	  error="";
+	  errorCntr=0;
     throw new io.cucumber.java.PendingException();
   }
 

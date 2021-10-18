@@ -5,8 +5,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class P9StepDefinitions {
-	private ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+	private ClimbSafe climbSafe;
 	private String error;
+	private List <Equipment> e; 
 
 	private int errorCntr;
 	private List<Member> members;
@@ -15,14 +16,28 @@ public class P9StepDefinitions {
 	
   @Given("the following ClimbSafe system exists: \\(p9)")
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
-	  climbSafe = ClimbSafeApplication.getClimbSafe();
+
+	 climbSafe = ClimbSafeApplication.getClimbSafe();
+
 	  error = "";
 	  errorCntr = 0;
   }
 
   @Given("the following equipment exists in the system: \\(p9)")
   public void the_following_equipment_exists_in_the_system_p9(
+	io.cucumber.datatable.DataTable dataTable) {
+	  e=climbSafe.getEquipment();
+	  error="";
+	  errorCntr=0;
+  }
+
+  @Given("the following equipment bundles exist in the system: \\(p9)")
+  public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
+
+	  bundle=climbSafe.getEquipment();
+	  error="";
+	  errorCntr=0;
     // Write code here that turns the phrase above into concrete actions
     // For automatic transformation, change DataTable to one of
     // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
@@ -30,14 +45,7 @@ public class P9StepDefinitions {
     // Double, Byte, Short, Long, BigInteger or BigDecimal.
     //
     // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
-  }
 
-  @Given("the following equipment bundles exist in the system: \\(p9)")
-  public void the_following_equipment_bundles_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable dataTable) {
-
-    throw new io.cucumber.java.PendingException();
   }
 
   @Given("the following members exist in the system: \\(p9)")
@@ -46,7 +54,6 @@ public class P9StepDefinitions {
 	  members = climbSafe.getMembers();
 	  error = "";
 	  errorCntr = 0;
-    
   }
 
   @Given("the following guides exist in the system: \\(p9)")
@@ -80,11 +87,7 @@ public class P9StepDefinitions {
 
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer int1) {
-	  
-    // Write code here that turns the phrase above into concrete actions
-	  
 	  assertEquals(int1, climbSafe.numberOfMembers());
-    
   }
 
   @Then("the following {string} shall be raised. \\(p9)")
@@ -95,8 +98,9 @@ public class P9StepDefinitions {
 
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String string) {
-    // Write code here that turns the phrase above into concrete actions\
+
 	 List<Member> members =  climbSafe.getMembers();
+
 	 boolean done = false;
 	 int i=0;
 	 while (!done) {
@@ -104,6 +108,7 @@ public class P9StepDefinitions {
 			 assertEqual(members.get(i).getName(), string);
 			 done = true;
 		 }
+		 i++;
 	 }
   }
 }

@@ -8,7 +8,7 @@ public class P9StepDefinitions {
 	private ClimbSafe climbSafe;
 	private String error;
 	private List <Equipment> equipment; 
-
+	private List <EquipmentBundle> equipmentBundles;
 	private int errorCntr;
 	private List<Member> members;
 	private List<Guide> guides;
@@ -22,8 +22,7 @@ public class P9StepDefinitions {
   }
 
   @Given("the following equipment exists in the system: \\(p9)")
-  public void the_following_equipment_exists_in_the_system_p9(
-	io.cucumber.datatable.DataTable dataTable) {
+  public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  e=climbSafe.getEquipment();
 	  error="";
 	  errorCntr=0;
@@ -31,7 +30,7 @@ public class P9StepDefinitions {
 
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable dataTable) {
+      io.cucumber.datatable.DataTable List<EquipmentBundle>) {
 	  bundle=climbSafe.getEquipment();
 	  error="";
 	  errorCntr=0;
@@ -47,7 +46,7 @@ public class P9StepDefinitions {
 
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable dataTable) {
+      io.cucumber.datatable.DataTable List<Guides>) {
 	  guides = ClimbSafe.getGuides();
 	  error = "";
 	  errorCntr = 0;
@@ -66,10 +65,10 @@ public class P9StepDefinitions {
   }
 
   @Then("a new member account shall exist with {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
-  public void a_new_member_account_shall_exist_with_and_p9(String string, String string2,
-      String string3, String string4, String string5, String string6, String string7,
-      String string8, String string9) { 
-    // Write code here that turns the phrase above into concrete actions
+  public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name,
+	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
+	      List<String> itemNames, List<Integer> itemQuantities) { 
+    assertEquals();
     
   }
 
@@ -81,7 +80,7 @@ public class P9StepDefinitions {
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String string) {
 //	  I am assuming this is the same as the error
-	  assertTrue(error.contains(string))
+	  assertTrue(error.contains(string));
   }
 
   @Then("there is no member account for {string} \\(p9)")

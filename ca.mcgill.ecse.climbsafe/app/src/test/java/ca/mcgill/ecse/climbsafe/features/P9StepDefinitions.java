@@ -36,20 +36,14 @@ public class P9StepDefinitions {
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
+
     throw new io.cucumber.java.PendingException();
   }
 
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable List<Member>) {
-	  members = ClimbSafe.getMembers();
+	  members = climbSafe.getMembers();
 	  error = "";
 	  errorCntr = 0;
     
@@ -61,30 +55,27 @@ public class P9StepDefinitions {
 	  guides = ClimbSafe.getGuides();
 	  error = "";
 	  errorCntr = 0;
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+
   }
 
-  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
-  public void a_new_member_attempts_to_register_with_and_p9(String string, String string2,
-      String string3, String string4, String string5, String string6, String string7,
-      String string8, String string9) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
+  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
+	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
+	      List<String> itemNames, List<Integer> itemQuantities) {
+    try {
+    	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
+    }catch (InvalidInputException e) {
+    	error += e.getMessage();
+    	errorCntr++;
+    }
   }
 
   @Then("a new member account shall exist with {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
   public void a_new_member_account_shall_exist_with_and_p9(String string, String string2,
       String string3, String string4, String string5, String string6, String string7,
-      String string8, String string9) {
+      String string8, String string9) { 
     // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    
   }
 
   @Then("there are {int} members in the system. \\(p9)")

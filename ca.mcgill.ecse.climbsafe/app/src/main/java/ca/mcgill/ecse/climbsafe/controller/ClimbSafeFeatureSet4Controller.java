@@ -3,7 +3,6 @@ package ca.mcgill.ecse.climbsafe.controller;
 public class ClimbSafeFeatureSet4Controller {
 
   public static void addEquipment(String name, int weight, int pricePerWeek)
-      throws InvalidInputException {}
       throws InvalidInputException {
 	  	
 	    if (equipment.contains(aEquipment)) { return false; }

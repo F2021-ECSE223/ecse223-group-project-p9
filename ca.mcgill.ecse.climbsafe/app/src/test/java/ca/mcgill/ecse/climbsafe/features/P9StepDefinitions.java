@@ -66,7 +66,7 @@ public class P9StepDefinitions {
   }
 
 
-  @Then("a new member account shall exist with {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
+  @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
   public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name,
 	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
 	      List<String> itemNames, List<Integer> itemQuantities) { 

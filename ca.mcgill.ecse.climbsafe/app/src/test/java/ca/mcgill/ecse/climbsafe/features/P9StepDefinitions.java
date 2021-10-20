@@ -57,6 +57,7 @@ public class P9StepDefinitions {
   @Given("the following equipment exists in the system: \\(p9)")
   public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	 
+	  io.cucumber.datatable.DataTable dataTable) {
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
       for (Map<String, String> r : rows) {
           String name = r.get("name");
@@ -65,7 +66,6 @@ public class P9StepDefinitions {
           Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
   }
 
-  }  
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {

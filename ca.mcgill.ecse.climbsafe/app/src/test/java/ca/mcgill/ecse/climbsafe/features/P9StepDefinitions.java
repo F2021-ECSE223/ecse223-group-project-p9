@@ -52,7 +52,7 @@ public class P9StepDefinitions {
   } 
   /**
    * @param dataTable
-   * @author Victor&Eunjun, Enzo
+   * @author Victor&Eunjun&Enzo
    */
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -126,8 +126,8 @@ public class P9StepDefinitions {
    */
   
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
-  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String xnrWeeks, String xguideRequired, String xhotelRequired, String xitemNames, String xitemQuantities) {
-	List<String> itemNames = Arrays.asList(xitemNames.split(","));
+  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String xnrWeeks, String xguideRequired, String xhotelRequired, String xbookableItems, String xitemQuantities) {
+	List<String> bookableItems = Arrays.asList(xbookableItems.split(","));
 	List<Integer> itemQuantities = new ArrayList<Integer>();
 	boolean guideRequired = Boolean.parseBoolean(xguideRequired);
 	boolean hotelRequired = Boolean.parseBoolean(xhotelRequired);
@@ -136,7 +136,7 @@ public class P9StepDefinitions {
 		itemQuantities.add(Integer.parseInt(s));
 	
     try {
-    	ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
+    	ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, bookableItems, itemQuantities);
     }catch (InvalidInputException e) {
     	String error = e.getMessage();
     }

@@ -314,7 +314,7 @@ public class ClimbSafe
   /* Code from template association_GetMany */
   public Assignment getAssignment(int index)
   {
-    Assignment aAssignment = assignments.get(index);
+    Assignment aAssignment = assignments.get(index); 
     return aAssignment;
   }
 

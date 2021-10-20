@@ -22,9 +22,14 @@ public class P9StepDefinitions {
   }
 
   @Given("the following equipment exists in the system: \\(p9)")
+<<<<<<< Updated upstream
   public void the_following_equipment_exists_in_the_system_p9(
 	  io.cucumber.datatable.DataTable List <Equipment>) {
 	  equipment=climbSafe.getEquipment();
+=======
+  public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
+	  equipment =ClimbSafe.getEquipment();
+>>>>>>> Stashed changes
 	  error="";
 	  errorCntr=0;
   }
@@ -32,7 +37,7 @@ public class P9StepDefinitions {
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable List<EquipmentBundle>) {
-	  bundle=climbSafe.getEquipment();
+	  bundle=ClimbSafe.getBundles();
 	  error="";
 	  errorCntr=0;
   }
@@ -40,7 +45,7 @@ public class P9StepDefinitions {
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable List<Member>) {
-	  members = climbSafe.getMembers();
+	  members = ClimbSafe.getMembers();
 	  error = "";
 	  errorCntr = 0;
   }
@@ -57,7 +62,7 @@ public class P9StepDefinitions {
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
 	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
-	      List<String> itemNames, List<Integer> itemQuantities) {
+	      List<String> itemNames, List<Integer> itemQuantities) { //change back to 9 strings
     try {
     	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {
@@ -73,11 +78,11 @@ public class P9StepDefinitions {
 	      List<String> itemNames, List<Integer> itemQuantities) { 
     
     
-  }
+  } //then uses model methods to check if controller features work properly
 
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer int1) {
-	  assertEquals(int1, climbSafe.numberOfMembers());
+	  assertEquals(int1, ClimbSafe.numberOfMembers());
   }
 
   @Then("the following {string} shall be raised. \\(p9)")
@@ -89,7 +94,7 @@ public class P9StepDefinitions {
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String string) {
 //not sure if it is correct
-	 List<Member> members =  climbSafe.getMembers();
+	 List<Member> members =  ClimbSafe.getMembers();
 	 boolean done = false;
 	 int i=0;
 	 while (!done) {

@@ -50,7 +50,10 @@ public class P9StepDefinitions {
  */
 
 
-  
+/**
+ * @param dataTable
+ * @author Enzo Benoit-Jeannin
+ */
   @Given("the following equipment exists in the system: \\(p9)")
   public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	 
@@ -60,7 +63,6 @@ public class P9StepDefinitions {
           int weight = Integer.parseInt(r.get("weight"));
           int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"))
           Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
-          climbSafe.addEquipment(equipment);
   }
 
   }  
@@ -71,11 +73,14 @@ public class P9StepDefinitions {
 	  error="";
 	  errorCntr=0;
   }
-  
+  /**
+   * @param dataTable
+   * @author Enzo Benoit-Jeannin
+   */
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
 
-      io.cucumber.datatable.DataTable List<Member>) {
+      io.cucumber.datatable.DataTable dataTable) {
 	  
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
@@ -95,7 +100,6 @@ public class P9StepDefinitions {
               BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));;
               m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 
           }
-          climbSafe.addMember(m);
       }
   }
 

@@ -111,7 +111,7 @@ public class P9StepDefinitions {
    * @param password
    * @param name
    * @param emergencyContact
-   * @param nrWeeks
+   * @param xnrWeeks
    * @param xguideRequired
    * @param xhotelRequired
    * @param xitemNames
@@ -120,11 +120,12 @@ public class P9StepDefinitions {
    */
   
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
-  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String xguideRequired, String xhotelRequired, String xitemNames, String xitemQuantities) {
-	List<String> itemNames = Arrays.asList(itemsNames.split(","));
-	List<Integer> itemQuantities = newArrayList<>();
+  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String xnrWeeks, String xguideRequired, String xhotelRequired, String xitemNames, String xitemQuantities) {
+	List<String> itemNames = Arrays.asList(xitemsNames.split(","));
+	List<Integer> itemQuantities = new ArrayList<Integer>();
 	boolean guideRequired = Boolean.parseBoolean(xguideRequired);
 	boolean hotelRequired = Boolean.parseBoolean(xhotelRequired);
+	int nrWeeks = Integer.parseInt(xnrWeeks);
 	for(String s : xitemQuantities.split(",")) 
 		itemQuantities.add(Integer.parseInt(s));
 	
@@ -150,7 +151,7 @@ public class P9StepDefinitions {
   @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
   public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String bookableItems, String requestedQuantities, String guideRequired, String hotelRequired) { 
 	  Member member = (Member) Member.getWithEmail(email);
-	  assetNotNull(member);
+	  assertNotNull(member);
 	  assertEquals(password, member.getPassword); //User.java
 	  assertEquals(name, member.getName); //NameUser.java
 	  assertEquals(emergencyContact, member.getEmergencyContact()); //NameUser.java

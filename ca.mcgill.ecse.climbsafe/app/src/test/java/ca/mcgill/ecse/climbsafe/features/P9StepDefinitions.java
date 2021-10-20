@@ -20,34 +20,26 @@ public class P9StepDefinitions {
 	private List<Member> members;
 	private List<Guide> guides;
 
+/**
+ * @param dataTable 
+ * @author Kara Best
+ */
 	
   @Given("the following ClimbSafe system exists: \\(p9)") 
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
 	  
-  }
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-	  
 	  climbSafe = ClimbSafeApplication.getClimbSafe();
-	  
 	  for(Map<String, String>row : rows) {
-		  
 		  Date startDate = java.sql.Date.valueOf(row.get("startDate"));
 		  climbSafe.setStartDate(startDate);
 		  int nrWeeks = Integer.parseInt(row.get("nrWeeks"));
 		  climbSafe.setNrWeeks(nrWeeks);
 		  int priceOfGuidePerWeek = Integer.parseInt(row.get("priceOfGuidePerWeek"));
-		  climbSafe.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
-		  
-		  
-	  }
-	  
-	  
-	  
+		  climbSafe.setPriceOfGuidePerWeek(priceOfGuidePerWeek); 
+	  }  
   }
- /**
- * @param dataTable 
- * @author Kara Best
- */
+ 
 
 
   
@@ -113,7 +105,8 @@ public class P9StepDefinitions {
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
 	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
-	      String itemNames, String itemQuantities) { //change back to 9 strings
+	      String xitemNames, String xitemQuantities) { //change back to 9 strings
+	List<String> itemNames
     try {
     	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {

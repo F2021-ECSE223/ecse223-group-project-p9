@@ -112,18 +112,21 @@ public class P9StepDefinitions {
    * @param name
    * @param emergencyContact
    * @param nrWeeks
-   * @param guideRequired
-   * @param hotelRequired
+   * @param xguideRequired
+   * @param xhotelRequired
    * @param xitemNames
    * @param xitemQuantities
    * @author Kara Best
    */
   
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
-  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired, String xitemNames, String xitemQuantities) {
+  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String xguideRequired, String xhotelRequired, String xitemNames, String xitemQuantities) {
 	List<String> itemNames = Arrays.asList(itemsNames.split(","));
 	List<Integer> itemQuantities = newArrayList<>();
-	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s));
+	boolean guideRequired = Boolean.parseBoolean(xguideRequired);
+	boolean hotelRequired = Boolean.parseBoolean(xhotelRequired);
+	for(String s : xitemQuantities.split(",")) 
+		itemQuantities.add(Integer.parseInt(s));
 	
     try {
     	ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);

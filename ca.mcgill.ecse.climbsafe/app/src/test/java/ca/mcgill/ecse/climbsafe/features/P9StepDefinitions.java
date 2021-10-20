@@ -60,12 +60,16 @@ public class P9StepDefinitions {
 	  errorCntr = 0;
   }
 
+ 
+  
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable List<Guides>) {
-	  guides = ClimbSafe.getGuides();
-	  error = "";
-	  errorCntr = 0;
+      io.cucumber.datatable.DataTable dataTable) {
+	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+	  for (Map<String, String> r : rows) {
+		  Guide g = new Guide(r.get("email"), r.get("password"), r.get("name"), r.get("emergencyContact"), climbsafe);
+		  climbsafe.addGuide(g);
+	  }
   }
 
 
@@ -117,7 +121,7 @@ public class P9StepDefinitions {
 			 assertEquals(members.get(i).getName(), string);
 			 done = true;
 		 }
-		 i++; //this is going to run an infinite loop if theres no member or produce an error once the index gets too high
+		 i++; 
 	 }
 	 
   }

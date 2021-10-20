@@ -185,7 +185,7 @@ public class P9StepDefinitions {
    */
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer numMembers) {
-	  assertEquals(numMembers, climbSafe.numberOfMembers());
+	  assertEquals(numMembers, (Integer)climbSafe.numberOfMembers());
   }
 
   /**

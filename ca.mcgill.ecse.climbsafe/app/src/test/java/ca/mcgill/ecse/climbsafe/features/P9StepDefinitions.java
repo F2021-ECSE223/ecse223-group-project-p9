@@ -42,7 +42,10 @@ public class P9StepDefinitions {
  
 
 
-  
+  /**
+   * @param dataTable
+   * @author Enzo Benoit-Jeannin
+   */
   @Given("the following equipment exists in the system: \\(p9)")
   public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	 
@@ -52,7 +55,6 @@ public class P9StepDefinitions {
           int weight = Integer.parseInt(r.get("weight"));
           int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"))
           Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
-          climbSafe.addEquipment(equipment);
   }
 
   } 
@@ -70,11 +72,14 @@ public class P9StepDefinitions {
 		  climbsafe.addBundle(bundle);
 	  }
   }
-  
+  /**
+   * @param dataTable
+   * @author Enzo Benoit-Jeannin
+   */
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
 
-      io.cucumber.datatable.DataTable List<Member>) {
+      io.cucumber.datatable.DataTable dataTable) {
 	  
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
@@ -94,7 +99,6 @@ public class P9StepDefinitions {
               BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));;
               m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 
           }
-          climbSafe.addMember(m);
       }
   }
 
@@ -111,13 +115,27 @@ public class P9StepDefinitions {
   }
 
 
+  /**
+   * @param email
+   * @param password
+   * @param name
+   * @param emergencyContact
+   * @param nrWeeks
+   * @param guideRequired
+   * @param hotelRequired
+   * @param xitemNames
+   * @param xitemQuantities
+   * @author Kara Best
+   */
+  
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
 	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
 	      String xitemNames, String xitemQuantities) { //change back to 9 strings
 	List<String> itemNames = Arrays.asList(itemsNames.split(","));
-	List<Integer> itemQuantities = newArray<
-	for(int i=0; i<)
+	List<Integer> itemQuantities = newArrayList<>();
+	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s));
+	
     try {
     	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {

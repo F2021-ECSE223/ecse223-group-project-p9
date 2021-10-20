@@ -32,14 +32,9 @@ public class P9StepDefinitions {
   }
 
   @Given("the following equipment exists in the system: \\(p9)")
-<<<<<<< Updated upstream
   public void the_following_equipment_exists_in_the_system_p9(
 	  io.cucumber.datatable.DataTable List <Equipment>) {
 	  equipment=climbSafe.getEquipment();
-=======
-  public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
-	  equipment =ClimbSafe.getEquipment();
->>>>>>> Stashed changes
 	  error="";
 	  errorCntr=0;
   }

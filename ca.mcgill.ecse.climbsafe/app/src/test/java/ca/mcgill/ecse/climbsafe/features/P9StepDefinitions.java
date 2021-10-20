@@ -53,8 +53,10 @@ public class P9StepDefinitions {
   }
 
   } 
-  
-  //@author Victor, Eunjun
+  /**
+   * @param dataTable
+   * @author Victor, Eunjun
+   */
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
@@ -99,7 +101,10 @@ public class P9StepDefinitions {
   }
 
   }
-//@author Victor, Eunjun
+/**
+ * @param dataTable
+ * @author Victor, Eunjun
+ */
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {

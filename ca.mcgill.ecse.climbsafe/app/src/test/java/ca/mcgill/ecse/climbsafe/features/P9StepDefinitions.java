@@ -77,6 +77,20 @@ public class P9StepDefinitions {
 	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
 	      List<String> itemNames, List<Integer> itemQuantities) { 
     
+	  	 List<Member> members =  ClimbSafe.getMembers();
+		 boolean done = false;
+		 int i=0;
+		 while (!done) {
+			 if (members.get(i).getName().equals(name)) {
+				 assertEquals(members.get(i).getName(), name);
+				 done = true;
+				 Member member = getMember(i);
+			 }
+			 i++;
+		 }
+		 //assertEquals(member.nrWeeks, nrWeeks);
+		 //assertEquals(member.item)
+		 
     
   } //then uses model methods to check if controller features work properly
 
@@ -99,10 +113,10 @@ public class P9StepDefinitions {
 	 int i=0;
 	 while (!done) {
 		 if (members.get(i).getName().equals(string)) {
-			 assertEqual(members.get(i).getName(), string);
+			 assertEquals(members.get(i).getName(), string);
 			 done = true;
 		 }
-		 i++;
+		 i++; //this is going to run an infinite loop if theres no member or produce an error once the index gets too high
 	 }
   }
 }

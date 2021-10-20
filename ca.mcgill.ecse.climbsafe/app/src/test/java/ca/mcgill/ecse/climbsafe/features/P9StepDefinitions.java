@@ -94,14 +94,21 @@ public class P9StepDefinitions {
     
   } //then uses model methods to check if controller features work properly
 
+  /**
+   * @param int1: the number of members
+   * @author Victor Micha
+   */
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer int1) {
 	  assertEquals(int1, ClimbSafe.numberOfMembers());
   }
 
+  /**
+   * @param string: the error to be expected 
+   * @author Joey Koay
+   */
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String string) {
-//	  I am assuming this is the same as the error
 	  assertTrue(error.contains(string));
   }
 

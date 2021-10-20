@@ -55,13 +55,20 @@ public class P9StepDefinitions {
           climbSafe.addEquipment(equipment);
   }
 
-  }  
+  } 
+  
+  //@author Victor, Eunjun
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
-	  bundle=ClimbSafe.getBundles();
-	  error="";
-	  errorCntr=0;
+	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+	  for (Map<String, String> r : rows) {
+		  EquipmentBundle bundle = new EquipmentBundle(r.get("name"), r.get("discount"), climbsafe);
+		  List<BundleItems> items = Array.asList(r.get("items").split(","));
+		  for (BundleItems x:items)
+			  bundle.addBundleItem(x);
+		  climbsafe.addBundle(bundle);
+	  }
   }
   
   @Given("the following members exist in the system: \\(p9)")
@@ -92,13 +99,15 @@ public class P9StepDefinitions {
   }
 
   }
-
+//@author Victor, Eunjun
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
       io.cucumber.datatable.DataTable dataTable) {
-	  guides = ClimbSafe.getGuides();
-	  error = "";
-	  errorCntr = 0;
+	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+	  for (Map<String, String> r : rows) {
+		  Guide g = new Guide(r.get("email"), r.get("password"), r.get("name"), r.get("emergencyContact"), climbsafe);
+		  climbsafe.addGuide(g);
+	  }
   }
 
 

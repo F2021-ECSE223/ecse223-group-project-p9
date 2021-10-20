@@ -58,10 +58,16 @@ public class P9StepDefinitions {
   public void the_following_equipment_bundles_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	  for (Map<String, String> r : rows) {
-		  EquipmentBundle bundle = new EquipmentBundle(r.get("name"), r.get("discount"), climbSafe);
-		  List<BundleItem> items = Arrays.asList(r.get("items").split(","));
-		  for (BundleItem x:items)
-			  bundle.addBundleItem(x);
+		  String name = r.get("name");
+		  int discount = Integer.parseInt(r.get("discount"));
+		  EquipmentBundle bundle = new EquipmentBundle(name, discount, climbSafe);
+		  List<String> items = Arrays.asList(r.get("items").split(","));
+		  List<Integer> quantities = Arrays.asList(r.get("quantity").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
+		 int i=0;
+		  for (String x:items) {
+			  new BundleItem(quantities.get(i), this.climbSafe, bundle, (Equipment) Equipment.getWithName(items.get(i)));
+			  i++;
+		  }
 	  }
   }
   /**

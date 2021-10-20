@@ -168,12 +168,18 @@ public class P9StepDefinitions {
 	  List<String> argBookableItemsList = Arrays.asList(bookableItems.split(","));
 	  List<BookedItem> compBookableItemsList = member.getBookedItems();
 	  List<String> argRequestedQuantitiesList = Arrays.asList(requestedQuantities.split(","));
-	  int i=0;
+	  List<String> nameBookedItems = new ArrayList<String>();
+	  List<Integer> quantBookedItems = new ArrayList<Integer>();
+	  for (BookedItem x : compBookableItemsList) {
+		  nameBookedItems.add(x.getItem().getName());
+		  quantBookedItems.add(x.getQuantity());
+	  }
 	  for (String s:argBookableItemsList) {
-		  assertTrue(compBookableItemsList.contains(s));
-		  BookableItem desiredItem = compBookableItemsList.getWithName(s);
-		  assertEquals(desiredItem.getQuantity(),argRequestedQuantitiesList.get(i));
-		  i++;
+		  assertTrue(nameBookedItems.contains(s));
+		 
+	  }
+	  for (int j=0; j<quantBookedItems.size(); j++) {
+		  assertEquals(quantBookedItems.get(j), (Integer) Integer.parseInt(argRequestedQuantitiesList.get(j)));
 	  }
 		 
     

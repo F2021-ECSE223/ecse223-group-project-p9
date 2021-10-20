@@ -30,11 +30,16 @@ public class P9StepDefinitions {
 	  error = "";
 	  errorCntr = 0;
   }
-
+  
   @Given("the following equipment exists in the system: \\(p9)")
+<<<<<<< Updated upstream
   public void the_following_equipment_exists_in_the_system_p9(
 	  io.cucumber.datatable.DataTable List <Equipment>) {
 	  equipment=climbSafe.getEquipment();
+=======
+  public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
+	  equipment =ClimbSafe.getEquipment();
+>>>>>>> Stashed changes
 	  error="";
 	  errorCntr=0;
   }
@@ -89,21 +94,14 @@ public class P9StepDefinitions {
     
   } //then uses model methods to check if controller features work properly
 
-  /**
-   * @param int1: the number of members
-   * @author Victor Micha
-   */
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer int1) {
 	  assertEquals(int1, ClimbSafe.numberOfMembers());
   }
 
-  /**
-   * @param string: the error to be expected 
-   * @author Joey Koay
-   */
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String string) {
+//	  I am assuming this is the same as the error
 	  assertTrue(error.contains(string));
   }
 
@@ -113,12 +111,14 @@ public class P9StepDefinitions {
 	 List<Member> members =  ClimbSafe.getMembers();
 	 boolean done = false;
 	 int i=0;
-	 while (!done) {
+	 int max = members.size();
+	 while (!done && i<max) {
 		 if (members.get(i).getName().equals(string)) {
 			 assertEquals(members.get(i).getName(), string);
 			 done = true;
 		 }
 		 i++; //this is going to run an infinite loop if theres no member or produce an error once the index gets too high
 	 }
+	 
   }
 }

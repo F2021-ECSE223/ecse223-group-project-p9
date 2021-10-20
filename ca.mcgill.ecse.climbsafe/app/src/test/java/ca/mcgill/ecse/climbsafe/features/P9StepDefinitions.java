@@ -15,11 +15,10 @@ public class P9StepDefinitions {
 	private ClimbSafe climbSafe;
 
 
-/**
- * @param dataTable 
- * @author Kara Best
- */
-	
+	/**
+	 * @param dataTable 
+	 * @author Kara Best
+	 */
   @Given("the following ClimbSafe system exists: \\(p9)") 
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
 	  
@@ -34,7 +33,6 @@ public class P9StepDefinitions {
 		  climbSafe.setPriceOfGuidePerWeek(priceOfGuidePerWeek); 
 	  }  
   }
- 
 
 
   /**
@@ -50,16 +48,14 @@ public class P9StepDefinitions {
           int weight = Integer.parseInt(r.get("weight"));
           int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"))
           Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
-  }
-
+      }
   } 
   /**
    * @param dataTable
    * @author Victor, Eunjun
    */
   @Given("the following equipment bundles exist in the system: \\(p9)")
-  public void the_following_equipment_bundles_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable dataTable) {
+  public void the_following_equipment_bundles_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	  for (Map<String, String> r : rows) {
 		  EquipmentBundle bundle = new EquipmentBundle(r.get("name"), r.get("discount"), climbsafe);
@@ -73,9 +69,7 @@ public class P9StepDefinitions {
    * @author Enzo Benoit-Jeannin
    */
   @Given("the following members exist in the system: \\(p9)")
-  public void the_following_members_exist_in_the_system_p9(
-
-      io.cucumber.datatable.DataTable dataTable) {
+  public void the_following_members_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
@@ -92,22 +86,18 @@ public class P9StepDefinitions {
           Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, this.climbSafe);
 
           for (int i = 0; i < bookableItems.size(); i++) {
-              BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));;
+              BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));
               m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 
           }
-     
-          
       }
   }
 
-  }
 /**
  * @param dataTable
  * @author Victor, Eunjun
  */
   @Given("the following guides exist in the system: \\(p9)")
-  public void the_following_guides_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable dataTable) {
+  public void the_following_guides_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	  for (Map<String, String> r : rows) {
 		  Guide g = new Guide(r.get("email"), r.get("password"), r.get("name"), r.get("emergencyContact"), climbsafe);
@@ -130,9 +120,7 @@ public class P9StepDefinitions {
    */
   
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
-  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
-	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
-	      String xitemNames, String xitemQuantities) {
+  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired, String xitemNames, String xitemQuantities) {
 	List<String> itemNames = Arrays.asList(itemsNames.split(","));
 	List<Integer> itemQuantities = newArrayList<>();
 	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s));
@@ -144,21 +132,45 @@ public class P9StepDefinitions {
     }
   }
 
-
+  /**
+   * @param email
+   * @param password
+   * @param name
+   * @param emergencyContact
+   * @param nrWeeks
+   * @param bookableItems
+   * @param requestedQuantities
+   * @param guideRequired
+   * @param hotelRequired
+   * @author Joey, Victor
+   */
   @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
-  public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name,
-	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
-	      String itemNames, String itemQuantities) { 
-    
-	  	
-		 //assertEquals(member.nrWeeks, nrWeeks);
-		 //assertEquals(member.item)
+  public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String bookableItems, String requestedQuantities, String guideRequired, String hotelRequired) { 
+	  Member member = (Member) Member.getWithEmail(email);
+	  assetNotNull(member);
+	  assertEquals(password, member.getPassword); //User.java
+	  assertEquals(name, member.getName); //NameUser.java
+	  assertEquals(emergencyContact, member.getEmergencyContact()); //NameUser.java
+	  assertEquals(nrWeeks, member.getNrWeeks); //Member.java
+	  assertEquals(guideRequired, member.getGuideRequired); //Member.java
+	  assertEquals(hotelRequired, member.getHotelRequired); //Member.java
+	  
+	  List<String> argBookableItemsList = Array.asList(bookableItems.split(","));
+	  List<BookedItem> compBookableItemsList = member.getBookedItems();
+	  List<String> argRequestedQuantitiesList = Array.asList(requestedQuantities.split(","));
+	  int i=0;
+	  for (String s:argBookableItemsList) {
+		  assertTrue(compBookableItemsList.contain(s));
+		  BookableItem desiredItem = compBookableItemsList.getWithName(s);
+		  assertEquals(desiredItem.getQuantity(),argRequestedQuantitiesList.get(i));
+		  i++;
+	  }
 		 
     
-  } //then uses model methods to check if controller features work properly
+  } 
 
   /**
-   * @param int1: the number of members
+   * @param int1
    * @author Victor Micha
    */
   @Then("there are {int} members in the system. \\(p9)")
@@ -167,12 +179,12 @@ public class P9StepDefinitions {
   }
 
   /**
-   * @param string: the error to be expected 
+   * @param string
    * @author Joey Koay
    */
   @Then("the following {string} shall be raised. \\(p9)")
-  public void the_following_shall_be_raised_p9(String string) {
-	  assertTrue(error.contains(string));
+  public void the_following_shall_be_raised_p9(String errorString) {
+	  assertTrue(error.contains(errorString));
   }
 
   /**

@@ -36,12 +36,12 @@ public class P9StepDefinitions {
   public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	 
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-      for (Map<String, String> row : rows) {
-          String name = row.get("name");
-          int weight = Integer.parseInt(row.get("weight"));
-          int weeklyPrice = Integer.parseInt(row.get("pricePerWeek"));
-
-          new Equipment(name, weight, weeklyPrice, this.climbSafe);
+      for (Map<String, String> r : rows) {
+          String name = r.get("name");
+          int weight = Integer.parseInt(r.get("weight"));
+          int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"))
+          Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
+          climbSafe.addEquipment(equipment);
   }
 
   @Given("the following equipment bundles exist in the system: \\(p9)")
@@ -58,26 +58,24 @@ public class P9StepDefinitions {
 	  
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
-      for (Map<String, String> row : rows) {
-    	  String name = row.get("name");
-    	  String password = row.get("password");
-          String email = row.get("email");
-          String emergencyContact = row.get("emergencyContact");
-          boolean guideRequired = Boolean.parseBoolean(row.get("guideRequired"));
-          boolean hotelRequired = Boolean.parseBoolean(row.get("hotelRequired"));
-          int nrWeeks = Integer.parseInt(row.get("nrWeeks"));
-          List<String> bookableItems = Arrays.asList(row.get("bookableItems").split(","));
-          List<Integer> requestedQuantities = Arrays.asList(row.get("requestedQuantities").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
-
+      for (Map<String, String> r : rows) {
+    	  String email = r.get("email");
+    	  String password = r.get("password");
+    	  String name = r.get("name");
+          String emergencyContact = r.get("emergencyContact");
+          int nrWeeks = Integer.parseInt(r.get("nrWeeks"));
+          List<String> bookableItems = Arrays.asList(r.get("bookableItems").split(","));
+          List<Integer> requestedQuantities = Arrays.asList(r.get("requestedQuantities").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
+          boolean guideRequired = Boolean.parseBoolean(r.get("guideRequired"));
+          boolean hotelRequired = Boolean.parseBoolean(r.get("hotelRequired"));
           Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, this.climbSafe);
 
           for (int i = 0; i < bookableItems.size(); i++) {
               BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));;
               m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 
           }
-
+          climbSafe.addMember(m);
       }
-
   }
   }
 

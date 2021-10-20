@@ -128,7 +128,7 @@ public class P9StepDefinitions {
     try {
     	ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {
-    	error += e.getMessage();
+    	String error += e.getMessage();
     }
   }
 

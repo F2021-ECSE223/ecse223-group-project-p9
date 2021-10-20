@@ -155,9 +155,9 @@ public class P9StepDefinitions {
 	  assertEquals(password, member.getPassword); //User.java
 	  assertEquals(name, member.getName); //NameUser.java
 	  assertEquals(emergencyContact, member.getEmergencyContact()); //NameUser.java
-	  assertEquals(nrWeeks, member.getNrWeeks); //Member.java
-	  assertEquals(guideRequired, member.getGuideRequired); //Member.java
-	  assertEquals(hotelRequired, member.getHotelRequired); //Member.java
+	  assertEquals(Integer.parseInt(nrWeeks), member.getNrWeeks); //Member.java
+	  assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired); //Member.java
+	  assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired); //Member.java
 	  
 	  List<String> argBookableItemsList = Array.asList(bookableItems.split(","));
 	  List<BookedItem> compBookableItemsList = member.getBookedItems();

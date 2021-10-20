@@ -5,11 +5,8 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.*;
-
-
 import java.sql.Date;
 import java.util.*;
-
 import static org.junit.Assert.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,12 +21,34 @@ public class P9StepDefinitions {
 	private List<Guide> guides;
 
 	
-  @Given("the following ClimbSafe system exists: \\(p9)")
+  @Given("the following ClimbSafe system exists: \\(p9)") 
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
-	  climbSafe = ClimbSafeApplication.getClimbSafe();
-	  error = "";
-	  errorCntr = 0;
+	  
   }
+	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+	  
+	  climbSafe = ClimbSafeApplication.getClimbSafe();
+	  
+	  for(Map<String, String>row : rows) {
+		  
+		  Date startDate = java.sql.Date.valueOf(row.get("startDate"));
+		  climbSafe.setStartDate(startDate);
+		  int nrWeeks = Integer.parseInt(row.get("nrWeeks"));
+		  climbSafe.setNrWeeks(nrWeeks);
+		  int priceOfGuidePerWeek = Integer.parseInt(row.get("priceOfGuidePerWeek"));
+		  climbSafe.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
+		  
+		  
+	  }
+	  
+	  
+	  
+  }
+ /**
+ * @param dataTable 
+ * @author Kara Best
+ */
+
 
   
   @Given("the following equipment exists in the system: \\(p9)")
@@ -44,9 +63,10 @@ public class P9StepDefinitions {
           climbSafe.addEquipment(equipment);
   }
 
+  }  
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable List<EquipmentBundle>) {
+      io.cucumber.datatable.DataTable dataTable) {
 	  bundle=ClimbSafe.getBundles();
 	  error="";
 	  errorCntr=0;
@@ -54,6 +74,7 @@ public class P9StepDefinitions {
   
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
+
       io.cucumber.datatable.DataTable List<Member>) {
 	  
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
@@ -77,21 +98,22 @@ public class P9StepDefinitions {
           climbSafe.addMember(m);
       }
   }
+
   }
 
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable List<Guides>) {
+      io.cucumber.datatable.DataTable dataTable) {
 	  guides = ClimbSafe.getGuides();
 	  error = "";
 	  errorCntr = 0;
   }
 
 
-  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
+  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
-	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
-	      List<String> itemNames, List<Integer> itemQuantities) { //change back to 9 strings
+	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
+	      String itemNames, String itemQuantities) { //change back to 9 strings
     try {
     	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {
@@ -101,10 +123,10 @@ public class P9StepDefinitions {
   }
 
 
-  @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
+  @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
   public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name,
-	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
-	      List<String> itemNames, List<Integer> itemQuantities) { 
+	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
+	      String itemNames, String itemQuantities) { 
     
 	  	
 		 //assertEquals(member.nrWeeks, nrWeeks);

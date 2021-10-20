@@ -17,7 +17,7 @@ public class P9StepDefinitions {
 
 	/**
 	 * @param dataTable 
-	 * @author Kara Best
+	 * @author KaraBest
 	 */
   @Given("the following ClimbSafe system exists: \\(p9)") 
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -37,7 +37,7 @@ public class P9StepDefinitions {
 
   /**
    * @param dataTable
-   * @author Enzo Benoit-Jeannin
+   * @author EnzoBenoitJeannin
    */
   @Given("the following equipment exists in the system: \\(p9)")
   public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -52,7 +52,7 @@ public class P9StepDefinitions {
   } 
   /**
    * @param dataTable
-   * @author Victor, Eunjun
+   * @author Victor&Eunjun
    */
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -66,7 +66,7 @@ public class P9StepDefinitions {
   }
   /**
    * @param dataTable
-   * @author Enzo Benoit-Jeannin
+   * @author EnzoBenoitJeannin
    */
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -94,7 +94,7 @@ public class P9StepDefinitions {
 
 /**
  * @param dataTable
- * @author Victor, Eunjun
+ * @author Victor&Eunjun
  */
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -116,7 +116,7 @@ public class P9StepDefinitions {
    * @param xhotelRequired
    * @param xitemNames
    * @param xitemQuantities
-   * @author Kara Best
+   * @author KaraBest
    */
   
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
@@ -146,7 +146,7 @@ public class P9StepDefinitions {
    * @param requestedQuantities
    * @param guideRequired
    * @param hotelRequired
-   * @author Joey, Victor
+   * @author Joey&Victor
    */
   @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
   public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String bookableItems, String requestedQuantities, String guideRequired, String hotelRequired) { 
@@ -175,7 +175,7 @@ public class P9StepDefinitions {
 
   /**
    * @param numMembers
-   * @author Victor Micha
+   * @author VictorMicha
    */
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer numMembers) {
@@ -184,7 +184,7 @@ public class P9StepDefinitions {
 
   /**
    * @param errorString
-   * @author Joey Koay
+   * @author JoeyKoay
    */
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String errorString) {
@@ -193,7 +193,7 @@ public class P9StepDefinitions {
 
   /**
    * @param email 
-   * @author Kara Best
+   * @author KaraBest
    */
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String email) {

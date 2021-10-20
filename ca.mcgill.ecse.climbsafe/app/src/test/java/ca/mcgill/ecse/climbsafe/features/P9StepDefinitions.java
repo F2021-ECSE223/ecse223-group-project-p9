@@ -174,7 +174,7 @@ public class P9StepDefinitions {
   } 
 
   /**
-   * @param int1
+   * @param numMembers
    * @author Victor Micha
    */
   @Then("there are {int} members in the system. \\(p9)")
@@ -183,7 +183,7 @@ public class P9StepDefinitions {
   }
 
   /**
-   * @param string
+   * @param errorString
    * @author Joey Koay
    */
   @Then("the following {string} shall be raised. \\(p9)")

@@ -1,6 +1,16 @@
 package ca.mcgill.ecse.climbsafe.features;
 
 import io.cucumber.java.en.Given;
+import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
+import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
+import ca.mcgill.ecse.climbsafe.model.*;
+
+
+import java.sql.Date;
+import java.util.*;
+
+import static org.junit.Assert.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -98,31 +108,28 @@ public class P9StepDefinitions {
 	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
 	      List<String> itemNames, List<Integer> itemQuantities) { 
     
-	  	 List<Member> members =  ClimbSafe.getMembers();
-		 boolean done = false;
-		 int i=0;
-		 while (!done) {
-			 if (members.get(i).getName().equals(name)) {
-				 assertEquals(members.get(i).getName(), name);
-				 done = true;
-				 Member member = getMember(i);
-			 }
-			 i++;
-		 }
+	  	
 		 //assertEquals(member.nrWeeks, nrWeeks);
 		 //assertEquals(member.item)
 		 
     
   } //then uses model methods to check if controller features work properly
 
+  /**
+   * @param int1: the number of members
+   * @author Victor Micha
+   */
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer int1) {
 	  assertEquals(int1, ClimbSafe.numberOfMembers());
   }
 
+  /**
+   * @param string: the error to be expected 
+   * @author Joey Koay
+   */
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String string) {
-//	  I am assuming this is the same as the error
 	  assertTrue(error.contains(string));
   }
 

@@ -13,12 +13,7 @@ import io.cucumber.java.en.When;
 
 public class P9StepDefinitions {
 	private ClimbSafe climbSafe;
-	private String error;
-	private List <Equipment> equipment; 
-	private List <EquipmentBundle> equipmentBundles;
-	private int errorCntr;
-	private List<Member> members;
-	private List<Guide> guides;
+
 
 /**
  * @param dataTable 
@@ -132,7 +127,7 @@ public class P9StepDefinitions {
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
 	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
-	      String xitemNames, String xitemQuantities) { //change back to 9 strings
+	      String xitemNames, String xitemQuantities) {
 	List<String> itemNames = Arrays.asList(itemsNames.split(","));
 	List<Integer> itemQuantities = newArrayList<>();
 	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s));
@@ -175,18 +170,14 @@ public class P9StepDefinitions {
 	  assertTrue(error.contains(string));
   }
 
+  /**
+   * @param email 
+   * @author Kara Best
+   */
   @Then("there is no member account for {string} \\(p9)")
-  public void there_is_no_member_account_for_p9(String string) {
-//not sure if it is correct
-	 List<Member> members =  ClimbSafe.getMembers();
-	 boolean done = false;
-	 int i=0;
-	 while (!done) {
-		 if (members.get(i).getName().equals(string)) {
-			 assertEquals(members.get(i).getName(), string);
-			 done = true;
-		 }
-		 i++; //this is going to run an infinite loop if theres no member or produce an error once the index gets too high
-	 }
+  public void there_is_no_member_account_for_p9(String email) {
+	 List<Member> members = getMembers();
+	 for(int i=0; i<numberOfMembers(); i++) {
+		assertNotEquals(email, members.get(i).email); 
   }
 }

@@ -42,7 +42,10 @@ public class P9StepDefinitions {
  
 
 
-  
+  /**
+   * @param dataTable
+   * @author Enzo Benoit-Jeannin
+   */
   @Given("the following equipment exists in the system: \\(p9)")
   public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	 

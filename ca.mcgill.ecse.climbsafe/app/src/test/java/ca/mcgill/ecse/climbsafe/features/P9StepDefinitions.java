@@ -58,9 +58,9 @@ public class P9StepDefinitions {
   public void the_following_equipment_bundles_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	  for (Map<String, String> r : rows) {
-		  EquipmentBundle bundle = new EquipmentBundle(r.get("name"), r.get("discount"), climbsafe);
-		  List<BundleItems> items = Array.asList(r.get("items").split(","));
-		  for (BundleItems x:items)
+		  EquipmentBundle bundle = new EquipmentBundle(r.get("name"), r.get("discount"), climbSafe);
+		  List<BundleItem> items = Arrays.asList(r.get("items").split(","));
+		  for (BundleItem x:items)
 			  bundle.addBundleItem(x);
 	  }
   }
@@ -100,7 +100,7 @@ public class P9StepDefinitions {
   public void the_following_guides_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	  for (Map<String, String> r : rows) {
-		  Guide g = new Guide(r.get("email"), r.get("password"), r.get("name"), r.get("emergencyContact"), climbsafe);
+		  Guide g = new Guide(r.get("email"), r.get("password"), r.get("name"), r.get("emergencyContact"), climbSafe);
 		  
 	  }
   }
@@ -152,19 +152,19 @@ public class P9StepDefinitions {
   public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String bookableItems, String requestedQuantities, String guideRequired, String hotelRequired) { 
 	  Member member = (Member) Member.getWithEmail(email);
 	  assertNotNull(member);
-	  assertEquals(password, member.getPassword); //User.java
-	  assertEquals(name, member.getName); //NameUser.java
+	  assertEquals(password, member.getPassword()); //User.java
+	  assertEquals(name, member.getName()); //NameUser.java
 	  assertEquals(emergencyContact, member.getEmergencyContact()); //NameUser.java
-	  assertEquals(Integer.parseInt(nrWeeks), member.getNrWeeks); //Member.java
-	  assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired); //Member.java
-	  assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired); //Member.java
+	  assertEquals(Integer.parseInt(nrWeeks), member.getNrWeeks()); //Member.java
+	  assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired()); //Member.java
+	  assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired()); //Member.java
 	  
-	  List<String> argBookableItemsList = Array.asList(bookableItems.split(","));
+	  List<String> argBookableItemsList = Arrays.asList(bookableItems.split(","));
 	  List<BookedItem> compBookableItemsList = member.getBookedItems();
-	  List<String> argRequestedQuantitiesList = Array.asList(requestedQuantities.split(","));
+	  List<String> argRequestedQuantitiesList = Arrays.asList(requestedQuantities.split(","));
 	  int i=0;
 	  for (String s:argBookableItemsList) {
-		  assertTrue(compBookableItemsList.contain(s));
+		  assertTrue(compBookableItemsList.contains(s));
 		  BookableItem desiredItem = compBookableItemsList.getWithName(s);
 		  assertEquals(desiredItem.getQuantity(),argRequestedQuantitiesList.get(i));
 		  i++;
@@ -188,7 +188,7 @@ public class P9StepDefinitions {
    */
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String errorString) {
-	  assertTrue(error.contains(errorString));
+	  assertTrue(errorString.contains(errorString));
   }
 
   /**

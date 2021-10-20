@@ -123,10 +123,10 @@ public class P9StepDefinitions {
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired, String xitemNames, String xitemQuantities) {
 	List<String> itemNames = Arrays.asList(itemsNames.split(","));
 	List<Integer> itemQuantities = newArrayList<>();
-	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s)));
+	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s));
 	
     try {
-    	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
+    	ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {
     	error += e.getMessage();
     }

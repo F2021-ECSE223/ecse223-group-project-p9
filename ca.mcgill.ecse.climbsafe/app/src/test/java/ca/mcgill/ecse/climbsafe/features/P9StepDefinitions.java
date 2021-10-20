@@ -46,7 +46,7 @@ public class P9StepDefinitions {
       for (Map<String, String> r : rows) {
           String name = r.get("name");
           int weight = Integer.parseInt(r.get("weight"));
-          int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"))
+          int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"));
           Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
       }
   } 
@@ -175,7 +175,7 @@ public class P9StepDefinitions {
    */
   @Then("there are {int} members in the system. \\(p9)")
   public void there_are_members_in_the_system_p9(Integer numMembers) {
-	  assertEquals(numMembers, ClimbSafe.numberOfMembers());
+	  assertEquals(numMembers, climbSafe.numberOfMembers());
   }
 
   /**
@@ -193,8 +193,10 @@ public class P9StepDefinitions {
    */
   @Then("there is no member account for {string} \\(p9)")
   public void there_is_no_member_account_for_p9(String email) {
-	 List<Member> members = getMembers();
+	 List<Member> members = climbSafe.getMembers();
 	 for(int i=0; i<numberOfMembers(); i++) {
 		assertNotEquals(email, members.get(i).email); 
   }
+}
+  
 }

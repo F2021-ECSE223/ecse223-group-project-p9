@@ -112,10 +112,10 @@ public class P9StepDefinitions {
   }
 
 
-  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)") //Kara
+  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
-	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
-	      List<String> itemNames, List<Integer> itemQuantities) { //change back to 9 strings
+	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
+	      String itemNames, String itemQuantities) { //change back to 9 strings
     try {
     	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {
@@ -125,10 +125,10 @@ public class P9StepDefinitions {
   }
 
 
-  @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
+  @Then("a new member account shall exist with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
   public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name,
-	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
-	      List<String> itemNames, List<Integer> itemQuantities) { 
+	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
+	      String itemNames, String itemQuantities) { 
     
 	  	
 		 //assertEquals(member.nrWeeks, nrWeeks);

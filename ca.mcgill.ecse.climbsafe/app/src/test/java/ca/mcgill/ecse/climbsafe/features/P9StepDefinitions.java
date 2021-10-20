@@ -121,7 +121,7 @@ public class P9StepDefinitions {
   
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String xnrWeeks, String xguideRequired, String xhotelRequired, String xitemNames, String xitemQuantities) {
-	List<String> itemNames = Arrays.asList(xitemsNames.split(","));
+	List<String> itemNames = Arrays.asList(xitemNames.split(","));
 	List<Integer> itemQuantities = new ArrayList<Integer>();
 	boolean guideRequired = Boolean.parseBoolean(xguideRequired);
 	boolean hotelRequired = Boolean.parseBoolean(xhotelRequired);
@@ -132,7 +132,7 @@ public class P9StepDefinitions {
     try {
     	ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {
-    	String error += e.getMessage();
+    	String error = e.getMessage();
     }
   }
 

@@ -5,11 +5,8 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.*;
-
-
 import java.sql.Date;
 import java.util.*;
-
 import static org.junit.Assert.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -24,29 +21,22 @@ public class P9StepDefinitions {
 	private List<Guide> guides;
 
 	
-  @Given("the following ClimbSafe system exists: \\(p9)")
+  @Given("the following ClimbSafe system exists: \\(p9)") //Kara 
   public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
 	  climbSafe = ClimbSafeApplication.getClimbSafe();
 	  error = "";
 	  errorCntr = 0;
   }
 
-  @Given("the following equipment exists in the system: \\(p9)")
-<<<<<<< Updated upstream
-  public void the_following_equipment_exists_in_the_system_p9(
-	  io.cucumber.datatable.DataTable List <Equipment>) {
-	  equipment=climbSafe.getEquipment();
-=======
+  @Given("the following equipment exists in the system: \\(p9)") 
   public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 	  equipment =ClimbSafe.getEquipment();
->>>>>>> Stashed changes
 	  error="";
 	  errorCntr=0;
-  }
 
   @Given("the following equipment bundles exist in the system: \\(p9)")
   public void the_following_equipment_bundles_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable List<EquipmentBundle>) {
+      io.cucumber.datatable.DataTable dataTable) {
 	  bundle=ClimbSafe.getBundles();
 	  error="";
 	  errorCntr=0;
@@ -54,7 +44,7 @@ public class P9StepDefinitions {
 
   @Given("the following members exist in the system: \\(p9)")
   public void the_following_members_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable List<Member>) {
+      io.cucumber.datatable.DataTable dataTable) {
 	  members = ClimbSafe.getMembers();
 	  error = "";
 	  errorCntr = 0;
@@ -62,14 +52,14 @@ public class P9StepDefinitions {
 
   @Given("the following guides exist in the system: \\(p9)")
   public void the_following_guides_exist_in_the_system_p9(
-      io.cucumber.datatable.DataTable List<Guides>) {
+      io.cucumber.datatable.DataTable dataTable) {
 	  guides = ClimbSafe.getGuides();
 	  error = "";
 	  errorCntr = 0;
   }
 
 
-  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)")
+  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {int}, {boolean}, {boolean}, {List<String>, and {List<Integer>} \\(p9)") //Kara
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
 	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
 	      List<String> itemNames, List<Integer> itemQuantities) { //change back to 9 strings

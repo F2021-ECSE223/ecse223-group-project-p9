@@ -53,7 +53,7 @@ public class P9StepDefinitions {
           int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"))
           Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
           climbSafe.addEquipment(equipment);
-  }
+      }
 
   }  
   @Given("the following equipment bundles exist in the system: \\(p9)")
@@ -102,13 +102,27 @@ public class P9StepDefinitions {
   }
 
 
+  /**
+   * @param email
+   * @param password
+   * @param name
+   * @param emergencyContact
+   * @param nrWeeks
+   * @param guideRequired
+   * @param hotelRequired
+   * @param xitemNames
+   * @param xitemQuantities
+   * @author Kara Best
+   */
+  
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name,
 	      String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired,
 	      String xitemNames, String xitemQuantities) { //change back to 9 strings
 	List<String> itemNames = Arrays.asList(itemsNames.split(","));
-	List<Integer> itemQuantities = newArray<
-	for(int i=0; i<)
+	List<Integer> itemQuantities = newArrayList<>();
+	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s));
+	
     try {
     	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
     }catch (InvalidInputException e) {

@@ -1,6 +1,16 @@
 package ca.mcgill.ecse.climbsafe.features;
 
 import io.cucumber.java.en.Given;
+import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
+import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
+import ca.mcgill.ecse.climbsafe.model.*;
+
+
+import java.sql.Date;
+import java.util.*;
+
+import static org.junit.Assert.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -77,17 +87,7 @@ public class P9StepDefinitions {
 	      String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
 	      List<String> itemNames, List<Integer> itemQuantities) { 
     
-	  	 List<Member> members =  ClimbSafe.getMembers();
-		 boolean done = false;
-		 int i=0;
-		 while (!done) {
-			 if (members.get(i).getName().equals(name)) {
-				 assertEquals(members.get(i).getName(), name);
-				 done = true;
-				 Member member = getMember(i);
-			 }
-			 i++;
-		 }
+	  	
 		 //assertEquals(member.nrWeeks, nrWeeks);
 		 //assertEquals(member.item)
 		 

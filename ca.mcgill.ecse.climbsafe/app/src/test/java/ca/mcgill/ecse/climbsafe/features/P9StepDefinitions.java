@@ -69,7 +69,6 @@ public class P9StepDefinitions {
 		  List<BundleItems> items = Array.asList(r.get("items").split(","));
 		  for (BundleItems x:items)
 			  bundle.addBundleItem(x);
-		  climbsafe.addBundle(bundle);
 	  }
   }
   /**
@@ -99,6 +98,8 @@ public class P9StepDefinitions {
               BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));;
               m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 
           }
+     
+          
       }
   }
 
@@ -110,7 +111,7 @@ public class P9StepDefinitions {
 	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	  for (Map<String, String> r : rows) {
 		  Guide g = new Guide(r.get("email"), r.get("password"), r.get("name"), r.get("emergencyContact"), climbsafe);
-		  climbsafe.addGuide(g);
+		  
 	  }
   }
 

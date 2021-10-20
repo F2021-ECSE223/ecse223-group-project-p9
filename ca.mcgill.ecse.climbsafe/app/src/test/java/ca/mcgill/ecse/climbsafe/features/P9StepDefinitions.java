@@ -119,11 +119,11 @@ public class P9StepDefinitions {
    * @author Kara Best
    */
   
-  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") //Kara
+  @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
   public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String guideRequired, String hotelRequired, String xitemNames, String xitemQuantities) {
 	List<String> itemNames = Arrays.asList(itemsNames.split(","));
 	List<Integer> itemQuantities = newArrayList<>();
-	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s));
+	for(String s : xitemQuantities.split(",")) itemQuantities.add(Integer.parseInt(s)));
 	
     try {
     	ClimbSafeFreatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities);
@@ -196,7 +196,7 @@ public class P9StepDefinitions {
 	 List<Member> members = climbSafe.getMembers();
 	 for(int i=0; i<numberOfMembers(); i++) {
 		assertNotEquals(email, members.get(i).email); 
+	 }
   }
-}
   
 }

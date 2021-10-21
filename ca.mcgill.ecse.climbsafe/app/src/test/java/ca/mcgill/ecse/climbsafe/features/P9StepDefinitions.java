@@ -47,7 +47,7 @@ public class P9StepDefinitions {
           String name = r.get("name");
           int weight = Integer.parseInt(r.get("weight"));
           int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"));
-          Equipment equipment = new Equipment(name, weight, pricePerWeek, this.climbSafe);
+        new Equipment(name, weight, pricePerWeek, this.climbSafe);//add Equipment x = 
       }
   } 
   /**

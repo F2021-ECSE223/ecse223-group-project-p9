@@ -102,11 +102,18 @@ public class P9StepDefinitions {
 			List<Integer> requestedQuantities = Arrays.asList(r.get("requestedQuantities").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
 			boolean guideRequired = Boolean.parseBoolean(r.get("guideRequired"));
 			boolean hotelRequired = Boolean.parseBoolean(r.get("hotelRequired"));
-			Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, this.climbSafe);
 
-			for (int i = 0; i < bookableItems.size(); i++) {
-				BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));
-				m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 
+			List<Member> members = climbSafe.getMembers();
+			List<String> emails = new ArrayList<String>();
+			for (Member m:members)
+				emails.add(m.getEmail());
+			if (!emails.contains(email)) {
+				Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, this.climbSafe);
+
+				for (int i = 0; i < bookableItems.size(); i++) {
+					BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));
+					m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 
+				}
 			}
 		}
 	}

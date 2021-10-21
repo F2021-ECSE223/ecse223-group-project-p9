@@ -13,15 +13,18 @@ public class ClimbSafeFeatureSet2Controller {
       List<String> itemNames, List<Integer> itemQuantities) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  try {
-		  Member a = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
-		  climbSafe.addMember(a);//maybe take out
-		  for (int i=0; i<itemNames.size(); i++) {
-			 climbSafe.addBookedItem(itemQuantities.get(i), a, BookableItem.getWithName(itemNames.get(i)));
-			// climbSafe.addBooked(quantity, member, bookableitem)
-		  //a.addBookedItem(new BookedItem(itemQuantities.get(i), climbSafe, a, BookableItem.getWithName(itemNames.get(i))));
-		  
-		  
+		  if(email.substring(email.length()-8, email.length())=="@mail.ca") {
+			  Member a = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
+			  climbSafe.addMember(a);//maybe take out
+			  for (int i=0; i<itemNames.size(); i++) {
+				 climbSafe.addBookedItem(itemQuantities.get(i), a, BookableItem.getWithName(itemNames.get(i)));
+				// climbSafe.addBooked(quantity, member, bookableitem)
+			  //a.addBookedItem(new BookedItem(itemQuantities.get(i), climbSafe, a, BookableItem.getWithName(itemNames.get(i))));
+			  
+			  
+			  }
 		  }
+		  
 	  }catch(RuntimeException e){
 		  throw new InvalidInputException(e.getMessage());
 	  }

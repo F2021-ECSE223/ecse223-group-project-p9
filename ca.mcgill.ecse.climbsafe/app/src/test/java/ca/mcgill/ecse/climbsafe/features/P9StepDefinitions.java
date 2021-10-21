@@ -186,7 +186,7 @@ public class P9StepDefinitions {
 	 * @param hotelRequired
 	 * @author Victor
 	 */
-	@Then("a new member account shall exist with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
+	@Then("a new member account shall exist with {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
 	public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String bookableItems, String requestedQuantities, String guideRequired, String hotelRequired) { 
 		Member member = (Member) Member.getWithEmail(email);
 		assertNotNull(member);
@@ -242,16 +242,8 @@ public class P9StepDefinitions {
 	@Then("there is no member account for {string} \\(p9)")
 	public void there_is_no_member_account_for_p9(String email) {
 		List<Member> members = climbSafe.getMembers();
-		//List<String> emails = new ArrayList<String>();
-		//for (Member m:members)
-			//emails.add(m.getEmail());
-		
-		for(int i=0; i<climbSafe.numberOfMembers(); i++) {
-			//if (!emails.contains(email)) {
-				assertNotEquals(email, members.get(i).getEmail()); 
-			//}else {
-				//assertEquals(email, members.get(i).getEmail());
-			//}
+		for(int i=0; i<climbSafe.numberOfMembers(); i++) {	
+			assertNotEquals(email, members.get(i).getEmail()); 
 		}
 	}
 	

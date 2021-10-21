@@ -14,6 +14,7 @@ import io.cucumber.java.After;
 
 public class P9StepDefinitions {
 	private ClimbSafe climbSafe;
+	private String error;
 
 
 	/**
@@ -168,7 +169,7 @@ public class P9StepDefinitions {
 		try {
 			ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, bookableItems, itemQuantities);
 		}catch (InvalidInputException e) {
-			String error = e.getMessage();
+			error = e.getMessage();
 		}
 	}
 
@@ -247,6 +248,7 @@ public class P9StepDefinitions {
 	
 	@After
 	public void tearDown() {
+		error = null;
 		climbSafe.delete();
 	}
 

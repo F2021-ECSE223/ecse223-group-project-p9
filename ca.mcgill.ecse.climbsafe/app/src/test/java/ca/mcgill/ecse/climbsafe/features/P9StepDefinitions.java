@@ -23,17 +23,19 @@ public class P9StepDefinitions {
 	 */
 	@Given("the following ClimbSafe system exists: \\(p9)") 
 	public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
-
+		error = "";
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 		climbSafe = ClimbSafeApplication.getClimbSafe();
 		for(Map<String, String>row : rows) {
 			Date startDate = java.sql.Date.valueOf(row.get("startDate"));
 			climbSafe.setStartDate(startDate);
+			
 			int nrWeeks = Integer.parseInt(row.get("nrWeeks"));
 			climbSafe.setNrWeeks(nrWeeks);
+			
 			int priceOfGuidePerWeek = Integer.parseInt(row.get("priceOfGuidePerWeek"));
 			climbSafe.setPriceOfGuidePerWeek(priceOfGuidePerWeek); 
-		}  
+		}
 	}
 
 
@@ -49,13 +51,7 @@ public class P9StepDefinitions {
 			String name = r.get("name");
 			int weight = Integer.parseInt(r.get("weight"));
 			int pricePerWeek = Integer.parseInt(r.get("pricePerWeek"));
-			List<Equipment> equipments = climbSafe.getEquipment();
-			List<String> names = new ArrayList<String>();
-			for (Equipment x :equipments)
-				names.add(x.getName());
-			if (!names.contains(name)){
-				new Equipment(name, weight, pricePerWeek, this.climbSafe);
-			}
+			new Equipment(name, weight, pricePerWeek, this.climbSafe);
 		}
 	} 
 	/**
@@ -68,21 +64,13 @@ public class P9StepDefinitions {
 		for (Map<String, String> r : rows) {
 			String name = r.get("name");
 			int discount = Integer.parseInt(r.get("discount"));
-			List<EquipmentBundle> equipBundles = climbSafe.getBundles();
-			List<String> listA = new ArrayList<String>();
-			for (EquipmentBundle x : equipBundles)
-				listA.add(x.getName());
-			if (!listA.contains(name)) {
 				EquipmentBundle bundle = new EquipmentBundle(name, discount, climbSafe);
-
 				List<String> items = Arrays.asList(r.get("items").split(","));
 				List<Integer> quantities = Arrays.asList(r.get("quantity").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
-				int i=0;
-				for (String x:items) {
+				for (int i=0; i< items.size();  i++) {
 					new BundleItem(quantities.get(i), this.climbSafe, bundle, (Equipment) Equipment.getWithName(items.get(i)));
 					i++;
 				}
-			}
 		}
 	}
 	/**
@@ -104,18 +92,11 @@ public class P9StepDefinitions {
 			List<String> requestedQuantities = Arrays.asList(r.get("requestedQuantities").split(","));
 			boolean guideRequired = Boolean.parseBoolean(r.get("guideRequired"));
 			boolean hotelRequired = Boolean.parseBoolean(r.get("hotelRequired"));
-
-			List<Member> members = climbSafe.getMembers();
-			List<String> emails = new ArrayList<String>();
-			for (Member m:members)
-				emails.add(m.getEmail());
-			if (!emails.contains(email)) {
-				Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, this.climbSafe);
-		
-				for (int i = 0; i < bookableItems.size(); i++) {
-					BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));
-					m.addBookedItem(Integer.parseInt(requestedQuantities.get(i)), this.climbSafe, bookableItem); 
-				}
+			Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, this.climbSafe);
+	
+			for (int i = 0; i < bookableItems.size(); i++) {
+				BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));
+				m.addBookedItem(Integer.parseInt(requestedQuantities.get(i)), this.climbSafe, bookableItem); 
 			}
 		}
 	}
@@ -133,12 +114,11 @@ public class P9StepDefinitions {
 			emails.add(g.getEmail());
 		
 		String email;
-		for (Map<String, String> r : rows) {
-			email = r.get("email");
+		for(int i= 0; i< rows.size(); i++) {
+			email = rows.get(i).get("email");
 			if (!emails.contains(email)) {
-			new Guide(email, r.get("password"), r.get("name"), r.get("emergencyContact"), climbSafe);
+			new Guide(email, rows.get(i).get("password"), rows.get(i).get("name"), rows.get(i).get("emergencyContact"), climbSafe);
 			}
-
 		}
 	}
 
@@ -157,13 +137,13 @@ public class P9StepDefinitions {
 	 */
 
 	@When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
-	public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String xnrWeeks, String xbookableItems, String xitemQuantities, String xguideRequired, String xhotelRequired) {
-		List<String> bookableItems = Arrays.asList(xbookableItems.split(","));
+	public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String strNrWeeks, String strBookableItems, String strItemQuantities, String strGuideRequired, String strHotelRequired) {
+		List<String> bookableItems = Arrays.asList(strBookableItems.split(","));
 		List<Integer> itemQuantities = new ArrayList<Integer>();
-		boolean guideRequired = Boolean.parseBoolean(xguideRequired);
-		boolean hotelRequired = Boolean.parseBoolean(xhotelRequired);
-		int nrWeeks = Integer.parseInt(xnrWeeks);
-		for(String s : xitemQuantities.split(",")) 
+		boolean guideRequired = Boolean.parseBoolean(strGuideRequired);
+		boolean hotelRequired = Boolean.parseBoolean(strHotelRequired);
+		int nrWeeks = Integer.parseInt(strNrWeeks);
+		for(String s : strItemQuantities.split(",")) 
 			itemQuantities.add(Integer.parseInt(s));
 
 		try {
@@ -196,6 +176,8 @@ public class P9StepDefinitions {
 		assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired());
 		assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired());
 
+		
+		
 		List<String> argBookableItemsList = Arrays.asList(bookableItems.split(","));
 		List<BookedItem> compBookableItemsList = member.getBookedItems();
 		List<String> argRequestedQuantitiesList = Arrays.asList(requestedQuantities.split(","));
@@ -248,7 +230,6 @@ public class P9StepDefinitions {
 	
 	@After
 	public void tearDown() {
-		error = null;
 		climbSafe.delete();
 	}
 

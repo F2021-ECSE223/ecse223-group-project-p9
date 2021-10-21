@@ -51,8 +51,9 @@ public class P9StepDefinitions {
 			List<String> names = new ArrayList<String>();
 			for (Equipment x :equipments)
 				names.add(x.getName());
-			if (!names.contains(name))
-			{new Equipment(name, weight, pricePerWeek, this.climbSafe);}
+			if (!names.contains(name)){
+				new Equipment(name, weight, pricePerWeek, this.climbSafe);
+				}
 		}
 	} 
 	/**
@@ -65,7 +66,13 @@ public class P9StepDefinitions {
 		for (Map<String, String> r : rows) {
 			String name = r.get("name");
 			int discount = Integer.parseInt(r.get("discount"));
+			List<EquipmentBundle> equipBundles = climbSafe.getBundles();
+			List<String> listA = new ArrayList<String>();
+			for (EquipmentBundle x : equipBundles)
+				listA.add(x.getName());
+			if (!listA.contains(name)) {
 			EquipmentBundle bundle = new EquipmentBundle(name, discount, climbSafe);
+			}
 			List<String> items = Arrays.asList(r.get("items").split(","));
 			List<Integer> quantities = Arrays.asList(r.get("quantity").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
 			int i=0;

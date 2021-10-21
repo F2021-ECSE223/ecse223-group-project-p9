@@ -118,10 +118,10 @@ public class P9StepDefinitions {
    * @param name
    * @param emergencyContact
    * @param xnrWeeks
-   * @param xguideRequired
-   * @param xhotelRequired
    * @param xitemNames
    * @param xitemQuantities
+   * @param xguideRequired
+   * @param xhotelRequired
    * @author KaraBest
    */
   

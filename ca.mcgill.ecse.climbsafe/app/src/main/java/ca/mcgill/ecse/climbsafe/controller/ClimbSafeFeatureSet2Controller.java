@@ -1,10 +1,8 @@
 package ca.mcgill.ecse.climbsafe.controller;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
-import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.*;
-import java.sql.Date;
-import java.util.*;
+
 
 import java.util.List;
 

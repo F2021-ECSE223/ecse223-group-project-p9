@@ -10,6 +10,7 @@ import java.util.*;
 import static org.junit.Assert.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.java.After;
 
 public class P9StepDefinitions {
 	private ClimbSafe climbSafe;
@@ -242,6 +243,11 @@ public class P9StepDefinitions {
 		for(int i=0; i<climbSafe.numberOfMembers(); i++) {
 			assertNotEquals(email, members.get(i).getEmail()); 
 		}
+	}
+	
+	@After
+	public void tearDown() {
+		climbSafe.delete();
 	}
 
 }

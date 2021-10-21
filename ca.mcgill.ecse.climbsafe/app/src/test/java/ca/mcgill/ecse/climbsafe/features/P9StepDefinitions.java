@@ -118,15 +118,15 @@ public class P9StepDefinitions {
    * @param name
    * @param emergencyContact
    * @param xnrWeeks
-   * @param xguideRequired
-   * @param xhotelRequired
    * @param xitemNames
    * @param xitemQuantities
+   * @param xguideRequired
+   * @param xhotelRequired
    * @author KaraBest
    */
   
   @When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
-  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String xnrWeeks, String xguideRequired, String xhotelRequired, String xbookableItems, String xitemQuantities) {
+  public void a_new_member_attempts_to_register_with_and_p9(String email, String password, String name, String emergencyContact, String xnrWeeks, String xbookableItems, String xitemQuantities, String xguideRequired, String xhotelRequired) {
 	List<String> bookableItems = Arrays.asList(xbookableItems.split(","));
 	List<Integer> itemQuantities = new ArrayList<Integer>();
 	boolean guideRequired = Boolean.parseBoolean(xguideRequired);

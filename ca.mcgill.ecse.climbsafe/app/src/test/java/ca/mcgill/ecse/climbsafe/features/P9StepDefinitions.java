@@ -53,7 +53,7 @@ public class P9StepDefinitions {
 				names.add(x.getName());
 			if (!names.contains(name)){
 				new Equipment(name, weight, pricePerWeek, this.climbSafe);
-				}
+			}
 		}
 	} 
 	/**
@@ -71,14 +71,15 @@ public class P9StepDefinitions {
 			for (EquipmentBundle x : equipBundles)
 				listA.add(x.getName());
 			if (!listA.contains(name)) {
-			EquipmentBundle bundle = new EquipmentBundle(name, discount, climbSafe);
-			}
-			List<String> items = Arrays.asList(r.get("items").split(","));
-			List<Integer> quantities = Arrays.asList(r.get("quantity").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
-			int i=0;
-			for (String x:items) {
-				new BundleItem(quantities.get(i), this.climbSafe, bundle, (Equipment) Equipment.getWithName(items.get(i)));
-				i++;
+				EquipmentBundle bundle = new EquipmentBundle(name, discount, climbSafe);
+
+				List<String> items = Arrays.asList(r.get("items").split(","));
+				List<Integer> quantities = Arrays.asList(r.get("quantity").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
+				int i=0;
+				for (String x:items) {
+					new BundleItem(quantities.get(i), this.climbSafe, bundle, (Equipment) Equipment.getWithName(items.get(i)));
+					i++;
+				}
 			}
 		}
 	}

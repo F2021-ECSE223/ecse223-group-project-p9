@@ -110,7 +110,7 @@ public class P9StepDefinitions {
 				emails.add(m.getEmail());
 			if (!emails.contains(email)) {
 				Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, this.climbSafe);
-				climbSafe.addMember(m);
+		
 				for (int i = 0; i < bookableItems.size(); i++) {
 					BookableItem bookableItem = BookableItem.getWithName(bookableItems.get(i));
 					m.addBookedItem(requestedQuantities.get(i), this.climbSafe, bookableItem); 

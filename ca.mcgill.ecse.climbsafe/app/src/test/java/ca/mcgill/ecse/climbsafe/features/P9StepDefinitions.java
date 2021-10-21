@@ -242,8 +242,16 @@ public class P9StepDefinitions {
 	@Then("there is no member account for {string} \\(p9)")
 	public void there_is_no_member_account_for_p9(String email) {
 		List<Member> members = climbSafe.getMembers();
+		List<String> emails = new ArrayList<String>();
+		for (Member m:members)
+			emails.add(m.getEmail());
+		
 		for(int i=0; i<climbSafe.numberOfMembers(); i++) {
-			assertNotEquals(email, members.get(i).getEmail()); 
+			if (!emails.contains(email)) {
+				assertNotEquals(email, members.get(i).getEmail()); 
+			}else {
+				assertEquals(email, members.get(i).getEmail());
+			}
 		}
 	}
 	

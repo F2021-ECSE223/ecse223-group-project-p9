@@ -14,6 +14,7 @@ public class ClimbSafeFeatureSet2Controller {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  try {
 		  Member a = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
+		  climbSafe.addMember(a);//maybe take out
 		  for (int i=0; i<itemNames.size(); i++) {
 			 climbSafe.addBookedItem(itemQuantities.get(i), a, BookableItem.getWithName(itemNames.get(i)));
 			// climbSafe.addBooked(quantity, member, bookableitem)

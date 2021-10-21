@@ -19,7 +19,7 @@ public class P9StepDefinitions {
 
 	/**
 	 * @param dataTable 
-	 * @author KaraBest
+	 * @author KaraBest & JoeyKoay & VictorMicha
 	 */
 	@Given("the following ClimbSafe system exists: \\(p9)") 
 	public void the_following_climb_safe_system_exists_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -39,7 +39,7 @@ public class P9StepDefinitions {
 
 	/**
 	 * @param dataTable
-	 * @author EnzoBenoitJeannin
+	 * @author EnzoBenoitJeannin & KaraBest & JoeyKoay & VictorMicha
 	 */
 	@Given("the following equipment exists in the system: \\(p9)")
 	public void the_following_equipment_exists_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -60,7 +60,7 @@ public class P9StepDefinitions {
 	} 
 	/**
 	 * @param dataTable
-	 * @author Victor&Eunjun&Enzo
+	 * @author EnzoBenoitJeannin & KaraBest & EunjunChang & JoeyKoay & VictorMicha & SejongYoon
 	 */
 	@Given("the following equipment bundles exist in the system: \\(p9)")
 	public void the_following_equipment_bundles_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -87,7 +87,7 @@ public class P9StepDefinitions {
 	}
 	/**
 	 * @param dataTable
-	 * @author EnzoBenoitJeannin
+	 * @author EnzoBenoitJeannin & KaraBest & JoeyKoay & VictorMicha
 	 */
 	@Given("the following members exist in the system: \\(p9)")
 	public void the_following_members_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -101,7 +101,6 @@ public class P9StepDefinitions {
 			String emergencyContact = r.get("emergencyContact");
 			int nrWeeks = Integer.parseInt(r.get("nrWeeks"));
 			List<String> bookableItems = Arrays.asList(r.get("bookableItems").split(","));
-			//List<Integer> requestedQuantities = Arrays.asList(r.get("requestedQuantities").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
 			List<String> requestedQuantities = Arrays.asList(r.get("requestedQuantities").split(","));
 			boolean guideRequired = Boolean.parseBoolean(r.get("guideRequired"));
 			boolean hotelRequired = Boolean.parseBoolean(r.get("hotelRequired"));
@@ -123,7 +122,7 @@ public class P9StepDefinitions {
 
 	/**
 	 * @param dataTable
-	 * @author Victor&Eunjun
+	 * @author EnzoBenoitJeannin & KaraBest & EunjunChang & JoeyKoay & VictorMicha & SejongYoon
 	 */
 	@Given("the following guides exist in the system: \\(p9)")
 	public void the_following_guides_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
@@ -154,7 +153,7 @@ public class P9StepDefinitions {
 	 * @param xitemQuantities
 	 * @param xguideRequired
 	 * @param xhotelRequired
-	 * @author KaraBest
+	 * @author KaraBest & JoeyKoay & VictorMicha
 	 */
 
 	@When("a new member attempts to register with {string} , {string} , {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)") 
@@ -184,18 +183,18 @@ public class P9StepDefinitions {
 	 * @param requestedQuantities
 	 * @param guideRequired
 	 * @param hotelRequired
-	 * @author Victor
+	 * @author KaraBest & JoeyKoay & VictorMicha
 	 */
 	@Then("a new member account shall exist with {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, and {string} \\(p9)")
 	public void a_new_member_account_shall_exist_with_and_p9(String email, String password, String name, String emergencyContact, String nrWeeks, String bookableItems, String requestedQuantities, String guideRequired, String hotelRequired) { 
 		Member member = (Member) Member.getWithEmail(email);
 		assertNotNull(member);
-		assertEquals(password, member.getPassword()); //User.java
-		assertEquals(name, member.getName()); //NameUser.java
-		assertEquals(emergencyContact, member.getEmergencyContact()); //NameUser.java
-		assertEquals(Integer.parseInt(nrWeeks), member.getNrWeeks()); //Member.java
-		assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired()); //Member.java
-		assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired()); //Member.java
+		assertEquals(password, member.getPassword());
+		assertEquals(name, member.getName());
+		assertEquals(emergencyContact, member.getEmergencyContact());
+		assertEquals(Integer.parseInt(nrWeeks), member.getNrWeeks());
+		assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired());
+		assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired());
 
 		List<String> argBookableItemsList = Arrays.asList(bookableItems.split(","));
 		List<BookedItem> compBookableItemsList = member.getBookedItems();
@@ -219,7 +218,7 @@ public class P9StepDefinitions {
 
 	/**
 	 * @param numMembers
-	 * @author VictorMicha
+	 * @author KaraBest & JoeyKoay & VictorMicha
 	 */
 	@Then("there are {int} members in the system. \\(p9)")
 	public void there_are_members_in_the_system_p9(Integer numMembers) {
@@ -228,7 +227,7 @@ public class P9StepDefinitions {
 
 	/**
 	 * @param errorString
-	 * @author JoeyKoay
+	 * @author KaraBest & JoeyKoay & VictorMicha
 	 */
 	@Then("the following {string} shall be raised. \\(p9)")
 	public void the_following_shall_be_raised_p9(String errorString) {
@@ -237,7 +236,7 @@ public class P9StepDefinitions {
 
 	/**
 	 * @param email 
-	 * @author KaraBest
+	 * @author KaraBest & JoeyKoay & VictorMicha
 	 */
 	@Then("there is no member account for {string} \\(p9)")
 	public void there_is_no_member_account_for_p9(String email) {

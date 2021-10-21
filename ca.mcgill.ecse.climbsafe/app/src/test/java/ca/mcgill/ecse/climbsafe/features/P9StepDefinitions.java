@@ -125,8 +125,17 @@ public class P9StepDefinitions {
 	@Given("the following guides exist in the system: \\(p9)")
 	public void the_following_guides_exist_in_the_system_p9(io.cucumber.datatable.DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+		List<Guide> guides = climbSafe.getGuides();
+		List<String> emails = new ArrayList<String>();
+		for (Guide g:guides)
+			emails.add(g.getEmail());
+		
+		String email;
 		for (Map<String, String> r : rows) {
-			Guide g = new Guide(r.get("email"), r.get("password"), r.get("name"), r.get("emergencyContact"), climbSafe);
+			email = r.get("email");
+			if (!emails.contains(email)) {
+			new Guide(email, r.get("password"), r.get("name"), r.get("emergencyContact"), climbSafe);
+			}
 
 		}
 	}

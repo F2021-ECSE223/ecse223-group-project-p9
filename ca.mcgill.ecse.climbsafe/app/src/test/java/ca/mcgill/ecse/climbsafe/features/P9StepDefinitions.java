@@ -175,27 +175,17 @@ public class P9StepDefinitions {
 		assertEquals(Integer.parseInt(nrWeeks), member.getNrWeeks());
 		assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired());
 		assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired());
-
-		
-		
-		List<String> argBookableItemsList = Arrays.asList(bookableItems.split(","));
-		List<BookedItem> compBookableItemsList = member.getBookedItems();
-		List<String> argRequestedQuantitiesList = Arrays.asList(requestedQuantities.split(","));
-		List<String> nameBookedItems = new ArrayList<String>();
-		List<Integer> quantBookedItems = new ArrayList<Integer>();
-		for (BookedItem x : compBookableItemsList) {
-			nameBookedItems.add(x.getItem().getName());
-			quantBookedItems.add(x.getQuantity());
+		List<String> itemNames = Arrays.asList(bookableItems.split(","));
+		List<BookedItem> bookableItems_list = member.getBookedItems();
+		List<String> quantities = Arrays.asList(requestedQuantities.split(","));
+		assertEquals(bookableItems_list.size(), itemNames.size());
+		int index;
+		for (BookedItem bItem : bookableItems_list) {
+			String s = bItem.getItem().getName();
+			assertTrue(itemNames.contains(s));
+			index = itemNames.indexOf(s);
+			assertEquals(Integer.parseInt(quantities.get(index)), bItem.getQuantity());
 		}
-		for (String s:argBookableItemsList) {
-			assertTrue(nameBookedItems.contains(s));
-
-		}
-		for (int j=0; j<quantBookedItems.size(); j++) {
-			assertEquals(quantBookedItems.get(j), (Integer) Integer.parseInt(argRequestedQuantitiesList.get(j)));
-		}
-
-
 	} 
 
 	/**

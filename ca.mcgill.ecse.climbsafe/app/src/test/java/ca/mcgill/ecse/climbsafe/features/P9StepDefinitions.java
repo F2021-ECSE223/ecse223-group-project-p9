@@ -66,10 +66,9 @@ public class P9StepDefinitions {
 			int discount = Integer.parseInt(r.get("discount"));
 				EquipmentBundle bundle = new EquipmentBundle(name, discount, climbSafe);
 				List<String> items = Arrays.asList(r.get("items").split(","));
-				List<Integer> quantities = Arrays.asList(r.get("quantity").split(",")).stream().map(String::trim).mapToInt(Integer::parseInt).boxed().toList();
+				List<String> quantities = Arrays.asList(r.get("quantity").split(","));
 				for (int i=0; i< items.size();  i++) {
-					new BundleItem(quantities.get(i), this.climbSafe, bundle, (Equipment) Equipment.getWithName(items.get(i)));
-					i++;
+					new BundleItem(Integer.parseInt(quantities.get(i)), this.climbSafe, bundle, (Equipment) Equipment.getWithName(items.get(i)));
 				}
 		}
 	}
@@ -113,12 +112,9 @@ public class P9StepDefinitions {
 		for (Guide g:guides)
 			emails.add(g.getEmail());
 		
-		String email;
 		for(int i= 0; i< rows.size(); i++) {
-			email = rows.get(i).get("email");
-			if (!emails.contains(email)) {
+			String email = rows.get(i).get("email");
 			new Guide(email, rows.get(i).get("password"), rows.get(i).get("name"), rows.get(i).get("emergencyContact"), climbSafe);
-			}
 		}
 	}
 
@@ -176,11 +172,11 @@ public class P9StepDefinitions {
 		assertEquals(Boolean.parseBoolean(guideRequired), member.getGuideRequired());
 		assertEquals(Boolean.parseBoolean(hotelRequired), member.getHotelRequired());
 		List<String> itemNames = Arrays.asList(bookableItems.split(","));
-		List<BookedItem> bookableItems_list = member.getBookedItems();
+		List<BookedItem> bookableItemsList = member.getBookedItems();
 		List<String> quantities = Arrays.asList(requestedQuantities.split(","));
-		assertEquals(bookableItems_list.size(), itemNames.size());
+		assertEquals(bookableItemsList.size(), itemNames.size());
 		int index;
-		for (BookedItem bItem : bookableItems_list) {
+		for (BookedItem bItem : bookableItemsList) {
 			String s = bItem.getItem().getName();
 			assertTrue(itemNames.contains(s));
 			index = itemNames.indexOf(s);

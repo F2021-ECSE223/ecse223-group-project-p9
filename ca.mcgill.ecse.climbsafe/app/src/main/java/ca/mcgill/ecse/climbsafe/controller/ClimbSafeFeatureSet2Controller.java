@@ -13,23 +13,6 @@ public class ClimbSafeFeatureSet2Controller {
       List<String> itemNames, List<Integer> itemQuantities) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  try {
-		  boolean validEmail = true;
-		  
-		  if(email.contains(" ")) {
-			  validEmail = false;
-		  }
-		  if(!(email.indexOf("@") > 0)) {
-			  validEmail = false;
-		  }
-		  if(!(email.indexOf("@") == email.lastIndexOf("@"))) {
-			  validEmail = false;
-		  }
-		  if(!(email.indexOf("@") < email.lastIndexOf(".") - 1)) {
-			  validEmail = false;
-		  }
-		  if(!(email.lastIndexOf(".") < email.length() - 1)) {
-			  validEmail = false;
-		  }
 		  
 //		  Since admin is already pre-registered, they will not be needing to "register" again, therefore, a member can never be "admin@nmc.nt"
 		  boolean notAdmin = true;
@@ -37,38 +20,11 @@ public class ClimbSafeFeatureSet2Controller {
 			  notAdmin = false;
 		  }
 		  
-		  boolean validPassword = true;
-		  if(password.equals("")) {
-			  validPassword = false;
-		  }
-		  if(password.equals(null)) {
-			  validPassword = false;
-		  }
-		  
-		  boolean validName = true;
-		  if(name.equals("")) {
-			  validName = false;
-		  }
-		  if(name.equals(null)) {
-			  validName = false;
-		  }
-		  
-		  boolean validEmergencyContact = true;
-		  if(emergencyContact.equals("")) {
-			  validName = false;
-		  }
-		  if(emergencyContact.equals(null)) {
-			  validName = false;
-		  }
-		  
-		  
-		  boolean validNrWeeks = true;
-		  if(nrWeeks<=0) {
-			  validNrWeeks = false;
-		  }
-		  if(nrWeeks > climbSafe.getNrWeeks()) {
-			  validNrWeeks = false;
-		  }
+		  boolean validEmail = validEmail(email);
+		  boolean validPassword = validPassword(password);
+		  boolean validName = validName(name);
+		  boolean validEmergencyContact = validEmergencyContact(emergencyContact);
+		  boolean validNrWeeks = validNrWeeks(nrWeeks, climbSafe);
 		  
 		  if(validEmail && validPassword && validName && validEmergencyContact && validNrWeeks && notAdmin) {
 			  boolean validItems = true;
@@ -99,6 +55,71 @@ public class ClimbSafeFeatureSet2Controller {
       throws InvalidInputException {
 	  
 	  
+  }
+  
+  private static boolean validEmail(String email) {
+	  boolean validEmail = true;
+	  
+	  if(email.contains(" ")) {
+		  validEmail = false;
+	  }
+	  if(!(email.indexOf("@") > 0)) {
+		  validEmail = false;
+	  }
+	  if(!(email.indexOf("@") == email.lastIndexOf("@"))) {
+		  validEmail = false;
+	  }
+	  if(!(email.indexOf("@") < email.lastIndexOf(".") - 1)) {
+		  validEmail = false;
+	  }
+	  if(!(email.lastIndexOf(".") < email.length() - 1)) {
+		  validEmail = false;
+	  }
+	  return validEmail;
+  }
+  
+  private static boolean validPassword(String password) {
+	  boolean validPassword = true;
+	  if(password.equals("")) {
+		  validPassword = false;
+	  }
+	  if(password.equals(null)) {
+		  validPassword = false;
+	  }
+	  return validPassword;
+  }
+  
+  private static boolean validName(String name) {
+	  boolean validName = true;
+	  if(name.equals("")) {
+		  validName = false;
+	  }
+	  if(name.equals(null)) {
+		  validName = false;
+	  }
+	  return validName;
+  }
+  
+  private static boolean validEmergencyContact(String emergencyContact) {
+	  boolean validEmergencyContact = true;
+	  if(emergencyContact.equals("")) {
+		  validEmergencyContact = false;
+	  }
+	  if(emergencyContact.equals(null)) {
+		  validEmergencyContact = false;
+	  }
+	  return validEmergencyContact;
+  }
+  
+  private static boolean validNrWeeks(int nrWeeks, ClimbSafe climbSafe) {
+	  boolean validNrWeeks = true;
+	  if(nrWeeks<=0) {
+		  validNrWeeks = false;
+	  }
+	  if(nrWeeks > climbSafe.getNrWeeks()) {
+		  validNrWeeks = false;
+	  }
+	  return validNrWeeks;
   }
 
 }

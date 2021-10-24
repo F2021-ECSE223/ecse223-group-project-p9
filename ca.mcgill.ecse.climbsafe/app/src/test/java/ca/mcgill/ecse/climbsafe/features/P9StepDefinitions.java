@@ -174,10 +174,10 @@ public class P9StepDefinitions {
       itemQuantities.add(Integer.parseInt(s));
 
     try {
-      ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact,
-          nrWeeks, guideRequired, hotelRequired, bookableItems, itemQuantities);
+      ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, bookableItems, itemQuantities);
     } catch (InvalidInputException e) {
-      error = e.getMessage();
+	    System.out.println("===e.getMessage(): " + e.getMessage());
+      error += e.getMessage();
     }
   }
 
@@ -233,6 +233,8 @@ public class P9StepDefinitions {
    */
   @Then("the following {string} shall be raised. \\(p9)")
   public void the_following_shall_be_raised_p9(String errorString) {
+	 
+	System.out.println("-----error: " + error);
     assertTrue(error.contains(errorString));
   }
 

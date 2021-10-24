@@ -51,8 +51,67 @@ public class ClimbSafeFeatureSet2Controller {
 
   public static void updateMember(String email, String newPassword, String newName,
       String newEmergencyContact, int newNrWeeks, boolean newGuideRequired,
-      boolean newHotelRequired, List<String> newItemNames, List<Integer> newItemQuantities)
-      throws InvalidInputException {
+      boolean newHotelRequired, List<String> newItemNames, List<Integer> newItemQuantities) throws InvalidInputException {
+	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+	  
+	  try {
+		  boolean validEmail = validEmail(email);
+		  boolean validPassword = validPassword(newPassword);
+		  boolean validName = validName(newName);
+		  boolean validEmergencyContact = validEmergencyContact(newEmergencyContact);
+		  boolean validNrWeeks = validNrWeeks(newNrWeeks, climbSafe);
+		  System.out.println("validPassword: " + validPassword);
+		  
+		  if(validEmail && validPassword && validName && validEmergencyContact && validNrWeeks) {
+			  System.out.println("IN THE FUNCTION!!!");
+			  boolean validItems = true;
+			  boolean validMember = false;
+			  int memberIndex = -1;
+			  
+			  List<Member> memberList = climbSafe.getMembers();
+			  for(int i=0; i<newItemNames.size(); i++) {
+				  if(BookableItem.getWithName(newItemNames.get(i)) == null){
+					  validItems = false;
+					  break;
+				  }
+			  }
+			  for(int i=0; i<memberList.size(); i++) {
+				  if(memberList.get(i).getEmail().equals(email)) {
+					  validMember = true;
+					  memberIndex = i;
+					  break;
+				  }
+			  }
+			  if(validItems && validMember) {
+				  Member member = climbSafe.getMember(memberIndex);
+				  System.out.println("member.getEmail(): "+member.getEmail());
+				  System.out.println("climbSafe.removeMember(member): " + climbSafe.removeMember(member));
+				  
+//				  Not removing the member correctly
+				  for(int i=0; i<memberList.size(); i++) {
+					  System.out.println(memberList.get(i).getEmail());
+				  }
+				  
+				  System.out.println("newPassword: " + newPassword);
+				  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
+			  }
+			  
+			  
+			  
+			  
+//			  if(validItems) {
+//				  Member member = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
+//				  Member member = climbSafe.
+//				  for (int i=0; i<itemNames.size(); i++) {
+//					 climbSafe.addBookedItem(itemQuantities.get(i), member, BookableItem.getWithName(itemNames.get(i))); 
+//				  }
+//			  }
+			  
+		  }
+	  }catch(RuntimeException e){
+		  throw new InvalidInputException(e.getMessage());
+	  }
+	  
 	  
 	  
   }

@@ -13,6 +13,69 @@ public class ClimbSafeFeatureSet2Controller {
       String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
       List<String> itemNames, List<Integer> itemQuantities) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+
+	  List<Member> memberList = climbSafe.getMembers();
+	  List<Guide> guideList = climbSafe.getGuides();
+	  
+	  
+	  if(email.contains(" ")) {
+		  error = "The email must not contain any spaces";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(!validEmail(email)) {
+		  error = "Invalid email";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(!validEmail(email)) {
+		  error = "Invalid email";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(!validPassword(password)) {
+		  error = "The password cannot be empty";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(!validName(name)) {
+		  error = "The name cannot be empty";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(!validEmergencyContact(emergencyContact)) {
+		  error = "The emergency contact cannot be empty";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(!validNrWeeks(nrWeeks, climbSafe)) {
+		  error = "The number of weeks must be greater than zero and less than or equal to the number of climbing weeks in the climbing season";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(!validItems(itemNames, climbSafe)) {
+		  error = "Requested item not found";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(validMember(memberList, email)) {
+		  error = "A member with this email already exists";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(email.equals("admin@nmc.nt")) {
+		  error = "The email entered is not allowed for members";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  if(guideExists(guideList, email)) {
+		  error = "A guide with this email already exists";
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	  
+	  
+	  
 	  try {
 		  
 //		  Since admin is already pre-registered, they will not be needing to "register" again, therefore, a member can never be "admin@nmc.nt"
@@ -194,5 +257,18 @@ public class ClimbSafeFeatureSet2Controller {
 	  }
 	  return validItems;
   }
+  
+  private static boolean guideExists(List<Guide> guideList, String email) {
+	  boolean validEmail = false;
+	  for(int i=0; i<guideList.size(); i++) {
+		  if(guideList.get(i).getEmail().equals(email)) {
+			  validEmail = true;
+			  break;
+		  }
+	  }
+	  return validEmail;
+  }
+  
+  
 
 }

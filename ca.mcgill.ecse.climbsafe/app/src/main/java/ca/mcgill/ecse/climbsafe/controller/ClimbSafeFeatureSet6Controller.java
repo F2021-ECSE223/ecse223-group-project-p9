@@ -8,8 +8,14 @@ import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.*;
 
 public class ClimbSafeFeatureSet6Controller {
+	
 
-  public static void deleteEquipment(String name) throws InvalidInputException {
+	/**
+	 *@param name the name of equipment to be deleted
+	 *@throws InvalidInputException if equipment does not exist
+	 *@author Kara Best
+	 */
+	public static void deleteEquipment(String name) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Equipment> equipment = climbSafe.getEquipment();
 	  try {
@@ -27,10 +33,12 @@ public class ClimbSafeFeatureSet6Controller {
 		  throw new InvalidInputException(e.getMessage());
 	  }
 	  
-  }
-
-  // this method does not need to be implemented by a team with five team members
-  public static void deleteEquipmentBundle(String name) {
+	}
+	/**
+	 *@param name the name of equipment bundle to be deleted
+	 *@author Kara Best
+	 */
+	public static void deleteEquipmentBundle(String name) {
 	  //do i have to remove anything else or does it do it auto (same w ^^)
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<EquipmentBundle> equipmentBundles = climbSafe.getBundles();
@@ -45,9 +53,12 @@ public class ClimbSafeFeatureSet6Controller {
 			index++;
 		}	  
 	  
-  }
-
-  public static List<TOAssignment> getAssignments() {
+	}
+	/**
+	 *@return TOAssignments list of ClimbSafe assignments
+	 *@author Kara Best
+	 */
+	public static List<TOAssignment> getAssignments() {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  //create empty TOAssignment list
 	  List<TOAssignment> TOAssignments = new ArrayList<TOAssignment>();
@@ -125,9 +136,11 @@ public class ClimbSafeFeatureSet6Controller {
 
 		  
 	  }
-  return TOAssignments;
-  }
-  
+	  return TOAssignments;
+	}
+  /**
+	* @author Kara Best
+	*/
   private static int findEquipmentPrice(String aName, int nrWeeks, ClimbSafe climbSafe) {
 	  int index =0;
 	  boolean found = false;

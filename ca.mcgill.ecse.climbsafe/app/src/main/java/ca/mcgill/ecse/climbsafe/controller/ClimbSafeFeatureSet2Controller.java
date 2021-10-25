@@ -72,41 +72,11 @@ public class ClimbSafeFeatureSet2Controller {
 		  error = "A guide with this email already exists";
 		  throw new InvalidInputException(error.trim());
 	  }
-	  
-	  
-	  
-	  
 	  try {
-		  
-//		  Since admin is already pre-registered, they will not be needing to "register" again, therefore, a member can never be "admin@nmc.nt"
-		  boolean notAdmin = true;
-		  if(email.equals("admin@nmc.nt")) {
-			  notAdmin = false;
+		  Member member = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
+		  for (int i=0; i<itemNames.size(); i++) {
+			 climbSafe.addBookedItem(itemQuantities.get(i), member, BookableItem.getWithName(itemNames.get(i))); 
 		  }
-		  
-		  boolean validEmail = validEmail(email);
-		  boolean validPassword = validPassword(password);
-		  boolean validName = validName(name);
-		  boolean validEmergencyContact = validEmergencyContact(emergencyContact);
-		  boolean validNrWeeks = validNrWeeks(nrWeeks, climbSafe);
-		  
-		  if(validEmail && validPassword && validName && validEmergencyContact && validNrWeeks && notAdmin) {
-			  boolean validItems = true;
-			  for(int i=0; i<itemNames.size(); i++) {
-				  if(BookableItem.getWithName(itemNames.get(i)) == null){
-					  validItems = false;
-					  break;
-				  }
-			  }
-			  if(validItems) {
-				  Member member = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
-				  for (int i=0; i<itemNames.size(); i++) {
-					 climbSafe.addBookedItem(itemQuantities.get(i), member, BookableItem.getWithName(itemNames.get(i))); 
-				  }
-			  }
-			  
-		  }
-		  
 	  }catch(RuntimeException e){
 		  System.out.println("---CONTROLLER---e.getMessage(): " + e.getMessage() );
 		  throw new InvalidInputException(e.getMessage());
@@ -159,8 +129,6 @@ public class ClimbSafeFeatureSet2Controller {
 	  }
 	  try {
 		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
-			  
-		  
 	  }catch(RuntimeException e){
 		  error = e.getMessage();
 		  if(error == "Cannot create due to duplicate email. See http://manual.umple.org?RE003ViolationofUniqueness.html") {

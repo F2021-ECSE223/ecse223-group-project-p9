@@ -93,42 +93,38 @@ public class ClimbSafeFeatureSet2Controller {
 	  validEmail(email);
 
 	  if(!validPassword(newPassword)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The password cannot be empty";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validName(newName)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The name cannot be empty";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validEmergencyContact(newEmergencyContact)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The emergence contact cannot be empty";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validNrWeeks(newNrWeeks, climbSafe)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The number of weeks must be greater than zero and less than or equal to the number of climbing weeks in the climbing season";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validItems(newItemNames, climbSafe)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "Requested item not found";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validMember(memberList, email)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "Member not found";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  try {
+		  
 		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
+		  
 	  }catch(RuntimeException e){
 		  error = e.getMessage();
 		  if(error == "Cannot create due to duplicate email. See http://manual.umple.org?RE003ViolationofUniqueness.html") {

@@ -3,7 +3,6 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.model.*;
 
-
 import java.util.List;
 
 public class ClimbSafeFeatureSet2Controller {
@@ -58,7 +57,7 @@ public class ClimbSafeFeatureSet2Controller {
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
-	  if(validMember(memberList, email)) {
+	  if(validMember(memberList, email) != -1) {
 		  error = "A member with this email already exists";
 		  throw new InvalidInputException(error.trim());
 	  }
@@ -72,43 +71,12 @@ public class ClimbSafeFeatureSet2Controller {
 		  error = "A guide with this email already exists";
 		  throw new InvalidInputException(error.trim());
 	  }
-	  
-	  
-	  
-	  
 	  try {
-		  
-//		  Since admin is already pre-registered, they will not be needing to "register" again, therefore, a member can never be "admin@nmc.nt"
-		  boolean notAdmin = true;
-		  if(email.equals("admin@nmc.nt")) {
-			  notAdmin = false;
+		  Member member = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
+		  for (int i=0; i<itemNames.size(); i++) {
+			 climbSafe.addBookedItem(itemQuantities.get(i), member, BookableItem.getWithName(itemNames.get(i))); 
 		  }
-		  
-		  boolean validEmail = validEmail(email);
-		  boolean validPassword = validPassword(password);
-		  boolean validName = validName(name);
-		  boolean validEmergencyContact = validEmergencyContact(emergencyContact);
-		  boolean validNrWeeks = validNrWeeks(nrWeeks, climbSafe);
-		  
-		  if(validEmail && validPassword && validName && validEmergencyContact && validNrWeeks && notAdmin) {
-			  boolean validItems = true;
-			  for(int i=0; i<itemNames.size(); i++) {
-				  if(BookableItem.getWithName(itemNames.get(i)) == null){
-					  validItems = false;
-					  break;
-				  }
-			  }
-			  if(validItems) {
-				  Member member = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
-				  for (int i=0; i<itemNames.size(); i++) {
-					 climbSafe.addBookedItem(itemQuantities.get(i), member, BookableItem.getWithName(itemNames.get(i))); 
-				  }
-			  }
-			  
-		  }
-		  
 	  }catch(RuntimeException e){
-		  System.out.println("---CONTROLLER---e.getMessage(): " + e.getMessage() );
 		  throw new InvalidInputException(e.getMessage());
 	  }
 	  
@@ -123,49 +91,55 @@ public class ClimbSafeFeatureSet2Controller {
 	  validEmail(email);
 
 	  if(!validPassword(newPassword)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The password cannot be empty";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validName(newName)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The name cannot be empty";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validEmergencyContact(newEmergencyContact)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The emergence contact cannot be empty";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validNrWeeks(newNrWeeks, climbSafe)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "The number of weeks must be greater than zero and less than or equal to the number of climbing weeks in the climbing season";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validItems(newItemNames, climbSafe)) {
-		  System.out.println("Error trim becomes => " + error.trim());
 		  error = "Requested item not found";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
-	  if(!validMember(memberList, email)) {
-		  System.out.println("Error trim becomes => " + error.trim());
+	  if(validMember(memberList, email) == -1) {
 		  error = "Member not found";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  try {
+		  Member member = climbSafe.getMember(validMember(memberList, email));
+		  member.setPassword(newPassword);
+		  member.setName(newName);
+		  member.setEmergencyContact(newEmergencyContact);
+		  member.setNrWeeks(newNrWeeks);
+		  member.setGuideRequired(newGuideRequired);
+		  member.setHotelRequired(newHotelRequired);
+		  
+		  List<BookedItem> bookedItems = member.getBookedItems();
+		  while(bookedItems.size() !=0) {
+			  member.getBookedItems().get(0).delete();
+		  }
+		  for(int i=0; i<newItemNames.size(); i++) {
+			  climbSafe.addBookedItem(newItemQuantities.get(i), member, BookableItem.getWithName(newItemNames.get(i))); 
+		  }
+		  
 		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
-			  
 		  
 	  }catch(RuntimeException e){
 		  error = e.getMessage();
-		  if(error == "Cannot create due to duplicate email. See http://manual.umple.org?RE003ViolationofUniqueness.html") {
-//			  error = 
-		  }
 		  throw new InvalidInputException(e.getMessage());
 	  }
 	  
@@ -236,11 +210,11 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validNrWeeks;
   }
   
-  private static boolean validMember(List<Member> memberList, String email) {
-	  boolean validMember = false;
+  private static int validMember(List<Member> memberList, String email) {
+	  int validMember = -1;
 	  for(int i=0; i<memberList.size(); i++) {
 		  if(memberList.get(i).getEmail().equals(email)) {
-			  validMember = true;
+			  validMember = i;
 			  break;
 		  }
 	  }

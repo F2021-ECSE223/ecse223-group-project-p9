@@ -58,7 +58,7 @@ public class ClimbSafeFeatureSet2Controller {
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
-	  if(validMember(memberList, email)) {
+	  if(validMember(memberList, email) != -1) {
 		  error = "A member with this email already exists";
 		  throw new InvalidInputException(error.trim());
 	  }
@@ -117,11 +117,12 @@ public class ClimbSafeFeatureSet2Controller {
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
-	  if(!validMember(memberList, email)) {
+	  if(validMember(memberList, email) == -1) {
 		  error = "Member not found";
 		  throw new InvalidInputException(error.trim());
 	  }
 	  try {
+		  Member member = climbSafe.getMember(validMember(memberList, email));
 		  
 		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
 		  
@@ -200,11 +201,11 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validNrWeeks;
   }
   
-  private static boolean validMember(List<Member> memberList, String email) {
-	  boolean validMember = false;
+  private static int validMember(List<Member> memberList, String email) {
+	  int validMember = -1;
 	  for(int i=0; i<memberList.size(); i++) {
 		  if(memberList.get(i).getEmail().equals(email)) {
-			  validMember = true;
+			  validMember = i;
 			  break;
 		  }
 	  }

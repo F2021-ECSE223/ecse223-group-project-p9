@@ -129,26 +129,13 @@ public class ClimbSafeFeatureSet2Controller {
 		  member.setGuideRequired(newGuideRequired);
 		  member.setHotelRequired(newHotelRequired);
 		  
+		  
 		  List<BookedItem> bookedItems = member.getBookedItems();
-		  System.out.println("---Current equipment list");
-		  for(int i=0; i<bookedItems.size(); i++) {
-			  System.out.println(bookedItems.get(i).getItem().getName());
-			  member.removeBookedItem(bookedItems.get(i));
-		  }
-		  System.out.println("---Equipment list after removing everything");
-		  for(int i=0; i<bookedItems.size(); i++) {
-			  
-			  System.out.println(bookedItems.get(i).getItem().getName());
-//			  member.removeBookedItem(bookedItems.get(i));
+		  while(bookedItems.size() !=0) {
+			  member.getBookedItems().get(0).delete();
 		  }
 		  for(int i=0; i<newItemNames.size(); i++) {
 			  climbSafe.addBookedItem(newItemQuantities.get(i), member, BookableItem.getWithName(newItemNames.get(i))); 
-		  }
-		  
-		  System.out.println("---New equipment list");
-		  for(int i=0; i<bookedItems.size(); i++) {
-			  System.out.println(bookedItems.get(i).getItem().getName());
-//			  member.removeBookedItem(bookedItems.get(i));
 		  }
 		  
 		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);

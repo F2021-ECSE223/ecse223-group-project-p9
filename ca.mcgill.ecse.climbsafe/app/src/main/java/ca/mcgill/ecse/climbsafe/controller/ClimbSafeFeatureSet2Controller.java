@@ -77,7 +77,6 @@ public class ClimbSafeFeatureSet2Controller {
 			 climbSafe.addBookedItem(itemQuantities.get(i), member, BookableItem.getWithName(itemNames.get(i))); 
 		  }
 	  }catch(RuntimeException e){
-		  System.out.println("---CONTROLLER---e.getMessage(): " + e.getMessage() );
 		  throw new InvalidInputException(e.getMessage());
 	  }
 	  
@@ -129,7 +128,6 @@ public class ClimbSafeFeatureSet2Controller {
 		  member.setGuideRequired(newGuideRequired);
 		  member.setHotelRequired(newHotelRequired);
 		  
-		  
 		  List<BookedItem> bookedItems = member.getBookedItems();
 		  while(bookedItems.size() !=0) {
 			  member.getBookedItems().get(0).delete();
@@ -142,9 +140,6 @@ public class ClimbSafeFeatureSet2Controller {
 		  
 	  }catch(RuntimeException e){
 		  error = e.getMessage();
-		  if(error == "Cannot create due to duplicate email. See http://manual.umple.org?RE003ViolationofUniqueness.html") {
-//			  error = 
-		  }
 		  throw new InvalidInputException(e.getMessage());
 	  }
 	  

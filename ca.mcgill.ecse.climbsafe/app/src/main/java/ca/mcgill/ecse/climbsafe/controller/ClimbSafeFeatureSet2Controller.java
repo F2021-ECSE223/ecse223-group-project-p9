@@ -8,6 +8,21 @@ import java.util.List;
 public class ClimbSafeFeatureSet2Controller {
 	static String error = "";
 
+	/**
+	 * register members
+	 * 
+	 * @author Joey Koay
+	 * @param email
+	 * @param password
+	 * @param name
+	 * @param emergencyContact
+	 * @param nrWeeks
+	 * @param guideRequired
+	 * @param hotelRequired
+	 * @param itemNames
+	 * @param itemQuantities
+	 * @throws InvalidInputException
+	 */
   public static void registerMember(String email, String password, String name,
       String emergencyContact, int nrWeeks, boolean guideRequired, boolean hotelRequired,
       List<String> itemNames, List<Integer> itemQuantities) throws InvalidInputException {
@@ -82,11 +97,25 @@ public class ClimbSafeFeatureSet2Controller {
 	  
   }
 
+  	/**
+	 * update members
+	 * 
+	 * @author Joey Koay
+	 * @param email
+	 * @param newPassword
+	 * @param newName
+	 * @param newEmergencyContact
+	 * @param newNrWeeks
+	 * @param newGuideRequired
+	 * @param newHotelRequired
+	 * @param newItemNames
+	 * @param newItemQuantities
+	 * @throws InvalidInputException
+	 */
   public static void updateMember(String email, String newPassword, String newName,
       String newEmergencyContact, int newNrWeeks, boolean newGuideRequired,
       boolean newHotelRequired, List<String> newItemNames, List<Integer> newItemQuantities) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	  error = "";
 	  List<Member> memberList = climbSafe.getMembers();
 	  validEmail(email);
 
@@ -145,6 +174,13 @@ public class ClimbSafeFeatureSet2Controller {
 	  
   }
   
+  	/**
+	 * checking if the email is valid or not
+	 * 
+	 * @author Joey Koay
+	 * @param email
+	 * @return whether the email is valid
+	 */
   private static boolean validEmail(String email) {
 	  boolean validEmail = true;
 	  
@@ -166,6 +202,13 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validEmail;
   }
   
+  /**
+	 * checking if the password is valid or not
+	 * 
+	 * @author Joey Koay
+	 * @param password
+	 * @return whether the password is valid
+	 */
   private static boolean validPassword(String password) {
 	  boolean validPassword = true;
 	  if(password.equals("")) {
@@ -177,6 +220,13 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validPassword;
   }
   
+  /**
+	 * checking if the name is valid or not
+	 * 
+	 * @author Joey Koay
+	 * @param name
+	 * @return whether the name is valid
+	 */
   private static boolean validName(String name) {
 	  boolean validName = true;
 	  if(name.equals("")) {
@@ -188,6 +238,13 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validName;
   }
   
+  /**
+	 * checking if the emergency contact is valid or not
+	 * 
+	 * @author Joey Koay
+	 * @param emergencyContact
+	 * @return whether the emergency contact is valid
+	 */
   private static boolean validEmergencyContact(String emergencyContact) {
 	  boolean validEmergencyContact = true;
 	  if(emergencyContact.equals("")) {
@@ -199,6 +256,14 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validEmergencyContact;
   }
   
+  /**
+	 * checking if the number of weeks is valid or not
+	 * 
+	 * @author Joey Koay
+	 * @param nrWeeks - number of weeks
+	 * @param climbSafe - the application
+	 * @return whether the number of weeks is valid
+	 */
   private static boolean validNrWeeks(int nrWeeks, ClimbSafe climbSafe) {
 	  boolean validNrWeeks = true;
 	  if(nrWeeks<=0) {
@@ -210,6 +275,14 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validNrWeeks;
   }
   
+  /**
+	 * checking if the member exists
+	 * 
+	 * @author Joey Koay
+	 * @param memberList - a list of all of the existing members
+	 * @param email
+	 * @return the index of the member in the list, if it does not exist, its -1
+	 */
   private static int validMember(List<Member> memberList, String email) {
 	  int validMember = -1;
 	  for(int i=0; i<memberList.size(); i++) {
@@ -221,10 +294,18 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validMember;
   }
   
-  private static boolean validItems(List<String> newItemNames, ClimbSafe climbSafe) {
+  /**
+	 * checking if the item exists
+	 * 
+	 * @author Joey Koay
+	 * @param newItemsNames - a list of all of the itemNames
+	 * @param climbSafe - the application
+	 * @return whether the item exists or not
+	 */
+  private static boolean validItems(List<String> itemNames, ClimbSafe climbSafe) {
 	  boolean validItems = true;
-	  for(int i=0; i<newItemNames.size(); i++) {
-		  if(BookableItem.getWithName(newItemNames.get(i)) == null){
+	  for(int i=0; i<itemNames.size(); i++) {
+		  if(BookableItem.getWithName(itemNames.get(i)) == null){
 			  validItems = false;
 			  break;
 		  }
@@ -232,15 +313,23 @@ public class ClimbSafeFeatureSet2Controller {
 	  return validItems;
   }
   
+  /**
+	 * checking if the guide exists
+	 * 
+	 * @author Joey Koay
+	 * @param guideList - a list of all of the guides
+	 * @param email
+	 * @return whether the guide exists or not
+	 */
   private static boolean guideExists(List<Guide> guideList, String email) {
-	  boolean validEmail = false;
+	  boolean guideExists = false;
 	  for(int i=0; i<guideList.size(); i++) {
 		  if(guideList.get(i).getEmail().equals(email)) {
-			  validEmail = true;
+			  guideExists = true;
 			  break;
 		  }
 	  }
-	  return validEmail;
+	  return guideExists;
   }
   
   

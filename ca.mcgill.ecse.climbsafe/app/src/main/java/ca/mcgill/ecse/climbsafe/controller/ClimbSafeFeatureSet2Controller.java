@@ -30,62 +30,52 @@ public class ClimbSafeFeatureSet2Controller {
 
 	  List<Member> memberList = climbSafe.getMembers();
 	  List<Guide> guideList = climbSafe.getGuides();
-	  
+	  error = "";
 	  
 	  if(email.contains(" ")) {
 		  error = "The email must not contain any spaces";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validEmail(email)) {
 		  error = "Invalid email";
-		  throw new InvalidInputException(error.trim());
-	  }
-	  
-	  if(!validEmail(email)) {
-		  error = "Invalid email";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validPassword(password)) {
 		  error = "The password cannot be empty";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validName(name)) {
 		  error = "The name cannot be empty";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validEmergencyContact(emergencyContact)) {
 		  error = "The emergency contact cannot be empty";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validNrWeeks(nrWeeks, climbSafe)) {
 		  error = "The number of weeks must be greater than zero and less than or equal to the number of climbing weeks in the climbing season";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validItems(itemNames, climbSafe)) {
 		  error = "Requested item not found";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(validMember(memberList, email) != -1) {
 		  error = "A member with this email already exists";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(email.equals("admin@nmc.nt")) {
 		  error = "The email entered is not allowed for members";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(guideExists(guideList, email)) {
 		  error = "A guide with this email already exists";
+	  }
+	  
+	  if(error.length() != 0) {
 		  throw new InvalidInputException(error.trim());
 	  }
+	  
 	  try {
 		  Member member = climbSafe.addMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired);
 		  for (int i=0; i<itemNames.size(); i++) {
@@ -118,36 +108,36 @@ public class ClimbSafeFeatureSet2Controller {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Member> memberList = climbSafe.getMembers();
 	  validEmail(email);
+	  error = "";
 
 	  if(!validPassword(newPassword)) {
 		  error = "The password cannot be empty";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validName(newName)) {
 		  error = "The name cannot be empty";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validEmergencyContact(newEmergencyContact)) {
 		  error = "The emergence contact cannot be empty";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validNrWeeks(newNrWeeks, climbSafe)) {
 		  error = "The number of weeks must be greater than zero and less than or equal to the number of climbing weeks in the climbing season";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(!validItems(newItemNames, climbSafe)) {
 		  error = "Requested item not found";
-		  throw new InvalidInputException(error.trim());
 	  }
 	  
 	  if(validMember(memberList, email) == -1) {
 		  error = "Member not found";
+	  }
+	  
+	  if(error.length() != 0) {
 		  throw new InvalidInputException(error.trim());
 	  }
+	  
 	  try {
 		  Member member = climbSafe.getMember(validMember(memberList, email));
 		  member.setPassword(newPassword);
@@ -168,7 +158,6 @@ public class ClimbSafeFeatureSet2Controller {
 		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
 		  
 	  }catch(RuntimeException e){
-		  error = e.getMessage();
 		  throw new InvalidInputException(e.getMessage());
 	  }
 	  
@@ -183,10 +172,6 @@ public class ClimbSafeFeatureSet2Controller {
 	 */
   private static boolean validEmail(String email) {
 	  boolean validEmail = true;
-	  
-	  if(email.contains(" ")) {
-		  validEmail = false;
-	  }
 	  if(!(email.indexOf("@") > 0)) {
 		  validEmail = false;
 	  }

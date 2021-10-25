@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.*;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
-import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.*;
 
 public class ClimbSafeFeatureSet6Controller {
@@ -15,6 +14,8 @@ public class ClimbSafeFeatureSet6Controller {
 	 *@throws InvalidInputException if equipment does not exist
 	 *@author Kara Best
 	 */
+	//do i delete a bundle if theres less than 3 items w/o it or do I throw exception
+	//at least 2 different kinds of equipment
 	public static void deleteEquipment(String name) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Equipment> equipment = climbSafe.getEquipment();
@@ -39,20 +40,24 @@ public class ClimbSafeFeatureSet6Controller {
 	 *@author Kara Best
 	 */
 	public static void deleteEquipmentBundle(String name) {
-	  //do i have to remove anything else or does it do it auto (same w ^^)
-	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	  List<EquipmentBundle> equipmentBundles = climbSafe.getBundles();
-	  boolean found = false;
-	  int index = 0;
-	  while(!found) {
+		
+		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+		List<EquipmentBundle> equipmentBundles = climbSafe.getBundles();
+		boolean found = false;
+		int index = 0;
+		while(!found) {
 			if(equipmentBundles.get(index).getName().equals(name)) {
 				found = true;
 				equipmentBundles.get(index).delete();
-				
+					
 			}
+			
 			index++;
-		}	  
-	  
+			if(index==equipmentBundles.size()) {
+				return;
+			}
+		}
+	
 	}
 	/**
 	 *@return TOAssignments list of ClimbSafe assignments
@@ -60,28 +65,30 @@ public class ClimbSafeFeatureSet6Controller {
 	 */
 	public static List<TOAssignment> getAssignments() {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	  //create empty TOAssignment list
-	  List<TOAssignment> TOAssignments = new ArrayList<TOAssignment>();
-	  
+	  List<TOAssignment> TOAssignments = new ArrayList<TOAssignment>();	  
 	  List<Assignment> assignments = climbSafe.getAssignments();
-	  //get list assignments from model method
 	  int nrWeeks;
 	  int startWeek;
 	  int endWeek;
-	  int totalCostForGuide=0;
-	  int totalCostForEquipment=0;
+	  int totalCostForGuide;
+	  int totalCostForEquipment;
 	  boolean guideRequired;
 	  String memberEmail, memberName;
 	  String guideEmail = null;
 	  String guideName =null;
 	  String hotelName = null;
 	  boolean found = false;
-	  float discount;
+	  int discount;
 	  int index;
 	  int bundlePrice;
 	  
 	  
 	  for(int i=0; i<assignments.size(); i++) {
+		  totalCostForEquipment =0;
+		  totalCostForGuide =0;
+		  guideEmail = null;
+		  guideName = null;
+		  hotelName = null;
 		  nrWeeks = assignments.get(i).getMember().getNrWeeks();
 		  guideRequired = assignments.get(i).getMember().getGuideRequired();
 		  memberName = assignments.get(i).getMember().getName();
@@ -101,6 +108,7 @@ public class ClimbSafeFeatureSet6Controller {
 			  List<BookedItem> bookedItems = assignments.get(i).getMember().getBookedItems();
 			  for(int j=0; j<bookedItems.size(); j++) {
 				  index =0;
+				  found = false;
 				  if(bookedItems.get(j).getItem().getName().contains("bundle")) {
 					  List<EquipmentBundle> equipmentBundle = climbSafe.getBundles();
 					  while(!found) {
@@ -112,22 +120,32 @@ public class ClimbSafeFeatureSet6Controller {
 					  }
 					  bundlePrice =0;
 					  if(guideRequired) { 
-						  discount = (1-equipmentBundle.get(index).getDiscount())/100;
+						  discount = 100-equipmentBundle.get(index).getDiscount();
 						  for(int k=0; k<equipmentBundle.get(index).numberOfBundleItems(); k++) {
-							  bundlePrice += equipmentBundle.get(index).getBundleItem(k).getEquipment().getPricePerWeek();
+							  bundlePrice += equipmentBundle.get(index).getBundleItem(k).getEquipment().getPricePerWeek()*equipmentBundle.get(index).getBundleItem(k).getQuantity();
 						  }
-						  bundlePrice *= discount;
+						  bundlePrice = (bundlePrice*discount)/100;
 						  
+
 					  }else {
 						  for(int k=0; k<equipmentBundle.get(index).numberOfBundleItems(); k++) {
-							  bundlePrice += equipmentBundle.get(index).getBundleItem(k).getEquipment().getPricePerWeek();
+							  bundlePrice += equipmentBundle.get(index).getBundleItem(k).getEquipment().getPricePerWeek()*equipmentBundle.get(index).getBundleItem(k).getQuantity();
 						  }
 						  
 					  }
-					  totalCostForEquipment += bundlePrice*nrWeeks;
+					  totalCostForEquipment += bundlePrice*nrWeeks*bookedItems.get(j).getQuantity();
 				  }else {
-					  
-					  totalCostForEquipment += findEquipmentPrice(bookedItems.get(j).getItem().getName(), nrWeeks, climbSafe);
+					  List<Equipment> equipment = climbSafe.getEquipment();
+					  index =0;
+					  found = false;
+					  while(!found) {
+						  if(equipment.get(index).getName().equals(bookedItems.get(j).getItem().getName())) {
+							  found = true;
+						  }else {
+							  index++;
+						  }
+					  }
+					  totalCostForEquipment += (equipment.get(index).getPricePerWeek()*nrWeeks*bookedItems.get(j).getQuantity());
 				  }
 				  
 			  }
@@ -138,25 +156,5 @@ public class ClimbSafeFeatureSet6Controller {
 	  }
 	  return TOAssignments;
 	}
-  /**
-	* @author Kara Best
-	*/
-  private static int findEquipmentPrice(String aName, int nrWeeks, ClimbSafe climbSafe) {
-	  int index =0;
-	  boolean found = false;
-	  int price;
-	  List<Equipment> equipment = climbSafe.getEquipment();
-	  while(!found) {
-		  if(equipment.get(index).getName().equals(aName)) {
-			  found = true;
-		  }else {
-			  index++;
-		  }
-	  }
-	  price = (equipment.get(index).getPricePerWeek()*nrWeeks);
-	  return price;
-  }
-  
-  
-
 }
+  

@@ -3,7 +3,6 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.model.*;
 
-
 import java.util.List;
 
 public class ClimbSafeFeatureSet2Controller {
@@ -123,6 +122,34 @@ public class ClimbSafeFeatureSet2Controller {
 	  }
 	  try {
 		  Member member = climbSafe.getMember(validMember(memberList, email));
+		  member.setPassword(newPassword);
+		  member.setName(newName);
+		  member.setEmergencyContact(newEmergencyContact);
+		  member.setNrWeeks(newNrWeeks);
+		  member.setGuideRequired(newGuideRequired);
+		  member.setHotelRequired(newHotelRequired);
+		  
+		  List<BookedItem> bookedItems = member.getBookedItems();
+		  System.out.println("---Current equipment list");
+		  for(int i=0; i<bookedItems.size(); i++) {
+			  System.out.println(bookedItems.get(i).getItem().getName());
+			  member.removeBookedItem(bookedItems.get(i));
+		  }
+		  System.out.println("---Equipment list after removing everything");
+		  for(int i=0; i<bookedItems.size(); i++) {
+			  
+			  System.out.println(bookedItems.get(i).getItem().getName());
+//			  member.removeBookedItem(bookedItems.get(i));
+		  }
+		  for(int i=0; i<newItemNames.size(); i++) {
+			  climbSafe.addBookedItem(newItemQuantities.get(i), member, BookableItem.getWithName(newItemNames.get(i))); 
+		  }
+		  
+		  System.out.println("---New equipment list");
+		  for(int i=0; i<bookedItems.size(); i++) {
+			  System.out.println(bookedItems.get(i).getItem().getName());
+//			  member.removeBookedItem(bookedItems.get(i));
+		  }
 		  
 		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
 		  

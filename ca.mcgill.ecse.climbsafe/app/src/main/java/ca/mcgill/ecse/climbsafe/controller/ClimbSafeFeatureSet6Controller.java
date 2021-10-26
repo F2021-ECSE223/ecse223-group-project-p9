@@ -24,12 +24,34 @@ public class ClimbSafeFeatureSet6Controller {
 		int index = 0;
 		while(!found) {
 			if(equipment.get(index).getName().equals(name)) {
-				found = true;
-				equipment.get(index).delete();
-				
+				found = true;	
+			}else {
+				index++;
+			}	
+		}
+		int index2;
+		found = false;
+		List<EquipmentBundle> equipmentBundles = climbSafe.getBundles(); 
+		for(int i=0; i<equipmentBundles.size(); i++) {
+			List<BundleItem> bundleItems = equipmentBundles.get(i).getBundleItems();
+			index2 =0;
+			while(!found && index2<bundleItems.size()){
+				if(bundleItems.get(index2).getEquipment().getName().equals(name)) {
+					found = true;	
+				}
+				index2++;
 			}
-			index++;
-		}	  
+			if(found) {
+				break;
+			}
+		}
+		if(found == false) {
+			equipment.get(index).delete();
+		}else {
+			String error = "The piece of equipment is in a bundle and cannot be deleted";
+			throw new InvalidInputException(error.trim());
+		}
+		
 	  }catch(RuntimeException e){
 		  throw new InvalidInputException(e.getMessage());
 	  }

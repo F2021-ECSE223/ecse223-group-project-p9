@@ -56,7 +56,6 @@ public class ClimbSafeFeatureSet6Controller {
 		  throw new InvalidInputException(e.getMessage());
 	  }
 	  
-<<<<<<< Updated upstream
 	}
 	/**
 	 *@param name the name of equipment bundle to be deleted
@@ -179,37 +178,5 @@ public class ClimbSafeFeatureSet6Controller {
 	  }
 	  return TOAssignments;
 	}
-<<<<<<< Updated upstream
-=======
-  /**
-	* @author Kara Best
-	*/
-  private static int findEquipmentPrice(String aName, int nrWeeks, ClimbSafe climbSafe) {
-	  int index =0;
-	  boolean found = false;
-	  int price;
-	  List<Equipment> equipment = climbSafe.getEquipment();
-	  while(!found) {
-		  if(equipment.get(index).getName().equals(aName)) {
-			  found = true;
-		  }else {
-			  index++;
-		  }
-	  }
-	  price = (equipment.get(index).getPricePerWeek()*nrWeeks);
-	  return price;
-  }
-=======
-  }
-
-// public static List<TOAssignment> getAssignments() {
-//	  return ClimbSafe.getAssignments();
-//	  
-//  }
->>>>>>> Stashed changes
-  
-  
-
->>>>>>> Stashed changes
 }
   

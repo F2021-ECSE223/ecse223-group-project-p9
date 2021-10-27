@@ -5,6 +5,6 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(plugin = "pretty", features = "src/test/resources/deleteEquipment.feature")
+@CucumberOptions(plugin = "pretty", features = "src/test/resources/updateMember.feature")
 public class CucumberFeaturesTestRunner {
 }

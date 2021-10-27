@@ -119,7 +119,7 @@ public class ClimbSafeFeatureSet2Controller {
 	  }
 	  
 	  if(!validEmergencyContact(newEmergencyContact)) {
-		  error = "The emergence contact cannot be empty";
+		  error = "The emergency contact cannot be empty";
 	  }
 	  
 	  if(!validNrWeeks(newNrWeeks, climbSafe)) {

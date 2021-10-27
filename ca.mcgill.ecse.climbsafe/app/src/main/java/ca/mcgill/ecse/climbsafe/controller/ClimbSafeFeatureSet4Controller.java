@@ -33,20 +33,21 @@ public class ClimbSafeFeatureSet4Controller {
 		  error="The weight must be greater than 0. ";
 	  }
 	  if (pricePerWeek < 0) {
-		  error="The price per week cannot be lower than 0. ";
+		  error="The price per week must be greater than or equal to 0 ";
 	  }
 	  
-//	  if (!error.isEmpty()) {
-//	      throw new InvalidInputException(error.trim());
-//	    }
+	  
+	 if (name.equals("") || name.equals(null)) {
+		 error="The name must not be empty";
+	 }
 	  
 	  //try adding the equipment to the ClimbSafe application and catch errors if any
 	  try {
 		  climbSafe.addEquipment(name, weight, pricePerWeek);
 	  }catch (RuntimeException e) {
 		  error = e.getMessage();
-	      if (error.startsWith("Cannot create due to duplicate name.")) {
-	        error = "An equipment with this name already exists. Please use a different name.";
+	      if (error.startsWith("Unable to create equipment due to climbSafe.")) {
+	        error = "The piece of equipment already exists";
 	      }
 	      throw new InvalidInputException(error);
 	  }
@@ -68,7 +69,7 @@ public class ClimbSafeFeatureSet4Controller {
 	  // Get the desired equipment in the ClimbSafe application
 	  Equipment foundEquipment = findEquipment(oldName);
 		if (foundEquipment == null) {
-			throw new InvalidInputException("The equipement does not exist.");
+			throw new InvalidInputException("The piece of equipment does not exist");
 		}
 		
 	  String error = "";
@@ -81,17 +82,18 @@ public class ClimbSafeFeatureSet4Controller {
 	  if (newPricePerWeek < 0) {
 		  error="The price per week cannot be lower than 0. ";
 	  }
-//	  if (!error.isEmpty()) {
-//	      throw new InvalidInputException(error.trim());
-//	    }
+	  if (newName.equals("") || newName.equals(null)) {
+			 error="The name must not be empty";
+		 }
 	 
 	  //Checks if an equipment with the same name already exists
 	  List<Equipment> equipments = climbSafe.getEquipment();
 	  for (Equipment e : equipments) {
 			if ((e.getName()).equals(foundEquipment.getName())) {
-				throw new InvalidInputException("An equipment with the same name already exists.");
+				throw new InvalidInputException("The piece of equipment already exists");
 			}
 		}
+	  
 	  
 	 //update the old equipments' data to the new desired data.
 	  

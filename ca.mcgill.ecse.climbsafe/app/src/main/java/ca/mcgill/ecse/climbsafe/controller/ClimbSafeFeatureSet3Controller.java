@@ -45,11 +45,11 @@ public class ClimbSafeFeatureSet3Controller {
 		  error = "Email cannot be empty ";
 	  }
 	  
-	  if(guideExists(guideList, email)) {
+	  if(guides(guideList, email)) {
 		  error = "Email already linked to a guide account";
 	  }
 	  
-	  if(memberExists(memberList2, email)) {
+	  if(members(memberList2, email)) {
 		  error = "Email already linked to a member account";
 	  }
 	  
@@ -235,25 +235,25 @@ public class ClimbSafeFeatureSet3Controller {
    * @return
    */
   
-  private static boolean guideExists(List<Guide> guideList, String email) {
-	  boolean guideExists = false;
+  private static boolean guides(List<Guide> guideList, String email) {
+	  boolean guides = false;
 	  for(int i=0; i<guideList.size(); i++) {
 		  if(guideList.get(i).getEmail().equals(email)) {
-			  guideExists = true;
+			  guides = true;
 			  break;
 		  }
 	  }
-	  return guideExists;
+	  return guides;
   }
   
-  private static boolean memberExists(List<ca.mcgill.ecse.climbsafe.model.Member> memberList, String email) {
-	  boolean memberExists = false;
+  private static boolean members(List<ca.mcgill.ecse.climbsafe.model.Member> memberList, String email) {
+	  boolean members = false;
 	  for(int i=0; i<memberList.size(); i++) {
 		  if(memberList.get(i).getEmail().equals(email)) {
-			  memberExists = true;
+			  members = true;
 			  break;
 		  }
 	  }
-	  return memberExists;
+	  return members;
   }
 }

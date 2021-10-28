@@ -163,12 +163,10 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean validPassword(String password) {
 	  boolean validPassword = true;
-	  if(password.equals("")) {
+	  if(password.equals("") || password.equals(null)) {
 		  validPassword = false;
 	  }
-	  if(password.equals(null)) {
-		  validPassword = false;
-	  }
+	  
 	  return validPassword;
   }
   

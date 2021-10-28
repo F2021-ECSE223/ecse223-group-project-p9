@@ -131,7 +131,7 @@ public class ClimbSafeFeatureSet3Controller {
 	}
   
   /**
-   * @author danielchang
+   * @author Joey Koay & danielchang
    * @param email
    * @return
    *  whether the email is valid or not
@@ -155,7 +155,7 @@ public class ClimbSafeFeatureSet3Controller {
   }
   
   /**
-   * @author danielchang
+   * @author Joey Koay & danielchang
    * @param password
    * @return
    *  whether the password is valid or not
@@ -172,7 +172,7 @@ public class ClimbSafeFeatureSet3Controller {
   }
   
   /**
-   * @author danielchang
+   * @author Joey Koay & danielchang
    * @param name
    * @return
    *  whether the name is valid or not
@@ -189,7 +189,7 @@ public class ClimbSafeFeatureSet3Controller {
   }
   
   /**
-   * @author danielchang
+   * @author Joey Koay & danielchang
    * @param emergencyContact
    * @return
    *  whether the emergencyContact is valid or not
@@ -205,7 +205,7 @@ public class ClimbSafeFeatureSet3Controller {
 	  return validEmergencyContact;
   }
   /**
-   * @author danielchang
+   * @author Joey Koay & danielchang
    * @param guideList
    * @param email
    * @return

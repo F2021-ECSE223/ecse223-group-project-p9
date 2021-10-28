@@ -1021,4 +1021,15 @@ public class ClimbSafe
             "  " + "startDate" + "=" + (getStartDate() != null ? !getStartDate().equals(this)  ? getStartDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "adminstrator = "+(getAdminstrator()!=null?Integer.toHexString(System.identityHashCode(getAdminstrator())):"null");
   }
+
+public void addEquipmentBundle(String name, int discount, List<String> equipmentNames,
+		List<Integer> equipmentQuantities) {
+	// TODO Auto-generated method stub
+	
+}
+
+public List<EquipmentBundle> getEquipmentBundle() {
+	// TODO Auto-generated method stub
+	return null;
+}
 }

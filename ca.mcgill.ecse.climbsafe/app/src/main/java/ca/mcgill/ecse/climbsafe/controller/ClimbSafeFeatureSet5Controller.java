@@ -35,7 +35,7 @@ public class ClimbSafeFeatureSet5Controller {
 	  }
 	  
 	  try {
-		  climbSafe.addEquipmentBundle(name, discount, equipmentNames, equipmentQuantities
+		  climbSafe.addEquipmentBundle(name, discount, equipmentNames, equipmentQuantities);
 	  } catch (RuntimeException e) {
 		  error = e.getMessage();
 		  if (error.startsWith("Cannot create duplicated name for Equipment Bundle")) {
@@ -83,13 +83,13 @@ public class ClimbSafeFeatureSet5Controller {
 	  List <EquipmentBundle> equipmentBundle = climbSafe.getEquipmentBundle();
 	  for (EquipmentBundle e : equipmentBundle) {
 		  if ((e.getName()).equals(foundEquipmentBundle.getName())) {
-			  throw new InvalidInputException ("This name is already exist for another equipment bundle")
+			  throw new InvalidInputException ("This name is already exist for another equipment bundle");
 		  }
 	  }
   }
 private static EquipmentBundle findEquipmentBundle(String oldName) {
 	ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	List <EquipmentBundle> myEquipmentBundle = climbSafe.getEquipementBundle();
+	List <EquipmentBundle> myEquipmentBundle = climbSafe.getEquipmentBundle();
 	for (EquipmentBundle e : myEquipmentBundle) {
 		String name = e.getName();
 		if (name.equals(oldName)) {

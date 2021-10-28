@@ -163,6 +163,7 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean validPassword(String password) {
 	  boolean validPassword = true;
+	  
 	  if(password.equals("") || password.equals(null)) {
 		  validPassword = false;
 	  }
@@ -179,6 +180,7 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean validName(String name) {
 	  boolean validName = true;
+	  
 	  if(name.equals("") || name.equals(null)) {
 		  validName = false;
 	  }
@@ -195,6 +197,7 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean validEmergencyContact(String emergencyContact) {
 	  boolean validEmergencyContact = true;
+	  
 	  if(emergencyContact.equals("") || emergencyContact.equals(null)) {
 		  validEmergencyContact = false;
 	  }
@@ -212,6 +215,7 @@ public class ClimbSafeFeatureSet3Controller {
   private static int validGuide(List<Guide> guideList, String email) {
 	  int validGuide = 0;
 	  for(int i=0; i<guideList.size(); i++) {
+		  
 		  if(guideList.get(i).getEmail().equals(email)) {
 			  validGuide = i;
 			  break;
@@ -230,7 +234,9 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean guides(List<Guide> guideList, String email) {
 	  boolean guides = false;
+	  
 	  for(int i=0; i<guideList.size(); i++) {
+		  
 		  if(guideList.get(i).getEmail().equals(email)) {
 			  guides = true;
 			  break;
@@ -248,7 +254,9 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean members(List<ca.mcgill.ecse.climbsafe.model.Member> memberList, String email) {
 	  boolean members = false;
+	  
 	  for(int i=0; i<memberList.size(); i++) {
+		  
 		  if(memberList.get(i).getEmail().equals(email)) {
 			  members = true;
 			  break;

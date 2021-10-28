@@ -1,44 +1,69 @@
 package ca.mcgill.ecse.climbsafe.controller;
 
+import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
-import ca.mcgill.ecse.climbsafe.model.BookableItem;
-import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Guide;
-import ca.mcgill.ecse.climbsafe.model.Member;
 
 
 public class ClimbSafeFeatureSet3Controller {
 	static String error = "";
-
+	
+/**
+ * @author danielchang
+ * @param email
+ * @param password
+ * @param name
+ * @param emergencyContact
+ * @throws InvalidInputException
+ */
   public static void registerGuide(String email, String password, String name,
       String emergencyContact) throws InvalidInputException {
-	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	  List<Guide> guideList = climbSafe.getGuide();
 	  
-	  validEmail(email);
+	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+	  List<Guide> guideList = climbSafe.getGuides();	
+	  List<ca.mcgill.ecse.climbsafe.model.Member> memberList2 = climbSafe.getMembers();
+	  
 	  error = "";
 	  
+	  if(email.contains(" ")) {
+		  error = "Email must not contain any spaces ";
+	  }
+	  
 	  if(email.equals("admin@nmc.nt")) {
-		  error = "The email entered is not allowed for guides";
+		  error = "Email cannot be admin@nmc.nt";
+	  }
+	  
+	  if(!validEmail(email)) {
+		  error = "Invalid email";
+	  }
+	  
+	  if(email == "" || email == null) {
+		  error = "Email cannot be empty ";
 	  }
 	  
 	  if(guideExists(guideList, email)) {
-		  error = "A guide with this email already exists";
+		  error = "Email already linked to a guide account";
 	  }
 	  
+	  if(memberExists(memberList2, email)) {
+		  error = "Email already linked to a member account";
+	  }
+	  
+	  
 	  if(!validPassword(password)) {
-		  error = "The password must not be empty";
+		  error = "Password cannot be empty ";
 	  }
 	  
 	  if(!validName(name)) {
-		  error = "The name must not be empty";
+		  error = "Name cannot be empty";
 	  }
 	  
 	  if(!validEmergencyContact(emergencyContact)) {
-		  error = "The emergence contact must not be empty";
+		  error = "Emergency contact cannot be empty";
 	  }
 	  
 	  if(error.length() != 0) {
@@ -47,6 +72,7 @@ public class ClimbSafeFeatureSet3Controller {
 	  
 	  try {
 		  Guide guide = climbSafe.addGuide(email, password, name, emergencyContact);
+		  
 		  
 	  } catch(RuntimeException r){
 		  throw new InvalidInputException(r.getMessage());
@@ -57,27 +83,34 @@ public class ClimbSafeFeatureSet3Controller {
 	  
 	  
 	  
-	  
-	  
+/**
+ * @author danielchang
+ * @param email
+ * @param newPassword
+ * @param newName
+ * @param newEmergencyContact
+ * @throws InvalidInputException
+ */
 	  
   public static void updateGuide(String email, String newPassword, String newName,
       String newEmergencyContact) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	  List<Guide> guideList = climbSafe.getGuide();
+	  List<Guide> guideList = climbSafe.getGuides();
+	  List<Member> memberList = new ArrayList <Member>();
 	  
 	  validEmail(email);
 	  error = "";
 	  
 	  if(!validPassword(newPassword)) {
-		  error = "The password must not be empty";
+		  error = "Password cannot be empty";
 	  }
 	  
 	  if(!validName(newName)) {
-		  error = "The name must not be empty";
+		  error = "Name cannot be empty";
 	  }
 	  
 	  if(!validEmergencyContact(newEmergencyContact)) {
-		  error = "The emergency contact must not be empty";
+		  error = "Emergency contact cannot be empty";
 	  }
 	  
 	  if(validGuide(guideList, email) == -1) {
@@ -89,21 +122,21 @@ public class ClimbSafeFeatureSet3Controller {
 	  }
 	  
 	  try {
-		  Guide guide = climbSafe.getGuide(validMember(guideList, email));
-		  Guide.setPassword(newPassword);
-		  Guide.setName(newName);
-		  Guide.setEmergencyContact(newEmergencyContact);
-		  
-		  
-	climbSafe.addGuide(email, newPassword, newName, newEmergencyContact);
-		  
+		  Guide guide = climbSafe.getGuide(validGuide(guideList, email));
+		  guide.setPassword(newPassword);
+		  guide.setName(newName);
+		  guide.setEmergencyContact(newEmergencyContact);
 	  } catch(RuntimeException r){
 		  throw new InvalidInputException(r.getMessage());
 	  }
-	  
-	  
 	}
   
+  /**
+   * @author danielchang
+   * @param email
+   * @return
+   *  whether the email is valid or not
+   */
   
   private static boolean validEmail(String email) {
 	  boolean validEmail = true;
@@ -122,6 +155,12 @@ public class ClimbSafeFeatureSet3Controller {
 	  return validEmail;
   }
   
+  /**
+   * @author danielchang
+   * @param password
+   * @return
+   *  whether the password is valid or not
+   */
   
   private static boolean validPassword(String password) {
 	  boolean validPassword = true;
@@ -134,6 +173,13 @@ public class ClimbSafeFeatureSet3Controller {
 	  return validPassword;
   }
   
+  /**
+   * @author danielchang
+   * @param name
+   * @return
+   *  whether the name is valid or not
+   */
+  
   private static boolean validName(String name) {
 	  boolean validName = true;
 	  if(name.equals("")) {
@@ -145,6 +191,12 @@ public class ClimbSafeFeatureSet3Controller {
 	  return validName;
   }
   
+  /**
+   * @author danielchang
+   * @param emergencyContact
+   * @return
+   *  whether the emergencyContact is valid or not
+   */
   
   private static boolean validEmergencyContact(String emergencyContact) {
 	  boolean validEmergencyContact = true;
@@ -156,22 +208,52 @@ public class ClimbSafeFeatureSet3Controller {
 	  }
 	  return validEmergencyContact;
   }
+  /**
+   * @author danielchang
+   * @param guideList
+   * @param email
+   * @return
+   *  
+   */
   
   private static int validGuide(List<Guide> guideList, String email) {
-	  int validMember = -1;
+	  int validGuide = -1;
 	  for(int i=0; i<guideList.size(); i++) {
 		  if(guideList.get(i).getEmail().equals(email)) {
-			  validMember = i;
+			  validGuide = i;
 			  break;
 		  }
 	  }
-	  return validMember;
+	  return validGuide;
   }
   
   
+  /**
+   * @author danielchang
+   * @param guideList
+   * @param email
+   * @return
+   */
   
+  private static boolean guideExists(List<Guide> guideList, String email) {
+	  boolean guideExists = false;
+	  for(int i=0; i<guideList.size(); i++) {
+		  if(guideList.get(i).getEmail().equals(email)) {
+			  guideExists = true;
+			  break;
+		  }
+	  }
+	  return guideExists;
+  }
   
-  
-  
-
+  private static boolean memberExists(List<ca.mcgill.ecse.climbsafe.model.Member> memberList, String email) {
+	  boolean memberExists = false;
+	  for(int i=0; i<memberList.size(); i++) {
+		  if(memberList.get(i).getEmail().equals(email)) {
+			  memberExists = true;
+			  break;
+		  }
+	  }
+	  return memberExists;
+  }
 }

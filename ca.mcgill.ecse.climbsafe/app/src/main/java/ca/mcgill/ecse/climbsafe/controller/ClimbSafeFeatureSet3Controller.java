@@ -139,12 +139,18 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean validEmail(String email) {
 	  boolean validEmail = true;
-	  if(!(email.indexOf("@") > 0) || !(email.indexOf("@") == email.lastIndexOf("@") 
-			  					   || !(email.indexOf("@") < email.lastIndexOf(".") - 1) 
-			  					   || !(email.lastIndexOf(".") < email.length() - 1))) {
+	  if(!(email.indexOf("@") > 0)) {
 		  validEmail = false;
 	  }
-	  
+	  if(!(email.indexOf("@") == email.lastIndexOf("@"))) {
+		  validEmail = false;
+	  }
+	  if(!(email.indexOf("@") < email.lastIndexOf(".") - 1)) {
+		  validEmail = false;
+	  }
+	  if(!(email.lastIndexOf(".") < email.length() - 1)) {
+		  validEmail = false;
+	  }
 	  return validEmail;
   }
   
@@ -204,7 +210,7 @@ public class ClimbSafeFeatureSet3Controller {
    */
   
   private static int validGuide(List<Guide> guideList, String email) {
-	  int validGuide = -1;
+	  int validGuide = 0;
 	  for(int i=0; i<guideList.size(); i++) {
 		  if(guideList.get(i).getEmail().equals(email)) {
 			  validGuide = i;
@@ -232,6 +238,13 @@ public class ClimbSafeFeatureSet3Controller {
 	  }
 	  return guides;
   }
+  
+  /**
+   * @author danielchang
+   * @param memberList
+   * @param email
+   * @return
+   */
   
   private static boolean members(List<ca.mcgill.ecse.climbsafe.model.Member> memberList, String email) {
 	  boolean members = false;

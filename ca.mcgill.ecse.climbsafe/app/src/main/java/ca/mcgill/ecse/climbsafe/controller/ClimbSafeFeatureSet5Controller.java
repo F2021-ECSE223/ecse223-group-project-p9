@@ -3,7 +3,9 @@ package ca.mcgill.ecse.climbsafe.controller;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.model.BookableItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
+import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
 
 public class ClimbSafeFeatureSet5Controller {
@@ -22,6 +24,7 @@ public class ClimbSafeFeatureSet5Controller {
       throws InvalidInputException {
 	  String error = "";
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+	  List<Equipment> myEquipments = climbSafe.getEquipment();
 	  
 	  //constraints
 	  if (discount <= 0) {
@@ -33,18 +36,19 @@ public class ClimbSafeFeatureSet5Controller {
 	  if (equipmentQuantities.get(discount) != null) {
 		  error = "The equipment quantities must be great than 0";
 	  }
+	  List<EquipmentBundle> bundles = climbSafe.getBundles();
+	  for (EquipmentBundle b : bundles) {
+		  if (b.getName().equals(name)) {
+			  error = "The equipment bundle is already exist";
+		  }
+	  }
 	  
 	  try {
 		  climbSafe.addEquipmentBundle(name, discount, equipmentNames, equipmentQuantities);
 	  } catch (RuntimeException e) {
-		  error = e.getMessage();
-		  if (error.startsWith("Cannot create duplicated name for Equipment Bundle")) {
-			  error = "This name is already exist for another Equipment Bundle";
-		  }
 		  //a bundle contains at least two different kinds of equipment
 		   // (i.e., at least two instances of bundleItems exist for a bundle)
-		  throw new InvalidInputException(error);
-		  
+		  throw new InvalidInputException(e.getMessage());
 		  
 	  }
   }
@@ -62,14 +66,13 @@ public class ClimbSafeFeatureSet5Controller {
       List<String> newEquipmentNames, List<Integer> newEquipmentQuantities)
       throws InvalidInputException {
 	  
-	  EquipmentBundle foundEquipmentBundle = findEquipmentBundle(oldName);
-	  if (foundEquipmentBundle == null) {
-		  throw new InvalidInputException ("The Equipment Bundle does not exist");
-	  }
-	  
 	  String error = "";
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	  
+	  List<EquipmentBundle> myBundle = climbSafe.getBundles();
+
+	  if ((validEquipmentBundle(myBundle, oldName) == -1))  {
+		  error = "Equipment Bundle does not exist";
+	  }
 	  if (newDiscount <= 0) {
 		  error = "The discount must be greater than 0";
 	  }
@@ -79,24 +82,31 @@ public class ClimbSafeFeatureSet5Controller {
 	  if (newEquipmentQuantities.get(newDiscount) != 0) {
 		  error = "The equipment quantities must be greater than 0";
 	  }
-	  
-	  List <EquipmentBundle> equipmentBundle = climbSafe.getEquipmentBundle();
-	  for (EquipmentBundle e : equipmentBundle) {
-		  if ((e.getName()).equals(foundEquipmentBundle.getName())) {
-			  throw new InvalidInputException ("This name is already exist for another equipment bundle");
+	  List<EquipmentBundle> bundles = climbSafe.getBundles();
+	  for (EquipmentBundle b : bundles) {
+		  if(b.getName().equals(newName)) {
+			  error="An equipment bundle with the same name already exists";
 		  }
 	  }
+	  if(error.length() != 0) {
+		  throw new InvalidInputException(error.trim());
+	  }
+	  
+	 try {
+		 EquipmentBundle mybundle = climbSafe.getBundle(validEquipmentBundle(myBundle, oldName));
+		 ((BookableItem) myBundle).setName(newName);
+		 ((EquipmentBundle) myBundle).setDiscount(newDiscount);
+	 }catch(RuntimeException e){
+		  throw new InvalidInputException(e.getMessage());
+	  }
   }
-private static EquipmentBundle findEquipmentBundle(String oldName) {
-	ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-	List <EquipmentBundle> myEquipmentBundle = climbSafe.getEquipmentBundle();
-	for (EquipmentBundle e : myEquipmentBundle) {
-		String name = e.getName();
-		if (name.equals(oldName)) {
-			return e;
+	  
+  private static int validEquipmentBundle(List<EquipmentBundle> myBundle, String oldName) {
+	for (int i=0; i<myBundle.size(); i++) {
+		if ((myBundle.get(i).getName()).equals(oldName)) {
+			return i;
 		}
 	}
-	return null;
+	return -1;
 }
-
 }

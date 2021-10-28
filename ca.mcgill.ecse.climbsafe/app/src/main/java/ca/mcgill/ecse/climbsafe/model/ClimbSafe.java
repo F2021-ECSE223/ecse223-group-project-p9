@@ -222,9 +222,9 @@ public class ClimbSafe
     return index;
   }
   /* Code from template association_GetMany */
-  public EquipmentBundle getBundle(int index)
+  public EquipmentBundle getBundle(Object object)
   {
-    EquipmentBundle aBundle = bundles.get(index);
+    EquipmentBundle aBundle = bundles.get(object);
     return aBundle;
   }
 

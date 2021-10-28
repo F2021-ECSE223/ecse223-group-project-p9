@@ -179,12 +179,10 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean validName(String name) {
 	  boolean validName = true;
-	  if(name.equals("")) {
+	  if(name.equals("") || name.equals(null)) {
 		  validName = false;
 	  }
-	  if(name.equals(null)) {
-		  validName = false;
-	  }
+	  
 	  return validName;
   }
   
@@ -197,12 +195,10 @@ public class ClimbSafeFeatureSet3Controller {
   
   private static boolean validEmergencyContact(String emergencyContact) {
 	  boolean validEmergencyContact = true;
-	  if(emergencyContact.equals("")) {
+	  if(emergencyContact.equals("") || emergencyContact.equals(null)) {
 		  validEmergencyContact = false;
 	  }
-	  if(emergencyContact.equals(null)) {
-		  validEmergencyContact = false;
-	  }
+	  
 	  return validEmergencyContact;
   }
   /**

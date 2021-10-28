@@ -99,12 +99,16 @@ public class ClimbSafeFeatureSet4Controller {
 		 }
 	  
 	  //Checks if an equipment with the same name already exists
-	  List<Equipment> equipments = climbSafe.getEquipment();
-	  for (Equipment e : equipments) {
-			if ((e.getName()).equals(newName)) {
-				error="The piece of equipment already exists";
+	  if(!oldName.equals(newName)) {
+		  List<Equipment> equipments = climbSafe.getEquipment();
+		  for (Equipment e : equipments) {
+				if ((e.getName()).equals(newName)) {
+					error="The piece of equipment already exists";
+				}
 			}
-		}
+	  }
+	  
+	  
 	  //Checks if an EquipmentBundle with the same name already exists
 	  List<EquipmentBundle> bundles = climbSafe.getBundles();
 	  for (EquipmentBundle b : bundles) {

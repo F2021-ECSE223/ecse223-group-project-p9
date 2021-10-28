@@ -155,8 +155,6 @@ public class ClimbSafeFeatureSet2Controller {
 			  climbSafe.addBookedItem(newItemQuantities.get(i), member, BookableItem.getWithName(newItemNames.get(i))); 
 		  }
 		  
-		  climbSafe.addMember(email, newPassword, newName, newEmergencyContact, newNrWeeks, newGuideRequired, newHotelRequired);
-		  
 	  }catch(RuntimeException e){
 		  throw new InvalidInputException(e.getMessage());
 	  }

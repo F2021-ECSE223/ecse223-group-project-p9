@@ -96,7 +96,6 @@ public class ClimbSafeFeatureSet3Controller {
       String newEmergencyContact) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Guide> guideList = climbSafe.getGuides();
-	  List<Member> memberList = new ArrayList <Member>();
 	  
 	  validEmail(email);
 	  error = "";

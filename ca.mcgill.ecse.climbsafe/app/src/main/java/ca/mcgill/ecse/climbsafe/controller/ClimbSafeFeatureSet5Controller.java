@@ -106,7 +106,7 @@ public class ClimbSafeFeatureSet5Controller {
 	  }
   }
   /**
-   * @author SeJong Yoo
+   * @author Joey Koay & Kara Best & Victor Micha
    * @param oldName
    * @param newName
    * @param newDiscount
@@ -205,28 +205,16 @@ public class ClimbSafeFeatureSet5Controller {
 			  }
 		  }
 		  
-		  
-		  
 		  EquipmentBundle myBundle = climbSafe.getBundle(myBundleIndex);
 		  myBundle.setDiscount(newDiscount);
 		  myBundle.setName(newName);
-		  System.out.println(myBundle.getDiscount());
-//		  myBundle.delete();
-//		  myBundle.getBundleItems().clear();
-		  System.out.println("=2nd===" + myBundle.getBundleItems().size());
 		  
 		  for(int i=0; i<myBundle.getBundleItems().size(); i++) {
 			  BundleItem b = myBundle.getBundleItem(i);
 			  myBundle.removeBundleItem(b);
 			  myBundle.delete();
 		  }
-		  System.out.println("heree");
 		  EquipmentBundle bundle2 = climbSafe.addBundle(newName, newDiscount);
-		  
-		  for(int j=0; j<bundle2.getBundleItems().size(); j++) {
-			  System.out.println(bundle2.getBundleItem(j).getEquipment().getName());
-		  }
-		  System.out.println("======");
 		  List<Equipment> listOfEquipments = climbSafe.getEquipment();
 		  
 		  
@@ -234,10 +222,6 @@ public class ClimbSafeFeatureSet5Controller {
 			  for(int x=0; x< listOfEquipments.size(); x++) {
 				  if(listOfEquipments.get(x).getName().equals(newEquipmentNames.get(i))) {
 					  bundle2.addBundleItem(newEquipmentQuantities.get(i), climbSafe, listOfEquipments.get(x));
-					  System.out.println("==afterAdding==" + bundle2.getBundleItems().size());
-					  for(int j=0; j<bundle2.getBundleItems().size(); j++) {
-						  System.out.println(bundle2.getBundleItem(j).getEquipment().getName());
-					  }
 					  break;
 				  }
 			  }

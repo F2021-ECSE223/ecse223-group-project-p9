@@ -1,7 +1,5 @@
 package ca.mcgill.ecse.climbsafe.controller;
 
-import java.lang.reflect.Member;
-import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
@@ -71,9 +69,7 @@ public class ClimbSafeFeatureSet3Controller {
 	  }
 	  
 	  try {
-		  Guide guide = climbSafe.addGuide(email, password, name, emergencyContact);
-		  
-		  
+		  climbSafe.addGuide(email, password, name, emergencyContact);
 	  } catch(RuntimeException r){
 		  throw new InvalidInputException(r.getMessage());
 	  }

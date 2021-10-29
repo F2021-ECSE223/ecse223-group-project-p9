@@ -10,6 +10,7 @@ public class ClimbSafeFeatureSet6Controller {
 	
 
 	/**
+	 * Deleting equipments
 	 *@param name the name of equipment to be deleted
 	 *@throws InvalidInputException if equipment does not exist
 	 *@author Kara Best
@@ -58,6 +59,7 @@ public class ClimbSafeFeatureSet6Controller {
 	  
 	}
 	/**
+	 * Delete equipment bundles
 	 *@param name the name of equipment bundle to be deleted
 	 *@author Kara Best
 	 */
@@ -82,6 +84,7 @@ public class ClimbSafeFeatureSet6Controller {
 	
 	}
 	/**
+	 * View assignment
 	 *@return TOAssignments list of ClimbSafe assignments
 	 *@author Kara Best
 	 */

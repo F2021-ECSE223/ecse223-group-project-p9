@@ -65,7 +65,7 @@ public class ClimbSafeFeatureSet4Controller {
 }
 
   /**
-   * 
+   * @author Enzo Benoit-Jeannin
    * @param oldName
    * @param newName
    * @param newWeight

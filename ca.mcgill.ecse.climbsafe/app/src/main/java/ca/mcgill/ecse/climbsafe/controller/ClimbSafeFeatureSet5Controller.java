@@ -13,7 +13,8 @@ import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
 public class ClimbSafeFeatureSet5Controller {
 	
 /**
- * @author Joey Koay
+ * adding equipment bundles
+ * @author Joey Koay & SeJong Yoo
  * @param name
  * @param discount
  * @param equipmentNames
@@ -106,7 +107,8 @@ public class ClimbSafeFeatureSet5Controller {
 	  }
   }
   /**
-   * @author Joey Koay & Kara Best & Victor Micha
+   * updating equipment bundles
+   * @author Joey Koay & Kara Best & Victor Micha & SeJong Yoo
    * @param oldName
    * @param newName
    * @param newDiscount

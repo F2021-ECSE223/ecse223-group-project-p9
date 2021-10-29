@@ -116,15 +116,10 @@ public class ClimbSafeFeatureSet5Controller {
    */
 
   public static void updateEquipmentBundle(String oldName, String newName, int newDiscount, List<String> newEquipmentNames, List<Integer> newEquipmentQuantities) throws InvalidInputException {
-	  System.out.println("oldName: " + oldName);
-	  System.out.println("newName: " + newName);
-	  
 	  String error = "";
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Equipment> equipmentList = climbSafe.getEquipment();
 	  List<EquipmentBundle> bundleList2 = climbSafe.getBundles();
-	  
-	  int oldBundleIndex = -1;
 	  
 	  if(newEquipmentNames.size() == 1) {
 		  error = "Equipment bundle must contain at least two distinct types of equipment";
@@ -174,7 +169,6 @@ public class ClimbSafeFeatureSet5Controller {
 		  throw new InvalidInputException(error.trim());
 	  }
 	  
-	  System.out.println("Working at 170");
 	  if(!newName.equals(oldName)) {
 		  for(int i=0; i< bundleList2.size(); i++) {
 			  if(bundleList2.get(i).getName().equals(newName)) {
@@ -184,7 +178,6 @@ public class ClimbSafeFeatureSet5Controller {
 		  }
 	  }
 	  
-	  System.out.println("Working at 177");
 	  for(int i=0; i< equipmentList.size(); i++) {
 		  if(equipmentList.get(i).getName().equals(newName)) {
 			  error = "A bookable item called " + newName + " already exists";
@@ -193,7 +186,6 @@ public class ClimbSafeFeatureSet5Controller {
 	  }
 	  
 	  for(int i=0; i< bundleList2.size(); i++) {
-		  System.out.println(bundleList2.get(i).getName());
 		  if(bundleList2.get(i).getName().equals(oldName)) {
 			  break;
 		  }else if(i==bundleList2.size()-1) {
@@ -201,71 +193,66 @@ public class ClimbSafeFeatureSet5Controller {
 			  throw new InvalidInputException(error.trim()); 
 		  }
 	  }
-	  System.out.println("still working!");
+
 	  try {
 		  List<EquipmentBundle> allBundle = climbSafe.getBundles();
 		  int myBundleIndex = -1;
 		  
 		  for(int i=0; i<allBundle.size(); i++) {
-			  System.out.println(allBundle.get(i).getName());
 			  if(allBundle.get(i).getName().equals(oldName)) {
-				  System.out.println("Yesss");
 				  myBundleIndex = i;
 				  break;
 			  }
 		  }
 		  
 		  
+		  
 		  EquipmentBundle myBundle = climbSafe.getBundle(myBundleIndex);
-//		  while(myBundle)
-		  System.out.println("BEFORE: " + myBundle.getBundleItems());
+		  myBundle.setDiscount(newDiscount);
+		  myBundle.setName(newName);
+		  System.out.println(myBundle.getDiscount());
+//		  myBundle.delete();
+//		  myBundle.getBundleItems().clear();
+		  System.out.println("=2nd===" + myBundle.getBundleItems().size());
+		  
 		  for(int i=0; i<myBundle.getBundleItems().size(); i++) {
-			  System.out.println(myBundle.getBundleItem(i).getEquipment().getName());
+			  BundleItem b = myBundle.getBundleItem(i);
+			  myBundle.removeBundleItem(b);
+			  myBundle.delete();
 		  }
-//		  myBundle.getBundleItems().get(i);
-		  while(myBundle.getBundleItems().size()!=0) {
-			  myBundle.getBundleItems().remove(0);
+		  System.out.println("heree");
+		  EquipmentBundle bundle2 = climbSafe.addBundle(newName, newDiscount);
+		  
+		  for(int j=0; j<bundle2.getBundleItems().size(); j++) {
+			  System.out.println(bundle2.getBundleItem(j).getEquipment().getName());
+		  }
+		  System.out.println("======");
+		  List<Equipment> listOfEquipments = climbSafe.getEquipment();
+		  
+		  
+		  for(int i=0; i<newEquipmentNames.size(); i++) {
+			  for(int x=0; x< listOfEquipments.size(); x++) {
+				  if(listOfEquipments.get(x).getName().equals(newEquipmentNames.get(i))) {
+					  bundle2.addBundleItem(newEquipmentQuantities.get(i), climbSafe, listOfEquipments.get(x));
+					  System.out.println("==afterAdding==" + bundle2.getBundleItems().size());
+					  for(int j=0; j<bundle2.getBundleItems().size(); j++) {
+						  System.out.println(bundle2.getBundleItem(j).getEquipment().getName());
+					  }
+					  break;
+				  }
+			  }
 		  }
 		  
-		  System.out.println("AFTER: " +myBundle.getBundleItems());
-		  
-//		  System.out.println("hereeeeeeeeeeeeeeeee");
-//		  
-//		  System.out.println("HERE");
-//		  for(int i=0; i<bundleList2.size(); i++) {
-//			  if(bundleList2.get(i).getName().equals(oldName)) {
-//				  oldBundleIndex = i;
-//				  break;
-//			  }
-//		  }
-//		  EquipmentBundle bundle = climbSafe.getBundle(oldBundleIndex);
-//		  
-//		  bundle.setName(newName);
-//		  bundle.setDiscount(newDiscount);
-//		  
-//		  List<BundleItem> bundleEquipments = bundle.getBundleItems();
-//		  while(bundleEquipments.size()!=0) {
-//			  bundleEquipments.remove(0);
-//		  }
-//		  System.out.println("=====START=======");
-//		  System.out.println(bundleEquipments);
-//		  System.out.println("=====END======");
-//		  
-//		  List<BundleItem> bundleItems = climbSafe.getBundleItems();
-//		  
-//		  for(int i=0; i<newEquipmentNames.size(); i++) {
-//			  for(int x=0; x< bundleItems.size(); x++) {
-//				  if(bundleItems.get(x).getBundle().getName() == newEquipmentNames.get(i)) {
-////					  bundle.addBundleItem(bundleItems.get(x).getBundle().getBundleItem(x));
-//					  Equipment myEquipment = climbSafe.getEquipment(validEquipment(equipmentList, newName));
-//					  bundle.addBundleItem((int)newEquipmentQuantities.get(i), climbSafe, myEquipment);
-//				  }
-//			  }
-//		  }
-//		  System.out.println("=====START2=======");
-//		  System.out.println(bundleEquipments);
-//		  System.out.println("=====END2======");
-		  
+		  for(int i=0; i<newEquipmentNames.size(); i++) {
+			  List<Equipment> equipmentList2 = climbSafe.getEquipment();
+			  for(int x=0; x<equipmentList2.size(); x++) {
+				  if(equipmentList2.get(x).getName() == newEquipmentNames.get(i)) {
+					  bundle2.addBundleItem(newEquipmentQuantities.get(i), climbSafe, equipmentList2.get(x));
+					  break;
+				  }
+			  }
+			  
+		  }
 		  
 	  } catch (RuntimeException e) {
 		  throw new InvalidInputException(e.getMessage());

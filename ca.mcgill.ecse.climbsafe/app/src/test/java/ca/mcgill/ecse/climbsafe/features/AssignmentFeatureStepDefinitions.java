@@ -3,6 +3,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.Map;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
+import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.BookableItem;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.BundleItem;
@@ -18,7 +21,9 @@ import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
 import ca.mcgill.ecse.climbsafe.model.Guide;
+import ca.mcgill.ecse.climbsafe.model.Hotel;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.model.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -88,7 +93,7 @@ public class AssignmentFeatureStepDefinitions {
 
   @Given("the following guides exist in the system:") //from p9 step
   public void the_following_guides_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
-	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+	  	List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	    List<Guide> guides = climbSafe.getGuides();
 	    List<String> emails = new ArrayList<String>();
 	    for (Guide g : guides)
@@ -127,14 +132,36 @@ public class AssignmentFeatureStepDefinitions {
 
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+//	try {
+//		
+//	}catch () {
+//		
+//	}
+	throw new io.cucumber.java.PendingException();
   }
-
+/**
+ * 
+ * @param dataTable
+ * @author Enzo Benoit-Jeannin
+ */
   @Then("the following assignments shall exist in the system:")
   public void the_following_assignments_shall_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
-    
+	  
+	  var rows = dataTable.asMaps();
+	    for (var row : rows) {
+	      String memberEmail = row.get("memberEmail");
+	      String guideEmail = row.get("guideEmail");
+	      int startWeek = Integer.parseInt(row.get("startWeek"));
+	      int endWeek = Integer.parseInt(row.get("endWeek"));
+
+	      var member = (Member) Member.getWithEmail(memberEmail);
+	      var assignment = member.getAssignment();
+	      
+	      assertEquals(true, assignment.getGuide().getEmail().equals(guideEmail) 
+	    		  && assignment.getMember().getEmail().equals(memberEmail) 
+	    		  && assignment.getStartWeek() == startWeek && assignment.getEndWeek() == endWeek);
+	    }
   }
 
   @Then("the assignment for {string} shall be marked as {string}")
@@ -155,29 +182,28 @@ public class AssignmentFeatureStepDefinitions {
 
   }
 
-  @Given("the following assignments exist in the system:") //Kara
+
+  /**
+   * 
+   * @param dataTable
+   * @author Enzo Benoit-Jeannin
+   */
+  @Given("the following assignments exist in the system:") //grab from other group's step def
   public void the_following_assignments_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
-	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
-
-	    for (Map<String, String> r : rows) {
-	      String memberEmail = r.get("memberEmail");
-	      String guideEmail = r.get("guideEmail");
-	      
-	      int startWeek = Integer.parseInt(r.get("startWeek"));
-	      int endWeek = Integer.parseInt(r.get("endWeek"));
-	      List <Member> members = climbSafe.getMembers();
-	      boolean found = false;
-	      int i =0;
-	      while(!found) {
-	    	  if(memberEmail.equals(members.get(i).getEmail())) {
-	    		  found = true;
-	    	  }else {
-	    		  i++;
-	    	  }
-	      }
-	      Assignment a = new Assignment(startWeek, endWeek, members.get(i), climbSafe);
-	    }
+	  
+	  var rows = dataTable.asMaps();
+	  for (var row : rows) {
+		  int startWeek = Integer.valueOf(row.get("startWeek"));
+	      int endWeek = Integer.valueOf(row.get("endWeek"));
+		  var assignmentMember = (Member) Member.getWithEmail(row.get("memberEmail"));
+	      var assignmentGuide = (Guide) User.getWithEmail(row.get("guideEmail"));
+	      var assignmentHotel = Hotel.getWithName(row.get("hotelName"));
+	    
+	     Assignment assignment = climbSafe.addAssignment(startWeek, endWeek, assignmentMember);
+	     assignment.setGuide(assignmentGuide);
+	     assignment.setHotel(assignmentHotel);
+	   }
   }
 
   @When("the administrator attempts to confirm payment for {string} using authorization code {string}")

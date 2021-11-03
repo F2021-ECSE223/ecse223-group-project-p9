@@ -3,6 +3,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,6 +13,7 @@ import java.util.Map;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
+import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.BookableItem;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.BundleItem;
@@ -125,14 +128,40 @@ public class AssignmentFeatureStepDefinitions {
 
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+//	try {
+//		
+//	}catch () {
+//		
+//	}
+	throw new io.cucumber.java.PendingException();
   }
-
+/**
+ * 
+ * @param dataTable
+ * @author Enzo Benoit-Jeannin
+ */
   @Then("the following assignments shall exist in the system:")
   public void the_following_assignments_shall_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
+<<<<<<< Updated upstream
     
+=======
+	  
+	  var rows = dataTable.asMaps();
+	    for (var row : rows) {
+	      String memberEmail = row.get("memberEmail");
+	      String guideEmail = row.get("guideEmail");
+	      int startWeek = Integer.parseInt(row.get("startWeek"));
+	      int endWeek = Integer.parseInt(row.get("endWeek"));
+
+	      var member = (Member) Member.getWithEmail(memberEmail);
+	      var assignment = member.getAssignment();
+	      
+	      assertEquals(true, assignment.getGuide().getEmail().equals(guideEmail) 
+	    		  && assignment.getMember().getEmail().equals(memberEmail) 
+	    		  && assignment.getStartWeek() == startWeek && assignment.getEndWeek() == endWeek);
+	    }
+>>>>>>> Stashed changes
   }
 
   @Then("the assignment for {string} shall be marked as {string}")

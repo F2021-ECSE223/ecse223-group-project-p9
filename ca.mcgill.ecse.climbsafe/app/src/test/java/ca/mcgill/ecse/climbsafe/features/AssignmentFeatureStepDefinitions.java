@@ -132,14 +132,7 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the following assignments shall exist in the system:")
   public void the_following_assignments_shall_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+    
   }
 
   @Then("the assignment for {string} shall be marked as {string}")
@@ -148,16 +141,16 @@ public class AssignmentFeatureStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
-  @Then("the number of assignments in the system shall be {string}")
+  @Then("the number of assignments in the system shall be {string}") //Kara
   public void the_number_of_assignments_in_the_system_shall_be(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    assertEquals(Integer.parseInt(string), climbSafe.numberOfAssignments());
+    
   }
 
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	    assertTrue(error.contains(string));
+
   }
 
   @Given("the following assignments exist in the system:") //grab from other group's step def
@@ -201,8 +194,8 @@ public class AssignmentFeatureStepDefinitions {
 
   @Then("the error {string} shall be raised")
   public void the_error_shall_be_raised(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	    assertTrue(error.contains(string));
+
   }
 
   @When("the administrator attempts to cancel the trip for {string}")

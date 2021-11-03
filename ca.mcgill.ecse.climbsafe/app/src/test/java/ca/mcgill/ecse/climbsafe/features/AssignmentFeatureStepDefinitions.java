@@ -28,6 +28,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import ca.mcgill.ecse.climbsafe.model.*;
+
 public class AssignmentFeatureStepDefinitions {
 	  private ClimbSafe climbSafe;
 	  private String error;
@@ -153,17 +155,29 @@ public class AssignmentFeatureStepDefinitions {
 
   }
 
-  @Given("the following assignments exist in the system:") //grab from other group's step def
+  @Given("the following assignments exist in the system:") //Kara
   public void the_following_assignments_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+
+	    for (Map<String, String> r : rows) {
+	      String memberEmail = r.get("memberEmail");
+	      String guideEmail = r.get("guideEmail");
+	      
+	      int startWeek = Integer.parseInt(r.get("startWeek"));
+	      int endWeek = Integer.parseInt(r.get("endWeek"));
+	      List <Member> members = climbSafe.getMembers();
+	      boolean found = false;
+	      int i =0;
+	      while(!found) {
+	    	  if(memberEmail.equals(members.get(i).getEmail())) {
+	    		  found = true;
+	    	  }else {
+	    		  i++;
+	    	  }
+	      }
+	      Assignment a = new Assignment(startWeek, endWeek, members.get(i), climbSafe);
+	    }
   }
 
   @When("the administrator attempts to confirm payment for {string} using authorization code {string}")

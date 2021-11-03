@@ -21,7 +21,9 @@ import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
 import ca.mcgill.ecse.climbsafe.model.Guide;
+import ca.mcgill.ecse.climbsafe.model.Hotel;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.model.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -89,7 +91,7 @@ public class AssignmentFeatureStepDefinitions {
 
   @Given("the following guides exist in the system:") //from p9 step
   public void the_following_guides_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
-	  List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
+	  	List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 	    List<Guide> guides = climbSafe.getGuides();
 	    List<String> emails = new ArrayList<String>();
 	    for (Guide g : guides)
@@ -178,17 +180,27 @@ public class AssignmentFeatureStepDefinitions {
 
   }
 
+  /**
+   * 
+   * @param dataTable
+   * @author Enzo Benoit-Jeannin
+   */
   @Given("the following assignments exist in the system:") //grab from other group's step def
   public void the_following_assignments_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
+	  
+	  var rows = dataTable.asMaps();
+	  for (var row : rows) {
+		  int startWeek = Integer.valueOf(row.get("startWeek"));
+	      int endWeek = Integer.valueOf(row.get("endWeek"));
+		  var assignmentMember = (Member) Member.getWithEmail(row.get("memberEmail"));
+	      var assignmentGuide = (Guide) User.getWithEmail(row.get("guideEmail"));
+	      var assignmentHotel = Hotel.getWithName(row.get("hotelName"));
+	    
+	     Assignment assignment = climbSafe.addAssignment(startWeek, endWeek, assignmentMember);
+	     assignment.setGuide(assignmentGuide);
+	     assignment.setHotel(assignmentHotel);
+	   }
   }
 
   @When("the administrator attempts to confirm payment for {string} using authorization code {string}")

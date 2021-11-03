@@ -143,9 +143,6 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the following assignments shall exist in the system:")
   public void the_following_assignments_shall_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
-<<<<<<< Updated upstream
-    
-=======
 	  
 	  var rows = dataTable.asMaps();
 	    for (var row : rows) {
@@ -161,7 +158,6 @@ public class AssignmentFeatureStepDefinitions {
 	    		  && assignment.getMember().getEmail().equals(memberEmail) 
 	    		  && assignment.getStartWeek() == startWeek && assignment.getEndWeek() == endWeek);
 	    }
->>>>>>> Stashed changes
   }
 
   @Then("the assignment for {string} shall be marked as {string}")

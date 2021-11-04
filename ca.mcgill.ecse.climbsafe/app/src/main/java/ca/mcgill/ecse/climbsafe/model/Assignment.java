@@ -21,6 +21,7 @@ public class Assignment
   //Assignment Attributes
   private int startWeek;
   private int endWeek;
+  private TripStatus tripStatus;
   private int totalPayment;
   private int paymentCode;
   private boolean banned;
@@ -71,6 +72,14 @@ public class Assignment
     return wasSet;
   }
 
+  public boolean setTripStatus(TripStatus aTripStatus)
+  {
+    boolean wasSet = false;
+    tripStatus = aTripStatus;
+    wasSet = true;
+    return wasSet;
+  }
+
   public boolean setTotalPayment(int aTotalPayment)
   {
     boolean wasSet = false;
@@ -103,6 +112,11 @@ public class Assignment
   public int getEndWeek()
   {
     return endWeek;
+  }
+
+  public TripStatus getTripStatus()
+  {
+    return tripStatus;
   }
 
   public int getTotalPayment()
@@ -270,6 +284,7 @@ public class Assignment
             "totalPayment" + ":" + getTotalPayment()+ "," +
             "paymentCode" + ":" + getPaymentCode()+ "," +
             "banned" + ":" + getBanned()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "tripStatus" + "=" + (getTripStatus() != null ? !getTripStatus().equals(this)  ? getTripStatus().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "member = "+(getMember()!=null?Integer.toHexString(System.identityHashCode(getMember())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "guide = "+(getGuide()!=null?Integer.toHexString(System.identityHashCode(getGuide())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "hotel = "+(getHotel()!=null?Integer.toHexString(System.identityHashCode(getHotel())):"null") + System.getProperties().getProperty("line.separator") +

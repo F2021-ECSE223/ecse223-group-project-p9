@@ -17,9 +17,8 @@ public class AssignmentController {
 	 * @param assignment
 	 * @author Enzo Benoit-Jeannin
 	 */
-	public static void cancelTrip(Assignment assignment) {
+	public static void cancelTrip(String email) {
 		String error="";
-		String email = assignment.getMember().getEmail();
 		
 		if (!validEmail(email)) {
 			error="Member with email address "+ email +" does not exist";
@@ -32,7 +31,7 @@ public class AssignmentController {
 		try {
 			List<Assignment> myAssignments = climbSafe.getAssignments();
 			for (Assignment a : myAssignments) {
-				if (a.getMember().getEmail().equals(assignment.getMember().getEmail())) {
+				if (a.getMember().getEmail().equals(email)) {
 					a.setTripStatus(TripStatus.Cancelled);
 					
 				}

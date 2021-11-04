@@ -227,18 +227,6 @@ public class ClimbSafeFeatureSet5Controller {
 				  }
 			  }
 		  }
-		  
-		  for(int i=0; i<newEquipmentNames.size(); i++) {
-			  List<Equipment> equipmentList2 = climbSafe.getEquipment();
-			  for(int x=0; x<equipmentList2.size(); x++) {
-				  if(equipmentList2.get(x).getName() == newEquipmentNames.get(i)) {
-					  bundle2.addBundleItem(newEquipmentQuantities.get(i), climbSafe, equipmentList2.get(x));
-					  break;
-				  }
-			  }
-			  
-		  }
-		  
 	  } catch (RuntimeException e) {
 		  throw new InvalidInputException(e.getMessage());
 	  }

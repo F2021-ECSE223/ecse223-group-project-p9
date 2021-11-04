@@ -178,7 +178,7 @@ public class AssignmentFeatureStepDefinitions {
 
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String string) {
-	    assertTrue(error.contains(string)); //worked in other feature sets, ask prof/ta about this
+	    assertEquals(true, error.contains(string)); //worked in other feature sets, ask prof/ta about this
 
   }
 
@@ -226,14 +226,14 @@ public class AssignmentFeatureStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
-  @Then("there are {string} members in the system")
+  @Then("there are {string} members in the system") //Kara
   public void there_are_members_in_the_system(String string) {
     assertEquals(Integer.parseInt(string), climbSafe.numberOfMembers());
   }
 
   @Then("the error {string} shall be raised")
   public void the_error_shall_be_raised(String string) {
-	    assertTrue(error.contains(string));
+	    assertEquals(true, error.contains(string));
 
   }
 

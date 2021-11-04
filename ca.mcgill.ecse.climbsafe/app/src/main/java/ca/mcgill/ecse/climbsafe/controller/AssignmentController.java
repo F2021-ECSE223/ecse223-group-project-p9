@@ -15,9 +15,13 @@ public class AssignmentController {
 		
 	}
 	//start trips
-	public static void cancelTrip(Assignment assignment) throws InvalidInputException {
-		String email = assignment.getMember().getEmail();
-		
+	/**
+	 * 
+	 * @param assignment
+	 * @throws InvalidInputException
+	 * @author Enzo Benoit-Jeannin
+	 */
+	public static void cancelTrip(String email) throws InvalidInputException {		
 		if (!validEmail(email)) {
 			error="Member with email address "+ email +" does not exist";
 		}

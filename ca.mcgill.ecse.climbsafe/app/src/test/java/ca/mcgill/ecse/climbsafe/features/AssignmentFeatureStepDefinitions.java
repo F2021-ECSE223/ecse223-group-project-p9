@@ -178,7 +178,7 @@ public class AssignmentFeatureStepDefinitions {
 
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String string) {
-	    assertTrue(error.contains(string));
+	    assertTrue(error.contains(string)); //worked in other feature sets, ask prof/ta about this
 
   }
 
@@ -228,8 +228,7 @@ public class AssignmentFeatureStepDefinitions {
 
   @Then("there are {string} members in the system")
   public void there_are_members_in_the_system(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    assertEquals(Integer.parseInt(string), climbSafe.numberOfMembers());
   }
 
   @Then("the error {string} shall be raised")

@@ -3,9 +3,16 @@
 
 package ca.mcgill.ecse.climbsafe.model;
 
-// line 81 "../../../../../ClimbSafe.ump"
+// line 82 "../../../../../ClimbSafe.ump"
+// line 3 "../../../../../ExtendedAssignment.ump"
 public class Assignment
 {
+
+  //------------------------
+  // ENUMERATIONS
+  //------------------------
+
+  public enum TripStatus { Started, Ended, Cancelled }
 
   //------------------------
   // MEMBER VARIABLES
@@ -14,6 +21,9 @@ public class Assignment
   //Assignment Attributes
   private int startWeek;
   private int endWeek;
+  private int totalPayment;
+  private int paymentCode;
+  private boolean banned;
 
   //Assignment Associations
   private Member member;
@@ -61,6 +71,30 @@ public class Assignment
     return wasSet;
   }
 
+  public boolean setTotalPayment(int aTotalPayment)
+  {
+    boolean wasSet = false;
+    totalPayment = aTotalPayment;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean setPaymentCode(int aPaymentCode)
+  {
+    boolean wasSet = false;
+    paymentCode = aPaymentCode;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean setBanned(boolean aBanned)
+  {
+    boolean wasSet = false;
+    banned = aBanned;
+    wasSet = true;
+    return wasSet;
+  }
+
   public int getStartWeek()
   {
     return startWeek;
@@ -69,6 +103,21 @@ public class Assignment
   public int getEndWeek()
   {
     return endWeek;
+  }
+
+  public int getTotalPayment()
+  {
+    return totalPayment;
+  }
+
+  public int getPaymentCode()
+  {
+    return paymentCode;
+  }
+
+  public boolean getBanned()
+  {
+    return banned;
   }
   /* Code from template association_GetOne */
   public Member getMember()
@@ -217,7 +266,10 @@ public class Assignment
   {
     return super.toString() + "["+
             "startWeek" + ":" + getStartWeek()+ "," +
-            "endWeek" + ":" + getEndWeek()+ "]" + System.getProperties().getProperty("line.separator") +
+            "endWeek" + ":" + getEndWeek()+ "," +
+            "totalPayment" + ":" + getTotalPayment()+ "," +
+            "paymentCode" + ":" + getPaymentCode()+ "," +
+            "banned" + ":" + getBanned()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "member = "+(getMember()!=null?Integer.toHexString(System.identityHashCode(getMember())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "guide = "+(getGuide()!=null?Integer.toHexString(System.identityHashCode(getGuide())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "hotel = "+(getHotel()!=null?Integer.toHexString(System.identityHashCode(getHotel())):"null") + System.getProperties().getProperty("line.separator") +

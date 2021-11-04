@@ -11,6 +11,12 @@ public class AssignmentController {
 		
 	}
 	//start trips
+	
+	/**
+	 * 
+	 * @param assignment
+	 * @author Enzo Benoit-Jeannin
+	 */
 	public static void cancelTrip(Assignment assignment) {
 		String error="";
 		String email = assignment.getMember().getEmail();
@@ -28,6 +34,7 @@ public class AssignmentController {
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(assignment.getMember().getEmail())) {
 					a.setTripStatus(TripStatus.Cancelled);
+					
 				}
 			}
 		 }catch(RuntimeException e){

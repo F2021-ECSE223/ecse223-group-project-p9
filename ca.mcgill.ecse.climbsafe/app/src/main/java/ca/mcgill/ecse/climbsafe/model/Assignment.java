@@ -25,6 +25,7 @@ public class Assignment
   private int totalPayment;
   private int paymentCode;
   private boolean banned;
+  private boolean fullyPaid;
 
   //Assignment Associations
   private Member member;
@@ -104,6 +105,14 @@ public class Assignment
     return wasSet;
   }
 
+  public boolean setFullyPaid(boolean aFullyPaid)
+  {
+    boolean wasSet = false;
+    fullyPaid = aFullyPaid;
+    wasSet = true;
+    return wasSet;
+  }
+
   public int getStartWeek()
   {
     return startWeek;
@@ -132,6 +141,11 @@ public class Assignment
   public boolean getBanned()
   {
     return banned;
+  }
+
+  public boolean getFullyPaid()
+  {
+    return fullyPaid;
   }
   /* Code from template association_GetOne */
   public Member getMember()
@@ -283,7 +297,8 @@ public class Assignment
             "endWeek" + ":" + getEndWeek()+ "," +
             "totalPayment" + ":" + getTotalPayment()+ "," +
             "paymentCode" + ":" + getPaymentCode()+ "," +
-            "banned" + ":" + getBanned()+ "]" + System.getProperties().getProperty("line.separator") +
+            "banned" + ":" + getBanned()+ "," +
+            "fullyPaid" + ":" + getFullyPaid()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "tripStatus" + "=" + (getTripStatus() != null ? !getTripStatus().equals(this)  ? getTripStatus().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "member = "+(getMember()!=null?Integer.toHexString(System.identityHashCode(getMember())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "guide = "+(getGuide()!=null?Integer.toHexString(System.identityHashCode(getGuide())):"null") + System.getProperties().getProperty("line.separator") +

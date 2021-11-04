@@ -6,4 +6,5 @@ class Assignment {
 	lazy int totalPayment;
 	lazy int paymentCode;
 	lazy boolean banned;
+	lazy boolean fullyPaid;
 }

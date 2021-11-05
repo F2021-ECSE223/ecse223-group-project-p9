@@ -15,14 +15,17 @@ public class AssignmentController {
 		
 	}
 	//start trips
+	public static void startTrips(int week) throws InvalidInputException{
+		
+	}
 	/**
 	 * 
-	 * @param assignment
+	 * @param email
 	 * @throws InvalidInputException
 	 * @author Enzo Benoit-Jeannin
 	 */
 	public static void cancelTrip(String email) throws InvalidInputException {		
-		if (!validEmail(email)) {
+		if (!validEmail(email)) { 
 			error="Member with email address "+ email +" does not exist";
 		}
 		
@@ -31,10 +34,10 @@ public class AssignmentController {
 		  }
 		
 		try {
-			List<Assignment> myAssignments = climbSafe.getAssignments();
+			List<Assignment> myAssignments = climbSafe.getAssignments(); //make sure to check if banned
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
-					a.setTripStatus(TripStatus.Cancelled);
+					a.setTripStatus(TripStatus.Cancelled); //needs refund
 					
 				}
 			}
@@ -43,8 +46,45 @@ public class AssignmentController {
 		  }
 		}
 
-	//finish trip
-	public static void finishTrip(Assignment assignment) {
+	/**
+	 * 
+	 * @param email
+	 * @throws InvalidInputException
+	 * @author Kara Best
+	 */
+	public static void finishTrip(String email) throws InvalidInputException {
+		List<Assignment> assignments = climbSafe.getAssignments();
+		String error ="";
+		try {
+			int tracker =0;
+			for(Assignment a: assignments) {
+				if(a.getMember().getEmail().equals(email)){
+					if(a.getBanned()) {
+						error = "Cannot finish the trip due to a ban";
+						throw new InvalidInputException(error.trim());
+					}else if(a.getTripStatus().equals(TripStatus.Started)) {
+						a.setTripStatus(TripStatus.Ended);
+					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
+						error = "Cannot finish a trip which has been cancelled";
+						throw new InvalidInputException(error.trim());
+					}else if(a.getTripStatus().equals(TripStatus.Standby)) {
+						error = "Cannot finish a trip which has not started";
+						throw new InvalidInputException(error.trim());
+					}
+				}else {
+					tracker++;
+				}
+				
+			}
+			if(tracker==assignments.size()) {
+				error = "Member with email address "+ email +" does not exist";
+				throw new InvalidInputException(error.trim());
+			}
+			
+			
+		}catch(RuntimeException e) {
+			throw new InvalidInputException(e.getMessage());
+		}
 		
 	}
 	

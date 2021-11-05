@@ -14,6 +14,7 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
+import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
 import ca.mcgill.ecse.climbsafe.model.BookableItem;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.BundleItem;
@@ -138,6 +139,7 @@ public class AssignmentFeatureStepDefinitions {
 //		
 //	}
 	throw new io.cucumber.java.PendingException();
+	
   }
 /**
  * 
@@ -220,10 +222,17 @@ public class AssignmentFeatureStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
-  @Then("the member account with the email {string} does not exist")
-  public void the_member_account_with_the_email_does_not_exist(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  @Then("the member account with the email {string} does not exist") //Joey
+  public void the_member_account_with_the_email_does_not_exist(String email) {
+	  List<Member> memberList = climbSafe.getMembers();
+	  boolean validMember = false;
+	  for(int i=0; i<memberList.size(); i++) {
+		  if(memberList.get(i).getEmail().equals(email)) {
+			  validMember = true;
+			  break;
+		  }
+	  }
+	  assertEquals(false, validMember);
   }
 
   @Then("there are {string} members in the system") //Kara
@@ -243,10 +252,18 @@ public class AssignmentFeatureStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
-  @Given("the member with {string} has paid for their trip")
-  public void the_member_with_has_paid_for_their_trip(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  @Given("the member with {string} has paid for their trip") //Joey
+  public void the_member_with_has_paid_for_their_trip(String email) {
+	  List<Member> memberList = climbSafe.getMembers();
+	  int memberIndex = -1;
+	  for(int i=0; i<memberList.size(); i++) {
+		  if(memberList.get(i).getEmail().equals(email)) {
+			  memberIndex = i;
+			  break;
+		  }
+	  }
+	  boolean paid = climbSafe.getMember(memberIndex).getAssignment().getFullyPaid();
+	  assertEquals(true, paid);
   }
 
   @Then("the member with email address {string} shall receive a refund of {string} percent")
@@ -287,15 +304,29 @@ public class AssignmentFeatureStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
-  @Given("the member with {string} has cancelled their trip")
-  public void the_member_with_has_cancelled_their_trip(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  @Given("the member with {string} has cancelled their trip") //Joey
+  public void the_member_with_has_cancelled_their_trip(String email) {
+	  List<Member> memberList = climbSafe.getMembers();
+	  int memberIndex = -1;
+	  for(int i=0; i<memberList.size(); i++) {
+		  if(memberList.get(i).getEmail().equals(email)) {
+			  memberIndex = i;
+			  break;
+		  }
+	  }
+	  climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Cancelled);
   }
 
-  @Given("the member with {string} has finished their trip")
-  public void the_member_with_has_finished_their_trip(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+  @Given("the member with {string} has finished their trip") //Joey
+  public void the_member_with_has_finished_their_trip(String email) {
+	  List<Member> memberList = climbSafe.getMembers();
+	  int memberIndex = -1;
+	  for(int i=0; i<memberList.size(); i++) {
+		  if(memberList.get(i).getEmail().equals(email)) {
+			  memberIndex = i;
+			  break;
+		  }
+	  }
+	  climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Ended);
   }
 }

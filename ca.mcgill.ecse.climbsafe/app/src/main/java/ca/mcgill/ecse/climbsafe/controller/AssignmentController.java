@@ -9,10 +9,8 @@ public class AssignmentController {
 	static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	static String error = "";
 	
-	public static void initiateAssignment (int startWeek, int endWeek, int nrWeeks, int totalCostForGuide, int totalCostForEquipment, boolean guideRequired) 
-			throws InvalidInputException {
-//		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-		
+	public static void initiateAssignment() {
+		//doesn't need any arguments
 	}
 	//start trips
 	public static void startTrips(int week) throws InvalidInputException{

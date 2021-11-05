@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.controller.AssignmentController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
@@ -133,14 +134,9 @@ public class AssignmentFeatureStepDefinitions {
 
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
-//	try {
-//		
-//	}catch () {
-//		
-//	}
-	throw new io.cucumber.java.PendingException();
-	
+		AssignmentController.initiateAssignment();	
   }
+  
 /**
  * 
  * @param dataTable
@@ -180,7 +176,7 @@ public class AssignmentFeatureStepDefinitions {
 
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String string) {
-	    assertEquals(true, error.contains(string)); //worked in other feature sets, ask prof/ta about this
+	    assertEquals(true, error.contains(string)); 
 
   }
 
@@ -208,18 +204,22 @@ public class AssignmentFeatureStepDefinitions {
 	   }
   }
 
-  @When("the administrator attempts to confirm payment for {string} using authorization code {string}")
+  @When("the administrator attempts to confirm payment for {string} using authorization code {string}") //Kara
   public void the_administrator_attempts_to_confirm_payment_for_using_authorization_code(
       String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	  try {
+		AssignmentController.payForTrip(string, string2);
+	} catch (InvalidInputException e) {
+		error += e.getMessage();
+	}
+
+	  
   }
 
   @Then("the assignment for {string} shall record the authorization code {string}")
   public void the_assignment_for_shall_record_the_authorization_code(String string,
       String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    
   }
 
   @Then("the member account with the email {string} does not exist") //Joey
@@ -248,8 +248,11 @@ public class AssignmentFeatureStepDefinitions {
 
   @When("the administrator attempts to cancel the trip for {string}")
   public void the_administrator_attempts_to_cancel_the_trip_for(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	  try {
+		AssignmentController.cancelTrip(string);
+	} catch (InvalidInputException e) {
+		error+= e.getMessage();
+	}
   }
 
   @Given("the member with {string} has paid for their trip") //Joey
@@ -273,23 +276,34 @@ public class AssignmentFeatureStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
-  @Given("the member with {string} has started their trip")
+  @Given("the member with {string} has started their trip") //Kara
   public void the_member_with_has_started_their_trip(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    List<Assignment> assignments = climbSafe.getAssignments();
+    for(Assignment a: assignments) {
+    	if(a.getMember().getEmail().equals(string)) {
+    		a.setTripStatus(TripStatus.Started);
+    	}
+    }
   }
 
-  @When("the administrator attempts to finish the trip for the member with email {string}")
+  @When("the administrator attempts to finish the trip for the member with email {string}") //Kara
   public void the_administrator_attempts_to_finish_the_trip_for_the_member_with_email(
       String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    try {
+    	AssignmentController.finishTrip(string);
+    }catch(InvalidInputException e) {
+    	error+= e.getMessage();
+    }
   }
 
-  @Given("the member with {string} is banned")
+  @Given("the member with {string} is banned") //Kara
   public void the_member_with_is_banned(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	  List<Assignment> assignments = climbSafe.getAssignments();
+	    for(Assignment a: assignments) {
+	    	if(a.getMember().getEmail().equals(string)) {
+	    		a.setBanned(true);
+	    	}
+	    }
   }
 
   @Then("the member with email {string} shall be {string}")
@@ -298,10 +312,13 @@ public class AssignmentFeatureStepDefinitions {
     throw new io.cucumber.java.PendingException();
   }
 
-  @When("the administrator attempts to start the trips for week {string}")
+  @When("the administrator attempts to start the trips for week {string}") //Kara
   public void the_administrator_attempts_to_start_the_trips_for_week(String string) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+    try {
+    	AssignmentController.startTrips(Integer.parseInt(string));
+    }catch(InvalidInputException e){
+    	error += e.getMessage();
+    }
   }
 
   @Given("the member with {string} has cancelled their trip") //Joey

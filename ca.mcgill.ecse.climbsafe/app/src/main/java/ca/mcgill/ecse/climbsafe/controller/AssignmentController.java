@@ -56,7 +56,10 @@ public class AssignmentController {
 		List<Assignment> assignments = climbSafe.getAssignments();
 		String error ="";
 		try {
-			int tracker =0;
+			if(validMember(climbSafe.getMembers(), email)==-1) {
+				error = "Member with email address "+ email +" does not exist";
+				throw new InvalidInputException(error.trim());
+			}
 			for(Assignment a: assignments) {
 				if(a.getMember().getEmail().equals(email)){
 					if(a.getBanned()) {
@@ -71,21 +74,11 @@ public class AssignmentController {
 						error = "Cannot finish a trip which has not started";
 						throw new InvalidInputException(error.trim());
 					}
-				}else {
-					tracker++;
 				}
-				
-			}
-			if(tracker==assignments.size()) {
-				error = "Member with email address "+ email +" does not exist";
-				throw new InvalidInputException(error.trim());
-			}
-			
-			
+			}			
 		}catch(RuntimeException e) {
 			throw new InvalidInputException(e.getMessage());
 		}
-		
 	}
 	
 	//pay for a trip

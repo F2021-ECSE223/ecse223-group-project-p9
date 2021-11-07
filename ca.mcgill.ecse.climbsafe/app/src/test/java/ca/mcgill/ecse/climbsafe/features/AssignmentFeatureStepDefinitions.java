@@ -3,6 +3,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Date;
@@ -164,8 +165,8 @@ public class AssignmentFeatureStepDefinitions {
 
   @Then("the assignment for {string} shall be marked as {string}")
   public void the_assignment_for_shall_be_marked_as(String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	Member member = (Member) Member.getWithEmail(string);
+    
   }
 
   @Then("the number of assignments in the system shall be {string}") //Kara
@@ -177,7 +178,6 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the system shall raise the error {string}")
   public void the_system_shall_raise_the_error(String string) {
 	    assertEquals(true, error.contains(string)); 
-
   }
 
 
@@ -186,7 +186,7 @@ public class AssignmentFeatureStepDefinitions {
    * @param dataTable
    * @author Enzo Benoit-Jeannin
    */
-  @Given("the following assignments exist in the system:") //grab from other group's step def
+  @Given("the following assignments exist in the system:") 
   public void the_following_assignments_exist_in_the_system(
       io.cucumber.datatable.DataTable dataTable) {
 	  
@@ -219,7 +219,8 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the assignment for {string} shall record the authorization code {string}")
   public void the_assignment_for_shall_record_the_authorization_code(String string,
       String string2) {
-    
+//	  Member member = (Member) Member.getWithEmail(string);	  
+//	  assertTrue((member.getAssignment().getPaymentCode()).equals(string2));
   }
 
   @Then("the member account with the email {string} does not exist") //Joey
@@ -242,7 +243,7 @@ public class AssignmentFeatureStepDefinitions {
 
   @Then("the error {string} shall be raised")
   public void the_error_shall_be_raised(String string) {
-	    assertEquals(true, error.contains(string));
+	assertEquals(true, error.contains(string));
 
   }
 
@@ -305,11 +306,20 @@ public class AssignmentFeatureStepDefinitions {
 	    	}
 	    }
   }
-
+  /**
+   * 
+   * @param string
+   * @param string2
+   * @author Enzo Benoit-Jeannin
+   */
   @Then("the member with email {string} shall be {string}")
   public void the_member_with_email_shall_be(String string, String string2) {
-    // Write code here that turns the phrase above into concrete actions
-    throw new io.cucumber.java.PendingException();
+	  Member member = (Member) Member.getWithEmail(string);	
+	  String banned = "";
+	  if (member.getAssignment().getBanned()) {
+		  banned = "Banned";
+	  }
+	  assertEquals(banned,string2);
   }
 
   @When("the administrator attempts to start the trips for week {string}") //Kara

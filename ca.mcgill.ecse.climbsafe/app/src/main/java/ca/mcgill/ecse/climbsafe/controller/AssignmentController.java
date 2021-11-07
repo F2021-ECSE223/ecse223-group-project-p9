@@ -73,7 +73,8 @@ public class AssignmentController {
 	 */
 	public static void cancelTrip(String email) throws InvalidInputException {	
 		List<Assignment> myAssignments = climbSafe.getAssignments(); 
-		if (!validEmail(email)) { 
+		List<Member> members = climbSafe.getMembers();
+		if (validMember(members,email)==-1) { 
 			error="Member with email address "+ email +" does not exist";
 		}
 		for (Assignment a : myAssignments) {

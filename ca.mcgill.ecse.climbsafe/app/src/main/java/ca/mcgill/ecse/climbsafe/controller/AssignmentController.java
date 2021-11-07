@@ -40,7 +40,7 @@ public class AssignmentController {
 			if (a.getMember().getEmail().equals(email)) {
 				if (a.getBanned()) {
 					error = "Cannot start the trip due to a ban";
-				}else if (a.getTripStatus().equals(TripStatus.Ended)) {
+				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
 					error="Cannot start a trip which has been cancelled";
 				}else if (a.getTripStatus().equals(TripStatus.Cancelled)) {
 					error="Cannot start a trip which has finished";
@@ -81,7 +81,7 @@ public class AssignmentController {
 			if (a.getMember().getEmail().equals(email)) {
 				if (a.getBanned()) {
 					error = "Cannot cancel the trip due to a ban";
-				}else if (a.getTripStatus().equals(TripStatus.Ended)) {
+				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
 					error="Cannot cancel a trip which has finished";
 				}
 			}
@@ -127,14 +127,14 @@ public class AssignmentController {
 						error = "Cannot finish the trip due to a ban";
 						throw new InvalidInputException(error.trim());
 					}else if(a.getTripStatus().equals(TripStatus.Started)) {
-						a.setTripStatus(TripStatus.Ended);
+						a.setTripStatus(TripStatus.Finished);
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
 						error = "Cannot finish a trip which has been cancelled";
 						throw new InvalidInputException(error.trim());
-					}else if(a.getTripStatus().equals(TripStatus.Standby)) {
+					}else if(a.getTripStatus().equals(TripStatus.Assigned)) {
 						error = "Cannot finish a trip which has not started";
 						throw new InvalidInputException(error.trim());
-					}else if(a.getTripStatus().equals(TripStatus.Ended)) {
+					}else if(a.getTripStatus().equals(TripStatus.Finished)) {
 						error = "Cannot finish a trip which has already been finished";
 						throw new InvalidInputException(error.trim());
 					}

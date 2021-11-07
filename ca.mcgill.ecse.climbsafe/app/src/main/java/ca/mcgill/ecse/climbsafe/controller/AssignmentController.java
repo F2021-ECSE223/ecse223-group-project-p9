@@ -134,6 +134,9 @@ public class AssignmentController {
 					}else if(a.getTripStatus().equals(TripStatus.Standby)) {
 						error = "Cannot finish a trip which has not started";
 						throw new InvalidInputException(error.trim());
+					}else if(a.getTripStatus().equals(TripStatus.Ended)) {
+						error = "Cannot finish a trip which has already been finished";
+						throw new InvalidInputException(error.trim());
 					}
 				}
 			}			

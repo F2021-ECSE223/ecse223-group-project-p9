@@ -215,12 +215,17 @@ public class AssignmentFeatureStepDefinitions {
 
 	  
   }
-
+  /**
+   * 
+   * @param string
+   * @param string2
+   * @author Enzo Benoit-Jeannin
+   */
   @Then("the assignment for {string} shall record the authorization code {string}")
   public void the_assignment_for_shall_record_the_authorization_code(String string,
       String string2) {
-//	  Member member = (Member) Member.getWithEmail(string);	  
-//	  assertTrue((member.getAssignment().getPaymentCode()).equals(string2));
+	  Member member = (Member) Member.getWithEmail(string);	  
+	  assertEquals(member.getAssignment().getPaymentCode(),string2);
   }
 
   @Then("the member account with the email {string} does not exist") //Joey

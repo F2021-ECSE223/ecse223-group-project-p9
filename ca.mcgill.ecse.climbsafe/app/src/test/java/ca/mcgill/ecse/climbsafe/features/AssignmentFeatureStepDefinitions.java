@@ -360,6 +360,6 @@ public class AssignmentFeatureStepDefinitions {
 			  break;
 		  }
 	  }
-	  climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Ended);
+	  climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Finished);
   }
 }

@@ -12,10 +12,45 @@ public class AssignmentController {
 	public static void initiateAssignment() {
 		//doesn't need any arguments
 	}
-	//start trips
-	public static void startTrips(int week) throws InvalidInputException{
+	/**
+	 * 
+	 * @param email
+	 * @param week
+	 * @throws InvalidInputException
+	 * @author Enzo Benoit-Jeannin
+	 */
+	public static void startTrips(String email, int week) throws InvalidInputException{
+		List<Assignment> myAssignments = climbSafe.getAssignments(); 
 		
-	}
+		for (Assignment a : myAssignments) {
+			if (a.getMember().getEmail().equals(email)) {
+				if (a.getBanned()) {
+					error = "Cannot start the trip due to a ban";
+				}else if (a.getTripStatus().equals(TripStatus.Ended)) {
+					error="Cannot start a trip which has been cancelled";
+				}else if (a.getTripStatus().equals(TripStatus.Cancelled)) {
+					error="Cannot start a trip which has finished";
+				}
+			}
+		}
+		
+		if(error.length() != 0) {
+			  throw new InvalidInputException(error.trim());
+		  }
+		
+		try {
+			for (Assignment a : myAssignments) {
+				if (a.getMember().getEmail().equals(email)) {
+					if (a.getFullyPaid()) {
+						a.setTripStatus(TripStatus.Started);
+					}
+				}
+			}
+		 }catch(RuntimeException e){
+			  throw new InvalidInputException(e.getMessage());
+		  }
+		}
+	
 	/**
 	 * 
 	 * @param email
@@ -28,11 +63,12 @@ public class AssignmentController {
 			error="Member with email address "+ email +" does not exist";
 		}
 		for (Assignment a : myAssignments) {
-			if (a.getBanned()) {
-				error = "Cannot cancel the trip due to a ban";
-			}
-			if (a.getTripStatus().equals(TripStatus.Ended)) {
-				error="Cannot cancel a trip which has finished";
+			if (a.getMember().getEmail().equals(email)) {
+				if (a.getBanned()) {
+					error = "Cannot cancel the trip due to a ban";
+				}else if (a.getTripStatus().equals(TripStatus.Ended)) {
+					error="Cannot cancel a trip which has finished";
+				}
 			}
 		}
 		

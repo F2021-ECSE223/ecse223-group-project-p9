@@ -4,7 +4,7 @@ class Assignment {
 	enum TripStatus {Started, Ended, Cancelled, Standby};
 	lazy TripStatus tripStatus;
 	lazy int totalPayment;
-	lazy string paymentCode;
+	lazy String paymentCode;
 	lazy boolean banned;
 	lazy boolean fullyPaid;
 }

@@ -23,7 +23,7 @@ public class Assignment
   private int endWeek;
   private TripStatus tripStatus;
   private int totalPayment;
-  private int paymentCode;
+  private string paymentCode;
   private boolean banned;
   private boolean fullyPaid;
 
@@ -89,7 +89,7 @@ public class Assignment
     return wasSet;
   }
 
-  public boolean setPaymentCode(int aPaymentCode)
+  public boolean setPaymentCode(string aPaymentCode)
   {
     boolean wasSet = false;
     paymentCode = aPaymentCode;
@@ -133,7 +133,7 @@ public class Assignment
     return totalPayment;
   }
 
-  public int getPaymentCode()
+  public string getPaymentCode()
   {
     return paymentCode;
   }
@@ -296,10 +296,10 @@ public class Assignment
             "startWeek" + ":" + getStartWeek()+ "," +
             "endWeek" + ":" + getEndWeek()+ "," +
             "totalPayment" + ":" + getTotalPayment()+ "," +
-            "paymentCode" + ":" + getPaymentCode()+ "," +
             "banned" + ":" + getBanned()+ "," +
             "fullyPaid" + ":" + getFullyPaid()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "tripStatus" + "=" + (getTripStatus() != null ? !getTripStatus().equals(this)  ? getTripStatus().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "paymentCode" + "=" + (getPaymentCode() != null ? !getPaymentCode().equals(this)  ? getPaymentCode().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "member = "+(getMember()!=null?Integer.toHexString(System.identityHashCode(getMember())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "guide = "+(getGuide()!=null?Integer.toHexString(System.identityHashCode(getGuide())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "hotel = "+(getHotel()!=null?Integer.toHexString(System.identityHashCode(getHotel())):"null") + System.getProperties().getProperty("line.separator") +

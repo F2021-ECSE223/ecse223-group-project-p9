@@ -22,9 +22,18 @@ public class AssignmentController {
 	 * @throws InvalidInputException
 	 * @author Enzo Benoit-Jeannin
 	 */
-	public static void cancelTrip(String email) throws InvalidInputException {		
+	public static void cancelTrip(String email) throws InvalidInputException {	
+		List<Assignment> myAssignments = climbSafe.getAssignments(); 
 		if (!validEmail(email)) { 
 			error="Member with email address "+ email +" does not exist";
+		}
+		for (Assignment a : myAssignments) {
+			if (a.getBanned()) {
+				error = "Cannot cancel the trip due to a ban";
+			}
+			if (a.getTripStatus().equals(TripStatus.Ended)) {
+				error="Cannot cancel a trip which has finished";
+			}
 		}
 		
 		if(error.length() != 0) {
@@ -32,11 +41,14 @@ public class AssignmentController {
 		  }
 		
 		try {
-			List<Assignment> myAssignments = climbSafe.getAssignments(); //make sure to check if banned
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
-					a.setTripStatus(TripStatus.Cancelled); //needs refund
-					
+					a.setTripStatus(TripStatus.Cancelled);
+					if (a.getTripStatus().equals(TripStatus.Started)) {
+						a.setTotalPayment(a.getTotalPayment()-a.getTotalPayment()*(10/100));
+					}else if (a.getFullyPaid()) {
+						a.setTotalPayment(a.getTotalPayment()-a.getTotalPayment()*(50/100));
+					}
 				}
 			}
 		 }catch(RuntimeException e){

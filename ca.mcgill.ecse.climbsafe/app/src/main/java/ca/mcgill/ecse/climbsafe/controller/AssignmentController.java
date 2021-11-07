@@ -9,7 +9,21 @@ public class AssignmentController {
 	static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	static String error = "";
 	
-	public static void initiateAssignment() {
+	public static void initiateAssignment(int startWeek, int endWeek, int nrWeeks) {
+		List<Assignment> myAssignment = climbSafe.getAssignments();
+		List<Member> memberList = climbSafe.getMembers();
+		List<Guide> guideList = climbSafe.getGuides();
+		
+		for (int i=0; i<memberList.size(); i++) {
+			boolean guideRequired = false;
+				if (guideRequired) {
+					if(!memberList.equals(guideList)) {
+					}
+					
+					}
+						
+				}
+			} else {Assignment.add(new Assignment())
 		//doesn't need any arguments
 	}
 	/**

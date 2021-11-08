@@ -58,7 +58,7 @@ public class AssignmentController {
 					}
 				}
 				else {
-					Assignment assignment = new Assignment(1, member.getNrWeeks(), member, climbSafe);
+					new Assignment(1, member.getNrWeeks(), member, climbSafe);
 				}
 			}
 		}
@@ -200,8 +200,14 @@ public class AssignmentController {
 			throw new InvalidInputException(e.getMessage());
 		}
 	}
-
-	//pay for a trip
+	
+	/**
+	 * member paying for a trip
+	 * 
+	 * @author Joey Koay
+	 * @param email
+	 * @param code - payment code
+	 */
 	public static void payForTrip(String email, String code) throws InvalidInputException {
 		List<Member> memberList = climbSafe.getMembers();
 		List<Assignment> allAssignments = climbSafe.getAssignments();

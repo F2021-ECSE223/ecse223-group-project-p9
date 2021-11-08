@@ -1,7 +1,7 @@
 use ClimbSafe.ump;
 
 class Assignment {
-	enum TripStatus {Started, Finished, Cancelled, Assigned};
+	enum TripStatus {Started, Finished, Cancelled, Assigned, Paid};
 	lazy TripStatus tripStatus;
 	lazy int totalPayment;
 	lazy String paymentCode;

@@ -12,7 +12,7 @@ public class Assignment
   // ENUMERATIONS
   //------------------------
 
-  public enum TripStatus { Started, Finished, Cancelled, Assigned }
+  public enum TripStatus { Started, Finished, Cancelled, Assigned, Paid }
 
   //------------------------
   // MEMBER VARIABLES

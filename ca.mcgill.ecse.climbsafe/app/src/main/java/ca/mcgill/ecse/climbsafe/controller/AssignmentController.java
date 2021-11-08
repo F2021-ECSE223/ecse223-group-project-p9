@@ -39,7 +39,6 @@ public class AssignmentController {
 						}
 						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 						assignment.setGuide(guide);
-			
 						assignment.setTripStatus(TripStatus.Assigned);
 						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
@@ -48,6 +47,7 @@ public class AssignmentController {
 							}
 							g++;
 							guide = guides.get(g);
+							//can keep track of which weeks are avalible for a guide in array or something
 						}
 
 					}else {

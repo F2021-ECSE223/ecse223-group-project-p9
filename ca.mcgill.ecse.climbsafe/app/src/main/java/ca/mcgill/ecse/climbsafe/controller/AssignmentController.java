@@ -3,29 +3,47 @@ import ca.mcgill.ecse.climbsafe.model.*;
 import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
 import java.sql.Date;
 import java.util.List;
+
+import org.checkerframework.checker.units.qual.m;
+
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 
 public class AssignmentController { 
 	static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	static String error = "";
 	
-	public static void initiateAssignment(int startWeek, int endWeek, int nrWeeks) {
-		List<Assignment> myAssignment = climbSafe.getAssignments();
+	public static void initiateAssignment() throws InvalidInputException{
+		List<Assignment> myAssignments = climbSafe.getAssignments();
 		List<Member> memberList = climbSafe.getMembers();
 		List<Guide> guideList = climbSafe.getGuides();
 		
-		for (int i=0; i<memberList.size(); i++) {
-			boolean guideRequired = false;
-				if (guideRequired) {
-					if(!memberList.equals(guideList)) {
-					}
-					
-					}
-						
+		try {
+			for (Member m : memberList) {
+				if (m.equals(guideList)) {
+					m.getAssignment().setStartWeek(0);
 				}
-			} else {Assignment.add(new Assignment())
-		//doesn't need any arguments
+				if (!(m.equals(guideList))) {
+					error = "Assignments could not be completed for all members";
+				}
+			}
+			for (Guide g : guideList) {
+				if ( g.equals(memberList)) {
+					g.getAssignments().set(0, null);
+				}
+				if (!(g.equals(memberList))) {
+					error = "";
+				}
+			}
+		} catch(RuntimeException e){
+			throw new InvalidInputException(e.getMessage()); 
+		}
 	}
+		
+	
+					
+
+			
+		//doesn't need any arguments
 	/**
 	 * 
 	 * @param email

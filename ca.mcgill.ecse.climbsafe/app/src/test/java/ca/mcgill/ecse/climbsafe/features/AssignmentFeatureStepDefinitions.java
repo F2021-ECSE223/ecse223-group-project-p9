@@ -289,7 +289,7 @@ public class AssignmentFeatureStepDefinitions {
 	  List<Assignment> assignments = climbSafe.getAssignments();
 	    for(Assignment a: assignments) {
 	    	if(a.getMember().getEmail().equals(string)) {
-	    		assertEquals(string2, a.getRefund());
+	    		assertEquals(Integer.parseInt(string2), a.getRefund());
 	    	}
 	    }
   }

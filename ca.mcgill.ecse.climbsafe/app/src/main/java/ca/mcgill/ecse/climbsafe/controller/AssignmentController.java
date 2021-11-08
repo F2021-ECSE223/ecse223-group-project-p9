@@ -63,7 +63,6 @@ public class AssignmentController {
 				}
 			}
 		}
-	}
 	catch(RuntimeException e){
 		throw new InvalidInputException(e.getMessage());
 	}

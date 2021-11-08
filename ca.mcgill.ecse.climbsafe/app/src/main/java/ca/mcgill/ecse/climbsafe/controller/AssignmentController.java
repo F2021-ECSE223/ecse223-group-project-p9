@@ -81,7 +81,6 @@ public class AssignmentController {
 
 
 
-	//doesn't need any arguments
 	/**
 	 * 
 	 * @param email
@@ -111,8 +110,10 @@ public class AssignmentController {
 		try {
 			for (Assignment a : myAssignments) {
 				if (a.getStartWeek() == week) {
-					if (a.getFullyPaid()) {
+					if (a.getTripStatus() == TripStatus.Paid) {
 						a.setTripStatus(TripStatus.Started);
+					}else {
+						a.setTripStatus(TripStatus.Banned);
 					}
 				}
 			}

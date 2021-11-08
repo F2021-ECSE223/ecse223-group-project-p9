@@ -225,6 +225,7 @@ public class AssignmentController {
 			for(int i=0; i<allAssignments.size(); i++) {
 				if(allAssignments.get(i).getMember().getEmail() == email) {
 					Assignment myAssignment = allAssignments.get(i);
+					myAssignment.setTripStatus(TripStatus.Paid);
 					myAssignment.setFullyPaid(true);
 					break;
 				}

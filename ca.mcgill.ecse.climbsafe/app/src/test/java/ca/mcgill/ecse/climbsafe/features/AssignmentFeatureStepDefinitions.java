@@ -1,10 +1,5 @@
 package ca.mcgill.ecse.climbsafe.features;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -13,12 +8,10 @@ import java.util.List;
 import java.util.Map;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.AssignmentController;
-import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
 import ca.mcgill.ecse.climbsafe.model.BookableItem;
-import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.BundleItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
@@ -30,13 +23,6 @@ import ca.mcgill.ecse.climbsafe.model.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
-import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
-
-import ca.mcgill.ecse.climbsafe.model.*;
 
 public class AssignmentFeatureStepDefinitions {
 	  private ClimbSafe climbSafe;
@@ -135,7 +121,11 @@ public class AssignmentFeatureStepDefinitions {
 
   @When("the administrator attempts to initiate the assignment process")
   public void the_administrator_attempts_to_initiate_the_assignment_process() {
-		AssignmentController.initiateAssignment();	
+		try {
+			AssignmentController.initiateAssignment();
+	    } catch (InvalidInputException e) {
+	    	error += e.getMessage();
+	    }
   }
   
 /**
@@ -279,7 +269,6 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the member with email address {string} shall receive a refund of {string} percent")
   public void the_member_with_email_address_shall_receive_a_refund_of_percent(String string,
       String string2) {
-    // Write code here that turns the phrase above into concrete actions
     throw new io.cucumber.java.PendingException();
   }
 

@@ -256,14 +256,18 @@ public class AssignmentFeatureStepDefinitions {
   public void the_member_with_has_paid_for_their_trip(String email) {
 	  List<Member> memberList = climbSafe.getMembers();
 	  int memberIndex = -1;
+	  boolean paidAlready = false;
 	  for(int i=0; i<memberList.size(); i++) {
 		  if(memberList.get(i).getEmail().equals(email)) {
 			  memberIndex = i;
 			  break;
 		  }
 	  }
-	  boolean paid = climbSafe.getMember(memberIndex).getAssignment().getFullyPaid();
-	  assertEquals(true, paid);
+	  TripStatus tripStatus = climbSafe.getMember(memberIndex).getAssignment().getTripStatus();
+	  if(tripStatus == TripStatus.Finished ||tripStatus == TripStatus.Started || tripStatus == TripStatus.Paid  ) {
+		  paidAlready = true;
+	  }
+	  assertEquals(paidAlready, tripStatus);
   }
 
   @Then("the member with email address {string} shall receive a refund of {string} percent")
@@ -297,7 +301,7 @@ public class AssignmentFeatureStepDefinitions {
 	  List<Assignment> assignments = climbSafe.getAssignments();
 	    for(Assignment a: assignments) {
 	    	if(a.getMember().getEmail().equals(string)) {
-	    		a.setBanned(true);
+	    		a.setTripStatus(TripStatus.Banned);
 	    	}
 	    }
   }
@@ -311,7 +315,7 @@ public class AssignmentFeatureStepDefinitions {
   public void the_member_with_email_shall_be(String string, String string2) {
 	  Member member = (Member) Member.getWithEmail(string);	
 	  String banned = "";
-	  if (member.getAssignment().getBanned()) {
+	  if (member.getAssignment().getTripStatus() == TripStatus.Banned) {
 		  banned = "Banned";
 	  }
 	  assertEquals(banned,string2);

@@ -12,7 +12,7 @@ public class Assignment
   // ENUMERATIONS
   //------------------------
 
-  public enum TripStatus { Started, Finished, Cancelled, Assigned, Paid }
+  public enum TripStatus { Started, Finished, Cancelled, Assigned, Paid, Banned }
 
   //------------------------
   // MEMBER VARIABLES
@@ -24,8 +24,6 @@ public class Assignment
   private TripStatus tripStatus;
   private int totalPayment;
   private String paymentCode;
-  private boolean banned;
-  private boolean fullyPaid;
 
   //Assignment Associations
   private Member member;
@@ -98,22 +96,6 @@ public class Assignment
     return wasSet;
   }
 
-  public boolean setBanned(boolean aBanned)
-  {
-    boolean wasSet = false;
-    banned = aBanned;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setFullyPaid(boolean aFullyPaid)
-  {
-    boolean wasSet = false;
-    fullyPaid = aFullyPaid;
-    wasSet = true;
-    return wasSet;
-  }
-
   public int getStartWeek()
   {
     return startWeek;
@@ -137,16 +119,6 @@ public class Assignment
   public String getPaymentCode()
   {
     return paymentCode;
-  }
-
-  public boolean getBanned()
-  {
-    return banned;
-  }
-
-  public boolean getFullyPaid()
-  {
-    return fullyPaid;
   }
   /* Code from template association_GetOne */
   public Member getMember()
@@ -297,9 +269,7 @@ public class Assignment
             "startWeek" + ":" + getStartWeek()+ "," +
             "endWeek" + ":" + getEndWeek()+ "," +
             "totalPayment" + ":" + getTotalPayment()+ "," +
-            "paymentCode" + ":" + getPaymentCode()+ "," +
-            "banned" + ":" + getBanned()+ "," +
-            "fullyPaid" + ":" + getFullyPaid()+ "]" + System.getProperties().getProperty("line.separator") +
+            "paymentCode" + ":" + getPaymentCode()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "tripStatus" + "=" + (getTripStatus() != null ? !getTripStatus().equals(this)  ? getTripStatus().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "member = "+(getMember()!=null?Integer.toHexString(System.identityHashCode(getMember())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "guide = "+(getGuide()!=null?Integer.toHexString(System.identityHashCode(getGuide())):"null") + System.getProperties().getProperty("line.separator") +

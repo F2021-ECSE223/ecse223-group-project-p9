@@ -151,7 +151,6 @@ public class AssignmentController {
 		try {
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
-					a.setTripStatus(TripStatus.Cancelled);
 					if (a.getTripStatus().equals(TripStatus.Started)) {
 						a.setRefund(10);
 						a.setTripStatus(TripStatus.Cancelled);

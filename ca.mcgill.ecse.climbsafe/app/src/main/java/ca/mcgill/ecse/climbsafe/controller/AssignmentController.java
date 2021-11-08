@@ -89,11 +89,11 @@ public class AssignmentController {
 	 * @throws InvalidInputException
 	 * @author Enzo Benoit-Jeannin
 	 */
-	public static void startTrips(String email, int week) throws InvalidInputException{
+	public static void startTrips(int week) throws InvalidInputException{
 		List<Assignment> myAssignments = climbSafe.getAssignments(); 
 
 		for (Assignment a : myAssignments) {
-			if (a.getMember().getEmail().equals(email)) {
+			if (a.getStartWeek() == week) {
 				if (a.getBanned()) {
 					error = "Cannot start the trip due to a ban";
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
@@ -110,7 +110,7 @@ public class AssignmentController {
 
 		try {
 			for (Assignment a : myAssignments) {
-				if (a.getMember().getEmail().equals(email)) {
+				if (a.getStartWeek() == week) {
 					if (a.getFullyPaid()) {
 						a.setTripStatus(TripStatus.Started);
 					}

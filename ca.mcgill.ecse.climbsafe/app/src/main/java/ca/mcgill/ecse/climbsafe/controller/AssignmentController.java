@@ -224,9 +224,10 @@ public class AssignmentController {
 		}
 		try {
 			for(int i=0; i<allAssignments.size(); i++) {
-				if(allAssignments.get(i).getMember().getEmail() == email) {
+				if(allAssignments.get(i).getMember().getEmail().equals(email)) {
 					Assignment myAssignment = allAssignments.get(i);
 					myAssignment.setTripStatus(TripStatus.Paid);
+					myAssignment.setPaymentCode(code);
 					break;
 				}
 			}

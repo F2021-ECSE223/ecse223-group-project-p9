@@ -156,7 +156,24 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the assignment for {string} shall be marked as {string}") 
   public void the_assignment_for_shall_be_marked_as(String string, String string2) {
 	Member member = (Member) Member.getWithEmail(string);
-	assertEquals(string2, member.getAssignment().getTripStatus());
+	TripStatus argTripStatus = null;
+	System.out.println("System wants: " + string2);
+	if(string2.equals("Started")) {
+		argTripStatus = TripStatus.Started;
+	}else if(string2.equals("Finished")) {
+		argTripStatus = TripStatus.Finished;
+	}else if(string2.equals("Cancelled")) {
+		argTripStatus = TripStatus.Cancelled;
+	}else if(string2.equals("Assigned")) {
+		argTripStatus = TripStatus.Assigned;
+	}else if(string2.equals("Paid")) {
+		argTripStatus = TripStatus.Paid;
+	}else if(string2.equals("Banned")) {
+		argTripStatus = TripStatus.Banned;
+	}
+	
+	System.out.println("ended up with system wants: " + argTripStatus);
+	assertEquals(argTripStatus, member.getAssignment().getTripStatus());
     
   }
 

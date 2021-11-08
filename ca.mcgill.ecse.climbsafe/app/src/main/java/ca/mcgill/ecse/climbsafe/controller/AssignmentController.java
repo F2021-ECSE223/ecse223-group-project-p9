@@ -12,6 +12,10 @@ public class AssignmentController {
 	static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	static String error = "";
 
+	/**
+	 * @throws InvalidInputException
+	 * @author Victor Micha
+	 */
 	public static void initiateAssignment() throws InvalidInputException{
 		try {
 			List<Member> members = climbSafe.getMembers();

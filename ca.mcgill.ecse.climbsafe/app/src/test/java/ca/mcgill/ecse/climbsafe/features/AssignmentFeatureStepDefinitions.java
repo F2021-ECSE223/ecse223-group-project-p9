@@ -163,9 +163,10 @@ public class AssignmentFeatureStepDefinitions {
 	    }
   }
 
-  @Then("the assignment for {string} shall be marked as {string}")
+  @Then("the assignment for {string} shall be marked as {string}") 
   public void the_assignment_for_shall_be_marked_as(String string, String string2) {
 	Member member = (Member) Member.getWithEmail(string);
+	assertEquals(member.getAssignment().getTripStatus(), string2);
     
   }
 
@@ -359,6 +360,6 @@ public class AssignmentFeatureStepDefinitions {
 			  break;
 		  }
 	  }
-	  climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Ended);
+	  climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Finished);
   }
 }

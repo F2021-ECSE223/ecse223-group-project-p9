@@ -21,10 +21,11 @@ public class AssignmentController {
 		List<Guide> guides = climbSafe.getGuides();
 		int g = 0;
 		Guide guide = guides.get(g);
+		Member member;
 		List<Assignment> guideAssignments = guide.getAssignments();
 		try {
 			for (int m=0; m<members.size(); m++) {
-				Member member = members.get(m);
+				 member = members.get(m);
 				if (member.getGuideRequired()){
 					if (guideAvailableForNumWeeks(guideAssignments, member.getNrWeeks(), guide)) {
 						int startWeek;

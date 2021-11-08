@@ -147,9 +147,11 @@ public class AssignmentFeatureStepDefinitions {
 	      var member = (Member) Member.getWithEmail(memberEmail);
 	      var assignment = member.getAssignment();
 	      
-	      assertEquals(true, assignment.getGuide().getEmail().equals(guideEmail) 
-	    		  && assignment.getMember().getEmail().equals(memberEmail) 
+	      assertEquals(true, assignment.getMember().getEmail().equals(memberEmail) 
 	    		  && assignment.getStartWeek() == startWeek && assignment.getEndWeek() == endWeek);
+	      if(!(guideEmail==null)) {
+	    	  assertEquals(true, assignment.getGuide().getEmail().equals(guideEmail));
+	      }
 	    }
   }
 

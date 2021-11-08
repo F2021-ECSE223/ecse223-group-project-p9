@@ -22,23 +22,24 @@ public class AssignmentController {
 		int g = 0;
 		Guide guide = guides.get(g);
 		Member member;
-		List<Assignment> guideAssignments = guide.getAssignments();
+		
 		try {
 			for (int m=0; m<members.size(); m++) {
 				 member = members.get(m);
 				if (member.getGuideRequired()){
-					if (guideAvailableForNumWeeks(guideAssignments, member.getNrWeeks(), guide)) {
+					if (guideAvailableForNumWeeks(guide.getAssignments(), member.getNrWeeks(), guide)) {
 						int startWeek;
 						int endWeek;
-						if (guideAssignments.size()==0) {
+						if (guide.getAssignments().size()==0) {
 							startWeek = 1;
 							endWeek = member.getNrWeeks();
 						} else {
-							startWeek = guideAssignments.get(guideAssignments.size()-1).getEndWeek()+1;
+							startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
 							endWeek = startWeek+ member.getNrWeeks()-1;
 						}
 						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 						assignment.setGuide(guide);
+			
 						assignment.setTripStatus(TripStatus.Assigned);
 						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
@@ -47,7 +48,6 @@ public class AssignmentController {
 							}
 							g++;
 							guide = guides.get(g);
-							guideAssignments = guide.getAssignments();
 						}
 
 					}else {
@@ -57,7 +57,6 @@ public class AssignmentController {
 						}
 						g++;
 						guide = guides.get(g);
-						guideAssignments = guide.getAssignments();
 					}
 				}
 				else {

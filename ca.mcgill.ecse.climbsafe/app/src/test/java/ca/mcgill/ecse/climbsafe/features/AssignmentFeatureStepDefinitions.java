@@ -192,6 +192,7 @@ public class AssignmentFeatureStepDefinitions {
 	     Assignment assignment = climbSafe.addAssignment(startWeek, endWeek, assignmentMember);
 	     assignment.setGuide(assignmentGuide);
 	     assignment.setHotel(assignmentHotel);
+	     assignment.setTripStatus(TripStatus.Assigned);
 	   }
   }
 

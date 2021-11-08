@@ -17,12 +17,12 @@ public class AssignmentController {
 	 * @author Victor Micha
 	 */
 	public static void initiateAssignment() throws InvalidInputException{
+		List<Member> members = climbSafe.getMembers();
+		List<Guide> guides = climbSafe.getGuides();
+		int g = 0;
+		Guide guide = guides.get(g);
+		List<Assignment> guideAssignments = guide.getAssignments();
 		try {
-			List<Member> members = climbSafe.getMembers();
-			List<Guide> guides = climbSafe.getGuides();
-			int g = 0;
-			Guide guide = guides.get(g);
-			List<Assignment> guideAssignments = guide.getAssignments();
 			for (int m=0; m<members.size(); m++) {
 				Member member = members.get(m);
 				if (member.getGuideRequired()){
@@ -38,22 +38,24 @@ public class AssignmentController {
 						}
 						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 						assignment.setGuide(guide);
+						assignment.setTripStatus(TripStatus.Assigned);
 						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
 								error = "Assignments could not be completed for all members";
 								throw new InvalidInputException(error.trim());
 							}
-							guide = guides.get(g++);
+							g++;
+							guide = guides.get(g);
 							guideAssignments = guide.getAssignments();
 						}
 
-					}
-					else {
+					}else {
 						if (!(g+1<guides.size())) {
 							error = "Assignments could not be completed for all members";
 							throw new InvalidInputException(error.trim());
 						}
-						guide = guides.get(g++);
+						g++;
+						guide = guides.get(g);
 						guideAssignments = guide.getAssignments();
 					}
 				}
@@ -132,20 +134,19 @@ public class AssignmentController {
 		List<Assignment> myAssignments = climbSafe.getAssignments(); 
 		List<Member> members = climbSafe.getMembers();
 		if (validMember(members,email)==-1) { 
-			error="Member with email address "+ email +" does not exist";
+			error="Member with email address "+ email + " does not exist";
+			throw new InvalidInputException(error.trim());
 		}
 		for (Assignment a : myAssignments) {
 			if (a.getMember().getEmail().equals(email)) {
 				if (a.getTripStatus().equals(TripStatus.Banned)) {
 					error = "Cannot cancel the trip due to a ban";
+					throw new InvalidInputException(error.trim());
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
 					error="Cannot cancel a trip which has finished";
+					throw new InvalidInputException(error.trim());
 				}
 			}
-		}
-
-		if(error.length() != 0) {
-			throw new InvalidInputException(error.trim());
 		}
 
 		try {

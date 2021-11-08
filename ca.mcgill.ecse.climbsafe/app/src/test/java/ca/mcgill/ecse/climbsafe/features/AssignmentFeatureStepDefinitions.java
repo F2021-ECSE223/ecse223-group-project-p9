@@ -157,7 +157,6 @@ public class AssignmentFeatureStepDefinitions {
   public void the_assignment_for_shall_be_marked_as(String string, String string2) {
 	Member member = (Member) Member.getWithEmail(string);
 	TripStatus argTripStatus = null;
-	System.out.println("System wants: " + string2);
 	if(string2.equals("Started")) {
 		argTripStatus = TripStatus.Started;
 	}else if(string2.equals("Finished")) {
@@ -171,8 +170,6 @@ public class AssignmentFeatureStepDefinitions {
 	}else if(string2.equals("Banned")) {
 		argTripStatus = TripStatus.Banned;
 	}
-	
-	System.out.println("ended up with system wants: " + argTripStatus);
 	assertEquals(argTripStatus, member.getAssignment().getTripStatus());
     
   }

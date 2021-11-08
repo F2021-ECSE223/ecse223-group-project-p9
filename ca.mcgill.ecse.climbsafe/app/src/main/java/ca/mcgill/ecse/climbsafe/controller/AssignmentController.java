@@ -97,9 +97,9 @@ public class AssignmentController {
 				if (a.getBanned()) {
 					error = "Cannot start the trip due to a ban";
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
-					error="Cannot start a trip which has been cancelled";
+					error="Cannot start a trip which has been finished";
 				}else if (a.getTripStatus().equals(TripStatus.Cancelled)) {
-					error="Cannot start a trip which has finished";
+					error="Cannot start a trip which has cancelled";
 				}
 			}
 		}

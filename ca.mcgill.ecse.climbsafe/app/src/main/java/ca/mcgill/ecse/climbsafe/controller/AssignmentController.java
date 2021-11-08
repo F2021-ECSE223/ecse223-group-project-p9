@@ -58,7 +58,8 @@ public class AssignmentController {
 					}
 				}
 				else {
-					new Assignment(1, member.getNrWeeks(), member, climbSafe);
+					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
+					a.setTripStatus(TripStatus.Assigned);
 				}
 			}
 		}

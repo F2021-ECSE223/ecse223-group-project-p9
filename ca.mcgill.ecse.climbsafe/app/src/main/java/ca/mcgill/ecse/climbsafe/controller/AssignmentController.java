@@ -47,7 +47,8 @@ public class AssignmentController {
 							guideAssignments = guide.getAssignments();
 						}
 
-					} else {
+					}
+					else {
 						if (!(g+1<guides.size())) {
 							error = "Assignments could not be completed for all members";
 							throw new InvalidInputException(error.trim());

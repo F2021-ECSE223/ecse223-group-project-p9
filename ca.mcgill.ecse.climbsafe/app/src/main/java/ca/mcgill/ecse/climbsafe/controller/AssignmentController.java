@@ -26,14 +26,17 @@ public class AssignmentController {
 		try {
 			for (int m=0; m<members.size(); m++) {
 				 member = members.get(m);
+				 
 				if (member.getGuideRequired()){
 					if (guideAvailableForNumWeeks(guide.getAssignments(), member.getNrWeeks(), guide)) {
 						int startWeek;
 						int endWeek;
 						if (guide.getAssignments().size()==0) {
+							//System.out.println("AAAA"+member.getEmail());
 							startWeek = 1;
 							endWeek = member.getNrWeeks();
 						} else {
+							//System.out.println("BBBB"+member.getEmail());
 							startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
 							endWeek = startWeek+ member.getNrWeeks()-1;
 						}

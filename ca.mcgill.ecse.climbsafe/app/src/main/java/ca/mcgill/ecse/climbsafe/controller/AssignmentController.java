@@ -17,12 +17,12 @@ public class AssignmentController {
 	 * @author Victor Micha
 	 */
 	public static void initiateAssignment() throws InvalidInputException{
+		List<Member> members = climbSafe.getMembers();
+		List<Guide> guides = climbSafe.getGuides();
+		int g = 0;
+		Guide guide = guides.get(g);
+		List<Assignment> guideAssignments = guide.getAssignments();
 		try {
-			List<Member> members = climbSafe.getMembers();
-			List<Guide> guides = climbSafe.getGuides();
-			int g = 0;
-			Guide guide = guides.get(g);
-			List<Assignment> guideAssignments = guide.getAssignments();
 			for (int m=0; m<members.size(); m++) {
 				Member member = members.get(m);
 				if (member.getGuideRequired()){
@@ -44,7 +44,8 @@ public class AssignmentController {
 								error = "Assignments could not be completed for all members";
 								throw new InvalidInputException(error.trim());
 							}
-							guide = guides.get(g++);
+							g++;
+							guide = guides.get(g);
 							guideAssignments = guide.getAssignments();
 						}
 
@@ -53,7 +54,8 @@ public class AssignmentController {
 							error = "Assignments could not be completed for all members";
 							throw new InvalidInputException(error.trim());
 						}
-						guide = guides.get(g++);
+						g++;
+						guide = guides.get(g);
 						guideAssignments = guide.getAssignments();
 					}
 				}

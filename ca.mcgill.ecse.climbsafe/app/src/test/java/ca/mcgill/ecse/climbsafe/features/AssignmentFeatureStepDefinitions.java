@@ -286,7 +286,12 @@ public class AssignmentFeatureStepDefinitions {
   @Then("the member with email address {string} shall receive a refund of {string} percent")
   public void the_member_with_email_address_shall_receive_a_refund_of_percent(String string,
       String string2) {
-    throw new io.cucumber.java.PendingException();
+	  List<Assignment> assignments = climbSafe.getAssignments();
+	    for(Assignment a: assignments) {
+	    	if(a.getMember().getEmail().equals(string)) {
+	    		assertEquals(string2, a.getRefund());
+	    	}
+	    }
   }
 
   @Given("the member with {string} has started their trip") //Kara

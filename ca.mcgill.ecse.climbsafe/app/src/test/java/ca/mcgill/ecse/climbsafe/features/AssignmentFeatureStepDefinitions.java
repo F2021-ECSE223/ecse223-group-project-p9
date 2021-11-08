@@ -131,7 +131,7 @@ public class AssignmentFeatureStepDefinitions {
 /**
  * 
  * @param dataTable
- * @author Enzo Benoit-Jeannin
+ * @author Enzo Benoit-Jeannin and Kara Best
  */
   @Then("the following assignments shall exist in the system:")
   public void the_following_assignments_shall_exist_in_the_system(
@@ -147,8 +147,10 @@ public class AssignmentFeatureStepDefinitions {
 	      var member = (Member) Member.getWithEmail(memberEmail);
 	      var assignment = member.getAssignment();
 	      
-	      assertEquals(true, assignment.getMember().getEmail().equals(memberEmail) 
-	    		  && assignment.getStartWeek() == startWeek && assignment.getEndWeek() == endWeek);
+	      assertEquals(true, assignment.getMember().getEmail().equals(memberEmail));
+	      System.out.println("STartWeek in ass: "+assignment.getStartWeek()+"STARTWEEK in table: "+startWeek);
+	      assertEquals(true, assignment.getStartWeek() == startWeek);
+	      assertEquals(true, assignment.getEndWeek() == endWeek);
 	      if(!(guideEmail==null)) {
 	    	  assertEquals(true, assignment.getGuide().getEmail().equals(guideEmail));
 	      }

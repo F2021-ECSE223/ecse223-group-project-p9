@@ -157,7 +157,7 @@ public class AssignmentController {
 					}else if (a.getTripStatus().equals(TripStatus.Paid)) {
 						a.setRefund(50);
 						a.setTripStatus(TripStatus.Cancelled);
-					}else if(a.getTripStatus().equals(TripStatus.Finished)||a.getTripStatus().equals(TripStatus.Assigned)) {
+					}else if(a.getTripStatus().equals(TripStatus.Assigned)) {
 						a.setRefund(0);
 						a.setTripStatus(TripStatus.Cancelled);
 					}

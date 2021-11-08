@@ -21,12 +21,12 @@ public class AssignmentController {
 			List<Member> members = climbSafe.getMembers();
 			List<Guide> guides = climbSafe.getGuides();
 			int g = 0;
-			List<Assignment> guideAssignments = guide.getAssignments();
 			Guide guide = guides.get(g);
+			List<Assignment> guideAssignments = guide.getAssignments();
 			for (int m=0; m<members.size(); m++) {
 				Member member = members.get(m);
-				if (member.getGuideRequired(){
-					if (guideAvailableForNumWeeks(guideAssignments, member.getNrWeeks(), guide) {
+				if (member.getGuideRequired()){
+					if (guideAvailableForNumWeeks(guideAssignments, member.getNrWeeks(), guide)) {
 						int startWeek;
 						int endWeek;
 						if (guideAssignments.size()==0) {
@@ -39,7 +39,7 @@ public class AssignmentController {
 
 						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 						assignment.setGuide(guide);
-						if (endWeek = climbSafe.getNrWeeks(){
+						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
 								error = "Assignments could not be completed for all members";
 								throw new InvalidInputException(error.trim());
@@ -47,17 +47,18 @@ public class AssignmentController {
 							guide = guides.get(g++);
 							guideAssignments = guide.getAssignments();
 						}
-					} else {
+						else {
 						if (!(g+1<guides.size())) {
 							error = "Assignments could not be completed for all members";
 							throw new InvalidInputException(error.trim());
 						}
 						guide = guides.get(g++);
 						guideAssignments = guide.getAssignments();
-					}
+						}
 				}
 				else {
 					Assignment assignment = new Assignment(1, member.getNrWeeks(), member, climbSafe);
+				}
 				}
 			}
 		}
@@ -69,7 +70,7 @@ public class AssignmentController {
 
 
 
-	public boolean guideAvailableForNumWeeks(List<Assignment> guideAssignments, int memberNumWeeks, Guide guide) {
+	public static boolean guideAvailableForNumWeeks(List<Assignment> guideAssignments, int memberNumWeeks, Guide guide) {
 		if (guideAssignments.size()==0) {
 			return true;
 		}

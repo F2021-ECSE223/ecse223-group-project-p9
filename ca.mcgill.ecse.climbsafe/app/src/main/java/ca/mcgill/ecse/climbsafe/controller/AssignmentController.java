@@ -93,7 +93,7 @@ public class AssignmentController {
 
 		for (Assignment a : myAssignments) {
 			if (a.getStartWeek() == week) {
-				if (a.getBanned()) {
+				if (a.getTripStatus() == TripStatus.Banned) {
 					error = "Cannot start the trip due to a ban";
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
 					error="Cannot start a trip which has been finished";
@@ -136,7 +136,7 @@ public class AssignmentController {
 		}
 		for (Assignment a : myAssignments) {
 			if (a.getMember().getEmail().equals(email)) {
-				if (a.getBanned()) {
+				if (a.getTripStatus() == TripStatus.Banned) {
 					error = "Cannot cancel the trip due to a ban";
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
 					error="Cannot cancel a trip which has finished";
@@ -180,7 +180,7 @@ public class AssignmentController {
 			}
 			for(Assignment a: assignments) {
 				if(a.getMember().getEmail().equals(email)){
-					if(a.getBanned()) {
+					if(a.getTripStatus() == TripStatus.Banned) {
 						error = "Cannot finish the trip due to a ban";
 						throw new InvalidInputException(error.trim());
 					}else if(a.getTripStatus().equals(TripStatus.Started)) {

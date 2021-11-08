@@ -153,9 +153,14 @@ public class AssignmentController {
 				if (a.getMember().getEmail().equals(email)) {
 					a.setTripStatus(TripStatus.Cancelled);
 					if (a.getTripStatus().equals(TripStatus.Started)) {
-						a.setTotalPayment(a.getTotalPayment()-a.getTotalPayment()*(10/100));
+						a.setRefund(10);
+						a.setTripStatus(TripStatus.Cancelled);
 					}else if (a.getTripStatus().equals(TripStatus.Paid)) {
-						a.setTotalPayment(a.getTotalPayment()-a.getTotalPayment()*(50/100));
+						a.setRefund(50);
+						a.setTripStatus(TripStatus.Cancelled);
+					}else if(a.getTripStatus().equals(TripStatus.Finished)||a.getTripStatus().equals(TripStatus.Assigned)) {
+						a.setRefund(0);
+						a.setTripStatus(TripStatus.Cancelled);
 					}
 				}
 			}
@@ -185,6 +190,7 @@ public class AssignmentController {
 						throw new InvalidInputException(error.trim());
 					}else if(a.getTripStatus().equals(TripStatus.Started)) {
 						a.setTripStatus(TripStatus.Finished);
+						a.setRefund(0);
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
 						error = "Cannot finish a trip which has been cancelled";
 						throw new InvalidInputException(error.trim());

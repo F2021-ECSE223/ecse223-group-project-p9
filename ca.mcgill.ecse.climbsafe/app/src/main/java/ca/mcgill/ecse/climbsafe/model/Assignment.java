@@ -22,7 +22,7 @@ public class Assignment
   private int startWeek;
   private int endWeek;
   private TripStatus tripStatus;
-  private int totalPayment;
+  private int refund;
   private String paymentCode;
 
   //Assignment Associations
@@ -80,10 +80,10 @@ public class Assignment
     return wasSet;
   }
 
-  public boolean setTotalPayment(int aTotalPayment)
+  public boolean setRefund(int aRefund)
   {
     boolean wasSet = false;
-    totalPayment = aTotalPayment;
+    refund = aRefund;
     wasSet = true;
     return wasSet;
   }
@@ -111,9 +111,9 @@ public class Assignment
     return tripStatus;
   }
 
-  public int getTotalPayment()
+  public int getRefund()
   {
-    return totalPayment;
+    return refund;
   }
 
   public String getPaymentCode()
@@ -268,7 +268,7 @@ public class Assignment
     return super.toString() + "["+
             "startWeek" + ":" + getStartWeek()+ "," +
             "endWeek" + ":" + getEndWeek()+ "," +
-            "totalPayment" + ":" + getTotalPayment()+ "," +
+            "refund" + ":" + getRefund()+ "," +
             "paymentCode" + ":" + getPaymentCode()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "tripStatus" + "=" + (getTripStatus() != null ? !getTripStatus().equals(this)  ? getTripStatus().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "member = "+(getMember()!=null?Integer.toHexString(System.identityHashCode(getMember())):"null") + System.getProperties().getProperty("line.separator") +

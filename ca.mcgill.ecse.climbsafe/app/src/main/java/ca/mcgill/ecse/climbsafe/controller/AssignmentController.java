@@ -11,39 +11,72 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 public class AssignmentController { 
 	static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	static String error = "";
-	
-	public static void initiateAssignment() throws InvalidInputException{
-		List<Assignment> myAssignments = climbSafe.getAssignments();
-		List<Member> memberList = climbSafe.getMembers();
-		List<Guide> guideList = climbSafe.getGuides();
-		
-		try {
-			for (Member m : memberList) {
-				if (m.equals(guideList)) {
-					m.getAssignment().setStartWeek(0);
-				}
-				if (!(m.equals(guideList))) {
-					error = "Assignments could not be completed for all members";
-				}
-			}
-			for (Guide g : guideList) {
-				if ( g.equals(memberList)) {
-					g.getAssignments().set(0, null);
-				}
-				if (!(g.equals(memberList))) {
-					error = "";
-				}
-			}
-		} catch(RuntimeException e){
-			throw new InvalidInputException(e.getMessage()); 
-		}
-	}
-		
-	
-					
 
-			
-		//doesn't need any arguments
+	public static void initiateAssignment() throws InvalidInputException{
+		try {
+			List<Member> members = climbSafe.getMembers();
+			List<Guide> guides = climbSafe.getGuides();
+			int g = 0;
+			List<Assignment> guideAssignments = guide.getAssignments();
+			Guide guide = guides.get(g);
+			for (int m=0; m<members.size(); m++) {
+				Member member = members.get(m);
+				if (member.getGuideRequired(){
+					if (guideAvailableForNumWeeks(guideAssignments, member.getNrWeeks(), guide) {
+						int startWeek;
+						int endWeek;
+						if (guideAssignments.size()==0) {
+							startWeek = 1;
+							endWeek = member.getNrWeeks();
+						} else {
+							startWeek = guideAssignments.get(guideAssignments.size()-1).getEndWeek()+1;
+							endWeek = startWeek+ member.getNrWeeks()-1;
+						}
+
+						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
+						assignment.setGuide(guide);
+						if (endWeek = climbSafe.getNrWeeks(){
+							if (!(g+1<guides.size())) {
+								error = "Assignments could not be completed for all members";
+								throw new InvalidInputException(error.trim());
+							}
+							guide = guides.get(g++);
+							guideAssignments = guide.getAssignments();
+						}
+					} else {
+						if (!(g+1<guides.size())) {
+							error = "Assignments could not be completed for all members";
+							throw new InvalidInputException(error.trim());
+						}
+						guide = guides.get(g++);
+						guideAssignments = guide.getAssignments();
+					}
+				}
+				else {
+					Assignment assignment = new Assignment(1, member.getNrWeeks(), member, climbSafe);
+				}
+			}
+		}
+		catch(RuntimeException e){
+			throw new InvalidInputException(e.getMessage());
+		}
+
+	}
+
+
+
+	public boolean guideAvailableForNumWeeks(List<Assignment> guideAssignments, int memberNumWeeks, Guide guide) {
+		if (guideAssignments.size()==0) {
+			return true;
+		}
+		return (guideAssignments.get(guideAssignments.size()-1).getEndWeek()+memberNumWeeks<=climbSafe.getNrWeeks());
+	}
+
+
+
+
+
+	//doesn't need any arguments
 	/**
 	 * 
 	 * @param email
@@ -53,7 +86,7 @@ public class AssignmentController {
 	 */
 	public static void startTrips(String email, int week) throws InvalidInputException{
 		List<Assignment> myAssignments = climbSafe.getAssignments(); 
-		
+
 		for (Assignment a : myAssignments) {
 			if (a.getMember().getEmail().equals(email)) {
 				if (a.getBanned()) {
@@ -65,11 +98,11 @@ public class AssignmentController {
 				}
 			}
 		}
-		
+
 		if(error.length() != 0) {
-			  throw new InvalidInputException(error.trim());
-		  }
-		
+			throw new InvalidInputException(error.trim());
+		}
+
 		try {
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
@@ -78,11 +111,11 @@ public class AssignmentController {
 					}
 				}
 			}
-		 }catch(RuntimeException e){
-			  throw new InvalidInputException(e.getMessage());
-		  }
+		}catch(RuntimeException e){
+			throw new InvalidInputException(e.getMessage());
 		}
-	
+	}
+
 	/**
 	 * 
 	 * @param email
@@ -104,11 +137,11 @@ public class AssignmentController {
 				}
 			}
 		}
-		
+
 		if(error.length() != 0) {
-			  throw new InvalidInputException(error.trim());
-		  }
-		
+			throw new InvalidInputException(error.trim());
+		}
+
 		try {
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
@@ -120,10 +153,10 @@ public class AssignmentController {
 					}
 				}
 			}
-		 }catch(RuntimeException e){
-			  throw new InvalidInputException(e.getMessage());
-		  }
+		}catch(RuntimeException e){
+			throw new InvalidInputException(e.getMessage());
 		}
+	}
 
 	/**
 	 * 
@@ -162,20 +195,20 @@ public class AssignmentController {
 			throw new InvalidInputException(e.getMessage());
 		}
 	}
-	
+
 	//pay for a trip
 	public static void payForTrip(String email, String code) throws InvalidInputException {
 		List<Member> memberList = climbSafe.getMembers();
 		List<Assignment> allAssignments = climbSafe.getAssignments();
-		
+
 		if(validMember(memberList, email) == -1) {
-			  error = "Member with email address " + email + " does not exist";
-			  throw new InvalidInputException(error.trim());
+			error = "Member with email address " + email + " does not exist";
+			throw new InvalidInputException(error.trim());
 		}
-		
+
 		if(code == null || code == "") {
-			  error = "Invalid authorization code";
-			  throw new InvalidInputException(error.trim());
+			error = "Invalid authorization code";
+			throw new InvalidInputException(error.trim());
 		}
 		try {
 			for(int i=0; i<allAssignments.size(); i++) {
@@ -189,26 +222,26 @@ public class AssignmentController {
 			throw new InvalidInputException(e.getMessage());
 		}
 	}
-	
-	  /**
-		 * checking if the member exists
-		 * 
-		 * @author Joey Koay
-		 * @param memberList - a list of all of the existing members
-		 * @param email
-		 * @return the index of the member in the list, if it does not exist, its -1
-		 */
-	  private static int validMember(List<Member> memberList, String email) {
-		  int validMember = -1;
-		  for(int i=0; i<memberList.size(); i++) {
-			  if(memberList.get(i).getEmail().equals(email)) {
-				  validMember = i;
-				  break;
-			  }
-		  }
-		  return validMember;
-	  }
-	
+
+	/**
+	 * checking if the member exists
+	 * 
+	 * @author Joey Koay
+	 * @param memberList - a list of all of the existing members
+	 * @param email
+	 * @return the index of the member in the list, if it does not exist, its -1
+	 */
+	private static int validMember(List<Member> memberList, String email) {
+		int validMember = -1;
+		for(int i=0; i<memberList.size(); i++) {
+			if(memberList.get(i).getEmail().equals(email)) {
+				validMember = i;
+				break;
+			}
+		}
+		return validMember;
+	}
+
 	/**
 	 * checking if the email is valid or not
 	 * 
@@ -216,20 +249,20 @@ public class AssignmentController {
 	 * @param email
 	 * @return whether the email is valid
 	 */
-  private static boolean validEmail(String email) {
-	  boolean validEmail = true;
-	  if(!(email.indexOf("@") > 0)) {
-		  validEmail = false;
-	  }
-	  if(!(email.indexOf("@") == email.lastIndexOf("@"))) {
-		  validEmail = false;
-	  }
-	  if(!(email.indexOf("@") < email.lastIndexOf(".") - 1)) {
-		  validEmail = false;
-	  }
-	  if(!(email.lastIndexOf(".") < email.length() - 1)) {
-		  validEmail = false;
-	  }
-	  return validEmail;
-  }
+	private static boolean validEmail(String email) {
+		boolean validEmail = true;
+		if(!(email.indexOf("@") > 0)) {
+			validEmail = false;
+		}
+		if(!(email.indexOf("@") == email.lastIndexOf("@"))) {
+			validEmail = false;
+		}
+		if(!(email.indexOf("@") < email.lastIndexOf(".") - 1)) {
+			validEmail = false;
+		}
+		if(!(email.lastIndexOf(".") < email.length() - 1)) {
+			validEmail = false;
+		}
+		return validEmail;
+	}
 }

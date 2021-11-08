@@ -106,7 +106,7 @@ public class AssignmentFeatureStepDefinitions {
 	      String emergencyContact = r.get("emergencyContact");
 	      int nrWeeks = Integer.parseInt(r.get("nrWeeks"));
 	      List<String> bookedItems = Arrays.asList(r.get("bookedItems").split(","));
-	      List<String> requestedQuantities = Arrays.asList(r.get("requestedQuantities").split(","));
+	      List<String> bookedItemQuantities = Arrays.asList(r.get("bookedItemQuantities").split(","));
 	      boolean guideRequired = Boolean.parseBoolean(r.get("guideRequired"));
 	      boolean hotelRequired = Boolean.parseBoolean(r.get("hotelRequired"));
 	      Member m = new Member(email, password, name, emergencyContact, nrWeeks, guideRequired,
@@ -114,7 +114,7 @@ public class AssignmentFeatureStepDefinitions {
 
 	      for (int i = 0; i < bookedItems.size(); i++) {
 	        BookableItem bookableItem = BookableItem.getWithName(bookedItems.get(i));
-	        m.addBookedItem(Integer.parseInt(requestedQuantities.get(i)), this.climbSafe, bookableItem);
+	        m.addBookedItem(Integer.parseInt(bookedItemQuantities.get(i)), this.climbSafe, bookableItem);
 	      }
 	    }
   }

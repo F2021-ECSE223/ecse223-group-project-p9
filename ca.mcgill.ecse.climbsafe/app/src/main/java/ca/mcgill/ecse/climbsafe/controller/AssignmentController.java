@@ -38,6 +38,7 @@ public class AssignmentController {
 						}
 						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 						assignment.setGuide(guide);
+						assignment.setTripStatus(TripStatus.Assigned);
 						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
 								error = "Assignments could not be completed for all members";

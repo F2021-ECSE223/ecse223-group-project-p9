@@ -212,7 +212,7 @@ public class AssignmentController {
 	public static void payForTrip(String email, String code) throws InvalidInputException {
 		List<Member> memberList = climbSafe.getMembers();
 		List<Assignment> allAssignments = climbSafe.getAssignments();
-
+		Assignment myAssignment = null;
 		if(validMember(memberList, email) == -1) {
 			error = "Member with email address " + email + " does not exist";
 			throw new InvalidInputException(error.trim());
@@ -222,15 +222,36 @@ public class AssignmentController {
 			error = "Invalid authorization code";
 			throw new InvalidInputException(error.trim());
 		}
-		try {
-			for(int i=0; i<allAssignments.size(); i++) {
-				if(allAssignments.get(i).getMember().getEmail().equals(email)) {
-					Assignment myAssignment = allAssignments.get(i);
-					myAssignment.setTripStatus(TripStatus.Paid);
-					myAssignment.setPaymentCode(code);
-					break;
-				}
+		for(int i=0; i<allAssignments.size(); i++) {
+			if(allAssignments.get(i).getMember().getEmail().equals(email)) {
+				myAssignment = allAssignments.get(i);
+				break;
 			}
+		}
+		
+		if(myAssignment.getTripStatus().equals(TripStatus.Started)) {
+			error = "Trip has already been paid for";
+			throw new InvalidInputException(error.trim());
+		}
+		if(myAssignment.getTripStatus().equals(TripStatus.Banned)) {
+			error = "Cannot pay for the trip due to a ban";
+			throw new InvalidInputException(error.trim());
+		}
+		if(myAssignment.getTripStatus().equals(TripStatus.Paid)) {
+			error = "Trip has already been paid for";
+			throw new InvalidInputException(error.trim());
+		}
+		if(myAssignment.getTripStatus().equals(TripStatus.Cancelled)) {
+			error = "Cannot pay for a trip which has been cancelled";
+			throw new InvalidInputException(error.trim());
+		}
+		if(myAssignment.getTripStatus().equals(TripStatus.Finished)) {
+			error = "Cannot pay for a trip which has finished";
+			throw new InvalidInputException(error.trim());
+		}
+		try {	
+			myAssignment.setTripStatus(TripStatus.Paid);
+			myAssignment.setPaymentCode(code);
 		}catch(RuntimeException e){
 			throw new InvalidInputException(e.getMessage());
 		}

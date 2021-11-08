@@ -274,18 +274,13 @@ public class AssignmentFeatureStepDefinitions {
   public void the_member_with_has_paid_for_their_trip(String email) {
 	  List<Member> memberList = climbSafe.getMembers();
 	  int memberIndex = -1;
-	  boolean paidAlready = false;
 	  for(int i=0; i<memberList.size(); i++) {
 		  if(memberList.get(i).getEmail().equals(email)) {
 			  memberIndex = i;
 			  break;
 		  }
 	  }
-	  TripStatus tripStatus = climbSafe.getMember(memberIndex).getAssignment().getTripStatus();
-	  if(tripStatus == TripStatus.Finished ||tripStatus == TripStatus.Started || tripStatus == TripStatus.Paid  ) {
-		  paidAlready = true;
-	  }
-	  assertEquals(paidAlready, tripStatus);
+	  climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Paid);
   }
 
   @Then("the member with email address {string} shall receive a refund of {string} percent")

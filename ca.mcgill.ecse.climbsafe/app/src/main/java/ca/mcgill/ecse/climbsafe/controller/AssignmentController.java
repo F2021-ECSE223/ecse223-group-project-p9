@@ -153,7 +153,7 @@ public class AssignmentController {
 					a.setTripStatus(TripStatus.Cancelled);
 					if (a.getTripStatus().equals(TripStatus.Started)) {
 						a.setTotalPayment(a.getTotalPayment()-a.getTotalPayment()*(10/100));
-					}else if (a.getFullyPaid()) {
+					}else if (a.getTripStatus().equals(TripStatus.Paid)) {
 						a.setTotalPayment(a.getTotalPayment()-a.getTotalPayment()*(50/100));
 					}
 				}
@@ -187,7 +187,7 @@ public class AssignmentController {
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
 						error = "Cannot finish a trip which has been cancelled";
 						throw new InvalidInputException(error.trim());
-					}else if(a.getTripStatus().equals(TripStatus.Assigned)) {
+					}else if(a.getTripStatus().equals(TripStatus.Assigned)||a.getTripStatus().equals(TripStatus.Paid)) {
 						error = "Cannot finish a trip which has not started";
 						throw new InvalidInputException(error.trim());
 					}else if(a.getTripStatus().equals(TripStatus.Finished)) {

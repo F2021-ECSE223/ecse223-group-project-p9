@@ -97,18 +97,16 @@ public class AssignmentController {
 			if (a.getStartWeek() == week) {
 				if (a.getTripStatus().equals(TripStatus.Banned)) {
 					error = "Cannot start the trip due to a ban";
+					throw new InvalidInputException(error.trim());
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
-					error="Cannot start a trip which has been finished";
+					error="Cannot start a trip which has finished";
+					throw new InvalidInputException(error.trim());
 				}else if (a.getTripStatus().equals(TripStatus.Cancelled)) {
-					error="Cannot start a trip which has cancelled";
+					error="Cannot start a trip which has been cancelled";
+					throw new InvalidInputException(error.trim());
 				}
 			}
 		}
-
-		if(error.length() != 0) {
-			throw new InvalidInputException(error.trim());
-		}
-
 		try {
 			for (Assignment a : myAssignments) {
 				if (a.getStartWeek() == week) {
@@ -134,20 +132,19 @@ public class AssignmentController {
 		List<Assignment> myAssignments = climbSafe.getAssignments(); 
 		List<Member> members = climbSafe.getMembers();
 		if (validMember(members,email)==-1) { 
-			error="Member with email address "+ email +" does not exist";
+			error="Member with email address "+ email + " does not exist";
+			throw new InvalidInputException(error.trim());
 		}
 		for (Assignment a : myAssignments) {
 			if (a.getMember().getEmail().equals(email)) {
 				if (a.getTripStatus().equals(TripStatus.Banned)) {
 					error = "Cannot cancel the trip due to a ban";
+					throw new InvalidInputException(error.trim());
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
 					error="Cannot cancel a trip which has finished";
+					throw new InvalidInputException(error.trim());
 				}
 			}
-		}
-
-		if(error.length() != 0) {
-			throw new InvalidInputException(error.trim());
 		}
 
 		try {

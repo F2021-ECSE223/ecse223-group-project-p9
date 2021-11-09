@@ -146,7 +146,7 @@ public class AssignmentFeatureStepDefinitions {
 
 			var member = (Member) Member.getWithEmail(memberEmail);
 			var assignment = member.getAssignment();
-			if (assignment!=null) {
+			
 				assertEquals(true, assignment.getMember().getEmail().equals(memberEmail));
 				System.out.println("STartWeek in ass: "+assignment.getStartWeek()+"STARTWEEK in table: "+startWeek);
 				assertEquals(true, assignment.getStartWeek() == startWeek);
@@ -154,7 +154,7 @@ public class AssignmentFeatureStepDefinitions {
 				if(!(guideEmail==null)) {
 					assertEquals(true, assignment.getGuide().getEmail().equals(guideEmail));
 				}
-			}
+			
 		}
 	}
 

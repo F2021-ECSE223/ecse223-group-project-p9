@@ -22,23 +22,23 @@ public class AssignmentController {
 		int g = 0;
 		Guide guide = guides.get(g);
 		Member member;
-		for (int i=0; i<guides.size(); i++) {
-			System.out.println("XXXXXXX>>"+guide.getAssignments().size());
-		}
+		//for (int i=0; i<guides.size(); i++) {
+		//	System.out.println("XXXXXXX>>"+guide.getAssignments().size());
+		//}
 		try {
 			for (int m=0; m<members.size(); m++) {
 				member = members.get(m);
-				System.out.println(">>"+member.getEmail());
+				//System.out.println(">>"+member.getEmail());
 				if (member.getGuideRequired()){
 					if (guideAvailableForNumWeeks(guide.getAssignments(), member.getNrWeeks(), guide)) {
 						int startWeek;
 						int endWeek;
 						if (guide.getAssignments().size()==0) {
-							System.out.println("AAAA"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
+							//System.out.println("AAAA"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 							startWeek = 1;
 							endWeek = member.getNrWeeks();
 						} else {
-							System.out.println("BBBB"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
+							//System.out.println("BBBB"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 							startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
 							endWeek = startWeek+ member.getNrWeeks()-1;
 						}
@@ -88,11 +88,11 @@ public class AssignmentController {
 							int startWeek;
 							int endWeek;
 							if (guide.getAssignments().size()==0) {
-								System.out.println("AAAA"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
+								//System.out.println("AAAA"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 								startWeek = 1;
 								endWeek = member.getNrWeeks();
 							} else {
-								System.out.println("BBBB"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
+								//System.out.println("BBBB"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 								startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
 								endWeek = startWeek+ member.getNrWeeks()-1;
 							}
@@ -118,7 +118,7 @@ public class AssignmentController {
 				else {
 					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
 					a.setTripStatus(TripStatus.Assigned);
-					System.out.println("CCCC"+member.getEmail());
+					//System.out.println("CCCC"+member.getEmail());
 				}
 			}
 		}

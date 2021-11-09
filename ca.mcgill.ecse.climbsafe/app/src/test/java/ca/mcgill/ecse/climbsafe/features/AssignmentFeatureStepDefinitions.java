@@ -177,8 +177,12 @@ public class AssignmentFeatureStepDefinitions {
 	assertEquals(argTripStatus, member.getAssignment().getTripStatus());
     
   }
-
-  @Then("the number of assignments in the system shall be {string}") //Kara
+  /**
+   * 
+   * @param string
+   * @author Kara Best
+   */
+  @Then("the number of assignments in the system shall be {string}") 
   public void the_number_of_assignments_in_the_system_shall_be(String string) {
     assertEquals(Integer.parseInt(string), climbSafe.numberOfAssignments());
     
@@ -213,8 +217,13 @@ public class AssignmentFeatureStepDefinitions {
 	     assignment.setTripStatus(TripStatus.Assigned);
 	   }
   }
-
-  @When("the administrator attempts to confirm payment for {string} using authorization code {string}") //Kara
+  /**
+   * 
+   * @param string
+   * @param string2
+   * @author Kara Best
+   */
+  @When("the administrator attempts to confirm payment for {string} using authorization code {string}") 
   public void the_administrator_attempts_to_confirm_payment_for_using_authorization_code(
       String string, String string2) {
 	  try {
@@ -250,8 +259,11 @@ public class AssignmentFeatureStepDefinitions {
 	  }
 	  assertEquals(false, validMember);
   }
-
-  @Then("there are {string} members in the system") //Kara
+  /**
+   * @param string
+   * @author Kara Best
+   */
+  @Then("there are {string} members in the system")
   public void there_are_members_in_the_system(String string) {
     assertEquals(Integer.parseInt(string), climbSafe.numberOfMembers());
   }
@@ -294,8 +306,11 @@ public class AssignmentFeatureStepDefinitions {
 	    	}
 	    }
   }
-
-  @Given("the member with {string} has started their trip") //Kara
+  /**
+   * @param string
+   * @author Kara Best
+   */
+  @Given("the member with {string} has started their trip") 
   public void the_member_with_has_started_their_trip(String string) {
     List<Assignment> assignments = climbSafe.getAssignments();
     for(Assignment a: assignments) {
@@ -304,8 +319,12 @@ public class AssignmentFeatureStepDefinitions {
     	}
     }
   }
-
-  @When("the administrator attempts to finish the trip for the member with email {string}") //Kara
+  /**
+   * 
+   * @param string
+   * @author Kara Best
+   */
+  @When("the administrator attempts to finish the trip for the member with email {string}") 
   public void the_administrator_attempts_to_finish_the_trip_for_the_member_with_email(
       String string) {
     try {
@@ -314,8 +333,12 @@ public class AssignmentFeatureStepDefinitions {
     	error+= e.getMessage();
     }
   }
-
-  @Given("the member with {string} is banned") //Kara
+  /**
+   * 
+   * @param string
+   * @author Kara Best
+   */
+  @Given("the member with {string} is banned") 
   public void the_member_with_is_banned(String string) {
 	  List<Assignment> assignments = climbSafe.getAssignments();
 	    for(Assignment a: assignments) {
@@ -339,8 +362,12 @@ public class AssignmentFeatureStepDefinitions {
 	  }
 	  assertEquals(banned,string2);
   }
-
-  @When("the administrator attempts to start the trips for week {string}") //Kara
+  /**
+   * 
+   * @param string
+   * @author Kara Best
+   */
+  @When("the administrator attempts to start the trips for week {string}") 
   public void the_administrator_attempts_to_start_the_trips_for_week(String string) {
     try {
     	AssignmentController.startTrips(Integer.parseInt(string));

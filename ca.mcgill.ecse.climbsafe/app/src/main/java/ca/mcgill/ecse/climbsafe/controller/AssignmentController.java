@@ -23,12 +23,12 @@ public class AssignmentController {
 		Guide guide = guides.get(g);
 		Member member;
 		for (int i=0; i<guides.size(); i++) {
-			//System.out.println("XXXXXXX>>"+guide.getAssignments().size());
+			System.out.println("XXXXXXX>>"+guide.getAssignments().size());
 		}
 		try {
 			for (int m=0; m<members.size(); m++) {
 				member = members.get(m);
-				//System.out.println(">>"+member.getEmail());
+				System.out.println(">>"+member.getEmail());
 				if (member.getGuideRequired()){
 					if (guideAvailableForNumWeeks(guide.getAssignments(), member.getNrWeeks(), guide)) {
 						int startWeek;
@@ -65,7 +65,9 @@ public class AssignmentController {
 							boolean guideNotFound = true;
 							int index = 0;
 							while(guideNotFound&&index<guides.size()) {
-								if (guides.get(index).getAssignments().get(guides.get(index).getAssignments().size()-1).getEndWeek()+member.getNrWeeks()<=climbSafe.getNrWeeks()) {
+								if (guides.get(index).getAssignments().size()==0) {
+									guideNotFound = false;
+								}else if (guides.get(index).getAssignments().get(guides.get(index).getAssignments().size()-1).getEndWeek()+member.getNrWeeks()<=climbSafe.getNrWeeks()) {
 									guideNotFound = false;
 									
 								}

@@ -32,11 +32,11 @@ public class AssignmentController {
 						int startWeek;
 						int endWeek;
 						if (guide.getAssignments().size()==0) {
-							//System.out.println("AAAA"+member.getEmail());
+							//System.out.println("AAAA"+member.getEmail()+" " +guide.getEmail());
 							startWeek = 1;
 							endWeek = member.getNrWeeks();
 						} else {
-							//System.out.println("BBBB"+member.getEmail());
+							//System.out.println("BBBB"+member.getEmail()+" " +guide.getEmail());
 							startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
 							endWeek = startWeek+ member.getNrWeeks()-1;
 						}

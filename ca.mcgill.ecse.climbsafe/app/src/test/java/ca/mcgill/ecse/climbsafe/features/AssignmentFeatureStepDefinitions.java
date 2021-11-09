@@ -28,12 +28,10 @@ public class AssignmentFeatureStepDefinitions {
 	private ClimbSafe climbSafe;
 	private String error;
 
-
 	/**
 	 * @param dataTable
 	 * @author KaraBest & JoeyKoay & VictorMicha (from p9 step defs)
 	 */
-
 	@Given("the following ClimbSafe system exists:")
 	public void the_following_climb_safe_system_exists(io.cucumber.datatable.DataTable dataTable) {
 		error = "";
@@ -51,6 +49,10 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 
+	/**
+	 * @param dataTable
+	 * @author EnzoBenoitJeannin & KaraBest & JoeyKoay & VictorMicha (from p9 step defs)
+	 */
 	@Given("the following pieces of equipment exist in the system:") //from p9 step
 	public void the_following_pieces_of_equipment_exist_in_the_system(
 			io.cucumber.datatable.DataTable dataTable) {
@@ -63,7 +65,11 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 
-	@Given("the following equipment bundles exist in the system:") //from p9 step
+	/**
+	 * @param dataTable
+	 * @author EnzoBenoitJeannin & KaraBest & EunjunChang & JoeyKoay & VictorMicha & SejongYoon (from p9 step defs)
+	 */
+	@Given("the following equipment bundles exist in the system:")
 	public void the_following_equipment_bundles_exist_in_the_system(
 			io.cucumber.datatable.DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
@@ -80,7 +86,11 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 
-	@Given("the following guides exist in the system:") //from p9 step
+	/**
+	 * @param dataTable
+	 * @author EnzoBenoitJeannin & KaraBest & EunjunChang & JoeyKoay & VictorMicha & SejongYoon (from p9 step defs)
+	 */
+	@Given("the following guides exist in the system:")
 	public void the_following_guides_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 		List<Guide> guides = climbSafe.getGuides();
@@ -95,7 +105,11 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 
-	@Given("the following members exist in the system:") //from p9
+	/**
+	 * @param dataTable
+	 * @author EnzoBenoitJeannin & KaraBest & JoeyKoay & VictorMicha (from p9 step defs)
+	 */
+	@Given("the following members exist in the system:") 
 	public void the_following_members_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 
@@ -131,7 +145,7 @@ public class AssignmentFeatureStepDefinitions {
 	/**
 	 * 
 	 * @param dataTable
-	 * @author Enzo Benoit-Jeannin and Kara Best
+	 * @author Enzo Benoit-Jeannin & Kara Best
 	 */
 	@Then("the following assignments shall exist in the system:")
 	public void the_following_assignments_shall_exist_in_the_system(
@@ -157,9 +171,14 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 
+	/**
+	 * @param email
+	 * @param string 2 - the trip status the assignment should be in
+	 * @author Joey Koay
+	 */
 	@Then("the assignment for {string} shall be marked as {string}") 
-	public void the_assignment_for_shall_be_marked_as(String string, String string2) {
-		Member member = (Member) Member.getWithEmail(string);
+	public void the_assignment_for_shall_be_marked_as(String email, String string2) {
+		Member member = (Member) Member.getWithEmail(email);
 		TripStatus argTripStatus = null;
 		if(string2.equals("Started")) {
 			argTripStatus = TripStatus.Started;
@@ -195,7 +214,6 @@ public class AssignmentFeatureStepDefinitions {
 
 
 	/**
-	 * 
 	 * @param dataTable
 	 * @author Enzo Benoit-Jeannin
 	 */
@@ -218,7 +236,6 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 	/**
-	 * 
 	 * @param string
 	 * @param string2
 	 * @author Kara Best
@@ -235,7 +252,6 @@ public class AssignmentFeatureStepDefinitions {
 
 	}
 	/**
-	 * 
 	 * @param string
 	 * @param string2
 	 * @author Enzo Benoit-Jeannin
@@ -247,7 +263,11 @@ public class AssignmentFeatureStepDefinitions {
 		assertEquals(member.getAssignment().getPaymentCode(),string2);
 	}
 
-	@Then("the member account with the email {string} does not exist") //Joey
+	/**
+	 * @param email
+	 * @author Joey Koay
+	 */
+	@Then("the member account with the email {string} does not exist")
 	public void the_member_account_with_the_email_does_not_exist(String email) {
 		List<Member> memberList = climbSafe.getMembers();
 		boolean validMember = false;
@@ -283,7 +303,11 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 
-	@Given("the member with {string} has paid for their trip") //Joey
+	/**
+	 * @param email
+	 * @author Joey Koay
+	 */
+	@Given("the member with {string} has paid for their trip")
 	public void the_member_with_has_paid_for_their_trip(String email) {
 		List<Member> memberList = climbSafe.getMembers();
 		int memberIndex = -1;
@@ -376,7 +400,11 @@ public class AssignmentFeatureStepDefinitions {
 		}
 	}
 
-	@Given("the member with {string} has cancelled their trip") //Joey
+	/**
+	 * @param email
+	 * @author Joey Koay
+	 */
+	@Given("the member with {string} has cancelled their trip")
 	public void the_member_with_has_cancelled_their_trip(String email) {
 		List<Member> memberList = climbSafe.getMembers();
 		int memberIndex = -1;
@@ -389,7 +417,11 @@ public class AssignmentFeatureStepDefinitions {
 		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Cancelled);
 	}
 
-	@Given("the member with {string} has finished their trip") //Joey
+	/**
+	 * @param email
+	 * @author Joey Koay
+	 */
+	@Given("the member with {string} has finished their trip")
 	public void the_member_with_has_finished_their_trip(String email) {
 		List<Member> memberList = climbSafe.getMembers();
 		int memberIndex = -1;

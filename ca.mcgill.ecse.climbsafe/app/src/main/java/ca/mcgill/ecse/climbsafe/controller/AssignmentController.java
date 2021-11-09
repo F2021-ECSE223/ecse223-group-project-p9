@@ -1,7 +1,6 @@
 package ca.mcgill.ecse.climbsafe.controller;
 import ca.mcgill.ecse.climbsafe.model.*;
 import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
-import java.sql.Date;
 import java.util.List;
 
 //import org.checkerframework.checker.units.qual.m;
@@ -118,7 +117,6 @@ public class AssignmentController {
 				else {
 					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
 					a.setTripStatus(TripStatus.Assigned);
-					//System.out.println("CCCC"+member.getEmail());
 				}
 			}
 		}
@@ -137,13 +135,7 @@ public class AssignmentController {
 		return (guideAssignments.get(guideAssignments.size()-1).getEndWeek()+memberNumWeeks<=climbSafe.getNrWeeks());
 	}
 	
-
-
-
-
-
 	/**
-	 * 
 	 * @param email
 	 * @param week
 	 * @throws InvalidInputException
@@ -183,7 +175,6 @@ public class AssignmentController {
 	}
 
 	/**
-	 * 
 	 * @param email
 	 * @throws InvalidInputException
 	 * @author Enzo Benoit-Jeannin
@@ -230,7 +221,6 @@ public class AssignmentController {
 	}
 
 	/**
-	 * 
 	 * @param email
 	 * @throws InvalidInputException
 	 * @author Kara Best
@@ -340,29 +330,5 @@ public class AssignmentController {
 			}
 		}
 		return validMember;
-	}
-
-	/**
-	 * checking if the email is valid or not
-	 * 
-	 * @author Joey Koay
-	 * @param email
-	 * @return whether the email is valid
-	 */
-	private static boolean validEmail(String email) {
-		boolean validEmail = true;
-		if(!(email.indexOf("@") > 0)) {
-			validEmail = false;
-		}
-		if(!(email.indexOf("@") == email.lastIndexOf("@"))) {
-			validEmail = false;
-		}
-		if(!(email.indexOf("@") < email.lastIndexOf(".") - 1)) {
-			validEmail = false;
-		}
-		if(!(email.lastIndexOf(".") < email.length() - 1)) {
-			validEmail = false;
-		}
-		return validEmail;
 	}
 }

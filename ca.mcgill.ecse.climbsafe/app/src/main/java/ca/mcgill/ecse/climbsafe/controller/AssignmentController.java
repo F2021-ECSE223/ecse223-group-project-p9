@@ -61,18 +61,39 @@ public class AssignmentController {
 						if(guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+member.getNrWeeks()>climbSafe.getNrWeeks()){
 							int temp = g;
 							//add member to next guide that is available
-							if (!(g+1<guides.size())) {
+							//to find first available guide
+							boolean guideNotFound = true;
+							int index = 0;
+							while(guideNotFound&&index<guides.size()) {
+								if (guides.get(index).getAssignments().get(guides.get(index).getAssignments().size()-1).getEndWeek()+member.getNrWeeks()<=climbSafe.getNrWeeks()) {
+									guideNotFound = false;
+									
+								}
+								index++;
+							}
+							if(guideNotFound) {
 								error = "Assignments could not be completed for all members";
 								throw new InvalidInputException(error.trim());
 							}
-							g++;
-							guide = guides.get(g);
+							index--;
+							
+							//if (!(g+1<guides.size())) {
+						//		error = "Assignments could not be completed for all members";
+							//	throw new InvalidInputException(error.trim());
+							//}
+							//g++;
+							guide = guides.get(index);
 							int startWeek;
 							int endWeek;
-							
-							System.out.println(">>>>"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
-							startWeek = 1;
-							endWeek = member.getNrWeeks();
+							if (guide.getAssignments().size()==0) {
+								System.out.println("AAAA"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
+								startWeek = 1;
+								endWeek = member.getNrWeeks();
+							} else {
+								System.out.println("BBBB"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
+								startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
+								endWeek = startWeek+ member.getNrWeeks()-1;
+							}
 							
 							Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 							assignment.setGuide(guide);

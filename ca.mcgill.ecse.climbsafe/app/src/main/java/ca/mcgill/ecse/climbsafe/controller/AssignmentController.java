@@ -242,7 +242,7 @@ public class AssignmentController {
 					if(a.getTripStatus().equals(TripStatus.Banned)) {
 						error = "Cannot finish the trip due to a ban";
 						throw new InvalidInputException(error.trim());
-					}else if(a.getTripStatus().equals(TripStatus.Started)) {
+					}else if(a.getTripStatus().equals(TripStatus.OnTrip)) {
 //						a.setTripStatus(TripStatus.Finished);
 						a.finishTrip();
 						a.setRefund(0);
@@ -290,6 +290,7 @@ public class AssignmentController {
 			}
 		}
 
+		System.out.println("===293 Trip Status ===="  + myAssignment.getTripStatus().toString());
 		if(myAssignment.getTripStatus().equals(TripStatus.Started)) {
 			error = "Trip has already been paid for";
 			throw new InvalidInputException(error.trim());

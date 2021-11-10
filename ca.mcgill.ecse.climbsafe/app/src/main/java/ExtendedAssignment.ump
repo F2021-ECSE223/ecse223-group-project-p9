@@ -11,18 +11,19 @@ class Assignment{
    Assigned{
      payForTrip(String code)/{
        setAuthorizationCode(code);
+       setPaid(true);
      }->Assigned;
      startTrip()->Started;
-     cancelTrip()[getAuthorizationCode()==null]/{
+     cancelTrip()[!getPaid()]/{
        setRefund(0);
      }->Cancelled;
-     cancelTrip()[getAuthorizationCode()!=null]/{
+     cancelTrip()[getPaid()]/{
        setRefund(50);
      }->Cancelled;
    }
    Started{
-     [getAuthorizationCode()==null]->Banned;
-     [getAuthorizationCode()!=null]->OnTrip;
+     [!getPaid()]->Banned;
+     [getPaid()]->OnTrip;
    }
    OnTrip{
       finishTrip() -> Finished; 

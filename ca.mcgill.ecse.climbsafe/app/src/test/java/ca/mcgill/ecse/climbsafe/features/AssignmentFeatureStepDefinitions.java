@@ -182,7 +182,7 @@ public class AssignmentFeatureStepDefinitions {
 		Member member = (Member) Member.getWithEmail(email);
 		TripStatus argTripStatus = null;
 		if(string2.equals("Started")) {
-			argTripStatus = TripStatus.Started;
+			argTripStatus = TripStatus.OnTrip;
 		}else if(string2.equals("Finished")) {
 			argTripStatus = TripStatus.Finished;
 		}else if(string2.equals("Cancelled")) {
@@ -351,7 +351,9 @@ public class AssignmentFeatureStepDefinitions {
 		for(Assignment a: assignments) {
 			if(a.getMember().getEmail().equals(string)) {
 //				a.setTripStatus(TripStatus.Started);
+				a.setPaid(true);
 				a.startTrip();
+				System.out.println("=======" + a.getTripStatusFullName());
 			}
 		}
 	}

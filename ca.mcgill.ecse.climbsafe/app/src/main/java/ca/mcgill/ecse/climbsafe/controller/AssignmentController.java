@@ -289,8 +289,6 @@ public class AssignmentController {
 				break;
 			}
 		}
-
-		System.out.println("===293 Trip Status ===="  + myAssignment.getTripStatus().toString());
 		if(myAssignment.getTripStatus().equals(TripStatus.Started)) {
 			error = "Trip has already been paid for";
 			throw new InvalidInputException(error.trim());
@@ -299,16 +297,16 @@ public class AssignmentController {
 			error = "Cannot pay for the trip due to a ban";
 			throw new InvalidInputException(error.trim());
 		}
-		if(myAssignment.getPaid()==true) {
-			error = "Trip has already been paid for";
-			throw new InvalidInputException(error.trim());
-		}
 		if(myAssignment.getTripStatus().equals(TripStatus.Cancelled)) {
 			error = "Cannot pay for a trip which has been cancelled";
 			throw new InvalidInputException(error.trim());
 		}
 		if(myAssignment.getTripStatus().equals(TripStatus.Finished)) {
 			error = "Cannot pay for a trip which has finished";
+			throw new InvalidInputException(error.trim());
+		}
+		if(myAssignment.getPaid()==true) {
+			error = "Trip has already been paid for";
 			throw new InvalidInputException(error.trim());
 		}
 		try {	

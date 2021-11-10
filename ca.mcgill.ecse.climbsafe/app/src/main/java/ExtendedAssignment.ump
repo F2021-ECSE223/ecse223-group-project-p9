@@ -1,8 +1,5 @@
 use ClimbSafe.ump;
 
-
-
-
 class Assignment{
 	lazy int refund;
 	lazy String authorizationCode;

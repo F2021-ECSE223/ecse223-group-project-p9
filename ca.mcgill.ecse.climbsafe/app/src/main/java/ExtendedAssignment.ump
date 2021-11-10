@@ -1,8 +1,46 @@
 use ClimbSafe.ump;
 
-class Assignment {
-	enum TripStatus {Started, Finished, Cancelled, Assigned, Paid, Banned};
-	lazy TripStatus tripStatus;
+
+
+
+class Assignment{
 	lazy int refund;
-	lazy String paymentCode;
+	lazy String authorizationCode;
+	lazy Boolean paid;
+  TripStatus{
+   Assigned{
+     payForTrip(String code)/{
+       setAuthorizationCode(code);
+     }->Assigned;
+     startTrip()->Started;
+     cancelTrip()[getAuthorizationCode()==null]/{
+       setRefund(0);
+     }->Cancelled;
+     cancelTrip()[getAuthorizationCode()!=null]/{
+       setRefund(50);
+     }->Cancelled;
+   }
+   Started{
+     [getAuthorizationCode()==null]->Banned;
+     [getAuthorizationCode()!=null]->OnTrip;
+   }
+   OnTrip{
+      finishTrip() -> Finished; 
+     cancelTrip()/{
+       setRefund(10);
+     }->Cancelled;
+   }
+   Finished{
+     cancelTrip()/{
+       setRefund(0);
+     }-> Cancelled;
+   }
+   Banned{
+      
+   }
+   
+  Cancelled{
+    
+  }
+}
 }

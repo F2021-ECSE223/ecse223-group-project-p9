@@ -183,7 +183,7 @@ public class Assignment
     switch (aTripStatus)
     {
       case Assigned:
-        if (!(getPaid()))
+        if (getAuthorizationCode()==null)
         {
         // line 16 "../../../../../ExtendedAssignment.ump"
           setRefund(0);
@@ -191,7 +191,7 @@ public class Assignment
           wasEventProcessed = true;
           break;
         }
-        if (getPaid())
+        if (getAuthorizationCode()!=null)
         {
         // line 19 "../../../../../ExtendedAssignment.ump"
           setRefund(50);
@@ -219,7 +219,7 @@ public class Assignment
     return wasEventProcessed;
   }
 
-  private boolean __autotransition81__()
+  private boolean __autotransition77__()
   {
     boolean wasEventProcessed = false;
     
@@ -227,7 +227,7 @@ public class Assignment
     switch (aTripStatus)
     {
       case Started:
-        if (!(getPaid()))
+        if (getAuthorizationCode()==null)
         {
           setTripStatus(TripStatus.Banned);
           wasEventProcessed = true;
@@ -241,7 +241,7 @@ public class Assignment
     return wasEventProcessed;
   }
 
-  private boolean __autotransition82__()
+  private boolean __autotransition78__()
   {
     boolean wasEventProcessed = false;
     
@@ -249,7 +249,7 @@ public class Assignment
     switch (aTripStatus)
     {
       case Started:
-        if (getPaid())
+        if (getAuthorizationCode()!=null)
         {
           setTripStatus(TripStatus.OnTrip);
           wasEventProcessed = true;
@@ -289,8 +289,8 @@ public class Assignment
     switch(tripStatus)
     {
       case Started:
-        __autotransition81__();
-        __autotransition82__();
+        __autotransition77__();
+        __autotransition78__();
         break;
     }
   }

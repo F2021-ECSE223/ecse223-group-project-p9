@@ -21,29 +21,39 @@ public class AssignmentController {
 		int g = 0;
 		Guide guide = guides.get(g);
 		Member member;
+		//for (int i=0; i<guides.size(); i++) {
+		//	System.out.println("XXXXXXX>>"+guide.getAssignments().size());
+		//}
 		try {
 			for (int m=0; m<members.size(); m++) {
 				member = members.get(m);
+				//System.out.println(">>"+member.getEmail());
 				if (member.getGuideRequired()){
 					if (guideAvailableForNumWeeks(guide.getAssignments(), member.getNrWeeks(), guide)) {
 						int startWeek;
 						int endWeek;
 						if (guide.getAssignments().size()==0) {
+							//System.out.println("AAAA"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 							startWeek = 1;
 							endWeek = member.getNrWeeks();
 						} else {
+							//System.out.println("BBBB"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 							startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
 							endWeek = startWeek+ member.getNrWeeks()-1;
 						}
 						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 						assignment.setGuide(guide);
+//						assignment.setTripStatus(TripStatus.Assigned);
+//						assignment
 						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
 								error = "Assignments could not be completed for all members";
 								throw new InvalidInputException(error.trim());
 							}
+
 							g++;
 							guide = guides.get(g);
+
 							//can keep track of which weeks are avalible for a guide in array or something
 						}
 
@@ -68,24 +78,34 @@ public class AssignmentController {
 								throw new InvalidInputException(error.trim());
 							}
 							index--;
+							
+							//if (!(g+1<guides.size())) {
+						//		error = "Assignments could not be completed for all members";
+							//	throw new InvalidInputException(error.trim());
+							//}
+							//g++;
 							guide = guides.get(index);
 							int startWeek;
 							int endWeek;
 							if (guide.getAssignments().size()==0) {
+								//System.out.println("AAAA"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 								startWeek = 1;
 								endWeek = member.getNrWeeks();
 							} else {
+								//System.out.println("BBBB"+member.getEmail()+">>g= "+g+"<<>>" +guide.getEmail());
 								startWeek = guide.getAssignments().get(guide.getAssignments().size()-1).getEndWeek()+1;
 								endWeek = startWeek+ member.getNrWeeks()-1;
 							}
 							
 							Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 							assignment.setGuide(guide);
+//							assignment.setTripStatus(TripStatus.Assigned);
 							
 							g = temp;
 							guide = guides.get(g);
 							
 						}else {
+
 							if (!(g+1<guides.size())) {
 								error = "Assignments could not be completed for all members";
 								throw new InvalidInputException(error.trim());
@@ -97,6 +117,7 @@ public class AssignmentController {
 				}
 				else {
 					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
+//					a.setTripStatus(TripStatus.Assigned);
 				}
 			}
 		}
@@ -143,6 +164,12 @@ public class AssignmentController {
 			for (Assignment a : myAssignments) {
 				if (a.getStartWeek()==week) {
 					a.startTrip();
+//					if (a.getPaid()==true) {
+//						a.setTripStatus(TripStatus.Started);
+//						
+//					}else {
+//						a.setTripStatus(TripStatus.Banned);
+//					}
 				}
 			}
 		}catch(RuntimeException e){
@@ -180,6 +207,16 @@ public class AssignmentController {
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
 					a.cancelTrip();
+//					if (a.getTripStatus().equals(TripStatus.Started)) {
+//						a.setRefund(10);
+//						a.setTripStatus(TripStatus.Cancelled);
+//					}else if (a.getTripStatus().equals(TripStatus.Paid)) {
+//						a.setRefund(50);
+//						a.setTripStatus(TripStatus.Cancelled);
+//					}else if(a.getTripStatus().equals(TripStatus.Assigned)) {
+//						a.setRefund(0);
+//						a.setTripStatus(TripStatus.Cancelled);
+//					}
 				}
 			}
 		}catch(RuntimeException e){
@@ -206,6 +243,7 @@ public class AssignmentController {
 						error = "Cannot finish the trip due to a ban";
 						throw new InvalidInputException(error.trim());
 					}else if(a.getTripStatus().equals(TripStatus.OnTrip)) {
+//						a.setTripStatus(TripStatus.Finished);
 						a.finishTrip();
 						a.setRefund(0);
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
@@ -271,7 +309,8 @@ public class AssignmentController {
 			error = "Trip has already been paid for";
 			throw new InvalidInputException(error.trim());
 		}
-		try {
+		try {	
+//			myAssignment.setTripStatus(TripStatus.Paid);
 			myAssignment.setPaid(true);
 			myAssignment.setAuthorizationCode(code);
 		}catch(RuntimeException e){

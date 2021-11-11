@@ -6,26 +6,22 @@ class ClimbSafe {
   private static final long serialVersionUID = -2683593616927798071L;
 
   public void reinitialize() {
-//    Member.reinitializeUniqueEmail(this.getMembers());
-//    Guide.reinitializeUniqueEmail(this.getGuides());
-//    Admin.reinitializeUniqueEmail(this.getAdmin());
 	User.reinitializeUniqueEmail(this.getAdministrator(), this.getGuides(), this.getMembers());
     BookableItem.reinitializeUniqueName(this.getEquipment(), this.getBundles());
     Hotel.reinitializeUniqueName(this.getHotels());
   }
 }
 
+class Administrator {
+  depend java.io.Serializable;
+  isA Serializable;
+  private static final long serialVersionUID = 2315072607928790598L;
+}
+
 class Member {
   depend java.io.Serializable;
   isA Serializable;
   private static final long serialVersionUID = 2315072607928790501L;
-
-//  public static void reinitializeAutouniqueEmail(List<Member> members) {
-//    memberByEmail = new HashMap <String, Member>();
-//    for (Member member : members) {
-//      memberByEmail.put(member.getEmail(), member);
-//    }
-//  }
 }
 
 class Guide {
@@ -33,18 +29,12 @@ class Guide {
   isA Serializable;
   private static final long serialVersionUID = 2315072607928790502L;
 
-//  public static void reinitializeAutouniqueEmail(List<Guide> guides) {
-//    guideByEmail = new HashMap <String, Guide>();
-//    for (Guide guide : guides) {
-//      guideByEmail.put(guide.getEmail(), guide);
-//    }
-//  }
 }
 
 class User {
   depend java.io.Serializable;
   isA Serializable;
-  private static final long serialVersionUID = 2315072607928790502L;
+  private static final long serialVersionUID = 2315072607928790590L;
   
   
   public static void reinitializeUniqueEmail(Administrator administrator, List<Guide> guides, List<Member> members) {

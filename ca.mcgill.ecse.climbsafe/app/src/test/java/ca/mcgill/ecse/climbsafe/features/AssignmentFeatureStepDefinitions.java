@@ -449,9 +449,6 @@ public class AssignmentFeatureStepDefinitions {
 			}
 		}
 //		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Finished);
-		climbSafe.getMember(memberIndex).getAssignment().setPaid(true);
-		climbSafe.getMember(memberIndex).getAssignment().startTrip();
 		climbSafe.getMember(memberIndex).getAssignment().finishTrip();
-		System.out.println("======452 Trip STatus: ====" + climbSafe.getMember(memberIndex).getAssignment().getTripStatus());
 	}
 }

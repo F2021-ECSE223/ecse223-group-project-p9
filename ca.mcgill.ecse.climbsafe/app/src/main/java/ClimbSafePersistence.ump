@@ -9,6 +9,7 @@ class ClimbSafe {
 //    Member.reinitializeUniqueEmail(this.getMembers());
 //    Guide.reinitializeUniqueEmail(this.getGuides());
 //    Admin.reinitializeUniqueEmail(this.getAdmin());
+	User.reinitializeUniqueEmail(this.getAdministrator(), this.getGuides(), this.getMembers());
     BookableItem.reinitializeUniqueName(this.getEquipment(), this.getBundles());
     Hotel.reinitializeUniqueName(this.getHotels());
   }
@@ -38,6 +39,25 @@ class Guide {
 //      guideByEmail.put(guide.getEmail(), guide);
 //    }
 //  }
+}
+
+class User {
+  depend java.io.Serializable;
+  isA Serializable;
+  private static final long serialVersionUID = 2315072607928790502L;
+  
+  
+  public static void reinitializeUniqueEmail(Administrator administrator, List<Guide> guides, List<Member> members) {
+    usersByEmail = new HashMap<String, User>();
+  
+  	usersByEmail.put(administrator.getEmail(), administrator);
+    for (Guide g : guides) {
+      usersByEmail.put(g.getEmail(), g);
+    }
+    for (Member m : members) {
+      usersByEmail.put(m.getEmail(), m);
+    }
+  }
 }
 
 class BookableItem {

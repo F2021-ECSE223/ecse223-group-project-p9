@@ -4,7 +4,7 @@
 package ca.mcgill.ecse.climbsafe.model;
 import java.io.Serializable;
 
-// line 73 "../../../../../ClimbSafePersistence.ump"
+// line 93 "../../../../../ClimbSafePersistence.ump"
 // line 1 "../../../../../ClimbSafeStates.ump"
 // line 92 "../../../../../ClimbSafe.ump"
 public class Assignment implements Serializable
@@ -222,7 +222,7 @@ public class Assignment implements Serializable
     return wasEventProcessed;
   }
 
-  private boolean __autotransition35__()
+  private boolean __autotransition55__()
   {
     boolean wasEventProcessed = false;
     
@@ -244,7 +244,7 @@ public class Assignment implements Serializable
     return wasEventProcessed;
   }
 
-  private boolean __autotransition36__()
+  private boolean __autotransition56__()
   {
     boolean wasEventProcessed = false;
     
@@ -292,8 +292,8 @@ public class Assignment implements Serializable
     switch(tripStatus)
     {
       case Started:
-        __autotransition35__();
-        __autotransition36__();
+        __autotransition55__();
+        __autotransition56__();
         break;
     }
   }
@@ -457,7 +457,7 @@ public class Assignment implements Serializable
   // DEVELOPER CODE - PROVIDED AS-IS
   //------------------------
   
-  // line 76 "../../../../../ClimbSafePersistence.ump"
+  // line 96 "../../../../../ClimbSafePersistence.ump"
   private static final long serialVersionUID = -3900912597282882073L ;
 
   

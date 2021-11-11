@@ -1,6 +1,8 @@
 package ca.mcgill.ecse.climbsafe.controller;
 import ca.mcgill.ecse.climbsafe.model.*;
 import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
+
 import java.util.List;
 
 //import org.checkerframework.checker.units.qual.m;
@@ -99,6 +101,7 @@ public class AssignmentController {
 					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
 				}
 			}
+			ClimbSafePersistence.save();
 		}
 		catch(RuntimeException e){
 			throw new InvalidInputException(e.getMessage());
@@ -145,6 +148,7 @@ public class AssignmentController {
 					a.startTrip();
 				}
 			}
+			ClimbSafePersistence.save();
 		}catch(RuntimeException e){
 			throw new InvalidInputException(e.getMessage());
 		}
@@ -182,6 +186,7 @@ public class AssignmentController {
 					a.cancelTrip();
 				}
 			}
+			ClimbSafePersistence.save();
 		}catch(RuntimeException e){
 			throw new InvalidInputException(e.getMessage());
 		}
@@ -219,7 +224,8 @@ public class AssignmentController {
 						throw new InvalidInputException(error.trim());
 					}
 				}
-			}			
+			}	
+			ClimbSafePersistence.save();
 		}catch(RuntimeException e) {
 			throw new InvalidInputException(e.getMessage());
 		}
@@ -274,6 +280,7 @@ public class AssignmentController {
 		try {
 			myAssignment.setPaid(true);
 			myAssignment.setAuthorizationCode(code);
+			ClimbSafePersistence.save();
 		}catch(RuntimeException e){
 			throw new InvalidInputException(e.getMessage());
 		}

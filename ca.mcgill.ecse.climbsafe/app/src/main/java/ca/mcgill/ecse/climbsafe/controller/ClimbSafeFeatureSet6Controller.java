@@ -5,6 +5,7 @@ import java.util.*;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.*;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet6Controller {
 	
@@ -52,7 +53,7 @@ public class ClimbSafeFeatureSet6Controller {
 			String error = "The piece of equipment is in a bundle and cannot be deleted";
 			throw new InvalidInputException(error.trim());
 		}
-		
+		ClimbSafePersistence.save();
 	  }catch(RuntimeException e){
 		  throw new InvalidInputException(e.getMessage());
 	  }
@@ -81,7 +82,7 @@ public class ClimbSafeFeatureSet6Controller {
 				return;
 			}
 		}
-	
+		ClimbSafePersistence.save();
 	}
 	/**
 	 * View assignment

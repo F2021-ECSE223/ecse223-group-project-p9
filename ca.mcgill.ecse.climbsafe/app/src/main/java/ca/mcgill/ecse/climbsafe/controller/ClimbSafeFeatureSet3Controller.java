@@ -5,6 +5,7 @@ import java.util.List;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Guide;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 
 public class ClimbSafeFeatureSet3Controller {
@@ -70,6 +71,7 @@ public class ClimbSafeFeatureSet3Controller {
 	  
 	  try {
 		  climbSafe.addGuide(email, password, name, emergencyContact);
+		  ClimbSafePersistence.save();
 	  } catch(RuntimeException r){
 		  throw new InvalidInputException(r.getMessage());
 	  }
@@ -121,6 +123,7 @@ public class ClimbSafeFeatureSet3Controller {
 		  guide.setPassword(newPassword);
 		  guide.setName(newName);
 		  guide.setEmergencyContact(newEmergencyContact);
+		  ClimbSafePersistence.save();
 	  } catch(RuntimeException r){
 		  throw new InvalidInputException(r.getMessage());
 	  }

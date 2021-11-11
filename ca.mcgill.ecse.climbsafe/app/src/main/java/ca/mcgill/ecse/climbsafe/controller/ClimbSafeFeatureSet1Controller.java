@@ -3,6 +3,7 @@ package ca.mcgill.ecse.climbsafe.controller;
 import java.sql.Date;
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import java.util.List;
@@ -45,6 +46,7 @@ public class ClimbSafeFeatureSet1Controller {
 			climbSafe.setStartDate(startDate);
 			climbSafe.setNrWeeks(nrWeeks);
 			climbSafe.setPriceOfGuidePerWeek(priceOfGuidePerWeek);
+			ClimbSafePersistence.save();
 		}catch(RuntimeException e){
 			throw new InvalidInputException(e.getMessage());
 		}
@@ -71,6 +73,7 @@ public class ClimbSafeFeatureSet1Controller {
 				members.get(i-1).delete();
 			}
 		}
+		ClimbSafePersistence.save();
 	}
 
 	/**
@@ -94,6 +97,7 @@ public class ClimbSafeFeatureSet1Controller {
 				guides.get(i-1).delete();
 			}
 		}
+		ClimbSafePersistence.save();
 	}
 
 

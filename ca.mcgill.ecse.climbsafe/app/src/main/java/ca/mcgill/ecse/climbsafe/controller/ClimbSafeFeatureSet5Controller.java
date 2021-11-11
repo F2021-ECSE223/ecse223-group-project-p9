@@ -8,6 +8,7 @@ import ca.mcgill.ecse.climbsafe.model.BundleItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet5Controller {
 	
@@ -101,6 +102,7 @@ public class ClimbSafeFeatureSet5Controller {
 				  }
 			  }
 		  }
+		  ClimbSafePersistence.save();
 	  } catch (RuntimeException e) {
 		  throw new InvalidInputException(e.getMessage());
 	  }
@@ -227,6 +229,7 @@ public class ClimbSafeFeatureSet5Controller {
 				  }
 			  }
 		  }
+		  ClimbSafePersistence.save();
 	  } catch (RuntimeException e) {
 		  throw new InvalidInputException(e.getMessage());
 	  }

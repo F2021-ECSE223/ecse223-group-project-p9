@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.climbsafe.controller;
 
 import ca.mcgill.ecse.climbsafe.model.*;
+import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class ClimbSafeFeatureSet4Controller {
 	  //try adding the equipment to the ClimbSafe application and catch errors if any
 	  try {
 		  climbSafe.addEquipment(name, weight, pricePerWeek);
+		  ClimbSafePersistence.save();
 	  }catch (RuntimeException e) {
 	      throw new InvalidInputException(e.getMessage());
 	  }
@@ -126,6 +128,7 @@ public class ClimbSafeFeatureSet4Controller {
 		 myEquipment.setName(newName);
 		 myEquipment.setPricePerWeek(newPricePerWeek);
 		 myEquipment.setWeight(newWeight);
+		 ClimbSafePersistence.save();
 	 }catch(RuntimeException e){
 		  throw new InvalidInputException(e.getMessage());
 	  }

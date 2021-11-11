@@ -6,9 +6,10 @@ class ClimbSafe {
   private static final long serialVersionUID = -2683593616927798071L;
 
   public void reinitialize() {
-    Member.reinitializeAutouniqueEmail(this.getMembers());
-    Guide.reinitializeAutouniqueEmail(this.getGuides());
-    BookableItem.reinitializeUniqueName(this.getBookedItems());
+//    Member.reinitializeUniqueEmail(this.getMembers());
+//    Guide.reinitializeUniqueEmail(this.getGuides());
+//    Admin.reinitializeUniqueEmail(this.getAdmin());
+    BookableItem.reinitializeUniqueName(this.getEquipment(), this.getBundles());
     Hotel.reinitializeUniqueName(this.getHotels());
   }
 }
@@ -18,12 +19,12 @@ class Member {
   isA Serializable;
   private static final long serialVersionUID = 2315072607928790501L;
 
-  public static void reinitializeAutouniqueEmail(List<Member> members) {
-    memberByEmail = new HashMap <String, Member>();
-    for (Member member : members) {
-      memberByEmail.put(member.getEmail(), member);
-    }
-  }
+//  public static void reinitializeAutouniqueEmail(List<Member> members) {
+//    memberByEmail = new HashMap <String, Member>();
+//    for (Member member : members) {
+//      memberByEmail.put(member.getEmail(), member);
+//    }
+//  }
 }
 
 class Guide {
@@ -31,12 +32,12 @@ class Guide {
   isA Serializable;
   private static final long serialVersionUID = 2315072607928790502L;
 
-  public static void reinitializeAutouniqueEmail(List<Guide> guides) {
-    guideByEmail = new HashMap <String, Guide>();
-    for (Guide guide : guides) {
-      guideByEmail.put(guide.getEmail(), guide);
-    }
-  }
+//  public static void reinitializeAutouniqueEmail(List<Guide> guides) {
+//    guideByEmail = new HashMap <String, Guide>();
+//    for (Guide guide : guides) {
+//      guideByEmail.put(guide.getEmail(), guide);
+//    }
+//  }
 }
 
 class BookableItem {
@@ -44,10 +45,14 @@ class BookableItem {
   isA Serializable;
   private static final long serialVersionUID = 8896099581655989380L;
   
-  public static void reinitializeUniqueName(List<BookableItem> bookableItems) {
-    bookedItemByName = new HashMap<String, BookableItem>();
-    for (BookableItem bookedItem : bookableItems) {
-      bookedItemByName.put(bookedItem.get, bookedItem);
+  public static void reinitializeUniqueName(List<Equipment> equipments, List<EquipmentBundle> equipmentBundles) {
+    bookableitemsByName = new HashMap<String, BookableItem>();
+  
+    for (Equipment e : equipments) {
+      bookableitemsByName.put(e.getName(), e);
+    }
+    for (EquipmentBundle b : equipmentBundles) {
+      bookableitemsByName.put(b.getName(), b);
     }
   }
 }
@@ -58,9 +63,9 @@ class Hotel {
   private static final long serialVersionUID = 8896099581655989382L;
   
   public static void reinitializeUniqueName(List<Hotel> hotels) {
-    hotelByName = new HashMap<String, Hotel>();
+    hotelsByName = new HashMap<String, Hotel>();
     for (Hotel h : hotels) {
-      hotelByName.put(h.get, h);
+      hotelsByName.put(h.getName(), h);
     }
   }
 }
@@ -69,13 +74,6 @@ class Assignment {
   depend java.io.Serializable;
   isA Serializable;
   private static final long serialVersionUID = -3900912597282882073L;
-}
-
-
-class BundleItem {
-  depend java.io.Serializable;
-  isA Serializable;
-  private static final long serialVersionUID = -7403802774454467836L;
 }
 
 class Equipment {

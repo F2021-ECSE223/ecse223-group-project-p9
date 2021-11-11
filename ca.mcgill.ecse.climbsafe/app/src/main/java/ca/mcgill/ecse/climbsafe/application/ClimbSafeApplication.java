@@ -21,6 +21,8 @@ public class ClimbSafeApplication {
     if (climbSafe == null) {
       // these attributes are default, you should set them later with the setters
       climbSafe = new ClimbSafe(new Date(0), 0, 0);
+//      btms = BtmsPersistence.load();
+//      make this climbSafe
     }
     
     return climbSafe;

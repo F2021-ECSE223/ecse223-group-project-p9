@@ -2,10 +2,12 @@
 /*This code was generated using the UMPLE 1.31.1.5860.78bb27cc6 modeling language!*/
 
 package ca.mcgill.ecse.climbsafe.model;
+import java.io.Serializable;
 
+// line 73 "../../../../../ClimbSafePersistence.ump"
 // line 1 "../../../../../ClimbSafeStates.ump"
-// line 83 "../../../../../ClimbSafe.ump"
-public class Assignment
+// line 92 "../../../../../ClimbSafe.ump"
+public class Assignment implements Serializable
 {
 
   //------------------------
@@ -220,7 +222,7 @@ public class Assignment
     return wasEventProcessed;
   }
 
-  private boolean __autotransition31__()
+  private boolean __autotransition35__()
   {
     boolean wasEventProcessed = false;
     
@@ -242,7 +244,7 @@ public class Assignment
     return wasEventProcessed;
   }
 
-  private boolean __autotransition32__()
+  private boolean __autotransition36__()
   {
     boolean wasEventProcessed = false;
     
@@ -290,8 +292,8 @@ public class Assignment
     switch(tripStatus)
     {
       case Started:
-        __autotransition31__();
-        __autotransition32__();
+        __autotransition35__();
+        __autotransition36__();
         break;
     }
   }
@@ -450,5 +452,13 @@ public class Assignment
             "  " + "guide = "+(getGuide()!=null?Integer.toHexString(System.identityHashCode(getGuide())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "hotel = "+(getHotel()!=null?Integer.toHexString(System.identityHashCode(getHotel())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "climbSafe = "+(getClimbSafe()!=null?Integer.toHexString(System.identityHashCode(getClimbSafe())):"null");
-  }
+  }  
+  //------------------------
+  // DEVELOPER CODE - PROVIDED AS-IS
+  //------------------------
+  
+  // line 76 "../../../../../ClimbSafePersistence.ump"
+  private static final long serialVersionUID = -3900912597282882073L ;
+
+  
 }

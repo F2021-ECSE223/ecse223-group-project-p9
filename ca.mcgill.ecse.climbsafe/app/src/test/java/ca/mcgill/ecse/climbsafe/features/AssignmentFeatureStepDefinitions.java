@@ -54,8 +54,7 @@ public class AssignmentFeatureStepDefinitions {
 	 * @author EnzoBenoitJeannin & KaraBest & JoeyKoay & VictorMicha (from p9 step defs)
 	 */
 	@Given("the following pieces of equipment exist in the system:") //from p9 step
-	public void the_following_pieces_of_equipment_exist_in_the_system(
-			io.cucumber.datatable.DataTable dataTable) {
+	public void the_following_pieces_of_equipment_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 		for (Map<String, String> r : rows) {
 			String name = r.get("name");
@@ -70,8 +69,7 @@ public class AssignmentFeatureStepDefinitions {
 	 * @author EnzoBenoitJeannin & KaraBest & EunjunChang & JoeyKoay & VictorMicha & SejongYoon (from p9 step defs)
 	 */
 	@Given("the following equipment bundles exist in the system:")
-	public void the_following_equipment_bundles_exist_in_the_system(
-			io.cucumber.datatable.DataTable dataTable) {
+	public void the_following_equipment_bundles_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
 		List<Map<String, String>> rows = dataTable.asMaps(String.class, String.class);
 		for (Map<String, String> r : rows) {
 			String name = r.get("name");
@@ -148,9 +146,7 @@ public class AssignmentFeatureStepDefinitions {
 	 * @author Enzo Benoit-Jeannin & Kara Best
 	 */
 	@Then("the following assignments shall exist in the system:")
-	public void the_following_assignments_shall_exist_in_the_system(
-			io.cucumber.datatable.DataTable dataTable) {
-
+	public void the_following_assignments_shall_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
 		var rows = dataTable.asMaps();
 		for (var row : rows) {
 			String memberEmail = row.get("memberEmail");
@@ -160,8 +156,6 @@ public class AssignmentFeatureStepDefinitions {
 
 			var member = (Member) Member.getWithEmail(memberEmail);
 			var assignment = member.getAssignment();
-			
-				System.out.println("STartWeek in ass: "+assignment.getStartWeek()+"STARTWEEK in table: "+startWeek);
 				assertEquals(true, assignment.getStartWeek() == startWeek);
 				assertEquals(true, assignment.getEndWeek() == endWeek);
 				if(!(guideEmail==null)) {
@@ -181,20 +175,22 @@ public class AssignmentFeatureStepDefinitions {
 		Member member = (Member) Member.getWithEmail(email);
 		TripStatus argTripStatus = null;
 		if(string2.equals("Started")) {
-			argTripStatus = TripStatus.Started;
+			argTripStatus = TripStatus.OnTrip;
 		}else if(string2.equals("Finished")) {
 			argTripStatus = TripStatus.Finished;
 		}else if(string2.equals("Cancelled")) {
 			argTripStatus = TripStatus.Cancelled;
 		}else if(string2.equals("Assigned")) {
 			argTripStatus = TripStatus.Assigned;
-		}else if(string2.equals("Paid")) {
-			argTripStatus = TripStatus.Paid;
 		}else if(string2.equals("Banned")) {
 			argTripStatus = TripStatus.Banned;
 		}
-		assertEquals(argTripStatus, member.getAssignment().getTripStatus());
-
+		
+		if(string2.equals("Paid")){
+			assertEquals(true, member.getAssignment().getPaid());
+		}else {
+			assertEquals(argTripStatus, member.getAssignment().getTripStatus());
+		}
 	}
 	/**
 	 * 
@@ -218,9 +214,7 @@ public class AssignmentFeatureStepDefinitions {
 	 * @author Enzo Benoit-Jeannin
 	 */
 	@Given("the following assignments exist in the system:") 
-	public void the_following_assignments_exist_in_the_system(
-			io.cucumber.datatable.DataTable dataTable) {
-
+	public void the_following_assignments_exist_in_the_system(io.cucumber.datatable.DataTable dataTable) {
 		var rows = dataTable.asMaps();
 		for (var row : rows) {
 			int startWeek = Integer.valueOf(row.get("startWeek"));
@@ -228,11 +222,9 @@ public class AssignmentFeatureStepDefinitions {
 			var assignmentMember = (Member) Member.getWithEmail(row.get("memberEmail"));
 			var assignmentGuide = (Guide) User.getWithEmail(row.get("guideEmail"));
 			var assignmentHotel = Hotel.getWithName(row.get("hotelName"));
-
 			Assignment assignment = climbSafe.addAssignment(startWeek, endWeek, assignmentMember);
 			assignment.setGuide(assignmentGuide);
 			assignment.setHotel(assignmentHotel);
-			assignment.setTripStatus(TripStatus.Assigned);
 		}
 	}
 	/**
@@ -241,8 +233,7 @@ public class AssignmentFeatureStepDefinitions {
 	 * @author Kara Best
 	 */
 	@When("the administrator attempts to confirm payment for {string} using authorization code {string}") 
-	public void the_administrator_attempts_to_confirm_payment_for_using_authorization_code(
-			String string, String string2) {
+	public void the_administrator_attempts_to_confirm_payment_for_using_authorization_code(String string, String string2) {
 		try {
 			AssignmentController.payForTrip(string, string2);
 		} catch (InvalidInputException e) {
@@ -257,10 +248,9 @@ public class AssignmentFeatureStepDefinitions {
 	 * @author Enzo Benoit-Jeannin
 	 */
 	@Then("the assignment for {string} shall record the authorization code {string}")
-	public void the_assignment_for_shall_record_the_authorization_code(String string,
-			String string2) {
+	public void the_assignment_for_shall_record_the_authorization_code(String string, String string2) {
 		Member member = (Member) Member.getWithEmail(string);	  
-		assertEquals(member.getAssignment().getPaymentCode(),string2);
+		assertEquals(member.getAssignment().getAuthorizationCode(),string2);
 	}
 
 	/**
@@ -317,12 +307,11 @@ public class AssignmentFeatureStepDefinitions {
 				break;
 			}
 		}
-		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Paid);
+		climbSafe.getMember(memberIndex).getAssignment().setPaid(true);
 	}
 
 	@Then("the member with email address {string} shall receive a refund of {string} percent")
-	public void the_member_with_email_address_shall_receive_a_refund_of_percent(String string,
-			String string2) {
+	public void the_member_with_email_address_shall_receive_a_refund_of_percent(String string, String string2) {
 		List<Assignment> assignments = climbSafe.getAssignments();
 		for(Assignment a: assignments) {
 			if(a.getMember().getEmail().equals(string)) {
@@ -339,7 +328,8 @@ public class AssignmentFeatureStepDefinitions {
 		List<Assignment> assignments = climbSafe.getAssignments();
 		for(Assignment a: assignments) {
 			if(a.getMember().getEmail().equals(string)) {
-				a.setTripStatus(TripStatus.Started);
+				a.setPaid(true);
+				a.startTrip();
 			}
 		}
 	}
@@ -367,7 +357,8 @@ public class AssignmentFeatureStepDefinitions {
 		List<Assignment> assignments = climbSafe.getAssignments();
 		for(Assignment a: assignments) {
 			if(a.getMember().getEmail().equals(string)) {
-				a.setTripStatus(TripStatus.Banned);
+				a.setPaid(false);
+				a.startTrip();
 			}
 		}
 	}
@@ -414,7 +405,7 @@ public class AssignmentFeatureStepDefinitions {
 				break;
 			}
 		}
-		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Cancelled);
+		climbSafe.getMember(memberIndex).getAssignment().cancelTrip();
 	}
 
 	/**
@@ -431,6 +422,8 @@ public class AssignmentFeatureStepDefinitions {
 				break;
 			}
 		}
-		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Finished);
+		climbSafe.getMember(memberIndex).getAssignment().setPaid(true);
+		climbSafe.getMember(memberIndex).getAssignment().startTrip();
+		climbSafe.getMember(memberIndex).getAssignment().finishTrip();
 	}
 }

@@ -44,7 +44,7 @@ public class AssignmentController {
 							}
 							g++;
 							guide = guides.get(g);
-							//can keep track of which weeks are avalible for a guide in array or something
+							
 						}
 
 					}else {

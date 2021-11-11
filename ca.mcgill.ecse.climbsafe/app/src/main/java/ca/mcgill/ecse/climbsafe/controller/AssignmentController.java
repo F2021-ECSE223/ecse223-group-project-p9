@@ -43,8 +43,7 @@ public class AssignmentController {
 						}
 						Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 						assignment.setGuide(guide);
-//						assignment.setTripStatus(TripStatus.Assigned);
-//						assignment
+						assignment.setTripStatus(TripStatus.Assigned);
 						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
 								error = "Assignments could not be completed for all members";
@@ -99,7 +98,7 @@ public class AssignmentController {
 							
 							Assignment assignment = new Assignment(startWeek, endWeek, member, climbSafe);
 							assignment.setGuide(guide);
-//							assignment.setTripStatus(TripStatus.Assigned);
+							assignment.setTripStatus(TripStatus.Assigned);
 							
 							g = temp;
 							guide = guides.get(g);
@@ -117,7 +116,7 @@ public class AssignmentController {
 				}
 				else {
 					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
-//					a.setTripStatus(TripStatus.Assigned);
+					a.setTripStatus(TripStatus.Assigned);
 				}
 			}
 		}
@@ -163,13 +162,11 @@ public class AssignmentController {
 		try {
 			for (Assignment a : myAssignments) {
 				if (a.getStartWeek()==week) {
-					a.startTrip();
-//					if (a.getPaid()==true) {
-//						a.setTripStatus(TripStatus.Started);
-//						
-//					}else {
-//						a.setTripStatus(TripStatus.Banned);
-//					}
+					if (a.getTripStatus().equals(TripStatus.Paid)) {
+						a.setTripStatus(TripStatus.Started);
+					}else {
+						a.setTripStatus(TripStatus.Banned);
+					}
 				}
 			}
 		}catch(RuntimeException e){
@@ -206,17 +203,16 @@ public class AssignmentController {
 
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
-					a.cancelTrip();
-//					if (a.getTripStatus().equals(TripStatus.Started)) {
-//						a.setRefund(10);
-//						a.setTripStatus(TripStatus.Cancelled);
-//					}else if (a.getTripStatus().equals(TripStatus.Paid)) {
-//						a.setRefund(50);
-//						a.setTripStatus(TripStatus.Cancelled);
-//					}else if(a.getTripStatus().equals(TripStatus.Assigned)) {
-//						a.setRefund(0);
-//						a.setTripStatus(TripStatus.Cancelled);
-//					}
+					if (a.getTripStatus().equals(TripStatus.Started)) {
+						a.setRefund(10);
+						a.setTripStatus(TripStatus.Cancelled);
+					}else if (a.getTripStatus().equals(TripStatus.Paid)) {
+						a.setRefund(50);
+						a.setTripStatus(TripStatus.Cancelled);
+					}else if(a.getTripStatus().equals(TripStatus.Assigned)) {
+						a.setRefund(0);
+						a.setTripStatus(TripStatus.Cancelled);
+					}
 				}
 			}
 		}catch(RuntimeException e){
@@ -243,13 +239,12 @@ public class AssignmentController {
 						error = "Cannot finish the trip due to a ban";
 						throw new InvalidInputException(error.trim());
 					}else if(a.getTripStatus().equals(TripStatus.Started)) {
-//						a.setTripStatus(TripStatus.Finished);
-						a.finishTrip();
+						a.setTripStatus(TripStatus.Finished);
 						a.setRefund(0);
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
 						error = "Cannot finish a trip which has been cancelled";
 						throw new InvalidInputException(error.trim());
-					}else if(a.getTripStatus().equals(TripStatus.Assigned)|| a.getPaid() == true) {
+					}else if(a.getTripStatus().equals(TripStatus.Assigned)||a.getTripStatus().equals(TripStatus.Paid)) {
 						error = "Cannot finish a trip which has not started";
 						throw new InvalidInputException(error.trim());
 					}else if(a.getTripStatus().equals(TripStatus.Finished)) {
@@ -298,7 +293,7 @@ public class AssignmentController {
 			error = "Cannot pay for the trip due to a ban";
 			throw new InvalidInputException(error.trim());
 		}
-		if(myAssignment.getPaid()==true) {
+		if(myAssignment.getTripStatus().equals(TripStatus.Paid)) {
 			error = "Trip has already been paid for";
 			throw new InvalidInputException(error.trim());
 		}
@@ -311,9 +306,8 @@ public class AssignmentController {
 			throw new InvalidInputException(error.trim());
 		}
 		try {	
-//			myAssignment.setTripStatus(TripStatus.Paid);
-			myAssignment.setPaid(true);
-			myAssignment.setAuthorizationCode(code);
+			myAssignment.setTripStatus(TripStatus.Paid);
+			myAssignment.setPaymentCode(code);
 		}catch(RuntimeException e){
 			throw new InvalidInputException(e.getMessage());
 		}

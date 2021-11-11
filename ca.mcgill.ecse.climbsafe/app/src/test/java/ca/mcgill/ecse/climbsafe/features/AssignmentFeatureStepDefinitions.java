@@ -11,7 +11,6 @@ import ca.mcgill.ecse.climbsafe.controller.AssignmentController;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
-//import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
 import ca.mcgill.ecse.climbsafe.model.BookableItem;
 import ca.mcgill.ecse.climbsafe.model.BundleItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
@@ -189,21 +188,12 @@ public class AssignmentFeatureStepDefinitions {
 			argTripStatus = TripStatus.Cancelled;
 		}else if(string2.equals("Assigned")) {
 			argTripStatus = TripStatus.Assigned;
-		}
-//		else if(string2.equals("Paid")) {
-//			argTripStatus = TripStatus.Paid;
-//		}
-		else if(string2.equals("Banned")) {
+		}else if(string2.equals("Paid")) {
+			argTripStatus = TripStatus.Paid;
+		}else if(string2.equals("Banned")) {
 			argTripStatus = TripStatus.Banned;
 		}
-		
-		if(string2.equals("Paid")){
-			assertEquals(true, member.getAssignment().getPaid());
-		}else {
-			assertEquals(argTripStatus, member.getAssignment().getTripStatus());
-		}
-		
-//		member.getAssignment().getState().
+		assertEquals(argTripStatus, member.getAssignment().getTripStatus());
 
 	}
 	/**
@@ -242,7 +232,7 @@ public class AssignmentFeatureStepDefinitions {
 			Assignment assignment = climbSafe.addAssignment(startWeek, endWeek, assignmentMember);
 			assignment.setGuide(assignmentGuide);
 			assignment.setHotel(assignmentHotel);
-//			assignment.setTripStatus(TripStatus.Assigned);
+			assignment.setTripStatus(TripStatus.Assigned);
 		}
 	}
 	/**
@@ -270,7 +260,7 @@ public class AssignmentFeatureStepDefinitions {
 	public void the_assignment_for_shall_record_the_authorization_code(String string,
 			String string2) {
 		Member member = (Member) Member.getWithEmail(string);	  
-		assertEquals(member.getAssignment().getAuthorizationCode(),string2);
+		assertEquals(member.getAssignment().getPaymentCode(),string2);
 	}
 
 	/**
@@ -327,8 +317,7 @@ public class AssignmentFeatureStepDefinitions {
 				break;
 			}
 		}
-//		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Paid);
-		climbSafe.getMember(memberIndex).getAssignment().setPaid(true);
+		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Paid);
 	}
 
 	@Then("the member with email address {string} shall receive a refund of {string} percent")
@@ -350,8 +339,7 @@ public class AssignmentFeatureStepDefinitions {
 		List<Assignment> assignments = climbSafe.getAssignments();
 		for(Assignment a: assignments) {
 			if(a.getMember().getEmail().equals(string)) {
-//				a.setTripStatus(TripStatus.Started);
-				a.startTrip();
+				a.setTripStatus(TripStatus.Started);
 			}
 		}
 	}
@@ -379,9 +367,7 @@ public class AssignmentFeatureStepDefinitions {
 		List<Assignment> assignments = climbSafe.getAssignments();
 		for(Assignment a: assignments) {
 			if(a.getMember().getEmail().equals(string)) {
-//				a.setTripStatus(TripStatus.Banned);
-				a.setPaid(false);
-				a.startTrip();
+				a.setTripStatus(TripStatus.Banned);
 			}
 		}
 	}
@@ -428,8 +414,7 @@ public class AssignmentFeatureStepDefinitions {
 				break;
 			}
 		}
-//		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Cancelled);
-		climbSafe.getMember(memberIndex).getAssignment().cancelTrip();
+		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Cancelled);
 	}
 
 	/**
@@ -446,7 +431,6 @@ public class AssignmentFeatureStepDefinitions {
 				break;
 			}
 		}
-//		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Finished);
-		climbSafe.getMember(memberIndex).getAssignment().finishTrip();
+		climbSafe.getMember(memberIndex).getAssignment().setTripStatus(TripStatus.Finished);
 	}
 }

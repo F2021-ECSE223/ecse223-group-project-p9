@@ -4,9 +4,15 @@
 package ca.mcgill.ecse.climbsafe.model;
 
 // line 82 "../../../../../ClimbSafe.ump"
-// line 6 "../../../../../ExtendedAssignment.ump"
+// line 3 "../../../../../ExtendedAssignment.ump"
 public class Assignment
 {
+
+  //------------------------
+  // ENUMERATIONS
+  //------------------------
+
+  public enum TripStatus { Started, Finished, Cancelled, Assigned, Paid, Banned }
 
   //------------------------
   // MEMBER VARIABLES
@@ -15,13 +21,9 @@ public class Assignment
   //Assignment Attributes
   private int startWeek;
   private int endWeek;
-  private int refund;
-  private String authorizationCode;
-  private boolean paid;
-
-  //Assignment State Machines
-  public enum TripStatus { Assigned, Started, OnTrip, Finished, Banned, Cancelled }
   private TripStatus tripStatus;
+  private int refund;
+  private String paymentCode;
 
   //Assignment Associations
   private Member member;
@@ -37,8 +39,7 @@ public class Assignment
   {
     startWeek = aStartWeek;
     endWeek = aEndWeek;
-    authorizationCode = null;
-    paid = false;
+    paymentCode = null;
     boolean didAddMember = setMember(aMember);
     if (!didAddMember)
     {
@@ -49,7 +50,6 @@ public class Assignment
     {
       throw new RuntimeException("Unable to create assignment due to climbSafe. See http://manual.umple.org?RE002ViolationofAssociationMultiplicity.html");
     }
-    setTripStatus(TripStatus.Assigned);
   }
 
   //------------------------
@@ -72,6 +72,14 @@ public class Assignment
     return wasSet;
   }
 
+  public boolean setTripStatus(TripStatus aTripStatus)
+  {
+    boolean wasSet = false;
+    tripStatus = aTripStatus;
+    wasSet = true;
+    return wasSet;
+  }
+
   public boolean setRefund(int aRefund)
   {
     boolean wasSet = false;
@@ -80,18 +88,10 @@ public class Assignment
     return wasSet;
   }
 
-  public boolean setAuthorizationCode(String aAuthorizationCode)
+  public boolean setPaymentCode(String aPaymentCode)
   {
     boolean wasSet = false;
-    authorizationCode = aAuthorizationCode;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setPaid(boolean aPaid)
-  {
-    boolean wasSet = false;
-    paid = aPaid;
+    paymentCode = aPaymentCode;
     wasSet = true;
     return wasSet;
   }
@@ -106,193 +106,19 @@ public class Assignment
     return endWeek;
   }
 
-  public int getRefund()
-  {
-    return refund;
-  }
-
-  public String getAuthorizationCode()
-  {
-    return authorizationCode;
-  }
-
-  public boolean getPaid()
-  {
-    return paid;
-  }
-  /* Code from template attribute_IsBoolean */
-  public boolean isPaid()
-  {
-    return paid;
-  }
-
-  public String getTripStatusFullName()
-  {
-    String answer = tripStatus.toString();
-    return answer;
-  }
-
   public TripStatus getTripStatus()
   {
     return tripStatus;
   }
 
-  public boolean payForTrip(String code)
+  public int getRefund()
   {
-    boolean wasEventProcessed = false;
-    
-    TripStatus aTripStatus = tripStatus;
-    switch (aTripStatus)
-    {
-      case Assigned:
-        // line 12 "../../../../../ExtendedAssignment.ump"
-        setAuthorizationCode(code);
-        setTripStatus(TripStatus.Assigned);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
+    return refund;
   }
 
-  public boolean startTrip()
+  public String getPaymentCode()
   {
-    boolean wasEventProcessed = false;
-    
-    TripStatus aTripStatus = tripStatus;
-    switch (aTripStatus)
-    {
-      case Assigned:
-        setTripStatus(TripStatus.Started);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  public boolean cancelTrip()
-  {
-    boolean wasEventProcessed = false;
-    
-    TripStatus aTripStatus = tripStatus;
-    switch (aTripStatus)
-    {
-      case Assigned:
-        if (getAuthorizationCode()==null)
-        {
-        // line 16 "../../../../../ExtendedAssignment.ump"
-          setRefund(0);
-          setTripStatus(TripStatus.Cancelled);
-          wasEventProcessed = true;
-          break;
-        }
-        if (getAuthorizationCode()!=null)
-        {
-        // line 19 "../../../../../ExtendedAssignment.ump"
-          setRefund(50);
-          setTripStatus(TripStatus.Cancelled);
-          wasEventProcessed = true;
-          break;
-        }
-        break;
-      case OnTrip:
-        // line 29 "../../../../../ExtendedAssignment.ump"
-        setRefund(10);
-        setTripStatus(TripStatus.Cancelled);
-        wasEventProcessed = true;
-        break;
-      case Finished:
-        // line 34 "../../../../../ExtendedAssignment.ump"
-        setRefund(0);
-        setTripStatus(TripStatus.Cancelled);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  private boolean __autotransition77__()
-  {
-    boolean wasEventProcessed = false;
-    
-    TripStatus aTripStatus = tripStatus;
-    switch (aTripStatus)
-    {
-      case Started:
-        if (getAuthorizationCode()==null)
-        {
-          setTripStatus(TripStatus.Banned);
-          wasEventProcessed = true;
-          break;
-        }
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  private boolean __autotransition78__()
-  {
-    boolean wasEventProcessed = false;
-    
-    TripStatus aTripStatus = tripStatus;
-    switch (aTripStatus)
-    {
-      case Started:
-        if (getAuthorizationCode()!=null)
-        {
-          setTripStatus(TripStatus.OnTrip);
-          wasEventProcessed = true;
-          break;
-        }
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  public boolean finishTrip()
-  {
-    boolean wasEventProcessed = false;
-    
-    TripStatus aTripStatus = tripStatus;
-    switch (aTripStatus)
-    {
-      case OnTrip:
-        setTripStatus(TripStatus.Finished);
-        wasEventProcessed = true;
-        break;
-      default:
-        // Other states do respond to this event
-    }
-
-    return wasEventProcessed;
-  }
-
-  private void setTripStatus(TripStatus aTripStatus)
-  {
-    tripStatus = aTripStatus;
-
-    // entry actions and do activities
-    switch(tripStatus)
-    {
-      case Started:
-        __autotransition77__();
-        __autotransition78__();
-        break;
-    }
+    return paymentCode;
   }
   /* Code from template association_GetOne */
   public Member getMember()
@@ -443,8 +269,8 @@ public class Assignment
             "startWeek" + ":" + getStartWeek()+ "," +
             "endWeek" + ":" + getEndWeek()+ "," +
             "refund" + ":" + getRefund()+ "," +
-            "authorizationCode" + ":" + getAuthorizationCode()+ "," +
-            "paid" + ":" + getPaid()+ "]" + System.getProperties().getProperty("line.separator") +
+            "paymentCode" + ":" + getPaymentCode()+ "]" + System.getProperties().getProperty("line.separator") +
+            "  " + "tripStatus" + "=" + (getTripStatus() != null ? !getTripStatus().equals(this)  ? getTripStatus().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "member = "+(getMember()!=null?Integer.toHexString(System.identityHashCode(getMember())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "guide = "+(getGuide()!=null?Integer.toHexString(System.identityHashCode(getGuide())):"null") + System.getProperties().getProperty("line.separator") +
             "  " + "hotel = "+(getHotel()!=null?Integer.toHexString(System.identityHashCode(getHotel())):"null") + System.getProperties().getProperty("line.separator") +

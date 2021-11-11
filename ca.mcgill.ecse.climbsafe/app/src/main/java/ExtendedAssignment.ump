@@ -1,8 +1,0 @@
-use ClimbSafe.ump;
-
-class Assignment {
-	enum TripStatus {Started, Finished, Cancelled, Assigned, Paid, Banned};
-	lazy TripStatus tripStatus;
-	lazy int refund;
-	lazy String paymentCode;
-}

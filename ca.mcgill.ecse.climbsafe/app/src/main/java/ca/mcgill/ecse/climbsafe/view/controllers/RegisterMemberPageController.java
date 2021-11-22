@@ -19,7 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 
-public class AddMemberPageController {
+public class RegisterMemberPageController {
 
 	@FXML private TextField nameTextField;
 	@FXML private TextField emailTextField;

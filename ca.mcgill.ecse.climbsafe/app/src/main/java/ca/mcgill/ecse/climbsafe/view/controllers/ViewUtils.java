@@ -1,8 +1,14 @@
 package ca.mcgill.ecse.climbsafe.view.controllers;
 
+import java.sql.Date;
 import java.util.List;
+
+import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
+import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
+import ca.mcgill.ecse.climbsafe.model.Assignment;
+import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 //import ca.mcgill.ecse.climbsafe.controller.TOBusVehicle;
 //import ca.mcgill.ecse.climbsafe.controller.TODriver;
 //import ca.mcgill.ecse.climbsafe.controller.TORoute;
@@ -20,6 +26,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ViewUtils {
+	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
   /** Calls the controller and shows an error, if applicable. */
   public static boolean callController(Executable executable) {
@@ -72,6 +79,17 @@ public class ViewUtils {
   public static void showError(String message) {
     makePopupWindow("Error", message);
   }
+  
+  public static ObservableList<Assignment> getItemNames(){
+	  List<Assignment> itemNames = climbSafe.getAssignments();
+	  return FXCollections.observableList(itemNames);
+  }
+//  public static ObservableList<Assignment> getNrWeeks(){
+//	  Date startDate = climbSafe.getStartDate();
+//	  Date endDate = climbSafe.getStartDate();
+//	  int nrWeeksTotal = (endDate. - startDate)/7;
+//	  return FXCollections.observableList(nrWeeks);
+//  }
 
 //  public static ObservableList<TODriver> getDrivers() {
 //    List<TODriver> drivers = BtmsController.getDrivers();

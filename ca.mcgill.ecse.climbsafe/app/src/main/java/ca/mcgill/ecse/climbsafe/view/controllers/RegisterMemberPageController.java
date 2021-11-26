@@ -5,6 +5,8 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
+import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
+import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,6 +19,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 public class RegisterMemberPageController {
@@ -24,26 +27,44 @@ public class RegisterMemberPageController {
 	@FXML private TextField nameTextField;
 	@FXML private TextField emailTextField;
 	@FXML private TextField emergencyContactTextField;
-	@FXML private ChoiceBox nrWeeksChoiceBox;
+	@FXML private ChoiceBox<TOAssignment> nrWeeksChoiceBox;
 	@FXML private CheckBox guideRequiredCheckBox;
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
 
-	@FXML private ChoiceBox itemNameChoiceBox;
-	@FXML private Spinner itemQuantitySpinner;
+	@FXML private ChoiceBox<Assignment> itemNameChoiceBox;
+	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
 
 
-	@FXML private Button registerMemberP1NextButton;
+	@FXML private Button registerMemberRegisterButton;
 	//	ObservableList<String> itemNames = FXCollections.observableArrayList();
 	//	ObservableList<Integer> itemQuantities = FXCollections.observableArrayList();
 	private List<String> itemNames = null;
 	private List<Integer> itemQuantities = null; 
+	
+	public void initialize() {
+		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+//			nrWeeksChoiceBox.setItems();
+			nrWeeksChoiceBox.setValue(null);
+		});
+		itemNameChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			itemNameChoiceBox.setItems(ViewUtils.getItemNames());
+			itemNameChoiceBox.setValue(null);
+		});
+		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 99;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			itemQuantitySpinner.setValueFactory(valueFactory);
+		});
+	}
 
-	// Event Listener on Button[#registerMemberP1NextClicked].onAction
+	// Event Listener on Button[#registerMemberRegisterClicked].onAction
 	@FXML
-	public void registerMemberP1NextClicked(ActionEvent event) {
+	public void registerMemberRegisterClicked(ActionEvent event) {
 		String email = emailTextField.getText();
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
@@ -58,11 +79,11 @@ public class RegisterMemberPageController {
 				passwordTextField.setText("");
 				nameTextField.setText("");
 				emergencyContactTextField.setText("");
-				//        	nrWeeksChoiceBox.setItems(null);
+				//nrWeeksChoiceBox.setItems(null);
 				guideRequiredCheckBox.setSelected(false);
 				hotelRequiredCheckBox.setSelected(false);
-				//set item selected to null
-				//set item quantity to null
+				itemNameChoiceBox.setValue(null);
+				itemQuantitySpinner.setValueFactory(null);
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
@@ -97,11 +118,13 @@ public class RegisterMemberPageController {
 		//uncomment to here
 	}
 
+
+	
 	//Event Listener on Button[#addItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-		String itemName = (String) itemNameChoiceBox.getValue();
+		String itemName = itemNameChoiceBox.getValue().toString();
 		int itemQuantity = (int) itemQuantitySpinner.getValue();
 		int indexOfItem = -1;
 

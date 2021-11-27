@@ -52,7 +52,7 @@
       <Label text="Do you want to book a hotel?" GridPane.columnIndex="1" GridPane.rowIndex="10" />
       <CheckBox fx:id="hotelRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="10" />
       <PasswordField fx:id="passwordTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
-      <Button fx:id="registerMemberP1NextButton" mnemonicParsing="false" text="Next" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="13" GridPane.valignment="CENTER" />
+      <Button fx:id="registerMemberRegisterButtonregisterMemberRegisterButton" mnemonicParsing="false" onAction="#registerMemberRegisterClicked" text="Next" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="13" GridPane.valignment="CENTER" />
       <Label contentDisplay="TOP" text="Registering Member" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
          <font>
             <Font size="30.0" />

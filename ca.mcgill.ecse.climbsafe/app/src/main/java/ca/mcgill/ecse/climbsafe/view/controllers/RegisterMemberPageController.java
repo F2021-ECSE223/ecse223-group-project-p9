@@ -27,7 +27,7 @@ public class RegisterMemberPageController {
 	@FXML private TextField nameTextField;
 	@FXML private TextField emailTextField;
 	@FXML private TextField emergencyContactTextField;
-	@FXML private ChoiceBox<TOAssignment> nrWeeksChoiceBox;
+	@FXML private ChoiceBox<Integer> nrWeeksChoiceBox;
 	@FXML private CheckBox guideRequiredCheckBox;
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
@@ -39,14 +39,12 @@ public class RegisterMemberPageController {
 
 
 	@FXML private Button registerMemberRegisterButton;
-	//	ObservableList<String> itemNames = FXCollections.observableArrayList();
-	//	ObservableList<Integer> itemQuantities = FXCollections.observableArrayList();
 	private List<String> itemNames = null;
 	private List<Integer> itemQuantities = null; 
 	
 	public void initialize() {
 		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-//			nrWeeksChoiceBox.setItems();
+			nrWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
 			nrWeeksChoiceBox.setValue(null);
 		});
 		itemNameChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
@@ -65,6 +63,7 @@ public class RegisterMemberPageController {
 	// Event Listener on Button[#registerMemberRegisterClicked].onAction
 	@FXML
 	public void registerMemberRegisterClicked(ActionEvent event) {
+		System.out.println("Clicking");
 		String email = emailTextField.getText();
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();

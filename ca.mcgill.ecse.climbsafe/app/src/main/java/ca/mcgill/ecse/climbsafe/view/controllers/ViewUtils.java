@@ -84,12 +84,14 @@ public class ViewUtils {
 	  List<Assignment> itemNames = climbSafe.getAssignments();
 	  return FXCollections.observableList(itemNames);
   }
-//  public static ObservableList<Assignment> getNrWeeks(){
-//	  Date startDate = climbSafe.getStartDate();
-//	  Date endDate = climbSafe.getStartDate();
-//	  int nrWeeksTotal = (endDate. - startDate)/7;
-//	  return FXCollections.observableList(nrWeeks);
-//  }
+  public static ObservableList<Integer> getNrWeeks(){
+	  int nrWeeksTotal = climbSafe.getNrWeeks();
+	  List<Integer> weeksInTotal = null;
+	  for(int i=0; i<=nrWeeksTotal; i++) {
+		  weeksInTotal.add(i);
+	  }
+	  return FXCollections.observableList(weeksInTotal);
+  }
 
 //  public static ObservableList<TODriver> getDrivers() {
 //    List<TODriver> drivers = BtmsController.getDrivers();

@@ -7,6 +7,8 @@ import java.sql.Date;
 
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
+import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
+import javafx.application.Application;
 
 public class ClimbSafeApplication {
   private static ClimbSafe climbSafe;
@@ -16,14 +18,15 @@ public class ClimbSafeApplication {
   }
 
   public static void main(String[] args) {
-    System.out.println(new ClimbSafeApplication().getGreeting());
+//    System.out.println(new ClimbSafeApplication().getGreeting());
+    Application.launch(ClimbSafeFxmlView.class, args);
   }
 
   public static ClimbSafe getClimbSafe() {
     if (climbSafe == null) {
       // these attributes are default, you should set them later with the setters
-    	climbSafe = new ClimbSafe(new Date(0), 0, 0);
-//      climbSafe = ClimbSafePersistence.load();
+//    	climbSafe = new ClimbSafe(new Date(0), 0, 0);
+      climbSafe = ClimbSafePersistence.load();
     }
     
     return climbSafe;

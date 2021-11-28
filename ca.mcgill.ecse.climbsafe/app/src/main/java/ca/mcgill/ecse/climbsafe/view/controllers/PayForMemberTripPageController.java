@@ -19,11 +19,7 @@ public class PayForMemberTripPageController {
     String code = codeTextField.getText();
     try {
     	
-		if(successful(() -> )) {
-			numWeeksTextField.setText("");
-			weeklyPriceOfGuideTextField.setText("");
-			//somehow set dateBox to initial state or something
-		}
+	
 	} catch (RuntimeException e) {
 		ViewUtils.showError(e.getMessage());
 	}

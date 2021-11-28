@@ -43,12 +43,11 @@
       </Label>
       <TextField fx:id="codeTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
       <Button fx:id="payForTripButton" mnemonicParsing="false" onAction="#payClicked" text="Pay" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
-      <Text fx:id="memberEmailText" strokeType="OUTSIDE" strokeWidth="0.0" text="placeholder@gmail.com" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exitClicked" text="Exit" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" />
       <Text fx:id="completeText" fill="#848080" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets bottom="5.0" right="50.0" />
          </GridPane.margin>
       </Text>
+      <TextField fx:id="memberEmailTextField" GridPane.columnIndex="2" GridPane.rowIndex="2" />
    </children>
 </GridPane>

@@ -18,8 +18,6 @@ public class ViewAssignmentPageController {
   @FXML
   private Button viewButton;
   @FXML
-  private Button authorizePaymentButton;
-  @FXML
   private Text memberEmailText;
   @FXML
   private Text memberNameText;
@@ -96,10 +94,7 @@ public class ViewAssignmentPageController {
 	  }	  
 	  
   }
-  @FXML
-  public void authorizePaymentClicked(ActionEvent event) {
-	  //open payformembertrip page
-  }
+
 
   
 	/**

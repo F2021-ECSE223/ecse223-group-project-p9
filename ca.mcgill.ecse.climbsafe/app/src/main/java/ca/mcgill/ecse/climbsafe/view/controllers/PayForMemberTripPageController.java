@@ -20,9 +20,7 @@ public class PayForMemberTripPageController {
   @FXML
   private Button payForTripButton;
   @FXML
-  private Button exitButton;
-  @FXML
-  private Text memberEmailText;
+  private TextField memberEmailTextField;
   @FXML
   private Text completeText;
 
@@ -31,22 +29,18 @@ public class PayForMemberTripPageController {
   @FXML
   public void payClicked(ActionEvent event) {
     String code = codeTextField.getText();
-    try {
-		if(successful(() -> /*email from assignment that was clicked(from view assignments?).payForTrip(code);*/)) {
-
+    String memberEmail = memberEmailTextField.getText();
+    try {    	
+		if(successful(() -> AssignmentController.payForTrip(memberEmail, code))) {
 			codeTextField.setText("");
-    	
-		}
-	
+			memberEmailTextField.setText("");
+			completeText.setText("Payment authorized.");
+		}	
 	} catch (RuntimeException e) {
 		ViewUtils.showError(e.getMessage());
 	}
   }
   
-  @FXML
-  public void exitClicked(ActionEvent event) {
-    // close window
-  }
 
   
 

@@ -2,15 +2,15 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="114.39996337890625" minWidth="0.0" prefWidth="10.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="194.0000244140625" />
@@ -28,6 +28,8 @@
       <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
       <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
       <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="30.0" vgrow="NEVER" />
       <RowConstraints maxHeight="144.8" minHeight="32.79998168945313" prefHeight="104.0" vgrow="NEVER" />
     <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
     <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
@@ -38,25 +40,67 @@
             <Font size="27.0" />
          </font>
       </Label>
-      <ComboBox fx:id="memberEmailComboBox" onAction="#comboBoxClicked" prefHeight="26.0" prefWidth="169.0" promptText="Choose Member E-mail" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Label text="Member Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets top="10.0" />
-         </GridPane.margin>
-      </ComboBox>
-      <Label text="Member Name:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <Label text="Assigned Guide and Guide Email:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-      <Label text="Hotel:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <Label text="Start and End Week:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-      <Label text="Trip Status:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <Label text="Authorization Code:" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-      <Label text="Refund Amount" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-      <Label text="Total Cost:" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-      <Button fx:id="viewButton" mnemonicParsing="false" onAction="#viewClicked" text="View" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Label text="Guide Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3">
          <GridPane.margin>
-            <Insets bottom="10.0" right="25.0" />
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Label text="Hotel Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Label text="Start and End Week:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Label text="Trip Status:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="7">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Label text="Authorization Code:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="8">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Label text="Refund Amount" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="9">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Label text="Total Cost:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin></Label>
+      <Button fx:id="viewButton" mnemonicParsing="false" onAction="#viewClicked" text="View" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="30.0" right="5.0" />
          </GridPane.margin>
       </Button>
-      <ListView fx:id="assignmentInfoListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.rowSpan="8" />
-      <Button fx:id="authorizePaymentButton" mnemonicParsing="false" onAction="#authorizePaymentClicked" text="Authorize Payment" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+      <TextField fx:id="memberEmailTextField" promptText="Enter Member Email" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets right="5.0" top="2.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label text="Member E-mail:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Guide E-mail:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets left="50.0" />
+         </GridPane.margin>
+      </Label>
+      <Text fx:id="memberNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+      <Text fx:id="memberEmailText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+      <Text fx:id="guideNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+      <Text fx:id="guideEmailText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+      <Text fx:id="hotelNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+      <Text fx:id="startAndEndWeekText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
+      <Text fx:id="tripStatusText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
+      <Text fx:id="codeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
+      <Text fx:id="refundText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" />
+      <Text fx:id="totalCostText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" />
    </children>
 </GridPane>

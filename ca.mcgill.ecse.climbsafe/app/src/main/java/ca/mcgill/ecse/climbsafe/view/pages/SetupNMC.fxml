@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
@@ -13,16 +15,24 @@
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="516.0" minWidth="10.0" prefWidth="445.0" />
   </columnConstraints>
   <rowConstraints>
+    <RowConstraints maxHeight="83.0" minHeight="22.0" prefHeight="78.0" />
+    <RowConstraints maxHeight="124.0" minHeight="10.0" prefHeight="68.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Pick Date" />
-      <DatePicker fx:id="dateBox" onAction="#setDate" GridPane.columnIndex="1" />
-      <Label text="Set Number Of Weeks" GridPane.rowIndex="1" />
-      <Label text="Set Weekly Price of Guide" GridPane.rowIndex="2" />
-      <Slider fx:id="numWeeksScrollBar" blockIncrement="1.0" max="30.0" onDragDone="#setNumberWeeks" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Slider fx:id="weeklyPriceOfGuideScrollBar" blockIncrement="1.0" onDragDone="#setWeeklyPriceOfGuide" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label text="Pick Date" GridPane.rowIndex="1" />
+      <DatePicker fx:id="dateBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Label text="Set Number Of Weeks" GridPane.rowIndex="2" />
+      <Label text="Set Weekly Price of Guide" GridPane.rowIndex="3" />
+      <Label fx:id="setupNMCText" text="Setup NMC">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+      <TextField fx:id="numWeeksTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="weeklyPriceOfGuideTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <Button fx:id="next" mnemonicParsing="false" onAction="#setUpNMCInfo" text="Next" GridPane.columnIndex="1" GridPane.rowIndex="4" />
    </children>
 </GridPane>

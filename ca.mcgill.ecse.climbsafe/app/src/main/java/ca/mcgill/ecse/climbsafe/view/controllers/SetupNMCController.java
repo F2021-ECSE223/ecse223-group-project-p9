@@ -12,7 +12,7 @@ import javafx.collections.ObservableList;
 //import ca.mcgill.ecse.climbsafe.view.pages.;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
@@ -26,6 +26,7 @@ public class SetupNMCController {
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
+/*
 		String numWeeks = numWeeksTextField.getText();
 		String weeklyPriceOfGuide = weeklyPriceOfGuideTextField.getText();
 		Date date = dateBox.getDate();//this is a guess idk how DatePicker returns a date
@@ -41,7 +42,7 @@ public class SetupNMCController {
 			ViewUtils.showError(e.getMessage());
 		}
 		
-
+*/
 	}
 }
  

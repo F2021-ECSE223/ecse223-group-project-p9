@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.*;
 
 // line 3 "../../../../../ClimbSafePersistence.ump"
-// line 7 "../../../../../ClimbSafe.ump"
+// line 8 "../../../../../ClimbSafe.ump"
 public class ClimbSafe implements Serializable
 {
 

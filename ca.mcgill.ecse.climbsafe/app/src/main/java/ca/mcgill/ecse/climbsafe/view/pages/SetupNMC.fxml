@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="155.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="516.0" minWidth="10.0" prefWidth="445.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label text="Pick Date" />
+      <DatePicker fx:id="dateBox" onAction="#setDate" GridPane.columnIndex="1" />
+      <Label text="Set Number Of Weeks" GridPane.rowIndex="1" />
+      <Label text="Set Weekly Price of Guide" GridPane.rowIndex="2" />
+      <Slider fx:id="numWeeksScrollBar" blockIncrement="1.0" max="30.0" onDragDone="#setNumberWeeks" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Slider fx:id="weeklyPriceOfGuideScrollBar" blockIncrement="1.0" onDragDone="#setWeeklyPriceOfGuide" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+   </children>
+</GridPane>

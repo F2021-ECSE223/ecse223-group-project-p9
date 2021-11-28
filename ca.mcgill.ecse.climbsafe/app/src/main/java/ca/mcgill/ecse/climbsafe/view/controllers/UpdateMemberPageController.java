@@ -67,6 +67,7 @@ public class UpdateMemberPageController {
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
+		
 
 
 		//uncomment from here

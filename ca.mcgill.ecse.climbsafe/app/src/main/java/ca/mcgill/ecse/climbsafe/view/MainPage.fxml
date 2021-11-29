@@ -37,5 +37,35 @@
             </TabPane>
          </content>
     </Tab>
+      <Tab text="Equipment">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TabPane prefHeight="473.0" prefWidth="677.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="Add Equipment">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="520.0">
+                                 <children>
+                                    <fx:include source="pages/AddEquipmentPage.fxml" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                      <Tab text="Modify or Delete Equipment">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <fx:include source="pages/ModifyDeleteEquipment.fxml" />
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                      </Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </content>
+      </Tab>
   </tabs>
 </TabPane>

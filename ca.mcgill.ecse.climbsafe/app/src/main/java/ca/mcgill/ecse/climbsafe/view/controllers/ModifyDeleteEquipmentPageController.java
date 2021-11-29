@@ -28,7 +28,7 @@ public class ModifyDeleteEquipmentPageController {
 	 * @param event
 	 */
 	@FXML
-	public void modifyEquipmentButtonClicked(ActionEvent event) {
+	public void modifyEquipmentClick(ActionEvent event) {
 		String oldName = oldNameModifyEquipment.getText();
 		String newName = newNameModifyEquipment.getText();
 		int weight = Integer.parseInt(weightModifyEquipment.getText());
@@ -53,7 +53,7 @@ public class ModifyDeleteEquipmentPageController {
 	 * @param event
 	 */
 	@FXML
-	public void deleteEquipmentButtonClicked(ActionEvent event) {
+	public void deleteEquipmentClick(ActionEvent event) {
 		String name = newNameModifyEquipment.getText();
 		
 		//try deleting the equipment or catch the error

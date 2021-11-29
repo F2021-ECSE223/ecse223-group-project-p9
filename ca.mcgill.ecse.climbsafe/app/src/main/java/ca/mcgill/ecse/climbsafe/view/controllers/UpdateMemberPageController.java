@@ -28,7 +28,7 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 public class UpdateMemberPageController {
-	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+	//private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
 	@FXML private TextField nameTextField;
 	@FXML private ChoiceBox<Member> memberChoiceBox;

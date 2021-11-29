@@ -33,6 +33,10 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
@@ -53,22 +57,22 @@
                </font>
             </Label>
             <Label contentDisplay="TOP" text="Old Name" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label text="New Weight" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Label text="New Price" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label text="New Weight" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label text="New Price" GridPane.columnIndex="1" GridPane.rowIndex="12" />
             <TextField fx:id="oldNameModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <TextField fx:id="weightModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <TextField fx:id="priceModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-            <Button fx:id="modifyEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addEquipmentClick" text="Modify Equipment" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-            <Label contentDisplay="TOP" prefHeight="45.0" prefWidth="241.0" text="Delete Equipment" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="13">
+            <TextField fx:id="weightModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <TextField fx:id="priceModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <Button fx:id="modifyEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifyEquipmentClick" text="Modify Equipment" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+            <Label contentDisplay="TOP" prefHeight="45.0" prefWidth="241.0" text="Delete Equipment" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="17">
                <font>
                   <Font size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="deleteEquipmentName" GridPane.columnIndex="2" GridPane.rowIndex="16" />
-            <Button fx:id="deleteEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addEquipmentClick" text="Delete Equipment" GridPane.columnIndex="2" GridPane.rowIndex="18" />
-            <Label contentDisplay="TOP" text="Name" GridPane.columnIndex="1" GridPane.rowIndex="16" />
-            <Label contentDisplay="TOP" text="New Name" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <TextField fx:id="newNameModifyEquipment1" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <TextField fx:id="deleteEquipmentName" GridPane.columnIndex="2" GridPane.rowIndex="19" />
+            <Button fx:id="deleteEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteEquipmentClick" text="Delete Equipment" GridPane.columnIndex="2" GridPane.rowIndex="21" />
+            <Label contentDisplay="TOP" text="Name" GridPane.columnIndex="1" GridPane.rowIndex="19" />
+            <Label contentDisplay="TOP" text="New Name" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <TextField fx:id="newNameModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="8" />
          </children>
       </GridPane>
       <Label layoutX="10.0" layoutY="10.0" />

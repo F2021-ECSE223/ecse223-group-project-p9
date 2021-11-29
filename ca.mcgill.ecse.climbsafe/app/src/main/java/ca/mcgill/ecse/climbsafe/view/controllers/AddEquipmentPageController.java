@@ -20,7 +20,7 @@ public class AddEquipmentPageController {
 	 * @param event
 	 */
 	@FXML
-	public void addEquipmentButtonClicked(ActionEvent event) {
+	public void addEquipmentClick(ActionEvent event) {
 		String name = addEquipmentName.getText();
 		int weight = Integer.parseInt(addEquipmentWeight.getText());
 		int price = Integer.parseInt(addEquipmentPrice.getText());

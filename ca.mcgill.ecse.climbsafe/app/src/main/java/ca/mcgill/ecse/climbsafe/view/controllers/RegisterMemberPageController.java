@@ -7,6 +7,7 @@ import java.util.List;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
+import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,7 +33,7 @@ public class RegisterMemberPageController {
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
 
-	@FXML private ChoiceBox<Assignment> itemNameChoiceBox;
+	@FXML private ChoiceBox<BookedItem> itemNameChoiceBox;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
@@ -43,6 +44,12 @@ public class RegisterMemberPageController {
 	private List<Integer> itemQuantities = null; 
 	
 	public void initialize() {
+		emailTextField.setText("");
+		passwordTextField.setText("");
+		nameTextField.setText("");
+		emergencyContactTextField.setText("");
+		guideRequiredCheckBox.setSelected(false);
+		hotelRequiredCheckBox.setSelected(false);
 		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			nrWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
 			nrWeeksChoiceBox.setValue(null);
@@ -83,6 +90,7 @@ public class RegisterMemberPageController {
 				hotelRequiredCheckBox.setSelected(false);
 				itemNameChoiceBox.setValue(null);
 				itemQuantitySpinner.setValueFactory(null);
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

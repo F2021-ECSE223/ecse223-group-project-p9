@@ -22,6 +22,8 @@ public class InitiateAssignmentPageController {
 			if(successful(() -> AssignmentController.initiateAssignment())) {
 				completeText.setText("Complete!");
 				
+			}else {
+				completeText.setText("Incomplete");
 			}
 
 		} catch (RuntimeException e) {

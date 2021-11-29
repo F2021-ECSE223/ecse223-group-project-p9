@@ -31,7 +31,9 @@ public class PayForMemberTripPageController {
 			codeTextField.setText("");
 			memberEmailTextField.setText("");
 			completeText.setText("Payment authorized.");
-		}	
+		}else {
+			completeText.setText("Could not be completed.");
+		}
 	} catch (RuntimeException e) {
 		ViewUtils.showError(e.getMessage());
 	}

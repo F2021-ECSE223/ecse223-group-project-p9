@@ -14,7 +14,7 @@ import javafx.scene.text.Text;
 
 public class ViewAssignmentPageController {
   @FXML
-  private TextField memberEmailsTextField;
+  private TextField memberEmailTextField;
   @FXML
   private Button viewButton;
   @FXML
@@ -41,22 +41,20 @@ public class ViewAssignmentPageController {
 
   @FXML
   public void viewClicked(ActionEvent event) {
-	  try { 
-		 if(validMember(memberEmailsTextField.getText())==-1) {
-			String e = "Member with email address "+ memberEmailsTextField.getText() +" does not exist";
-			ViewUtils.showError(e);
-		 }
-
+	  try {
 		 List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 		 if(assignments.isEmpty()) {
 			 String e = "Assignments not yet created.";
 			 ViewUtils.showError(e);
-		 }
-		 String refund;
-		 String startAndEndWeek;
-		 int totalCost;
+		 }else if(validMember(memberEmailTextField.getText())==-1) {
+			String e = "Member with email address "+ memberEmailTextField.getText() +" does not exist";
+			ViewUtils.showError(e);
+		 }else {
+			String refund;
+			String startAndEndWeek;
+			int totalCost;
 		 for(TOAssignment a : assignments) {
-			if(a.getMemberEmail().equals(memberEmailsTextField.getText())) {
+			if(a.getMemberEmail().equals(memberEmailTextField.getText())) {
 				tripStatusText.setText(a.getStatus());
 				memberEmailText.setText(a.getMemberEmail());
 				memberNameText.setText(a.getMemberName());
@@ -86,7 +84,11 @@ public class ViewAssignmentPageController {
 
 				}
 
-			}
+			} 
+		 }
+
+		 
+		 
 		 } 
 		
 	  } catch (RuntimeException e) {

@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ViewAssignmentPageController">
   <columnConstraints>
       <ColumnConstraints hgrow="NEVER" maxWidth="114.39996337890625" minWidth="0.0" prefWidth="10.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="194.0000244140625" />
@@ -43,41 +43,65 @@
       <Label text="Member Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label text="Guide Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label text="Hotel Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label text="Start and End Week:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label text="Trip Status:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="7">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label text="Authorization Code:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="8">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label text="Refund Amount" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="9">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Label text="Total Cost:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="10">
          <GridPane.margin>
             <Insets left="50.0" />
-         </GridPane.margin></Label>
+         </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Label>
       <Button fx:id="viewButton" mnemonicParsing="false" onAction="#viewClicked" text="View" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets bottom="30.0" right="5.0" />
          </GridPane.margin>
       </Button>
-      <TextField fx:id="memberEmailTextField" promptText="Enter Member Email" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <TextField fx:id="memberEmailTextField" promptText="Enter Member Email" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets right="5.0" top="2.0" />
          </GridPane.margin>
@@ -86,21 +110,27 @@
          <GridPane.margin>
             <Insets left="50.0" />
          </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Label>
       <Label text="Guide E-mail:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4">
          <GridPane.margin>
             <Insets left="50.0" />
          </GridPane.margin>
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
       </Label>
-      <Text fx:id="memberNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-      <Text fx:id="memberEmailText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
-      <Text fx:id="guideNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
-      <Text fx:id="guideEmailText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
-      <Text fx:id="hotelNameText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
-      <Text fx:id="startAndEndWeekText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
-      <Text fx:id="tripStatusText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
-      <Text fx:id="codeText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
-      <Text fx:id="refundText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" />
-      <Text fx:id="totalCostText" strokeType="OUTSIDE" strokeWidth="0.0" text="Placeholder" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" />
+      <Text fx:id="memberNameText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
+      <Text fx:id="memberEmailText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
+      <Text fx:id="guideNameText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+      <Text fx:id="guideEmailText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
+      <Text fx:id="hotelNameText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
+      <Text fx:id="startAndEndWeekText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
+      <Text fx:id="tripStatusText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
+      <Text fx:id="codeText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
+      <Text fx:id="refundText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" />
+      <Text fx:id="totalCostText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" />
    </children>
 </GridPane>

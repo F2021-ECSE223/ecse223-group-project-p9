@@ -11,6 +11,7 @@ import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
+import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.Member;
 //import ca.mcgill.ecse.climbsafe.controller.TOBusVehicle;
 //import ca.mcgill.ecse.climbsafe.controller.TODriver;
@@ -84,10 +85,10 @@ public class ViewUtils {
   }
   
   public static ObservableList<String> getItemNames(){
-	  List<BookedItem> itemNames = climbSafe.getBookedItems();
+	  List<Equipment> itemNames = climbSafe.getEquipment();
 	  List<String> itemNamesString = new ArrayList<>();
 	  for(int i=0; i< itemNames.size(); i++) {
-		  itemNamesString.add(itemNames.get(i).getItem().getName());
+		  itemNamesString.add(itemNames.get(i).getName());
 	  }
 	  return FXCollections.observableList(itemNamesString);
   }

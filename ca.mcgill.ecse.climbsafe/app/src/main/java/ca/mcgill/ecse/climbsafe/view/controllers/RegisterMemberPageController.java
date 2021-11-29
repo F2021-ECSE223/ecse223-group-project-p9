@@ -41,8 +41,10 @@ public class RegisterMemberPageController {
 
 
 	@FXML private Button registerMemberRegisterButton;
-	private List<String> itemNames = new ArrayList<>();;
-	private List<Integer> itemQuantities = new ArrayList<>();; 
+	private List<String> itemNames = new ArrayList<>();
+	private List<Integer> itemQuantities = new ArrayList<>();
+	
+	private String error = "";
 	
 	public void initialize() {
 		emailTextField.setText("");
@@ -79,55 +81,30 @@ public class RegisterMemberPageController {
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
-		int nrWeeks = nrWeeksChoiceBox.getValue();
-//if()
+		int nrWeeks = getNumberFromField(nrWeeksChoiceBox, "nrWeeks is not null");
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
-
-		try {
-			if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities))) {
-				emailTextField.setText("");
-				passwordTextField.setText("");
-				nameTextField.setText("");
-				emergencyContactTextField.setText("");
-				//nrWeeksChoiceBox.setItems(null);
-				guideRequiredCheckBox.setSelected(false);
-				hotelRequiredCheckBox.setSelected(false);
-				itemNameChoiceBox.setValue(null);
-				itemQuantitySpinner.setValueFactory(null);
-				ClimbSafeFxmlView.getInstance().refresh();
+		
+		if(email == "" || password == "" || name == "" || emergencyContact == "" || nrWeeks == -1) {
+			ViewUtils.showError("Please fill out all of the field");
+		}else {
+			try {
+				if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities))) {
+					emailTextField.setText("");
+					passwordTextField.setText("");
+					nameTextField.setText("");
+					emergencyContactTextField.setText("");
+					nrWeeksChoiceBox.setItems(null);
+					guideRequiredCheckBox.setSelected(false);
+					hotelRequiredCheckBox.setSelected(false);
+					itemNameChoiceBox.setValue(null);
+					itemQuantitySpinner.setValueFactory(null);
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
 		}
-
-
-		//uncomment from here
-		//    if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, null, null))) {
-		//    	emailTextField.setText("");
-		//    	passwordTextField.setText("");
-		//    	nameTextField.setText("");
-		//    	emergencyContactTextField.setText("");
-		////    	nrWeeksChoiceBox.setItems(null);
-		//    	guideRequiredCheckBox.setSelected(false);
-		//    	hotelRequiredCheckBox.setSelected(false);
-		//    	//set item selected to null
-		//    	//set item quantity to null
-		//    }else {
-		////    	ViewUtils.showError(/*error shown when trying to register member*/);
-		////    	ViewUtils.showError();
-		//    }
-		//    
-		////    if (name == null || name.trim().isEmpty()) {
-		////      ViewUtils.showError("Please input a valid driver name");
-		////    } else {
-		////      // reset the driver text field if success
-		////      if (successful(() -> BtmsController.createDriver(name))) {
-		////        driverNameTextField.setText("");
-		////      }
-		////    }
-
-		//uncomment to here
 	}
 
 
@@ -168,11 +145,20 @@ public class RegisterMemberPageController {
 			for(int i =0; i<itemNames.size(); i++) {
 				itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
 			}
-
 			memberItemsListView.setItems(itemaNameAndQuantityList);
 			ClimbSafeFxmlView.getInstance().refresh();
+			
 		}
 	}
+	
+	  /** Returns the number from the given text field if present, otherwise appends error string to the given message. */
+	  private int getNumberFromField(ChoiceBox<Integer> field, String errorMessage) {
+	    if(field.getValue() != null) {
+	    	return field.getValue();
+	    }else {
+	    	return -1;
+	    }
+	  }
 
 
 }

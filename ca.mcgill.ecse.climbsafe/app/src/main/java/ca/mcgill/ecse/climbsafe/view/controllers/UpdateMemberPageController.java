@@ -53,7 +53,6 @@ public class UpdateMemberPageController {
 	private Member m = null;
 	
 	public void initialize() {
-		
 //		emailTextField.setText("");
 		passwordTextField.setText("");
 		nameTextField.setText("");
@@ -177,7 +176,7 @@ public class UpdateMemberPageController {
 		nrWeeksChoiceBox.setValue(m.getNrWeeks());
 	}
 
-	//Event Listener on Button[#addItemClicked].onAction
+	//Event Listener on Button[#deleteMemberClicked].onAction
 		@FXML
 		public void deleteMemberClicked(ActionEvent event) {
 			String email = memberChoiceBox.getValue();

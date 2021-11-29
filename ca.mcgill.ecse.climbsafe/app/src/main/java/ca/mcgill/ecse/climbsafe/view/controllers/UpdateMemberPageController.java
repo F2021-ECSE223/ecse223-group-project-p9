@@ -125,12 +125,12 @@ public class UpdateMemberPageController {
 				hotelRequiredCheckBox.setSelected(false);
 				itemNameChoiceBox.setValue(null);
 				itemQuantitySpinner.setValueFactory(null);
+				memberItemsListView.setItems(null);
 				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
-		ClimbSafeFxmlView.getInstance().refresh();
 	}
 
 

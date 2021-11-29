@@ -32,7 +32,7 @@ public class UpdateMemberPageController {
 	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
 	@FXML private TextField nameTextField;
-	@FXML private ChoiceBox<Member> memberChoiceBox; // store string instead
+	@FXML private ChoiceBox<String> memberChoiceBox;
 	@FXML private TextField emergencyContactTextField;
 	@FXML private ChoiceBox<Integer> nrWeeksChoiceBox;
 	@FXML private CheckBox guideRequiredCheckBox;
@@ -88,14 +88,14 @@ public class UpdateMemberPageController {
 	// Event Listener on Button[#memberSearchClicked].onAction
 	@FXML
 	public void memberSearchClicked(ActionEvent event) {
-		String email = memberChoiceBox.getValue().getEmail();
-		nameTextField.setText(memberChoiceBox.getValue().getName());
-		passwordTextField.setText(memberChoiceBox.getValue().getName());
-		emergencyContactTextField.setText(memberChoiceBox.getValue().getEmergencyContact());
-		nrWeeksChoiceBox.setValue(memberChoiceBox.getValue().getNrWeeks());
-		guideRequiredCheckBox.setSelected(memberChoiceBox.getValue().getGuideRequired());
-		hotelRequiredCheckBox.setSelected(memberChoiceBox.getValue().getHotelRequired());
-		memberItemsListView.setItems(ViewUtils.getMemberItems(memberChoiceBox.getValue()));
+		Member m = ViewUtils.getMember(memberChoiceBox.getValue());
+		nameTextField.setText(m.getName());
+		passwordTextField.setText(m.getName());
+		emergencyContactTextField.setText(m.getEmergencyContact());
+		nrWeeksChoiceBox.setValue(m.getNrWeeks());
+		guideRequiredCheckBox.setSelected(m.getGuideRequired());
+		hotelRequiredCheckBox.setSelected(m.getHotelRequired());
+		memberItemsListView.setItems(ViewUtils.getMemberItems(m));
 		ClimbSafeFxmlView.getInstance().refresh();
 	}
 
@@ -103,7 +103,7 @@ public class UpdateMemberPageController {
 	@FXML
 	public void updateMemberUpdateClicked(ActionEvent event) {
 		System.out.println("Clicking Update");
-		String email = memberChoiceBox.getValue().getEmail();
+		String email = memberChoiceBox.getValue();
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
@@ -169,7 +169,7 @@ public class UpdateMemberPageController {
 	//Event Listener on Button[#addItemClicked].onAction
 		@FXML
 		public void deleteMemberClicked(ActionEvent event) {
-			String email = memberChoiceBox.getValue().getEmail();
+			String email = memberChoiceBox.getValue();
 			try {
 				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
 					memberChoiceBox.setValue(null);

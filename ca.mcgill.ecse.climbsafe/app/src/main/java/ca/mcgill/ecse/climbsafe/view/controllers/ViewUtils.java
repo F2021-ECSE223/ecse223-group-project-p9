@@ -99,13 +99,24 @@ public class ViewUtils {
 	  }
 	  return FXCollections.observableList(weeksInTotal);
   }
-  public static ObservableList<Member> getMembers(){
+  public static ObservableList<String> getMembers(){
 	  List<Member> memberList = climbSafe.getMembers();
-	  return FXCollections.observableList(memberList);
+	  List<String> memberListString = new ArrayList<>();
+	  for(int i=0; i< memberList.size(); i++) {
+		  memberListString.add(memberList.get(i).getEmail());
+	  }
+	  return FXCollections.observableList(memberListString);
   }
-  public static ObservableList<Member> getMember(String email){
+  public static Member getMember(String email){
 	  List<Member> memberList = climbSafe.getMembers();
-	  return FXCollections.observableList(memberList);
+	  Member m = null;
+	  for(int i=0; i< memberList.size(); i++) {
+		  if(memberList.get(i).getEmail() == email) {
+			  m = memberList.get(i);
+			  break;
+		  }
+	  }
+	  return m;
   }
   public static ObservableList<String> getMemberItems(Member member){
 	  List<String> itemaNameAndQuantityList = new ArrayList<>();

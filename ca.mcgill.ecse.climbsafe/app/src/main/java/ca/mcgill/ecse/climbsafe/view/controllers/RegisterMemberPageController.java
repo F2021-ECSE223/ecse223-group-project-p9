@@ -6,13 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
-import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
-import ca.mcgill.ecse.climbsafe.model.Assignment;
-import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-//import ca.mcgill.ecse.climbsafe.view.pages.;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,8 +40,6 @@ public class RegisterMemberPageController {
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
 	
-	private String error = "";
-	
 	public void initialize() {
 		emailTextField.setText("");
 		passwordTextField.setText("");
@@ -76,7 +70,6 @@ public class RegisterMemberPageController {
 	// Event Listener on Button[#registerMemberRegisterClicked].onAction
 	@FXML
 	public void registerMemberRegisterClicked(ActionEvent event) {
-		System.out.println("Clicking");
 		String email = emailTextField.getText();
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
@@ -99,6 +92,7 @@ public class RegisterMemberPageController {
 					hotelRequiredCheckBox.setSelected(false);
 					itemNameChoiceBox.setValue(null);
 					itemQuantitySpinner.setValueFactory(null);
+					memberItemsListView.setItems(null);
 					ClimbSafeFxmlView.getInstance().refresh();
 				}
 			} catch (RuntimeException e) {
@@ -106,49 +100,47 @@ public class RegisterMemberPageController {
 			}
 		}
 	}
-
-
 	
-	//Event Listener on Button[#addItemClicked].onAction
+	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-		String itemName = "";
-		if(itemNameChoiceBox.getValue()!=null) {
-			itemName = itemNameChoiceBox.getValue().toString();
-		}
-		int itemQuantity = -1;
-		if(itemQuantitySpinner.getValue()!=null) {
-			itemQuantity = itemQuantitySpinner.getValue();
-		}
+		String itemName = itemNameChoiceBox.getValue().toString();
+		int itemQuantity = (int) itemQuantitySpinner.getValue();
 		int indexOfItem = -1;
-		if(itemName!= "" && itemQuantity!= -1) {
-			if(itemNames.toString().contains(itemName)) {
-				//edit the quantity instead
-				for(int i =0; i<itemNames.size(); i++) {
-					if(itemNames.get(i) == itemName) {
-						indexOfItem = i;
-						break;
-					}
-				}
-				itemQuantities.set(indexOfItem, itemQuantity);
-			}else {
-				//add new item
-				if(itemQuantity!= 0) {
-					itemNames.add(itemName);
-					itemQuantities.add(itemQuantity);
-				}
-				itemNameChoiceBox.setValue(null);
-				itemQuantitySpinner.getValueFactory().setValue(null);
-			}
-			
+
+		if(itemNames.toString().contains(itemName)) {
+			//edit the quantity instead
 			for(int i =0; i<itemNames.size(); i++) {
-				itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
+				if(itemNames.get(i) == itemName) {
+					indexOfItem = i;
+					break;
+				}
 			}
-			memberItemsListView.setItems(itemaNameAndQuantityList);
-			ClimbSafeFxmlView.getInstance().refresh();
-			
+			if(itemQuantity == 0) {
+				itemNames.remove(indexOfItem);
+				itemQuantities.remove(indexOfItem);
+			}else {
+				itemQuantities.set(indexOfItem, itemQuantity);
+			}
+		}else {
+			//add new item
+			if(itemQuantity != 0) {
+				itemNames.add(itemName);
+				itemQuantities.add(itemQuantity);
+			}
+			itemNameChoiceBox.setValue(null);
+			itemQuantitySpinner.getValueFactory().setValue(null);
 		}
+		
+		for(int i =0; i<itemNames.size(); i++) {
+			itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
+		}
+
+		memberItemsListView.setItems(itemaNameAndQuantityList);
+		int tempNrWeek = nrWeeksChoiceBox.getValue();
+		ClimbSafeFxmlView.getInstance().refresh();
+		nrWeeksChoiceBox.setValue(tempNrWeek);
 	}
 	
 	  /** Returns the number from the given text field if present, otherwise appends error string to the given message. */
@@ -159,6 +151,4 @@ public class RegisterMemberPageController {
 	    	return -1;
 	    }
 	  }
-
-
 }

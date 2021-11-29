@@ -5,18 +5,12 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
-import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
-import ca.mcgill.ecse.climbsafe.model.Assignment;
-import ca.mcgill.ecse.climbsafe.model.BookedItem;
-import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-//import ca.mcgill.ecse.climbsafe.view.pages.;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,7 +23,6 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 public class UpdateMemberPageController {
-	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
 	@FXML private TextField nameTextField;
 	@FXML private ChoiceBox<String> memberChoiceBox;
@@ -53,7 +46,6 @@ public class UpdateMemberPageController {
 	private Member m = null;
 	
 	public void initialize() {
-//		emailTextField.setText("");
 		passwordTextField.setText("");
 		nameTextField.setText("");
 		emergencyContactTextField.setText("");
@@ -105,7 +97,6 @@ public class UpdateMemberPageController {
 	// Event Listener on Button[#updateMemberUpdateClicked].onAction
 	@FXML
 	public void updateMemberUpdateClicked(ActionEvent event) {
-		System.out.println("Clicking Update");
 		String email = memberChoiceBox.getValue();
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
@@ -163,7 +154,7 @@ public class UpdateMemberPageController {
 				itemQuantities.add(itemQuantity);
 			}
 			itemNameChoiceBox.setValue(null);
-//			itemQuantitySpinner.getValueFactory().setValue(null);
+			itemQuantitySpinner.getValueFactory().setValue(null);
 		}
 		
 		for(int i =0; i<itemNames.size(); i++) {

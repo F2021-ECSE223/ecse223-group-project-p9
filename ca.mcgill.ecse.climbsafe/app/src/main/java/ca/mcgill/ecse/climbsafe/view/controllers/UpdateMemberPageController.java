@@ -50,6 +50,7 @@ public class UpdateMemberPageController {
 	@FXML private Button deleteMemberdeleteButton;
 	private List<String> itemNames = new ArrayList<>();;
 	private List<Integer> itemQuantities = new ArrayList<>();; 
+	private Member m = null;
 	
 	public void initialize() {
 		
@@ -88,15 +89,18 @@ public class UpdateMemberPageController {
 	// Event Listener on Button[#memberSearchClicked].onAction
 	@FXML
 	public void memberSearchClicked(ActionEvent event) {
-		Member m = ViewUtils.getMember(memberChoiceBox.getValue());
+		m = ViewUtils.getMember(memberChoiceBox.getValue());
 		nameTextField.setText(m.getName());
 		passwordTextField.setText(m.getName());
 		emergencyContactTextField.setText(m.getEmergencyContact());
-		nrWeeksChoiceBox.setValue(m.getNrWeeks());
 		guideRequiredCheckBox.setSelected(m.getGuideRequired());
 		hotelRequiredCheckBox.setSelected(m.getHotelRequired());
 		memberItemsListView.setItems(ViewUtils.getMemberItems(m));
 		ClimbSafeFxmlView.getInstance().refresh();
+		memberChoiceBox.setValue(m.getEmail());
+		nrWeeksChoiceBox.setValue(m.getNrWeeks());
+		itemNames = ViewUtils.getMemberItemsName(m);
+		itemQuantities = ViewUtils.getMemberItemsQuantity(m);
 	}
 
 	// Event Listener on Button[#updateMemberUpdateClicked].onAction
@@ -110,9 +114,8 @@ public class UpdateMemberPageController {
 		int nrWeeks = Integer.parseInt(nrWeeksChoiceBox.getValue().toString());
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
-
 		try {
-			if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, null, null))) {
+			if(successful(() -> ClimbSafeFeatureSet2Controller.updateMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities))) {
 				memberChoiceBox.setValue(null);
 				passwordTextField.setText("");
 				nameTextField.setText("");
@@ -127,6 +130,7 @@ public class UpdateMemberPageController {
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
+		ClimbSafeFxmlView.getInstance().refresh();
 	}
 
 
@@ -147,15 +151,20 @@ public class UpdateMemberPageController {
 					break;
 				}
 			}
-			itemQuantities.set(indexOfItem, itemQuantity);
+			if(itemQuantity == 0) {
+				itemNames.remove(indexOfItem);
+				itemQuantities.remove(indexOfItem);
+			}else {
+				itemQuantities.set(indexOfItem, itemQuantity);
+			}
 		}else {
 			//add new item
-			if(itemQuantity!= 0) {
+			if(itemQuantity != 0) {
 				itemNames.add(itemName);
 				itemQuantities.add(itemQuantity);
 			}
 			itemNameChoiceBox.setValue(null);
-			itemQuantitySpinner.getValueFactory().setValue(null);
+//			itemQuantitySpinner.getValueFactory().setValue(null);
 		}
 		
 		for(int i =0; i<itemNames.size(); i++) {
@@ -164,6 +173,8 @@ public class UpdateMemberPageController {
 
 		memberItemsListView.setItems(itemaNameAndQuantityList);
 		ClimbSafeFxmlView.getInstance().refresh();
+		memberChoiceBox.setValue(m.getEmail());
+		nrWeeksChoiceBox.setValue(m.getNrWeeks());
 	}
 
 	//Event Listener on Button[#addItemClicked].onAction
@@ -181,11 +192,13 @@ public class UpdateMemberPageController {
 					hotelRequiredCheckBox.setSelected(false);
 					itemNameChoiceBox.setValue(null);
 					itemQuantitySpinner.setValueFactory(null);
+					memberItemsListView.setItems(null);
 					ClimbSafeFxmlView.getInstance().refresh();
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());
 			}
+			ClimbSafeFxmlView.getInstance().refresh();
 		}
 
 }

@@ -127,6 +127,24 @@ public class ViewUtils {
 	  return FXCollections.observableList(itemaNameAndQuantityList);
   }
   
+  public static ObservableList<String> getMemberItemsName(Member member){
+	  List<String> itemNameList = new ArrayList<>();
+	  List<BookedItem> memberItemList = member.getBookedItems();
+	  for(int i=0; i<memberItemList.size(); i++) {
+		  itemNameList.add(memberItemList.get(i).getItem().getName());
+	  }
+	  return FXCollections.observableList(itemNameList);
+  }
+  
+  public static ObservableList<Integer> getMemberItemsQuantity(Member member){
+	  List<Integer> itemsQuantityList = new ArrayList<>();
+	  List<BookedItem> memberItemList = member.getBookedItems();
+	  for(int i=0; i<memberItemList.size(); i++) {
+		  itemsQuantityList.add(memberItemList.get(i).getQuantity());
+	  }
+	  return FXCollections.observableList(itemsQuantityList);
+  }
+  
   
 
 //  public static ObservableList<TODriver> getDrivers() {

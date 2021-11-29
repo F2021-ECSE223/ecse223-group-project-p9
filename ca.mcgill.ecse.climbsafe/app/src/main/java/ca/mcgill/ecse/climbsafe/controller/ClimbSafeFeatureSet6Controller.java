@@ -5,6 +5,7 @@ import java.util.*;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.*;
+import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet6Controller {
@@ -104,6 +105,9 @@ public class ClimbSafeFeatureSet6Controller {
 	  String guideName =null;
 	  String hotelName = null;
 	  boolean found = false;
+	  String status = null;
+	  String code = null;
+	  int refund = 0;
 	  int discount;
 	  int index;
 	  int bundlePrice;
@@ -121,6 +125,9 @@ public class ClimbSafeFeatureSet6Controller {
 		  memberEmail = assignments.get(i).getMember().getEmail();
 		  startWeek = assignments.get(i).getStartWeek();
 		  endWeek = assignments.get(i).getEndWeek();
+		  status = assignments.get(i).getTripStatus().toString();
+		  refund = assignments.get(i).getRefund();
+		  code = assignments.get(i).getAuthorizationCode();
 		  
 		  if(guideRequired) {
 			  guideName = assignments.get(i).getGuide().getName();
@@ -176,7 +183,7 @@ public class ClimbSafeFeatureSet6Controller {
 				  
 			  }
 		  }
-		  TOAssignments.add(new TOAssignment(memberEmail, memberName, guideEmail, guideName, hotelName, startWeek, endWeek, totalCostForGuide, totalCostForEquipment));
+		  TOAssignments.add(new TOAssignment(memberEmail, memberName, guideEmail, guideName, hotelName, startWeek, endWeek, totalCostForGuide, totalCostForEquipment, status, code, refund));
 
 		  
 	  }

@@ -3,6 +3,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet4Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet6Controller;
+import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -41,6 +42,7 @@ public class ModifyDeleteEquipmentPageController {
 				newNameModifyEquipment.setText("");
 				weightModifyEquipment.setText("");
 				priceModifyEquipment.setText("");
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
@@ -60,6 +62,7 @@ public class ModifyDeleteEquipmentPageController {
 		try {
 			if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipment(name))) {
 				deleteEquipmentName.setText("");
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

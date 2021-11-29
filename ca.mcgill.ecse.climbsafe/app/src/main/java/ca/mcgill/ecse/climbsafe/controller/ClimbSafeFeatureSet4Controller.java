@@ -110,7 +110,6 @@ public class ClimbSafeFeatureSet4Controller {
 			}
 	  }
 	  
-	  
 	  //Checks if an EquipmentBundle with the same name already exists
 	  List<EquipmentBundle> bundles = climbSafe.getBundles();
 	  for (EquipmentBundle b : bundles) {

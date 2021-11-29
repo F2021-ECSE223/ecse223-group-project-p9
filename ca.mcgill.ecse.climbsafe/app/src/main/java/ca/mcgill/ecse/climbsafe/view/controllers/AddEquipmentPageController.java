@@ -2,6 +2,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet4Controller;
+import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -30,6 +31,7 @@ public class AddEquipmentPageController {
 				addEquipmentName.setText("");
 				addEquipmentWeight.setText("");
 				addEquipmentPrice.setText("");
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

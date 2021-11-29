@@ -74,7 +74,7 @@ public class RegisterMemberPageController {
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
-		int nrWeeks = getNumberFromField(nrWeeksChoiceBox, "nrWeeks is not null");
+		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
 		
@@ -138,13 +138,15 @@ public class RegisterMemberPageController {
 		}
 
 		memberItemsListView.setItems(itemaNameAndQuantityList);
-		int tempNrWeek = nrWeeksChoiceBox.getValue();
+		int tempNrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		ClimbSafeFxmlView.getInstance().refresh();
-		nrWeeksChoiceBox.setValue(tempNrWeek);
+		if(tempNrWeeks!=-1) {
+			nrWeeksChoiceBox.setValue(tempNrWeeks);
+		}
 	}
 	
 	  /** Returns the number from the given text field if present, otherwise appends error string to the given message. */
-	  private int getNumberFromField(ChoiceBox<Integer> field, String errorMessage) {
+	  private int getNumberFromField(ChoiceBox<Integer> field) {
 	    if(field.getValue() != null) {
 	    	return field.getValue();
 	    }else {

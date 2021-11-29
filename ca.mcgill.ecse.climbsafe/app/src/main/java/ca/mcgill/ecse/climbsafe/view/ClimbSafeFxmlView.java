@@ -32,7 +32,7 @@ public class ClimbSafeFxmlView extends Application {
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(800);
       primaryStage.setMinHeight(600);
-      primaryStage.setTitle("BTMS");
+      primaryStage.setTitle("P9 ClimbSafe");
       primaryStage.show();
       refresh();
     } catch (IOException e) {

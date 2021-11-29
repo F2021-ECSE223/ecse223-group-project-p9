@@ -2,6 +2,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
@@ -31,7 +32,7 @@ public class UpdateMemberPageController {
 	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
 	@FXML private TextField nameTextField;
-	@FXML private ChoiceBox<Member> memberChoiceBox;
+	@FXML private ChoiceBox<Member> memberChoiceBox; // store string instead
 	@FXML private TextField emergencyContactTextField;
 	@FXML private ChoiceBox<Integer> nrWeeksChoiceBox;
 	@FXML private CheckBox guideRequiredCheckBox;
@@ -47,8 +48,8 @@ public class UpdateMemberPageController {
 	@FXML private Button memberSearchButton;
 	@FXML private Button updateMemberUpdateButton;
 	@FXML private Button deleteMemberdeleteButton;
-	private List<String> itemNames = null;
-	private List<Integer> itemQuantities = null; 
+	private List<String> itemNames = new ArrayList<>();;
+	private List<Integer> itemQuantities = new ArrayList<>();; 
 	
 	public void initialize() {
 		
@@ -74,6 +75,9 @@ public class UpdateMemberPageController {
 			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
 		memberItemsListView.setItems(null);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNameChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
 	}
 	
 	// Event Listener on Button[#memberSearchClicked].onAction

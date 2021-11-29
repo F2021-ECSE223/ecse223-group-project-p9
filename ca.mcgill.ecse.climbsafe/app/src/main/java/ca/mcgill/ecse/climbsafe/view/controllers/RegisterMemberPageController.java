@@ -2,6 +2,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
@@ -40,8 +41,8 @@ public class RegisterMemberPageController {
 
 
 	@FXML private Button registerMemberRegisterButton;
-	private List<String> itemNames = null;
-	private List<Integer> itemQuantities = null; 
+	private List<String> itemNames = new ArrayList<>();;
+	private List<Integer> itemQuantities = new ArrayList<>();; 
 	
 	public void initialize() {
 		emailTextField.setText("");
@@ -75,12 +76,12 @@ public class RegisterMemberPageController {
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
-		int nrWeeks = Integer.parseInt(nrWeeksChoiceBox.getValue().toString());
+		int nrWeeks = nrWeeksChoiceBox.getValue();
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
 
 		try {
-			if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, null, null))) {
+			if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities))) {
 				emailTextField.setText("");
 				passwordTextField.setText("");
 				nameTextField.setText("");

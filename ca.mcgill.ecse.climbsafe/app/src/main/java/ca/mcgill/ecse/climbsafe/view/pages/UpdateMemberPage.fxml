@@ -52,13 +52,13 @@
       <Label text="Do you want to book a hotel?" GridPane.columnIndex="1" GridPane.rowIndex="11" />
       <CheckBox fx:id="hotelRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="11" />
       <PasswordField fx:id="passwordTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
-      <Button fx:id="registerMemberP1NextButton" mnemonicParsing="false" text="Update" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
+      <Button fx:id="updateMemberUpdateButton" mnemonicParsing="false" onAction="#updateMemberUpdateClicked" text="Update" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
       <Label contentDisplay="TOP" text="Update Member" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Button fx:id="addEditItemButton" mnemonicParsing="false" text="Add/Edit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
+      <Button fx:id="addEditItemButton" mnemonicParsing="false" onAction="#addEditItemClicked" text="Add/Edit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
       <Label text="Items" GridPane.columnIndex="1" GridPane.rowIndex="12" />
       <ListView fx:id="memberItemsListView" prefHeight="200.0" prefWidth="549.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="13" />
       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="12">
@@ -74,10 +74,10 @@
             <ChoiceBox fx:id="itemNameChoiceBox" prefHeight="26.0" prefWidth="255.0" />
          </children>
       </GridPane>
-      <Button fx:id="deleteMemberButton" mnemonicParsing="false" text="Delete Member" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Button fx:id="deleteMemberButton" mnemonicParsing="false" onAction="#deleteMemberClicked" text="Delete Member" GridPane.columnIndex="1" GridPane.rowIndex="15" />
       <Label text="Once you delete your account, there is no going back. Please be certain." GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14" />
       <TextField fx:id="nameTextField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
       <ChoiceBox fx:id="memberChoiceBox" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-      <Button fx:id="emailSearchButton" mnemonicParsing="false" text="Search" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+      <Button fx:id="memberSearchButton" mnemonicParsing="false" onAction="#memberSearchClicked" text="Search" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
    </children>
 </GridPane>

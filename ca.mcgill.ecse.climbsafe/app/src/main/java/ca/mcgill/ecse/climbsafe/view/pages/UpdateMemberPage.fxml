@@ -60,7 +60,7 @@
       </Label>
       <Button fx:id="addEditItemButton" mnemonicParsing="false" onAction="#addEditItemClicked" text="Add/Edit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="12" />
       <Label text="Items" GridPane.columnIndex="1" GridPane.rowIndex="12" />
-      <ListView fx:id="memberItemsListView" prefHeight="200.0" prefWidth="549.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="13" />
+      <ListView fx:id="memberItemsListView" prefHeight="200.0" prefWidth="549.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="13" GridPane.vgrow="ALWAYS" />
       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="12">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.315673828125" minWidth="10.0" prefWidth="221.52267456054688" />

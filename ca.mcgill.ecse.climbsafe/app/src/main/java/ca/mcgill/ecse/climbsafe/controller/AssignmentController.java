@@ -20,6 +20,16 @@ public class AssignmentController {
 	public static void initiateAssignment() throws InvalidInputException{
 		List<Member> members = climbSafe.getMembers();
 		List<Guide> guides = climbSafe.getGuides();
+		if(members.isEmpty()) {
+			error = "No members registered in the system.";
+			throw new InvalidInputException(error.trim());
+		}else if(guides.isEmpty()) {
+			error = "No guides registered in the system.";
+			throw new InvalidInputException(error.trim());
+		}else if(climbSafe.getHotels().isEmpty()) {
+			error = "No hotels registered in the system.";
+			throw new InvalidInputException(error.trim());
+		}
 		int g = 0;
 		Guide guide = guides.get(g);
 		Member member;

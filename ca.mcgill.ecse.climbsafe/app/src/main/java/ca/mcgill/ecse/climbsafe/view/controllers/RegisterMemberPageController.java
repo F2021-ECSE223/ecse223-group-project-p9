@@ -34,7 +34,7 @@ public class RegisterMemberPageController {
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
 
-	@FXML private ChoiceBox<BookedItem> itemNameChoiceBox;
+	@FXML private ChoiceBox<String> itemNameChoiceBox;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
@@ -66,6 +66,9 @@ public class RegisterMemberPageController {
 			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
 			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNameChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
 	}
 
 	// Event Listener on Button[#registerMemberRegisterClicked].onAction
@@ -77,6 +80,7 @@ public class RegisterMemberPageController {
 		String name = nameTextField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
 		int nrWeeks = nrWeeksChoiceBox.getValue();
+//if()
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
 
@@ -132,35 +136,42 @@ public class RegisterMemberPageController {
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-		String itemName = itemNameChoiceBox.getValue().toString();
-		int itemQuantity = (int) itemQuantitySpinner.getValue();
+		String itemName = "";
+		if(itemNameChoiceBox.getValue()!=null) {
+			itemName = itemNameChoiceBox.getValue().toString();
+		}
+		int itemQuantity = -1;
+		if(itemQuantitySpinner.getValue()!=null) {
+			itemQuantity = itemQuantitySpinner.getValue();
+		}
 		int indexOfItem = -1;
-
-		if(itemNames.toString().contains(itemName)) {
-			//edit the quantity instead
-			for(int i =0; i<itemNames.size(); i++) {
-				if(itemNames.get(i) == itemName) {
-					indexOfItem = i;
-					break;
+		if(itemName!= "" && itemQuantity!= -1) {
+			if(itemNames.toString().contains(itemName)) {
+				//edit the quantity instead
+				for(int i =0; i<itemNames.size(); i++) {
+					if(itemNames.get(i) == itemName) {
+						indexOfItem = i;
+						break;
+					}
 				}
+				itemQuantities.set(indexOfItem, itemQuantity);
+			}else {
+				//add new item
+				if(itemQuantity!= 0) {
+					itemNames.add(itemName);
+					itemQuantities.add(itemQuantity);
+				}
+				itemNameChoiceBox.setValue(null);
+				itemQuantitySpinner.getValueFactory().setValue(null);
 			}
-			itemQuantities.set(indexOfItem, itemQuantity);
-		}else {
-			//add new item
-			if(itemQuantity!= 0) {
-				itemNames.add(itemName);
-				itemQuantities.add(itemQuantity);
+			
+			for(int i =0; i<itemNames.size(); i++) {
+				itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
 			}
-			itemNameChoiceBox.setValue(null);
-			itemQuantitySpinner.getValueFactory().setValue(null);
-		}
-		
-		for(int i =0; i<itemNames.size(); i++) {
-			itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
-		}
 
-		memberItemsListView.setItems(itemaNameAndQuantityList);
-		ClimbSafeFxmlView.getInstance().refresh();
+			memberItemsListView.setItems(itemaNameAndQuantityList);
+			ClimbSafeFxmlView.getInstance().refresh();
+		}
 	}
 
 

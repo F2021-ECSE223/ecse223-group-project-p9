@@ -83,9 +83,13 @@ public class ViewUtils {
     makePopupWindow("Error", message);
   }
   
-  public static ObservableList<BookedItem> getItemNames(){
+  public static ObservableList<String> getItemNames(){
 	  List<BookedItem> itemNames = climbSafe.getBookedItems();
-	  return FXCollections.observableList(itemNames);
+	  List<String> itemNamesString = new ArrayList<>();
+	  for(int i=0; i< itemNames.size(); i++) {
+		  itemNamesString.add(itemNames.get(i).getItem().getName());
+	  }
+	  return FXCollections.observableList(itemNamesString);
   }
   public static ObservableList<Integer> getNrWeeks(){
 	  int nrWeeksTotal = climbSafe.getNrWeeks();
@@ -95,9 +99,24 @@ public class ViewUtils {
 	  }
 	  return FXCollections.observableList(weeksInTotal);
   }
-  public static ObservableList<Member> getMember(String email){
+  public static ObservableList<String> getMembers(){
 	  List<Member> memberList = climbSafe.getMembers();
-	  return FXCollections.observableList(memberList);
+	  List<String> memberListString = new ArrayList<>();
+	  for(int i=0; i< memberList.size(); i++) {
+		  memberListString.add(memberList.get(i).getEmail());
+	  }
+	  return FXCollections.observableList(memberListString);
+  }
+  public static Member getMember(String email){
+	  List<Member> memberList = climbSafe.getMembers();
+	  Member m = null;
+	  for(int i=0; i< memberList.size(); i++) {
+		  if(memberList.get(i).getEmail() == email) {
+			  m = memberList.get(i);
+			  break;
+		  }
+	  }
+	  return m;
   }
   public static ObservableList<String> getMemberItems(Member member){
 	  List<String> itemaNameAndQuantityList = new ArrayList<>();

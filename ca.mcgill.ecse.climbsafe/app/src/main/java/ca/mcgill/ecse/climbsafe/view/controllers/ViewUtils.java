@@ -1,6 +1,7 @@
 package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
@@ -8,7 +9,9 @@ import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
 import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
+import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
+import ca.mcgill.ecse.climbsafe.model.Member;
 //import ca.mcgill.ecse.climbsafe.controller.TOBusVehicle;
 //import ca.mcgill.ecse.climbsafe.controller.TODriver;
 //import ca.mcgill.ecse.climbsafe.controller.TORoute;
@@ -80,18 +83,32 @@ public class ViewUtils {
     makePopupWindow("Error", message);
   }
   
-  public static ObservableList<Assignment> getItemNames(){
-	  List<Assignment> itemNames = climbSafe.getAssignments();
+  public static ObservableList<BookedItem> getItemNames(){
+	  List<BookedItem> itemNames = climbSafe.getBookedItems();
 	  return FXCollections.observableList(itemNames);
   }
   public static ObservableList<Integer> getNrWeeks(){
 	  int nrWeeksTotal = climbSafe.getNrWeeks();
-	  List<Integer> weeksInTotal = null;
+	  List<Integer> weeksInTotal = new ArrayList<>();
 	  for(int i=0; i<=nrWeeksTotal; i++) {
 		  weeksInTotal.add(i);
 	  }
 	  return FXCollections.observableList(weeksInTotal);
   }
+  public static ObservableList<Member> getMember(String email){
+	  List<Member> memberList = climbSafe.getMembers();
+	  return FXCollections.observableList(memberList);
+  }
+  public static ObservableList<String> getMemberItems(Member member){
+	  List<String> itemaNameAndQuantityList = new ArrayList<>();
+	  List<BookedItem> memberItemList = member.getBookedItems();
+	  for(int i=0; i<memberItemList.size(); i++) {
+		  itemaNameAndQuantityList.add(memberItemList.get(i).getItem().getName() + " " + memberItemList.get(i).getQuantity());
+	  }
+	  return FXCollections.observableList(itemaNameAndQuantityList);
+  }
+  
+  
 
 //  public static ObservableList<TODriver> getDrivers() {
 //    List<TODriver> drivers = BtmsController.getDrivers();

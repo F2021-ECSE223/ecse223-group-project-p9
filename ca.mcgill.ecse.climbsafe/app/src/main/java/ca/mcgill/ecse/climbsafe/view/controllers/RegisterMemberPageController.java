@@ -2,11 +2,13 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
 import ca.mcgill.ecse.climbsafe.model.Assignment;
+import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,17 +34,23 @@ public class RegisterMemberPageController {
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
 
-	@FXML private ChoiceBox<Assignment> itemNameChoiceBox;
+	@FXML private ChoiceBox<BookedItem> itemNameChoiceBox;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
 
 
 	@FXML private Button registerMemberRegisterButton;
-	private List<String> itemNames = null;
-	private List<Integer> itemQuantities = null; 
+	private List<String> itemNames = new ArrayList<>();;
+	private List<Integer> itemQuantities = new ArrayList<>();; 
 	
 	public void initialize() {
+		emailTextField.setText("");
+		passwordTextField.setText("");
+		nameTextField.setText("");
+		emergencyContactTextField.setText("");
+		guideRequiredCheckBox.setSelected(false);
+		hotelRequiredCheckBox.setSelected(false);
 		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			nrWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
 			nrWeeksChoiceBox.setValue(null);
@@ -68,12 +76,12 @@ public class RegisterMemberPageController {
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
-		int nrWeeks = Integer.parseInt(nrWeeksChoiceBox.getValue().toString());
+		int nrWeeks = nrWeeksChoiceBox.getValue();
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
 
 		try {
-			if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, null, null))) {
+			if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities))) {
 				emailTextField.setText("");
 				passwordTextField.setText("");
 				nameTextField.setText("");
@@ -83,6 +91,7 @@ public class RegisterMemberPageController {
 				hotelRequiredCheckBox.setSelected(false);
 				itemNameChoiceBox.setValue(null);
 				itemQuantitySpinner.setValueFactory(null);
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

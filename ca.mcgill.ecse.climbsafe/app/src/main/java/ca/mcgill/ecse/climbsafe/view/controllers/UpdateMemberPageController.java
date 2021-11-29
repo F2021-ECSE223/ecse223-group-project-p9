@@ -4,7 +4,14 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
 import java.util.List;
 
+import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
+import ca.mcgill.ecse.climbsafe.controller.TOAssignment;
+import ca.mcgill.ecse.climbsafe.model.Assignment;
+import ca.mcgill.ecse.climbsafe.model.BookedItem;
+import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
+import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,34 +24,77 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 public class UpdateMemberPageController {
+	private static ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 
 	@FXML private TextField nameTextField;
-	@FXML private TextField emailTextField;
+	@FXML private ChoiceBox<Member> memberChoiceBox;
 	@FXML private TextField emergencyContactTextField;
-	@FXML private ChoiceBox nrWeeksChoiceBox;
+	@FXML private ChoiceBox<Integer> nrWeeksChoiceBox;
 	@FXML private CheckBox guideRequiredCheckBox;
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
 
-	@FXML private ChoiceBox itemNameChoiceBox;
-	@FXML private Spinner itemQuantitySpinner;
+	@FXML private ChoiceBox<BookedItem> itemNameChoiceBox;
+	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
 
 
-	@FXML private Button registerMemberP1NextButton;
-	//	ObservableList<String> itemNames = FXCollections.observableArrayList();
-	//	ObservableList<Integer> itemQuantities = FXCollections.observableArrayList();
+	@FXML private Button memberSearchButton;
+	@FXML private Button updateMemberUpdateButton;
+	@FXML private Button deleteMemberdeleteButton;
 	private List<String> itemNames = null;
 	private List<Integer> itemQuantities = null; 
-
-	// Event Listener on Button[#registerMemberP1NextClicked].onAction
+	
+	public void initialize() {
+		
+//		emailTextField.setText("");
+		passwordTextField.setText("");
+		nameTextField.setText("");
+		emergencyContactTextField.setText("");
+		guideRequiredCheckBox.setSelected(false);
+		hotelRequiredCheckBox.setSelected(false);
+		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			nrWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
+			nrWeeksChoiceBox.setValue(null);
+		});
+		itemNameChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			itemNameChoiceBox.setItems(ViewUtils.getItemNames());
+			itemNameChoiceBox.setValue(null);
+		});
+		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 99;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			itemQuantitySpinner.setValueFactory(valueFactory);
+		});
+		memberItemsListView.setItems(null);
+	}
+	
+	// Event Listener on Button[#memberSearchClicked].onAction
 	@FXML
-	public void registerMemberP1NextClicked(ActionEvent event) {
-		String email = emailTextField.getText();
+	public void memberSearchClicked(ActionEvent event) {
+		String email = memberChoiceBox.getValue().getEmail();
+		nameTextField.setText(memberChoiceBox.getValue().getName());
+		passwordTextField.setText(memberChoiceBox.getValue().getName());
+		emergencyContactTextField.setText(memberChoiceBox.getValue().getEmergencyContact());
+		nrWeeksChoiceBox.setValue(memberChoiceBox.getValue().getNrWeeks());
+		guideRequiredCheckBox.setSelected(memberChoiceBox.getValue().getGuideRequired());
+		hotelRequiredCheckBox.setSelected(memberChoiceBox.getValue().getHotelRequired());
+		memberItemsListView.setItems(ViewUtils.getMemberItems(memberChoiceBox.getValue()));
+		ClimbSafeFxmlView.getInstance().refresh();
+	}
+
+	// Event Listener on Button[#updateMemberUpdateClicked].onAction
+	@FXML
+	public void updateMemberUpdateClicked(ActionEvent event) {
+		System.out.println("Clicking Update");
+		String email = memberChoiceBox.getValue().getEmail();
 		String password = passwordTextField.getText();
 		String name = nameTextField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
@@ -54,55 +104,29 @@ public class UpdateMemberPageController {
 
 		try {
 			if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, null, null))) {
-				emailTextField.setText("");
+				memberChoiceBox.setValue(null);
 				passwordTextField.setText("");
 				nameTextField.setText("");
 				emergencyContactTextField.setText("");
-				//        	nrWeeksChoiceBox.setItems(null);
+				nrWeeksChoiceBox.setValue(null);
 				guideRequiredCheckBox.setSelected(false);
 				hotelRequiredCheckBox.setSelected(false);
-				//set item selected to null
-				//set item quantity to null
+				itemNameChoiceBox.setValue(null);
+				itemQuantitySpinner.setValueFactory(null);
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
-		
-
-
-		//uncomment from here
-		//    if(successful(() -> ClimbSafeFeatureSet2Controller.registerMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, null, null))) {
-		//    	emailTextField.setText("");
-		//    	passwordTextField.setText("");
-		//    	nameTextField.setText("");
-		//    	emergencyContactTextField.setText("");
-		////    	nrWeeksChoiceBox.setItems(null);
-		//    	guideRequiredCheckBox.setSelected(false);
-		//    	hotelRequiredCheckBox.setSelected(false);
-		//    	//set item selected to null
-		//    	//set item quantity to null
-		//    }else {
-		////    	ViewUtils.showError(/*error shown when trying to register member*/);
-		////    	ViewUtils.showError();
-		//    }
-		//    
-		////    if (name == null || name.trim().isEmpty()) {
-		////      ViewUtils.showError("Please input a valid driver name");
-		////    } else {
-		////      // reset the driver text field if success
-		////      if (successful(() -> BtmsController.createDriver(name))) {
-		////        driverNameTextField.setText("");
-		////      }
-		////    }
-
-		//uncomment to here
 	}
 
-	//Event Listener on Button[#addItemClicked].onAction
+
+	
+	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-		String itemName = (String) itemNameChoiceBox.getValue();
+		String itemName = itemNameChoiceBox.getValue().toString();
 		int itemQuantity = (int) itemQuantitySpinner.getValue();
 		int indexOfItem = -1;
 
@@ -133,5 +157,26 @@ public class UpdateMemberPageController {
 		ClimbSafeFxmlView.getInstance().refresh();
 	}
 
+	//Event Listener on Button[#addItemClicked].onAction
+		@FXML
+		public void deleteMemberClicked(ActionEvent event) {
+			String email = memberChoiceBox.getValue().getEmail();
+			try {
+				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
+					memberChoiceBox.setValue(null);
+					passwordTextField.setText("");
+					nameTextField.setText("");
+					emergencyContactTextField.setText("");
+					nrWeeksChoiceBox.setValue(null);
+					guideRequiredCheckBox.setSelected(false);
+					hotelRequiredCheckBox.setSelected(false);
+					itemNameChoiceBox.setValue(null);
+					itemQuantitySpinner.setValueFactory(null);
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
+			}
+		}
 
 }

@@ -5,6 +5,7 @@ import java.util.*;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.*;
+import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet6Controller {

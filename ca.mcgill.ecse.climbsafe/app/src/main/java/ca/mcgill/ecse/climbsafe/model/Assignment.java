@@ -222,7 +222,7 @@ public class Assignment implements Serializable
     return wasEventProcessed;
   }
 
-  private boolean __autotransition17__()
+  private boolean __autotransition7__()
   {
     boolean wasEventProcessed = false;
     
@@ -244,7 +244,7 @@ public class Assignment implements Serializable
     return wasEventProcessed;
   }
 
-  private boolean __autotransition18__()
+  private boolean __autotransition8__()
   {
     boolean wasEventProcessed = false;
     
@@ -292,8 +292,8 @@ public class Assignment implements Serializable
     switch(tripStatus)
     {
       case Started:
-        __autotransition17__();
-        __autotransition18__();
+        __autotransition7__();
+        __autotransition8__();
         break;
     }
   }

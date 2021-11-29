@@ -34,7 +34,7 @@ public class RegisterMemberPageController {
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
 
-	@FXML private ChoiceBox<BookedItem> itemNameChoiceBox;
+	@FXML private ChoiceBox<String> itemNameChoiceBox;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
@@ -66,6 +66,9 @@ public class RegisterMemberPageController {
 			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
 			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNameChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
 	}
 
 	// Event Listener on Button[#registerMemberRegisterClicked].onAction

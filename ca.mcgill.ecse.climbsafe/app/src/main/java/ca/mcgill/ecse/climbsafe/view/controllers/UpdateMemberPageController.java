@@ -39,7 +39,7 @@ public class UpdateMemberPageController {
 	@FXML private CheckBox hotelRequiredCheckBox;
 	@FXML private PasswordField passwordTextField;
 
-	@FXML private ChoiceBox<BookedItem> itemNameChoiceBox;
+	@FXML private ChoiceBox<String> itemNameChoiceBox;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
@@ -59,6 +59,10 @@ public class UpdateMemberPageController {
 		emergencyContactTextField.setText("");
 		guideRequiredCheckBox.setSelected(false);
 		hotelRequiredCheckBox.setSelected(false);
+		memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			memberChoiceBox.setItems(ViewUtils.getMembers());
+			memberChoiceBox.setValue(null);
+		});
 		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			nrWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
 			nrWeeksChoiceBox.setValue(null);
@@ -75,6 +79,7 @@ public class UpdateMemberPageController {
 			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
 		memberItemsListView.setItems(null);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNameChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);

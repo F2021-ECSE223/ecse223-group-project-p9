@@ -83,9 +83,13 @@ public class ViewUtils {
     makePopupWindow("Error", message);
   }
   
-  public static ObservableList<BookedItem> getItemNames(){
+  public static ObservableList<String> getItemNames(){
 	  List<BookedItem> itemNames = climbSafe.getBookedItems();
-	  return FXCollections.observableList(itemNames);
+	  List<String> itemNamesString = new ArrayList<>();
+	  for(int i=0; i< itemNames.size(); i++) {
+		  itemNamesString.add(itemNames.get(i).getItem().getName());
+	  }
+	  return FXCollections.observableList(itemNamesString);
   }
   public static ObservableList<Integer> getNrWeeks(){
 	  int nrWeeksTotal = climbSafe.getNrWeeks();
@@ -94,6 +98,10 @@ public class ViewUtils {
 		  weeksInTotal.add(i);
 	  }
 	  return FXCollections.observableList(weeksInTotal);
+  }
+  public static ObservableList<Member> getMembers(){
+	  List<Member> memberList = climbSafe.getMembers();
+	  return FXCollections.observableList(memberList);
   }
   public static ObservableList<Member> getMember(String email){
 	  List<Member> memberList = climbSafe.getMembers();

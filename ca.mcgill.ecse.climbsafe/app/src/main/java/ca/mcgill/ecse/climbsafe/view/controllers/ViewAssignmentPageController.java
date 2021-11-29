@@ -6,15 +6,16 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.*;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 public class ViewAssignmentPageController {
-  @FXML
-  private TextField memberEmailTextField;
   @FXML
   private Button viewButton;
   @FXML
@@ -37,8 +38,16 @@ public class ViewAssignmentPageController {
   private Text totalCostText;
   @FXML
   private Text codeText;
+  @FXML
+  private ChoiceBox<String> memberChoiceBox;
 
-
+  public void initialize() {
+	  memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			memberChoiceBox.setItems(ViewUtils.getMembers());
+			memberChoiceBox.setValue(null);
+		});	
+	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+	}
   @FXML
   public void viewClicked(ActionEvent event) {
 	  try {
@@ -46,15 +55,20 @@ public class ViewAssignmentPageController {
 		 if(assignments.isEmpty()) {
 			 String e = "Assignments not yet created.";
 			 ViewUtils.showError(e);
-		 }else if(validMember(memberEmailTextField.getText())==-1) {
-			String e = "Member with email address "+ memberEmailTextField.getText() +" does not exist";
-			ViewUtils.showError(e);
-		 }else {
+			  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+
+		 }else if(memberChoiceBox.getValue().equals(null)) {
+			 String e = "Please choose member.";
+			 ViewUtils.showError(e);
+			  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+
+		 }
+		 else {
 			String refund;
 			String startAndEndWeek;
 			int totalCost;
 		 for(TOAssignment a : assignments) {
-			if(a.getMemberEmail().equals(memberEmailTextField.getText())) {
+			if(a.getMemberEmail().equals(memberChoiceBox.getValue())) {
 				tripStatusText.setText(a.getStatus());
 				memberEmailText.setText(a.getMemberEmail());
 				memberNameText.setText(a.getMemberName());
@@ -86,39 +100,22 @@ public class ViewAssignmentPageController {
 
 			} 
 		 }
-
+		  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 		 
 		 
 		 } 
 		
 	  } catch (RuntimeException e) {
 		  ViewUtils.showError(e.getMessage());
+		  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+
 	  }	  
 	  
   }
 
 
   
-	/**
-	 * checking if the member exists
-	 * 
-	 * @author Joey Koay
-	 * @param memberList - a list of all of the existing members
-	 * @param email
-	 * @return the index of the member in the list, if it does not exist, its -1
-	 */
-	private static int validMember(String email) {
-		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
-		List<Member> memberList = climbSafe.getMembers();
-		int validMember = -1;
-		for(int i=0; i<memberList.size(); i++) {
-			if(memberList.get(i).getEmail().equals(email)) {
-				validMember = i;
-				break;
-			}
-		}
-		return validMember;
-	}
+
   
 
 }

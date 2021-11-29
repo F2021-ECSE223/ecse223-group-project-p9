@@ -20,7 +20,7 @@ public class InitiateAssignmentPageController {
   public void yesClicked(ActionEvent event) {
 	  try {
 			if(successful(() -> AssignmentController.initiateAssignment())) {
-				completeText.setText("Complete!");
+				completeText.setText("Complete.");
 				
 			}else {
 				completeText.setText("Incomplete");

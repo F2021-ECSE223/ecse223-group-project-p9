@@ -16,7 +16,6 @@ public class TOAssignment
   private String memberName;
   private String guideEmail;
   private String guideName;
-  private String hotelName;
   private int startWeek;
   private int endWeek;
   private int totalCostForGuide;
@@ -29,13 +28,12 @@ public class TOAssignment
   // CONSTRUCTOR
   //------------------------
 
-  public TOAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, String aHotelName, int aStartWeek, int aEndWeek, int aTotalCostForGuide, int aTotalCostForEquipment, String aStatus, String aAuthorizationCode, int aRefundedPercentageAmount)
+  public TOAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, int aStartWeek, int aEndWeek, int aTotalCostForGuide, int aTotalCostForEquipment, String aStatus, String aAuthorizationCode, int aRefundedPercentageAmount)
   {
     memberEmail = aMemberEmail;
     memberName = aMemberName;
     guideEmail = aGuideEmail;
     guideName = aGuideName;
-    hotelName = aHotelName;
     startWeek = aStartWeek;
     endWeek = aEndWeek;
     totalCostForGuide = aTotalCostForGuide;
@@ -77,14 +75,6 @@ public class TOAssignment
   {
     boolean wasSet = false;
     guideName = aGuideName;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setHotelName(String aHotelName)
-  {
-    boolean wasSet = false;
-    hotelName = aHotelName;
     wasSet = true;
     return wasSet;
   }
@@ -165,11 +155,9 @@ public class TOAssignment
     return guideName;
   }
 
-  public String getHotelName()
-  {
-    return hotelName;
-  }
-
+  /**
+   * hotelName;
+   */
   public int getStartWeek()
   {
     return startWeek;
@@ -216,7 +204,6 @@ public class TOAssignment
             "memberName" + ":" + getMemberName()+ "," +
             "guideEmail" + ":" + getGuideEmail()+ "," +
             "guideName" + ":" + getGuideName()+ "," +
-            "hotelName" + ":" + getHotelName()+ "," +
             "startWeek" + ":" + getStartWeek()+ "," +
             "endWeek" + ":" + getEndWeek()+ "," +
             "totalCostForGuide" + ":" + getTotalCostForGuide()+ "," +

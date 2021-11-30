@@ -1,5 +1,7 @@
 package ca.mcgill.ecse.climbsafe.view.controllers;
 
+import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
+
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
@@ -40,6 +42,11 @@ public class ViewAssignmentPageController {
   private Text codeText;
   @FXML
   private ChoiceBox<String> memberChoiceBox;
+  @FXML
+  private Button InitiateAssignmentsButton;
+  @FXML
+  private Text assignmentCompletionText;
+  
 
   public void initialize() {
 	  memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
@@ -47,6 +54,8 @@ public class ViewAssignmentPageController {
 			memberChoiceBox.setValue(null);
 		});	
 	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+	  assignmentCompletionText.setText("Please initiate assignments before viewing.");
+
 	}
   @FXML
   public void viewClicked(ActionEvent event) {
@@ -111,6 +120,21 @@ public class ViewAssignmentPageController {
 
 	  }	  
 	  
+  }
+  
+  @FXML
+  public void initiateAssignmentClicked(ActionEvent event) {
+	  try {
+			if(successful(() -> AssignmentController.initiateAssignment())) {
+				assignmentCompletionText.setText("Assignments created.");
+				
+			}else {
+				assignmentCompletionText.setText("Please initiate assignments before viewing.");
+			}
+
+		} catch (RuntimeException e) {
+			ViewUtils.showError(e.getMessage());
+		}
   }
 
 

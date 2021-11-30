@@ -18,19 +18,19 @@ import javafx.scene.control.TextField;
 
 public class SetupNMCController {
 
-	@FXML private TextField numWeeksTextField;
+	@FXML private java.awt.TextField numWeeksTextField;
 	@FXML private TextField weeklyPriceOfGuideTextField;
 	@FXML private DatePicker dateBox;
 	@FXML private Button next;
 	
 	@FXML
 	public void initialize() {
-
-	  // set datePicker to be not editable so that the user must choose from the calendar
+		numWeeksTextField.setText("");;
+		weeklyPriceOfGuideTextField.setText("");
+	  // set dateBox to be not editable so that the user must choose from the calendar
 	  dateBox.setEditable(false);
 
-	  // register the refreshable nodes
-	  BtmsFxmlView.getInstance().registerRefreshEvent(busChoiceBox, routeChoiceBox);
+	 
 	}
 	
 	@FXML

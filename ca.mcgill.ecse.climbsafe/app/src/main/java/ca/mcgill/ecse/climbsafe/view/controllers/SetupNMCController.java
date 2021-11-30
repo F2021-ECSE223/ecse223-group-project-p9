@@ -24,7 +24,7 @@ public class SetupNMCController {
 	@FXML private Button next;
 	
 	@FXML
-	public void SetupNMCInfo(ActionEvent event) {
+	public void setUpNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
 /*
 		String numWeeks = numWeeksTextField.getText();

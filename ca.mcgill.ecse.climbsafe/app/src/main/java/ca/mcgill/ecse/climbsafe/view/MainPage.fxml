@@ -65,7 +65,7 @@
                   </TabPane>
                </children>
             </AnchorPane>
-         </content>
+        </content>
       </Tab>
   </tabs>
 </TabPane>

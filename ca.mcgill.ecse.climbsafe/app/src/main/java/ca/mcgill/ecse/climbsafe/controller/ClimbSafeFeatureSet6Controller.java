@@ -25,7 +25,7 @@ public class ClimbSafeFeatureSet6Controller {
 	  try {
 		boolean found = false;
 		int index = 0;
-		while(!found) {
+		while(!found && index<equipment.size()-1) {
 			if(equipment.get(index).getName().equals(name)) {
 				found = true;	
 			}else {
@@ -38,7 +38,7 @@ public class ClimbSafeFeatureSet6Controller {
 		for(int i=0; i<equipmentBundles.size(); i++) {
 			List<BundleItem> bundleItems = equipmentBundles.get(i).getBundleItems();
 			index2 =0;
-			while(!found && index2<bundleItems.size()){
+			while(!found && index2<bundleItems.size()-1){
 				if(bundleItems.get(index2).getEquipment().getName().equals(name)) {
 					found = true;	
 				}

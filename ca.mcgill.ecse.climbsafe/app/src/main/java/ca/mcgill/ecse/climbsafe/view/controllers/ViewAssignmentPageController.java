@@ -30,8 +30,6 @@ public class ViewAssignmentPageController {
   @FXML
   private Text guideNameText;
   @FXML
-  private Text hotelNameText;
-  @FXML
   private Text startAndEndWeekText;
   @FXML
   private Text refundText;
@@ -66,7 +64,7 @@ public class ViewAssignmentPageController {
   @FXML
   public void viewClicked(ActionEvent event) {
 	  try {
-		  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+		 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 		 if(assignments==null) {
 			 String e = "Assignments not yet created.";
 			 ViewUtils.showError(e);
@@ -90,22 +88,17 @@ public class ViewAssignmentPageController {
 				refundText.setText(refund);
 				startAndEndWeek = "From week "+a.getStartWeek()+" to week "+a.getEndWeek();
 				startAndEndWeekText.setText(startAndEndWeek);
-				if(a.getGuideEmail().equals(null)) {
+				if(a.getGuideEmail()==null) {
 					guideEmailText.setText("Guide not required");
 					guideNameText.setText("Guide not required");
 				}else {
 					guideEmailText.setText(a.getGuideEmail());
 					guideNameText.setText(a.getGuideName());
 				}
-				if(a.getHotelName().equals(null)) {
-					hotelNameText.setText("Hotel not required");
-				}else {
-					hotelNameText.setText(a.getHotelName());
-
-				}
+				
 				totalCost = a.getTotalCostForEquipment()+a.getTotalCostForGuide();
 				totalCostText.setText(String.valueOf(totalCost));
-				if(a.getAuthorizationCode().equals(null)) {
+				if(a.getAuthorizationCode()==null) {
 					codeText.setText("Payment not yet authorized.");
 				}else {
 					codeText.setText(a.getAuthorizationCode());
@@ -129,12 +122,13 @@ public class ViewAssignmentPageController {
   
   @FXML
   public void initiateAssignmentClicked(ActionEvent event) {
+
 	  //need to refresh members/guides in the case where they are updated before assignment
 	  try {
 		  if(assignments==null) {
 				 if(successful(() -> AssignmentController.initiateAssignment())) {
-					 assignmentCompletionText.setText("Assignments initialized.");
 					 assignments = ClimbSafeFeatureSet6Controller.getAssignments();
+					 assignmentCompletionText.setText("Assignments initialized.");
 				 }
 		  }else {
 			  String e = "Assignments already initialized, cannot initialize again.";

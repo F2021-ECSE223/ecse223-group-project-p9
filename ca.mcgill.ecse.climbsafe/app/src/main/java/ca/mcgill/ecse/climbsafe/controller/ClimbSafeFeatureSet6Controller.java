@@ -103,7 +103,6 @@ public class ClimbSafeFeatureSet6Controller {
 	  String memberEmail, memberName;
 	  String guideEmail = null;
 	  String guideName =null;
-	  String hotelName = null;
 	  boolean found = false;
 	  String status = null;
 	  String code = null;
@@ -118,7 +117,6 @@ public class ClimbSafeFeatureSet6Controller {
 		  totalCostForGuide =0;
 		  guideEmail = null;
 		  guideName = null;
-		  hotelName = null;
 		  nrWeeks = assignments.get(i).getMember().getNrWeeks();
 		  guideRequired = assignments.get(i).getMember().getGuideRequired();
 		  memberName = assignments.get(i).getMember().getName();
@@ -133,9 +131,6 @@ public class ClimbSafeFeatureSet6Controller {
 			  guideName = assignments.get(i).getGuide().getName();
 			  guideEmail = assignments.get(i).getGuide().getEmail();
 			  totalCostForGuide = climbSafe.getPriceOfGuidePerWeek()*nrWeeks;
-		  }
-		  if(assignments.get(i).getMember().getHotelRequired()) {
-			  hotelName = assignments.get(i).getHotel().getName();
 		  }
 		  if(assignments.get(i).getMember().hasBookedItems()) {
 			  boolean isBundle = false;
@@ -190,7 +185,7 @@ public class ClimbSafeFeatureSet6Controller {
 				  
 			  }
 		  }
-		  TOAssignments.add(new TOAssignment(memberEmail, memberName, guideEmail, guideName, hotelName, startWeek, endWeek, totalCostForGuide, totalCostForEquipment, status, code, refund));
+		  TOAssignments.add(new TOAssignment(memberEmail, memberName, guideEmail, guideName, startWeek, endWeek, totalCostForGuide, totalCostForEquipment, status, code, refund));
 
 		  
 	  }

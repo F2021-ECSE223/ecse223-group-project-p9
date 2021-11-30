@@ -26,9 +26,6 @@ public class AssignmentController {
 		}else if(guides.isEmpty()) {
 			error = "No guides registered in the system.";
 			throw new InvalidInputException(error.trim());
-		}else if(climbSafe.getHotels().isEmpty()) {
-			error = "No hotels registered in the system.";
-			throw new InvalidInputException(error.trim());
 		}
 		int g = 0;
 		Guide guide = guides.get(g);

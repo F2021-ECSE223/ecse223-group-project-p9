@@ -5,7 +5,7 @@ class TOAssignment {
   memberName;
   guideEmail;
   guideName;
-  hotelName;
+  //hotelName;
   Integer startWeek;
   Integer endWeek;
   Integer totalCostForGuide;

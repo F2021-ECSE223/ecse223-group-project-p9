@@ -112,39 +112,39 @@
       </Label>
       <Text fx:id="memberNameText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="196.79999083280563" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="memberEmailText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99991154670715" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="guideNameText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.3999969959259" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="guideEmailText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99991130828857" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="startAndEndWeekText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.19992351531982" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="tripStatusText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99997252225876" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="codeText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="196.00003337860107" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="refundText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99997234344482" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <Text fx:id="totalCostText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.2000458240509" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
-            <Insets top="50.0" />
+            <Insets left="15.0" top="50.0" />
          </GridPane.margin></Text>
       <ChoiceBox fx:id="memberChoiceBox" prefHeight="26.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS" />
       <Label text="Choose Member" textFill="#7e7a7a" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">

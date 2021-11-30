@@ -24,6 +24,16 @@ public class SetupNMCController {
 	@FXML private Button next;
 	
 	@FXML
+	public void initialize() {
+
+	  // set datePicker to be not editable so that the user must choose from the calendar
+	  dateBox.setEditable(false);
+
+	  // register the refreshable nodes
+	  BtmsFxmlView.getInstance().registerRefreshEvent(busChoiceBox, routeChoiceBox);
+	}
+	
+	@FXML
 	public void SetupNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
 /*

@@ -46,7 +46,7 @@ public class ViewAssignmentPageController {
   @FXML
   private Text assignmentCompletionText;
   
-  private List<TOAssignment> assignments; //need to figure out transfer objects so I can get assignments in initialize()
+  private List<TOAssignment> assignments; 
   
 
   public void initialize() {

@@ -138,12 +138,19 @@ public class ClimbSafeFeatureSet6Controller {
 			  hotelName = assignments.get(i).getHotel().getName();
 		  }
 		  if(assignments.get(i).getMember().hasBookedItems()) {
+			  boolean isBundle = false;
 			  List<BookedItem> bookedItems = assignments.get(i).getMember().getBookedItems();
 			  for(int j=0; j<bookedItems.size(); j++) {
+				  isBundle = false;
 				  index =0;
 				  found = false;
-				  if(bookedItems.get(j).getItem().getName().contains("bundle")) {
-					  List<EquipmentBundle> equipmentBundle = climbSafe.getBundles();
+				  List<EquipmentBundle> equipmentBundle = climbSafe.getBundles();
+				  for(EquipmentBundle b: equipmentBundle) {
+					  if(bookedItems.get(j).getItem().getName().equals(b.getName())) {
+						  isBundle = true;
+					  }
+				  }
+				  if(isBundle) {
 					  while(!found) {
 						  if(equipmentBundle.get(index).getName().equals(bookedItems.get(j).getItem().getName())) {
 							  found = true;
@@ -174,7 +181,7 @@ public class ClimbSafeFeatureSet6Controller {
 					  while(!found) {
 						  if(equipment.get(index).getName().equals(bookedItems.get(j).getItem().getName())) {
 							  found = true;
-						  }else {
+						  }else{
 							  index++;
 						  }
 					  }

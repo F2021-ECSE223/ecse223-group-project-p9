@@ -37,32 +37,11 @@
             </TabPane>
          </content>
     </Tab>
-      <Tab text="Assignment Management">
+      <Tab text="Assignments">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <TabPane prefHeight="470.0" prefWidth="677.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="Initiate Assignment">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <fx:include source="pages/InitiateAssignmentPage.fxml" />
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                      <Tab text="View Assignments">
-                        <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                    <fx:include source="pages/ViewAssignmentPage.fxml" />
-                                 </children>
-                              </AnchorPane>
-                        </content>
-                      </Tab>
-                    </tabs>
-                  </TabPane>
+                  <fx:include layoutX="20.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" source="pages/ViewAssignmentPage.fxml" />
                </children>
             </AnchorPane>
          </content>

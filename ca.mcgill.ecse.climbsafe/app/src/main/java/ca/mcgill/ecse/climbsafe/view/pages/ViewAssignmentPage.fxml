@@ -21,15 +21,15 @@
   <rowConstraints>
       <RowConstraints vgrow="ALWAYS" />
       <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="30.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="30.0" vgrow="ALWAYS" />
-      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="ALWAYS" />
       <RowConstraints maxHeight="144.8" minHeight="32.79998168945313" prefHeight="104.0" vgrow="ALWAYS" />
     <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
     <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
@@ -117,43 +117,43 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <Text fx:id="memberNameText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <Text fx:id="memberNameText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="196.79999083280563" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="memberEmailText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+      <Text fx:id="memberEmailText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99991154670715" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="guideNameText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+      <Text fx:id="guideNameText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.3999969959259" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="guideEmailText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+      <Text fx:id="guideEmailText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99991130828857" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="hotelNameText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+      <Text fx:id="hotelNameText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="194.3999969959259" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="startAndEndWeekText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
+      <Text fx:id="startAndEndWeekText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.19992351531982" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="tripStatusText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
+      <Text fx:id="tripStatusText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99997252225876" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="codeText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
+      <Text fx:id="codeText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="196.00003337860107" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="refundText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
+      <Text fx:id="refundText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.99997234344482" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
-      <Text fx:id="totalCostText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
+      <Text fx:id="totalCostText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.2000458240509" GridPane.columnIndex="3" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
          <GridPane.margin>
             <Insets top="50.0" />
          </GridPane.margin></Text>
@@ -167,11 +167,17 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" />
+         </GridPane.margin>
       </Button>
-      <Text fx:id="assignmentCompletionText" fill="#969595" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="11" GridPane.valignment="BOTTOM">
+      <Text fx:id="assignmentCompletionText" fill="#969595" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="195.1999934911728" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="11" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
          <font>
             <Font name="System Italic" size="12.0" />
          </font>
+         <GridPane.margin>
+            <Insets />
+         </GridPane.margin>
       </Text>
    </children>
 </GridPane>

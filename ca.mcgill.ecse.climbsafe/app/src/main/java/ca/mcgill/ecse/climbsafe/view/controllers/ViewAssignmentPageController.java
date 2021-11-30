@@ -2,6 +2,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
@@ -46,31 +47,35 @@ public class ViewAssignmentPageController {
   private Button InitiateAssignmentsButton;
   @FXML
   private Text assignmentCompletionText;
+  private List<TOAssignment> assignments; 
   
 
   public void initialize() {
+	  //add if statement for when no data in system
 	  memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			memberChoiceBox.setItems(ViewUtils.getMembers());
 			memberChoiceBox.setValue(null);
 		});	
 	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
-	  assignmentCompletionText.setText("Please initiate assignments before viewing.");
-
+	  if(!(assignments==null)) {
+			 assignmentCompletionText.setText("Assignments initialized.");
+	  }else {
+			 assignmentCompletionText.setText("Please initialize assignments before viewing.");
+	  }
 	}
   @FXML
   public void viewClicked(ActionEvent event) {
 	  try {
-		 List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
-		 if(assignments.isEmpty()) {
+		  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+		 if(assignments==null) {
 			 String e = "Assignments not yet created.";
 			 ViewUtils.showError(e);
-			  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+			 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 
 		 }else if(memberChoiceBox.getValue().equals(null)) {
 			 String e = "Please choose member.";
 			 ViewUtils.showError(e);
-			  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
-
+			 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 		 }
 		 else {
 			String refund;
@@ -124,13 +129,18 @@ public class ViewAssignmentPageController {
   
   @FXML
   public void initiateAssignmentClicked(ActionEvent event) {
+	  //need to refresh members/guides in the case where they are updated before assignment
 	  try {
-			if(successful(() -> AssignmentController.initiateAssignment())) {
-				assignmentCompletionText.setText("Assignments created.");
-				
-			}else {
-				assignmentCompletionText.setText("Please initiate assignments before viewing.");
-			}
+		  if(assignments==null) {
+				 if(successful(() -> AssignmentController.initiateAssignment())) {
+					 assignmentCompletionText.setText("Assignments initialized.");
+					 assignments = ClimbSafeFeatureSet6Controller.getAssignments();
+				 }
+		  }else {
+			  String e = "Assignments already initialized, cannot initialize again.";
+			  ViewUtils.showError(e);
+		  }
+			
 
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

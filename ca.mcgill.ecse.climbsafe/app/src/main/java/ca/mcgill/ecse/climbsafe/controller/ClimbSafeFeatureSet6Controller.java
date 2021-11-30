@@ -94,6 +94,9 @@ public class ClimbSafeFeatureSet6Controller {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<TOAssignment> TOAssignments = new ArrayList<TOAssignment>();	  
 	  List<Assignment> assignments = climbSafe.getAssignments();
+	  if(assignments==null) {
+		  return TOAssignments;
+	  }
 	  int nrWeeks;
 	  int startWeek;
 	  int endWeek;

@@ -45,17 +45,20 @@ public class ViewAssignmentPageController {
   private Button InitiateAssignmentsButton;
   @FXML
   private Text assignmentCompletionText;
-  private List<TOAssignment> assignments; 
+  
+  private List<TOAssignment> assignments; //need to figure out transfer objects so I can get assignments in initialize()
   
 
   public void initialize() {
 	  //add if statement for when no data in system
+	  assignments = ClimbSafeFeatureSet6Controller.getAssignments();
+
 	  memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			memberChoiceBox.setItems(ViewUtils.getMembers());
 			memberChoiceBox.setValue(null);
 		});	
 	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
-	  if(!(assignments==null)) {
+	  if(!(assignments.isEmpty())) {
 			 assignmentCompletionText.setText("Assignments initialized.");
 	  }else {
 			 assignmentCompletionText.setText("Please initialize assignments before viewing.");
@@ -64,8 +67,9 @@ public class ViewAssignmentPageController {
   @FXML
   public void viewClicked(ActionEvent event) {
 	  try {
+		 assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 		 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
-		 if(assignments==null) {
+		 if(assignments.isEmpty()) {
 			 String e = "Assignments not yet created.";
 			 ViewUtils.showError(e);
 			 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
@@ -125,9 +129,8 @@ public class ViewAssignmentPageController {
 
 	  //need to refresh members/guides in the case where they are updated before assignment
 	  try {
-		  if(assignments==null) {
+		  if(assignments.isEmpty()) {
 				 if(successful(() -> AssignmentController.initiateAssignment())) {
-					 assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 					 assignmentCompletionText.setText("Assignments initialized.");
 				 }
 		  }else {

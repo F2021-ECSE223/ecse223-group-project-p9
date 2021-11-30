@@ -22,6 +22,7 @@ public class ClimbSafeFeatureSet6Controller {
 	public static void deleteEquipment(String name) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Equipment> equipment = climbSafe.getEquipment();
+	  String error="";
 	  try {
 		boolean found = false;
 		int index = 0;
@@ -32,6 +33,12 @@ public class ClimbSafeFeatureSet6Controller {
 				index++;
 			}	
 		}
+		
+		if(found == false) {
+			error = "The piece of equipment doesn't exist and cannot be deleted";
+			throw new InvalidInputException(error.trim());
+		}
+		
 		int index2;
 		found = false;
 		List<EquipmentBundle> equipmentBundles = climbSafe.getBundles(); 
@@ -51,7 +58,7 @@ public class ClimbSafeFeatureSet6Controller {
 		if(found == false) {
 			equipment.get(index).delete();
 		}else {
-			String error = "The piece of equipment is in a bundle and cannot be deleted";
+			error = "The piece of equipment is in a bundle and cannot be deleted";
 			throw new InvalidInputException(error.trim());
 		}
 		ClimbSafePersistence.save();
@@ -66,7 +73,6 @@ public class ClimbSafeFeatureSet6Controller {
 	 *@author Kara Best
 	 */
 	public static void deleteEquipmentBundle(String name) {
-		
 		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 		List<EquipmentBundle> equipmentBundles = climbSafe.getBundles();
 		boolean found = false;
@@ -75,9 +81,7 @@ public class ClimbSafeFeatureSet6Controller {
 			if(equipmentBundles.get(index).getName().equals(name)) {
 				found = true;
 				equipmentBundles.get(index).delete();
-					
 			}
-			
 			index++;
 			if(index==equipmentBundles.size()) {
 				return;

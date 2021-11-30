@@ -26,5 +26,6 @@
       <CheckBox layoutX="441.0" layoutY="330.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="22.0" />
       <Label layoutX="463.0" layoutY="331.0" text="(Check to proceed)" />
       <Button layoutX="36.0" layoutY="360.0" mnemonicParsing="false" text="Delete Guide" />
+      <Button layoutX="534.0" layoutY="360.0" mnemonicParsing="false" text="Next" />
    </children>
 </AnchorPane>

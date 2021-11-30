@@ -6,6 +6,8 @@ import java.util.List;
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet5Controller;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -75,11 +77,41 @@ public class AddEquipmentBundlePageController {
 	
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
+		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
+		String itemName = itemNameChoiceBox.getValue().toString();
+		int itemQuantity = (int) itemQuantitySpinner.getValue();
+		int indexOfItem = -1;
+
+		if(itemNames.toString().contains(itemName)) {
+			for(int i =0; i<itemNames.size(); i++) {
+				if(itemNames.get(i) == itemName) {
+					indexOfItem = i;
+					break;
+				}
+			}
+			if(itemQuantity == 0) {
+				itemNames.remove(indexOfItem);
+				itemQuantities.remove(indexOfItem);
+			}else {
+				itemQuantities.set(indexOfItem, itemQuantity);
+			}
+		}else {
+			//add new item
+			if(itemQuantity != 0) {
+				itemNames.add(itemName);
+				itemQuantities.add(itemQuantity);
+			}
+			itemNameChoiceBox.setValue(null);
+			itemQuantitySpinner.getValueFactory().setValue(null);
+		}
 		
-		
+		for(int i =0; i<itemNames.size(); i++) {
+			itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
+		}
+
+		equipmentBundleListView.setItems(itemaNameAndQuantityList);
+		ClimbSafeFxmlView.getInstance().refresh();		
 	}
-	
-	
 
 }
 

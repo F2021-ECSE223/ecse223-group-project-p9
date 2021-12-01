@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 
 public class SetupNMCController {
 
-	@FXML private TextField numWeeksTextField;
+	@FXML private java.awt.TextField numWeeksTextField;
 	@FXML private TextField weeklyPriceOfGuideTextField;
 	@FXML private DatePicker dateBox;
 	@FXML private Button next;
@@ -35,13 +35,14 @@ public class SetupNMCController {
 	}
 	
 	@FXML
-	public void setUpNMCInfo(ActionEvent event) {
+	public void SetupNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
-
+/*
 		String numWeeks = numWeeksTextField.getText();
 		String weeklyPriceOfGuide = weeklyPriceOfGuideTextField.getText();
 		LocalDate d = dateBox.getValue();
-		Date date = Date.valueOf(d);
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		Date date = (Date) Date.from(d.atStartOfDay(defaultZoneId).toInstant());
 
 		int nrWeeks = Integer.parseInt(numWeeks);
 		int priceOfGuidePerWeek = Integer.parseInt(weeklyPriceOfGuide);
@@ -54,7 +55,7 @@ public class SetupNMCController {
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
-
+*/
 		
 	}
 }

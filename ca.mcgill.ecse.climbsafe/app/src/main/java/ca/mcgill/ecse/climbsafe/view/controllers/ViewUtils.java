@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.climbsafe.view.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
@@ -72,7 +73,15 @@ public class ViewUtils {
 
 	public static ObservableList<String> getItemNames(){
 		List<String> itemNames = ClimbSafeController.getItemNames();
-		return FXCollections.observableList(itemNames);
+		List<String> bundles = ClimbSafeController.getBundles();
+		List<String> itemsAndBundles = new ArrayList<>();;
+		for(int i=0; i< itemNames.size(); i++) {
+			itemsAndBundles.add(itemNames.get(i));
+		}
+		for(int i=0; i< bundles.size(); i++) {
+			itemsAndBundles.add(bundles.get(i));
+		}
+		return FXCollections.observableList(itemsAndBundles);
 	}
 
 	public static ObservableList<Integer> getNrWeeks(){

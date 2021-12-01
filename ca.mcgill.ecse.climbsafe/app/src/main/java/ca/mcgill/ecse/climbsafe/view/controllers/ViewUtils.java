@@ -3,11 +3,6 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 import java.util.List;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.InvalidInputException;
-import ca.mcgill.ecse.climbsafe.model.Member;
-//import ca.mcgill.ecse.climbsafe.controller.TOBusVehicle;
-//import ca.mcgill.ecse.climbsafe.controller.TODriver;
-//import ca.mcgill.ecse.climbsafe.controller.TORoute;
-//import ca.mcgill.ecse.climbsafe.controller.TORouteAssignment;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -90,23 +85,18 @@ public class ViewUtils {
 		return FXCollections.observableList(memberListString);
 	}
 
-	public static Member getMember(String email){
-		Member m = ClimbSafeController.getMember(email);
-		return m;
-	}
-
-	public static ObservableList<String> getMemberItems(Member member){
-		List<String> itemaNameAndQuantityList = ClimbSafeController.getMemberItems(member);
+	public static ObservableList<String> getMemberItems(String email){
+		List<String> itemaNameAndQuantityList = ClimbSafeController.getMemberItems(email);
 		return FXCollections.observableList(itemaNameAndQuantityList);
 	}
 	
-	public static ObservableList<String> getMemberItemsName(Member member){
-		List<String> itemNameList = ClimbSafeController.getMemberItemsName(member);
+	public static ObservableList<String> getMemberItemsName(String email){
+		List<String> itemNameList = ClimbSafeController.getMemberItemsName(email);
 		return FXCollections.observableList(itemNameList);
 	}
 	
-	public static ObservableList<Integer> getMemberItemsQuantity(Member member){
-		List<Integer> itemsQuantityList = ClimbSafeController.getMemberItemsQuantity(member);
+	public static ObservableList<Integer> getMemberItemsQuantity(String email){
+		List<Integer> itemsQuantityList = ClimbSafeController.getMemberItemsQuantity(email);
 		return FXCollections.observableList(itemsQuantityList);
 	}
 }

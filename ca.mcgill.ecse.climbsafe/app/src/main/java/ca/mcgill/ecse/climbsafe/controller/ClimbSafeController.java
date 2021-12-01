@@ -58,8 +58,8 @@ public class ClimbSafeController {
 	  return m;
   }
   
-  public static List<String> getMemberItems(Member member){
-	  
+  public static List<String> getMemberItems(String email){
+	  Member member = getMember(email);
 	  List<String> itemaNameAndQuantityList = new ArrayList<>();
 	  List<BookedItem> memberItemList = member.getBookedItems();
 	  for(int i=0; i<memberItemList.size(); i++) {
@@ -68,7 +68,8 @@ public class ClimbSafeController {
 	  return itemaNameAndQuantityList;
   }
   
-  public static List<String> getMemberItemsName(Member member){
+  public static List<String> getMemberItemsName(String email){
+	  Member member = getMember(email);
 	  List<String> itemNameList = new ArrayList<>();
 	  List<BookedItem> memberItemList = member.getBookedItems();
 	  for(int i=0; i<memberItemList.size(); i++) {
@@ -77,7 +78,8 @@ public class ClimbSafeController {
 	  return itemNameList;
   }
   
-  public static List<Integer> getMemberItemsQuantity(Member member){
+  public static List<Integer> getMemberItemsQuantity(String email){
+	  Member member = getMember(email);
 	  List<Integer> itemsQuantityList = new ArrayList<>();
 	  List<BookedItem> memberItemList = member.getBookedItems();
 	  for(int i=0; i<memberItemList.size(); i++) {

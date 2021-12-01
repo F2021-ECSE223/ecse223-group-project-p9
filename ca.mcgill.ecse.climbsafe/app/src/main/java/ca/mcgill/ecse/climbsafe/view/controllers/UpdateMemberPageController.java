@@ -5,6 +5,7 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.model.Member;
@@ -80,18 +81,18 @@ public class UpdateMemberPageController {
 	// Event Listener on Button[#memberSearchClicked].onAction
 	@FXML
 	public void memberSearchClicked(ActionEvent event) {
-		m = ViewUtils.getMember(memberChoiceBox.getValue());
+		m = ClimbSafeController.getMember(memberChoiceBox.getValue());
 		nameTextField.setText(m.getName());
 		passwordTextField.setText(m.getName());
 		emergencyContactTextField.setText(m.getEmergencyContact());
 		guideRequiredCheckBox.setSelected(m.getGuideRequired());
 		hotelRequiredCheckBox.setSelected(m.getHotelRequired());
-		memberItemsListView.setItems(ViewUtils.getMemberItems(m));
+		memberItemsListView.setItems(ViewUtils.getMemberItems(m.getEmail()));
 		ClimbSafeFxmlView.getInstance().refresh();
 		memberChoiceBox.setValue(m.getEmail());
 		nrWeeksChoiceBox.setValue(m.getNrWeeks());
-		itemNames = ViewUtils.getMemberItemsName(m);
-		itemQuantities = ViewUtils.getMemberItemsQuantity(m);
+		itemNames = ViewUtils.getMemberItemsName(m.getEmail());
+		itemQuantities = ViewUtils.getMemberItemsQuantity(m.getEmail());
 	}
 
 	// Event Listener on Button[#updateMemberUpdateClicked].onAction

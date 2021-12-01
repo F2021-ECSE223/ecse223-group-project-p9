@@ -66,7 +66,8 @@ public class AssignmentController {
 							while(guideNotFound&&index<guides.size()) {
 								if (guides.get(index).getAssignments().size()==0) {
 									guideNotFound = false;
-								}else if (guides.get(index).getAssignments().get(guides.get(index).getAssignments().size()-1).getEndWeek()+member.getNrWeeks()<=climbSafe.getNrWeeks()) {
+								}else if (//guideAvailableForNumWeeks(guides.get(index).getAssignments(), member.getNrWeeks(), guides.get(index))) {
+										guides.get(index).getAssignments().get(guides.get(index).getAssignments().size()-1).getEndWeek()+member.getNrWeeks()<=climbSafe.getNrWeeks()) {
 									guideNotFound = false;
 									
 								}

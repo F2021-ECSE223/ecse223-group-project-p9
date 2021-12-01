@@ -98,6 +98,10 @@ public class ViewUtils {
 		List<String> guideListString = ClimbSafeController.getGuides();
 		return FXCollections.observableList(guideListString);
 	}
+	public static ObservableList<String> getEquipments(){
+		List<String> equipmentNames = ClimbSafeController.getItemNames();
+		return FXCollections.observableList(equipmentNames);
+	}
 
 	public static ObservableList<String> getMemberItems(String email){
 		List<String> itemaNameAndQuantityList = ClimbSafeController.getMemberItems(email);

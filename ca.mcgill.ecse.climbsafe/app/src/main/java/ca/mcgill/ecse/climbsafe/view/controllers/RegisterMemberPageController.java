@@ -39,11 +39,11 @@ public class RegisterMemberPageController {
 
 	@FXML private Button registerMemberRegisterButton;
 	@FXML private Text registerMessageLabel;
-	
+
 	private List<String> itemNames = new ArrayList<>();
 	private List<String> itemNamesWithBundle = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
-	
+
 	public void initialize() {
 		emailTextField.setText("");
 		passwordTextField.setText("");
@@ -81,7 +81,7 @@ public class RegisterMemberPageController {
 		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
-		
+
 		if(email == "" || password == "" || name == "" || emergencyContact == "" || nrWeeks == -1) {
 			registerMessageLabel.setText("");
 			ViewUtils.showError("Please fill out all of the field");
@@ -106,7 +106,7 @@ public class RegisterMemberPageController {
 			}
 		}
 	}
-	
+
 	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
@@ -149,9 +149,9 @@ public class RegisterMemberPageController {
 			itemNameChoiceBox.setValue(null);
 			itemQuantitySpinner.getValueFactory().setValue(0);
 		}
-		
+
 		for(int i =0; i<itemNamesWithBundle.size(); i++) {
-			
+
 			itemNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNamesWithBundle.get(i));
 		}
 
@@ -162,13 +162,13 @@ public class RegisterMemberPageController {
 			nrWeeksChoiceBox.setValue(tempNrWeeks);
 		}
 	}
-	
-	  /** Returns the number from the given text field if present, otherwise appends error string to the given message. */
-	  private int getNumberFromField(ChoiceBox<Integer> field) {
-	    if(field.getValue() != null) {
-	    	return field.getValue();
-	    }else {
-	    	return -1;
-	    }
-	  }
+
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
+	private int getNumberFromField(ChoiceBox<Integer> field) {
+		if(field.getValue() != null) {
+			return field.getValue();
+		}else {
+			return -1;
+		}
+	}
 }

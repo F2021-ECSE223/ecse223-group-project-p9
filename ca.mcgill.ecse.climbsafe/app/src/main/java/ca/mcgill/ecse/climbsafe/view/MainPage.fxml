@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="677.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView">
+<TabPane prefHeight="507.0" prefWidth="676.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView">
   <tabs>
     <Tab text="SetupNMC">
       <content>
@@ -95,13 +95,13 @@
       </Tab>
       <Tab text="Equipment">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="750.0">
                <children>
-                  <TabPane prefHeight="473.0" prefWidth="677.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="648.0" prefWidth="876.0" tabClosingPolicy="UNAVAILABLE">
                      <tabs>
                         <Tab text="Add Equipment">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="520.0">
+                              <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="794.0">
                                  <children>
                                     <fx:include source="pages/AddEquipmentPage.fxml" />
                                  </children>

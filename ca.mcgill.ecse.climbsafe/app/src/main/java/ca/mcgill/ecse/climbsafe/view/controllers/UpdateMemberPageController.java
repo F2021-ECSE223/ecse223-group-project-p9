@@ -46,12 +46,12 @@ public class UpdateMemberPageController {
 	@FXML private Button deleteMemberdeleteButton;
 	@FXML private CheckBox deleteConfirmButton;
 	@FXML private Text updateMessageLabel;
-	
-	
+
+
 	private List<String> itemNames = new ArrayList<>();;
 	private List<Integer> itemQuantities = new ArrayList<>();; 
 	private Member m = null;
-	
+
 	public void initialize() {
 		passwordTextField.setText("");
 		nameTextField.setText("");
@@ -83,7 +83,7 @@ public class UpdateMemberPageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNameChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
 	}
-	
+
 	// Event Listener on Button[#memberSearchClicked].onAction
 	@FXML
 	public void memberSearchClicked(ActionEvent event) {
@@ -125,7 +125,7 @@ public class UpdateMemberPageController {
 			}else {
 				ViewUtils.showError("No member was selected");
 			}
-			
+
 		}else {
 			if(nrWeeks == 0) {
 				ViewUtils.showError("The number of weeks is set to be 0. Please delete this member instead of updating it");
@@ -149,11 +149,11 @@ public class UpdateMemberPageController {
 					ViewUtils.showError(e.getMessage());
 				}
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
@@ -164,7 +164,7 @@ public class UpdateMemberPageController {
 		}
 		int itemQuantity = itemQuantitySpinner.getValue();
 		int indexOfItem = -1;
-		
+
 		if(itemNames.contains(itemName)) {
 			//edit the quantity instead
 			for(int i =0; i<itemNames.size(); i++) {
@@ -188,7 +188,7 @@ public class UpdateMemberPageController {
 			itemNameChoiceBox.setValue(null);
 			itemQuantitySpinner.getValueFactory().setValue(0);
 		}
-		
+
 		for(int i =0; i<itemNames.size(); i++) {
 			itemaNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNames.get(i));
 		}
@@ -202,38 +202,39 @@ public class UpdateMemberPageController {
 	}
 
 	//Event Listener on Button[#deleteMemberClicked].onAction
-		@FXML
-		public void deleteMemberClicked(ActionEvent event) {
-			String email = memberChoiceBox.getValue();
-			boolean confirmDelete = deleteConfirmButton.isSelected();
-			if(confirmDelete) {
-				try {
-					if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
-						memberChoiceBox.setValue(null);
-						passwordTextField.setText("");
-						nameTextField.setText("");
-						emergencyContactTextField.setText("");
-						nrWeeksChoiceBox.setValue(null);
-						guideRequiredCheckBox.setSelected(false);
-						hotelRequiredCheckBox.setSelected(false);
-						itemNameChoiceBox.setValue(null);
-						itemQuantitySpinner.setValueFactory(null);
-						memberItemsListView.setItems(null);
-						ClimbSafeFxmlView.getInstance().refresh();
-					}
-				} catch (RuntimeException e) {
-					ViewUtils.showError(e.getMessage());
+	@FXML
+	public void deleteMemberClicked(ActionEvent event) {
+		String email = memberChoiceBox.getValue();
+		boolean confirmDelete = deleteConfirmButton.isSelected();
+		if(confirmDelete) {
+			try {
+				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
+					memberChoiceBox.setValue(null);
+					passwordTextField.setText("");
+					nameTextField.setText("");
+					emergencyContactTextField.setText("");
+					nrWeeksChoiceBox.setValue(null);
+					guideRequiredCheckBox.setSelected(false);
+					hotelRequiredCheckBox.setSelected(false);
+					itemNameChoiceBox.setValue(null);
+					itemQuantitySpinner.setValueFactory(null);
+					memberItemsListView.setItems(null);
+					ClimbSafeFxmlView.getInstance().refresh();
+					updateMessageLabel.setText("Member deleted successfully");
 				}
-				ClimbSafeFxmlView.getInstance().refresh();
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
+			ClimbSafeFxmlView.getInstance().refresh();
 		}
-		
-		 private int getNumberFromField(ChoiceBox<Integer> field) {
-			    if(field.getValue() != null) {
-			    	return field.getValue();
-			    }else {
-			    	return -1;
-			    }
-			  }
+	}
+
+	private int getNumberFromField(ChoiceBox<Integer> field) {
+		if(field.getValue() != null) {
+			return field.getValue();
+		}else {
+			return -1;
+		}
+	}
 
 }

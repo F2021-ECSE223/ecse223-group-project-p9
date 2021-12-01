@@ -17,14 +17,24 @@ public class RegisterGuidePageController {
 	@FXML private TextField emergencyContact; 
 	@FXML private Button registerGuide;
 
-	@FXML public void registerGuideRegister(ActionEvent action) {
+	public void initialize() {
 		
+		name.setText("");
+		email.setText("");
+		password.setText("");
+		emergencyContact.setText("");
+	}
+		
+	@FXML public void registerGuide(ActionEvent event) {
 		String Name = name.getText();
 		String Email = email.getText();
 		String Password = password.getText();
 		String EmergencyContact = emergencyContact.getText();
 		
-		
+	
+	if(Name == "" || Email == "" || Password == "" || EmergencyContact == "") {
+		ViewUtils.showError("Please fill out all of the field");
+	} else {
 		try {
 			if(successful(() -> ClimbSafeFeatureSet3Controller.registerGuide(Name, Email, Password, EmergencyContact))) {
 				name.setText("");
@@ -35,6 +45,10 @@ public class RegisterGuidePageController {
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
-	
 	}
+		
+		
+		
+		
+	}		
 }

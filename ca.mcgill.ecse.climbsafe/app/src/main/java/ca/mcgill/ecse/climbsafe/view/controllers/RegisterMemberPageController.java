@@ -14,11 +14,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class RegisterMemberPageController {
 
@@ -35,8 +37,9 @@ public class RegisterMemberPageController {
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
 
-
 	@FXML private Button registerMemberRegisterButton;
+	@FXML private Text registerMessageLabel;
+	
 	private List<String> itemNames = new ArrayList<>();
 	private List<String> itemNamesWithBundle = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
@@ -80,6 +83,7 @@ public class RegisterMemberPageController {
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
 		
 		if(email == "" || password == "" || name == "" || emergencyContact == "" || nrWeeks == -1) {
+			registerMessageLabel.setText("");
 			ViewUtils.showError("Please fill out all of the field");
 		}else {
 			try {
@@ -95,6 +99,7 @@ public class RegisterMemberPageController {
 					itemQuantitySpinner.setValueFactory(null);
 					memberItemsListView.setItems(null);
 					ClimbSafeFxmlView.getInstance().refresh();
+					registerMessageLabel.setText("Member registered successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());

@@ -17,11 +17,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class UpdateMemberPageController {
 
@@ -43,6 +45,8 @@ public class UpdateMemberPageController {
 	@FXML private Button updateMemberUpdateButton;
 	@FXML private Button deleteMemberdeleteButton;
 	@FXML private CheckBox deleteConfirmButton;
+	@FXML private Text updateMessageLabel;
+	
 	
 	private List<String> itemNames = new ArrayList<>();;
 	private List<Integer> itemQuantities = new ArrayList<>();; 
@@ -96,6 +100,7 @@ public class UpdateMemberPageController {
 			nrWeeksChoiceBox.setValue(m.getNrWeeks());
 			itemNames = ViewUtils.getMemberItemsName(m.getEmail());
 			itemQuantities = ViewUtils.getMemberItemsQuantity(m.getEmail());
+			updateMessageLabel.setText("");
 		}
 	}
 
@@ -138,6 +143,7 @@ public class UpdateMemberPageController {
 						itemQuantitySpinner.setValueFactory(null);
 						memberItemsListView.setItems(null);
 						ClimbSafeFxmlView.getInstance().refresh();
+						updateMessageLabel.setText("Member updated successfully");
 					}
 				} catch (RuntimeException e) {
 					ViewUtils.showError(e.getMessage());

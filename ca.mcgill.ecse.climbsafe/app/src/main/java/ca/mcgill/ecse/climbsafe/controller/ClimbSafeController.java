@@ -10,6 +10,7 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
+import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.model.Member;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +47,15 @@ public class ClimbSafeController {
 	  return memberListString;
   }
   
+  public static List<String> getGuides(){
+	  List<Guide> guideList = climbSafe.getGuides();
+	  List<String> guideListString = new ArrayList<>();
+	  for(int i=0; i< guideList.size(); i++) {
+		  guideListString.add(guideList.get(i).getEmail());
+	  }
+	  return guideListString;
+  }
+  
   public static Member getMember(String email){
 	  List<Member> memberList = climbSafe.getMembers();
 	  Member m = null;
@@ -56,6 +66,18 @@ public class ClimbSafeController {
 		  }
 	  }
 	  return m;
+  }
+  
+  public static Guide getGuide(String email){
+	  List<Guide> guideList = climbSafe.getGuides();
+	  Guide g = null;
+	  for(int i=0; i< guideList.size(); i++) {
+		  if(guideList.get(i).getEmail() == email) {
+			  g = guideList.get(i);
+			  break;
+		  }
+	  }
+	  return g;
   }
   
   public static List<String> getMemberItems(String email){

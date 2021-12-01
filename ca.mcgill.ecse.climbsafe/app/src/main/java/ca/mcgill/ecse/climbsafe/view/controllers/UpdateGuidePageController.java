@@ -4,7 +4,9 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
 import java.util.List;
 
-import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet3Controller;
+import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -27,7 +29,7 @@ public class UpdateGuidePageController {
 	@FXML private PasswordField password;
 	@FXML private TextField emergencyContact;
 	@FXML private CheckBox permissionCheck;
-	
+	private Guide g = null;
 	@FXML private Button deleteGuide;
 	@FXML private Button updateGuide;
 	
@@ -37,7 +39,33 @@ public class UpdateGuidePageController {
 		emergencyContact.setText("");
 		guideChoice.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, a -> {
 			guideChoice.setItems(ViewUtils.getGuides());
+			guideChoice.setValue(null);
 		});
+		
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(guideChoice);
 	}
+	
+	@FXML
+	public void guideSearch(ActionEvent event) {
+		name.setText(g.getName());
+		password.setText(g.getPassword());
+		emergencyContact.setText(g.getEmergencyContact());
+		ClimbSafeFxmlView.getInstance().refresh();
+		g = ClimbSafeController.getGuide(guideChoice.getValue());
+	}
+	
+	
+	@FXML
+	public void updateGuide(ActionEvent event) {
+		String Name = name.getText();
+		String Email = guideChoice.getValue();
+		String Password = password.getText();
+		String EmergencyContact = emergencyContact.getText();
+		
+		
+	}
+	
+	
+	
 
 }

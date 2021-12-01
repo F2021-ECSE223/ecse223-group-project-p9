@@ -23,8 +23,9 @@ import javafx.scene.control.TextField;
 public class UpdateEquipmentController {
 	@FXML private TextField addEquipmentBundleName;
 	@FXML private TextField addEquipmentBundlePrice;
+	@FXML private TextField discountTextField;
 	@FXML private ChoiceBox<Integer> itemNameChoiceBox;
-
+	@FXML private ChoiceBox<String> equipmentBundleChoiceBox;
 	@FXML private Button addEquipmentButton;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditItemButton;
@@ -67,6 +68,16 @@ public class UpdateEquipmentController {
 	}
 	
 	@FXML
+	public void equipmentBundleSearchClicked(ActionEvent event) {
+		e = ViewUtils.getBundles(equipmentBundleChoiceBox.getValue());
+		addEquipmentBundleName.setText(e.getName());
+		equipmentBundleListView.setItems(ViewUtils.getEquipmentBundleItems(e));
+		ClimbSafeFxmlView.getInstance().refresh();
+		itemNames = ViewUtils.getEquipmentBundleItemsName(e);
+		itemQuantities = ViewUtils.getEquipmentBundleItemsQuantity(e);
+	}
+	
+	@FXML
 	public void modifyEquipmentBundleClicked(ActionEvent event) {
 		String oldName = oldNameModifyEquipmentBundle.getText();
 		String newName = newNameModifyEquipmentBundle.getText();
@@ -74,9 +85,14 @@ public class UpdateEquipmentController {
 		
 		try {
 			if(successful(() -> ClimbSafeFeatureSet5Controller.updateEquipmentBundle(oldName, newName, price, itemNames, itemQuantities))) {
+				equipmentBundleChoiceBox.setValue(null);
 				oldNameModifyEquipmentBundle.setText("");
 				newNameModifyEquipmentBundle.setText("");
+				discountTextField.setText("");
 				priceModifyEquipmentBundle.setText("");
+				itemNameChoiceBox.setValue(null);
+				itemQuantitySpinner.setValueFactory(null);
+				equipmentBundleListView.setItems(null);
 				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {

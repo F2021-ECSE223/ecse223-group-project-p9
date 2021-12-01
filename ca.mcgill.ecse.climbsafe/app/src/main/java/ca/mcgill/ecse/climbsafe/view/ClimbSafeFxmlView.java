@@ -10,10 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 
 
 public class ClimbSafeFxmlView extends Application {

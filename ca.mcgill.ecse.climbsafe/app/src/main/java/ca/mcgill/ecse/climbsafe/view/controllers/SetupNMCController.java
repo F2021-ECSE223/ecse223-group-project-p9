@@ -3,6 +3,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
 import java.sql.Date;
+import java.time.*;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
@@ -39,7 +40,10 @@ public class SetupNMCController {
 /*
 		String numWeeks = numWeeksTextField.getText();
 		String weeklyPriceOfGuide = weeklyPriceOfGuideTextField.getText();
-		Date date = dateBox.getDate();//this is a guess idk how DatePicker returns a date
+		LocalDate d = dateBox.getValue();
+		ZoneId defaultZoneId = ZoneId.systemDefault();
+		Date date = (Date) Date.from(d.atStartOfDay(defaultZoneId).toInstant());
+
 		int nrWeeks = Integer.parseInt(numWeeks);
 		int priceOfGuidePerWeek = Integer.parseInt(weeklyPriceOfGuide);
 		try {
@@ -51,8 +55,8 @@ public class SetupNMCController {
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
-		
 */
+		
 	}
 }
  

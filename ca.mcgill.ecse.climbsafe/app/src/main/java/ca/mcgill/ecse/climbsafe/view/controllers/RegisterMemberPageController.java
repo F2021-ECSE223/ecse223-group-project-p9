@@ -14,11 +14,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class RegisterMemberPageController {
 
@@ -35,11 +37,13 @@ public class RegisterMemberPageController {
 	@FXML private Button addEditItemButton;
 	@FXML private ListView<String> memberItemsListView;
 
-
 	@FXML private Button registerMemberRegisterButton;
+	@FXML private Text registerMessageLabel;
+
 	private List<String> itemNames = new ArrayList<>();
+	private List<String> itemNamesWithBundle = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
-	
+
 	public void initialize() {
 		emailTextField.setText("");
 		passwordTextField.setText("");
@@ -77,8 +81,9 @@ public class RegisterMemberPageController {
 		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
-		
+
 		if(email == "" || password == "" || name == "" || emergencyContact == "" || nrWeeks == -1) {
+			registerMessageLabel.setText("");
 			ViewUtils.showError("Please fill out all of the field");
 		}else {
 			try {
@@ -87,29 +92,39 @@ public class RegisterMemberPageController {
 					passwordTextField.setText("");
 					nameTextField.setText("");
 					emergencyContactTextField.setText("");
-					nrWeeksChoiceBox.setItems(null);
+					nrWeeksChoiceBox.setValue(null);
 					guideRequiredCheckBox.setSelected(false);
 					hotelRequiredCheckBox.setSelected(false);
 					itemNameChoiceBox.setValue(null);
 					itemQuantitySpinner.setValueFactory(null);
 					memberItemsListView.setItems(null);
 					ClimbSafeFxmlView.getInstance().refresh();
+					registerMessageLabel.setText("Member registered successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());
 			}
 		}
 	}
-	
+
 	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
-		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-		String itemName = itemNameChoiceBox.getValue().toString();
-		int itemQuantity = (int) itemQuantitySpinner.getValue();
+		ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
+		String itemName = "";
+		String wholeBundleName = null;
+		if(itemNameChoiceBox.getValue()!= null) {
+			itemName = itemNameChoiceBox.getValue().toString();
+			wholeBundleName = itemName;
+		}
+		if(wholeBundleName != null && wholeBundleName.contains(":")) {
+			String tempWordList[] = itemName.split(":");
+			itemName = tempWordList[0];
+		}
+		int itemQuantity = itemQuantitySpinner.getValue();
 		int indexOfItem = -1;
 
-		if(itemNames.toString().contains(itemName)) {
+		if(itemNames.size()!= 0 && itemNames.toString().contains(itemName)) {
 			//edit the quantity instead
 			for(int i =0; i<itemNames.size(); i++) {
 				if(itemNames.get(i) == itemName) {
@@ -118,6 +133,7 @@ public class RegisterMemberPageController {
 				}
 			}
 			if(itemQuantity == 0) {
+				itemNamesWithBundle.remove(indexOfItem);
 				itemNames.remove(indexOfItem);
 				itemQuantities.remove(indexOfItem);
 			}else {
@@ -125,32 +141,34 @@ public class RegisterMemberPageController {
 			}
 		}else {
 			//add new item
-			if(itemQuantity != 0) {
+			if(itemQuantity != 0 && itemName != "") {
+				itemNamesWithBundle.add(wholeBundleName);
 				itemNames.add(itemName);
 				itemQuantities.add(itemQuantity);
 			}
 			itemNameChoiceBox.setValue(null);
-			itemQuantitySpinner.getValueFactory().setValue(null);
-		}
-		
-		for(int i =0; i<itemNames.size(); i++) {
-			itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
+			itemQuantitySpinner.getValueFactory().setValue(0);
 		}
 
-		memberItemsListView.setItems(itemaNameAndQuantityList);
+		for(int i =0; i<itemNamesWithBundle.size(); i++) {
+
+			itemNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNamesWithBundle.get(i));
+		}
+
+		memberItemsListView.setItems(itemNameAndQuantityList);
 		int tempNrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		ClimbSafeFxmlView.getInstance().refresh();
 		if(tempNrWeeks!=-1) {
 			nrWeeksChoiceBox.setValue(tempNrWeeks);
 		}
 	}
-	
-	  /** Returns the number from the given text field if present, otherwise appends error string to the given message. */
-	  private int getNumberFromField(ChoiceBox<Integer> field) {
-	    if(field.getValue() != null) {
-	    	return field.getValue();
-	    }else {
-	    	return -1;
-	    }
-	  }
+
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
+	private int getNumberFromField(ChoiceBox<Integer> field) {
+		if(field.getValue() != null) {
+			return field.getValue();
+		}else {
+			return -1;
+		}
+	}
 }

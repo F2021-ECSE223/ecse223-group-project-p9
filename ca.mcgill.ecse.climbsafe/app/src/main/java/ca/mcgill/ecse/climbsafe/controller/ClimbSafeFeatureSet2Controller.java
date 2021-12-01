@@ -172,6 +172,9 @@ public class ClimbSafeFeatureSet2Controller {
 	 */
   private static boolean validEmail(String email) {
 	  boolean validEmail = true;
+	  if(email == null || email.length()==0) {
+		  validEmail = false;
+	  }
 	  if(!(email.indexOf("@") > 0)) {
 		  validEmail = false;
 	  }

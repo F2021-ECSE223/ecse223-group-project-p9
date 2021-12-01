@@ -16,7 +16,7 @@
    <children>
       <ImageView fitHeight="576.0" fitWidth="832.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@./WallpaperClimsafe.png" />
+            <Image url="@./WallpaperClimbsafe.png" />
          </image>
       </ImageView>
       <GridPane layoutX="3.0" layoutY="3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="832.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

@@ -25,7 +25,7 @@ public class RegisterGuidePageController {
 		emergencyContact.setText("");
 	}
 		
-	@FXML public void registerGuide(ActionEvent event) {
+	@FXML public void registerGuideClicked(ActionEvent event) {
 		String Name = name.getText();
 		String Email = email.getText();
 		String Password = password.getText();

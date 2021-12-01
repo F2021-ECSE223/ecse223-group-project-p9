@@ -47,9 +47,10 @@ public class ClimbSafeController {
   }
   
   public static EquipmentBundle getBundle(String bundleName){
+	  bundleName = bundleName.split(":")[0];
 	  List<EquipmentBundle> bundleList = climbSafe.getBundles();
 	  for(int i=0; i<bundleList.size(); i++) {
-		  if(bundleList.get(i).getName() == bundleName) {
+		  if(bundleList.get(i).getName().equals(bundleName)) {
 			  return bundleList.get(i);
 		  }
 	  }

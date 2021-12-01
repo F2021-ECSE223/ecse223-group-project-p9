@@ -35,7 +35,7 @@ public class UpdateEquipmentBundleController {
 	@FXML private ListView<String> itemsInBundleListView;
 	
 	@FXML private TextField discountTextField;
-	@FXML private TextField priceTextField;
+//	@FXML private TextField priceTextField;
 	
 	@FXML private Button modifyButton;
 	@FXML private Button deleteButton;
@@ -56,11 +56,10 @@ public class UpdateEquipmentBundleController {
 			equipmentBundleChoiceBox.setValue(null);
 		});
 		
-//		Merge Enzo's code first and then uncomment
-//		itemChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-//			itemChoiceBox.setItems(ViewUtils.getItems());
-//			itemChoiceBox.setValue(null);
-//		});
+		itemChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			itemChoiceBox.setItems(ViewUtils.getEquipments());
+			itemChoiceBox.setValue(null);
+		});
 		
 		bundleNameTextField.setText("");
 		
@@ -72,7 +71,7 @@ public class UpdateEquipmentBundleController {
 			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
 		discountTextField.setText("");
-		priceTextField.setText("");
+//		priceTextField.setText("");
 		
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(equipmentBundleChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemChoiceBox);
@@ -83,6 +82,8 @@ public class UpdateEquipmentBundleController {
 	@FXML
 	public void equipmentBundleSearchClicked(ActionEvent event) {
 		b = ClimbSafeController.getBundle(equipmentBundleChoiceBox.getValue());
+		System.out.println("Clicked");
+		System.out.println(b);
 		if(b != null) {
 			bundleNameTextField.setText(b.getName());
 			//items in this list

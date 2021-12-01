@@ -5,11 +5,10 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet3Controller;
 import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 //import ca.mcgill.ecse.climbsafe.view.pages.;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,6 +51,8 @@ public class UpdateGuidePageController {
 		emergencyContact.setText(g.getEmergencyContact());
 		ClimbSafeFxmlView.getInstance().refresh();
 		g = ClimbSafeController.getGuide(guideChoice.getValue());
+		guideChoice.setValue(g.getEmail());
+
 	}
 	
 	
@@ -62,10 +63,49 @@ public class UpdateGuidePageController {
 		String Password = password.getText();
 		String EmergencyContact = emergencyContact.getText();
 		
-		
+		try {
+			if(successful(() -> ClimbSafeFeatureSet3Controller.updateGuide(Name, Email, Password, EmergencyContact))) {
+				guideChoice.setValue(null);
+				password.setText("");
+				name.setText("");
+				emergencyContact.setText("");
+				ClimbSafeFxmlView.getInstance().refresh();
+
+	}
+		}
+		catch (RuntimeException e) {
+			ViewUtils.showError(e.getMessage());
+		}
 	}
 	
-	
-	
+	@FXML
+	public void deleteGuide(ActionEvent event) {
+		String email = guideChoice.getValue();
+		try {
+			if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
+				guideChoice.setValue(null);
+				password.setText("");
+				name.setText("");
+				emergencyContact.setText("");
+				ClimbSafeFxmlView.getInstance().refresh();
+			}
+		} catch (RuntimeException e) {
+			ViewUtils.showError(e.getMessage());
+		}
+		ClimbSafeFxmlView.getInstance().refresh();
+	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

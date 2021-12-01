@@ -9,9 +9,8 @@ import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
+import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
-import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 
 
 public class ClimbSafeFxmlView extends Application {
@@ -24,13 +23,13 @@ public class ClimbSafeFxmlView extends Application {
   public void start(Stage primaryStage) {
     instance = this;
     try {
-      var root = (Pane) FXMLLoader.load(getClass().getResource("MainPage.fxml"));
+      var root = (TabPane) FXMLLoader.load(getClass().getResource("MainPage.fxml"));
 //      root.setStyle(ClimbSafeApplication.DARK_MODE ? "-fx-base: rgba(20, 20, 20, 255);" : "");
       var scene = new Scene(root);
       primaryStage.setScene(scene);
       primaryStage.setMinWidth(800);
       primaryStage.setMinHeight(600);
-      primaryStage.setTitle("BTMS");
+      primaryStage.setTitle("P9 ClimbSafe");
       primaryStage.show();
       refresh();
     } catch (IOException e) {

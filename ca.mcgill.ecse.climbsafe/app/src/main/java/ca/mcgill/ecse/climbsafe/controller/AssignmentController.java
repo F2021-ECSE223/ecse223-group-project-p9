@@ -17,9 +17,16 @@ public class AssignmentController {
 	 * @throws InvalidInputException
 	 * @author Victor Micha
 	 */
-	public static void initiateAssignment() throws InvalidInputException{
+	public static void initiateAssignment() throws InvalidInputException{	//either fix this method for partial assignment or add if in view controller
 		List<Member> members = climbSafe.getMembers();
 		List<Guide> guides = climbSafe.getGuides();
+		if(members.isEmpty()) {
+			error = "No members registered in the system.";
+			throw new InvalidInputException(error.trim());
+		}else if(guides.isEmpty()) {
+			error = "No guides registered in the system.";
+			throw new InvalidInputException(error.trim());
+		}
 		int g = 0;
 		Guide guide = guides.get(g);
 		Member member;

@@ -3,6 +3,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
 import java.sql.Date;
+import java.time.*;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
@@ -24,12 +25,24 @@ public class SetupNMCController {
 	@FXML private Button next;
 	
 	@FXML
-	public void SetupNMCInfo(ActionEvent event) {
+	public void initialize() {
+		numWeeksTextField.setText("");;
+		weeklyPriceOfGuideTextField.setText("");
+	  // set dateBox to be not editable so that the user must choose from the calendar
+	  dateBox.setEditable(false);
+
+	 
+	}
+	
+	@FXML
+	public void setUpNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
-/*
+
 		String numWeeks = numWeeksTextField.getText();
 		String weeklyPriceOfGuide = weeklyPriceOfGuideTextField.getText();
-		Date date = dateBox.getDate();//this is a guess idk how DatePicker returns a date
+		LocalDate d = dateBox.getValue();
+		Date date = Date.valueOf(d);
+
 		int nrWeeks = Integer.parseInt(numWeeks);
 		int priceOfGuidePerWeek = Integer.parseInt(weeklyPriceOfGuide);
 		try {
@@ -41,8 +54,8 @@ public class SetupNMCController {
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
+
 		
-*/
 	}
 }
  

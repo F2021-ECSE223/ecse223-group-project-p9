@@ -8,77 +8,124 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.RegisterMemberPageController">
-  <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6365509033203" minWidth="10.0" prefWidth="22.731035232543945" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="163.13697814941406" />
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.83917236328125" minWidth="10.0" prefWidth="318.62255859375" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.72564697265625" minWidth="10.0" prefWidth="70.37744140625" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.90924072265625" minWidth="10.0" prefWidth="30.54705810546875" />
-  </columnConstraints>
-  <rowConstraints>
-      <RowConstraints />
-      <RowConstraints />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+
+<AnchorPane prefHeight="460.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.RegisterMemberPageController">
    <children>
-      <TextField fx:id="nameTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
-      <Label contentDisplay="TOP" text="Name" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label text="Email" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <TextField fx:id="emailTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" />
-      <Label text="Password" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label text="Emergency Contact Number" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <TextField fx:id="emergencyContactTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
-      <Label text="Number of Weeks" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-      <ChoiceBox fx:id="nrWeeksChoiceBox" prefHeight="26.0" prefWidth="48.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-      <CheckBox fx:id="guideRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-      <Label text="Do you want a guide?" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Label text="Do you want to book a hotel?" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-      <CheckBox fx:id="hotelRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-      <PasswordField fx:id="passwordTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
-      <Button fx:id="registerMemberRegisterButton" mnemonicParsing="false" onAction="#registerMemberRegisterClicked" text="Register" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="13" GridPane.valignment="CENTER" />
-      <Label contentDisplay="TOP" text="Register Member" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
-         <font>
-            <Font size="30.0" />
-         </font>
-      </Label>
-      <Button fx:id="addEditItemButton" mnemonicParsing="false" onAction="#addEditItemClicked" text="Add/Edit" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="11" />
-      <Label text="Items" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-      <ListView fx:id="memberItemsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="12" />
-      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="11">
+      <ImageView fitHeight="471.0" fitWidth="689.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@WallpaperClimbsafe.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="671.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.315673828125" minWidth="10.0" prefWidth="221.52267456054688" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.00567626953125" minWidth="10.0" prefWidth="61.977325439453125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6365509033203" minWidth="10.0" prefWidth="22.731035232543945" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="213.85716029575892" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.83917236328125" minWidth="10.0" prefWidth="320.57143729073664" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.72564697265625" minWidth="10.0" prefWidth="82.14284842354914" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.90924072265625" minWidth="10.0" prefWidth="30.54705810546875" />
         </columnConstraints>
         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+            <RowConstraints maxHeight="23.285714285714285" minHeight="10.0" prefHeight="11.285714285714286" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.00000871930803" minHeight="10.0" prefHeight="38.00000871930803" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="96.42852783203125" minHeight="-Infinity" prefHeight="87.28570556640625" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Spinner fx:id="itemQuantitySpinner" prefHeight="26.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <ChoiceBox fx:id="itemNameChoiceBox" prefHeight="26.0" prefWidth="255.0" />
+            <TextField fx:id="nameTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
+            <Label contentDisplay="TOP" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="6">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="7">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
+            <Label text="Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label prefHeight="21.0" prefWidth="192.0" text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="9">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emergencyContactTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" />
+            <Label text="Number of Weeks" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="10">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="nrWeeksChoiceBox" prefHeight="26.0" prefWidth="48.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+            <CheckBox fx:id="guideRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+            <Label text="Do you want a guide?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="11">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label text="Do you want to book a hotel?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="12">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="hotelRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <PasswordField fx:id="passwordTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
+            <Button fx:id="registerMemberRegisterButton" mnemonicParsing="false" onAction="#registerMemberRegisterClicked" text="Register" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
+            <Label contentDisplay="TOP" text="Register Member" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <font>
+                  <Font name="Champagne &amp; Limousines" size="37.0" />
+               </font>
+            </Label>
+            <Button fx:id="addEditItemButton" mnemonicParsing="false" onAction="#addEditItemClicked" text="Add/Edit" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
+            <Label text="Items" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="13">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <ListView fx:id="memberItemsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="14" />
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="13">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.315673828125" minWidth="10.0" prefWidth="221.52267456054688" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.00567626953125" minWidth="10.0" prefWidth="61.977325439453125" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Spinner fx:id="itemQuantitySpinner" prefHeight="26.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <ChoiceBox fx:id="itemNameChoiceBox" prefHeight="26.0" prefWidth="255.0" />
+               </children>
+            </GridPane>
+            <Text fx:id="registerMessageLabel" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="15">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font>
+            </Text>
          </children>
       </GridPane>
-      <Text fx:id="registerMessageLabel" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="13">
-         <font>
-            <Font name="System Italic" size="12.0" />
-         </font>
-      </Text>
    </children>
-</GridPane>
+</AnchorPane>

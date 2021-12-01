@@ -5,6 +5,7 @@ import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
+import ca.mcgill.ecse.climbsafe.model.BundleItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
@@ -43,6 +44,25 @@ public class ClimbSafeController {
 		  bundleAndEquipments.add(climbSafeBundleString.get(i) + ": " + climbSafeBundleEquipmentString.get(i));
 	  }
 	  return bundleAndEquipments;
+  }
+  
+  public static EquipmentBundle getBundle(String bundleName){
+	  List<EquipmentBundle> bundleList = climbSafe.getBundles();
+	  for(int i=0; i<bundleList.size(); i++) {
+		  if(bundleList.get(i).getName() == bundleName) {
+			  return bundleList.get(i);
+		  }
+	  }
+	  return null;
+  }
+  
+  public static List<String> getBundleItemsAndQuantity(String bundleName){
+	  List<String> itemsInBundle = new ArrayList<>();
+	  List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
+	  for(int i=0; i<bundleItems.size(); i++) {
+		  itemsInBundle.add(bundleItems.get(i).getQuantity() + " " + bundleItems.get(i).getEquipment().getName());
+	  }
+	return itemsInBundle;
   }
 
   public static List<Integer> getNrWeeks(){

@@ -123,8 +123,6 @@ public class UpdateMemberPageController {
 			ViewUtils.showError(e.getMessage());
 		}
 	}
-
-
 	
 	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML

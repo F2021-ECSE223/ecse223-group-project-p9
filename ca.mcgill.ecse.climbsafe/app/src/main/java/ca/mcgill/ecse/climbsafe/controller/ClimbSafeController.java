@@ -24,6 +24,26 @@ public class ClimbSafeController {
 	  }
 	  return itemNamesString;
   }
+  
+  public static List<String> getBundles(){
+	  List<EquipmentBundle> climbSafeBundle = climbSafe.getBundles();
+	  List<String> climbSafeBundleString = new ArrayList<>();
+	  List<List<String> > climbSafeBundleEquipmentString = new ArrayList<>();
+	  List<String> bundleAndEquipments = new ArrayList<>();
+	  
+	  for(int i=0; i<climbSafeBundle.size(); i++) {
+		  climbSafeBundleString.add(climbSafeBundle.get(i).getName());
+		  List<String> bundleEquipments = new ArrayList<>();
+		  for(int x=0; x<climbSafeBundle.get(i).getBundleItems().size(); x++) {
+			  bundleEquipments.add(climbSafeBundle.get(i).getBundleItem(x).getQuantity()+ " " + climbSafeBundle.get(i).getBundleItem(x).getEquipment().getName());
+		  }
+		  climbSafeBundleEquipmentString.add(bundleEquipments);
+	  }
+	  for(int i=0; i<climbSafeBundle.size(); i++) {
+		  bundleAndEquipments.add(climbSafeBundleString.get(i) + ": " + climbSafeBundleEquipmentString.get(i));
+	  }
+	  return bundleAndEquipments;
+  }
 
   public static List<Integer> getNrWeeks(){
 	  int nrWeeksTotal = climbSafe.getNrWeeks();

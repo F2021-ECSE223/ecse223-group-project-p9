@@ -42,17 +42,6 @@ public class UpdateGuidePageController {
 			guideChoiceBox.setValue(null);
 		});
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(guideChoiceBox);
-		
-//		ClimbSafeFxmlView.getInstance().registerRefreshEvent(guideChoiceBox);
-//		
-//		passwordField.setText("");
-//		nameTextField.setText("");
-//		emergencyContactTextField.setText("");
-//		guideChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, a -> {
-//			guideChoiceBox.setItems(ViewUtils.getGuides());
-//			guideChoiceBox.setValue(null);
-//		});
-//		ClimbSafeFxmlView.getInstance().registerRefreshEvent(guideChoiceBox);
 	}
 	
 	@FXML
@@ -95,7 +84,7 @@ public class UpdateGuidePageController {
 		boolean confirmDelete = permissionCheckBox.isSelected();
 		if(confirmDelete) {
 			try {
-				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
+				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteGuide(email))) {
 					guideChoiceBox.setValue(null);
 					passwordField.setText("");
 					nameTextField.setText("");

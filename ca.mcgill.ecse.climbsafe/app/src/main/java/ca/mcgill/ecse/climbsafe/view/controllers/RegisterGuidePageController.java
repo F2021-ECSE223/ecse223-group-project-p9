@@ -36,7 +36,7 @@ public class RegisterGuidePageController {
 		ViewUtils.showError("Please fill out all of the field");
 	} else {
 		try {
-			if(successful(() -> ClimbSafeFeatureSet3Controller.registerGuide(Name, Email, Password, EmergencyContact))) {
+			if(successful(() -> ClimbSafeFeatureSet3Controller.registerGuide(Email, Password, Name, EmergencyContact))) {
 				name.setText("");
 				email.setText("");
 				password.setText("");

@@ -63,7 +63,7 @@ public class ClimbSafeController {
 	  List<String> itemaNameAndQuantityList = new ArrayList<>();
 	  List<BookedItem> memberItemList = member.getBookedItems();
 	  for(int i=0; i<memberItemList.size(); i++) {
-		  itemaNameAndQuantityList.add(memberItemList.get(i).getItem().getName() + " " + memberItemList.get(i).getQuantity());
+		  itemaNameAndQuantityList.add(memberItemList.get(i).getQuantity() + " " + memberItemList.get(i).getItem().getName());
 	  }
 	  return itemaNameAndQuantityList;
   }

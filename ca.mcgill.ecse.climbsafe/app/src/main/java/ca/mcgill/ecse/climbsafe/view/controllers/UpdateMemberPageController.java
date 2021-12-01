@@ -159,7 +159,7 @@ public class UpdateMemberPageController {
 		}
 		
 		for(int i =0; i<itemNames.size(); i++) {
-			itemaNameAndQuantityList.add(itemNames.get(i) + " " + itemQuantities.get(i));
+			itemaNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNames.get(i));
 		}
 
 		memberItemsListView.setItems(itemaNameAndQuantityList);

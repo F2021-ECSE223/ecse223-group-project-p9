@@ -38,6 +38,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <Label contentDisplay="TOP" text="Email" GridPane.columnIndex="1" GridPane.rowIndex="5" />
@@ -52,7 +53,7 @@
       <Label text="Do you want to book a hotel?" GridPane.columnIndex="1" GridPane.rowIndex="11" />
       <CheckBox fx:id="hotelRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="11" />
       <PasswordField fx:id="passwordTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
-      <Button fx:id="updateMemberUpdateButton" mnemonicParsing="false" onAction="#updateMemberUpdateClicked" text="Update" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
+      <Button fx:id="updateMemberUpdateButton" mnemonicParsing="false" onAction="#updateMemberUpdateClicked" text="Update" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="16" GridPane.valignment="CENTER" />
       <Label contentDisplay="TOP" text="Update Member" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
          <font>
             <Font size="30.0" />
@@ -74,10 +75,12 @@
             <ChoiceBox fx:id="itemNameChoiceBox" prefHeight="26.0" prefWidth="255.0" />
          </children>
       </GridPane>
-      <Button fx:id="deleteMemberButton" mnemonicParsing="false" onAction="#deleteMemberClicked" text="Delete Member" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <Button fx:id="deleteMemberButton" mnemonicParsing="false" onAction="#deleteMemberClicked" text="Delete Member" GridPane.columnIndex="1" GridPane.rowIndex="16" />
       <Label text="Once you delete your account, there is no going back. Please be certain." GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="14" />
       <TextField fx:id="nameTextField" GridPane.columnIndex="2" GridPane.rowIndex="6" />
       <ChoiceBox fx:id="memberChoiceBox" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
       <Button fx:id="memberSearchButton" mnemonicParsing="false" onAction="#memberSearchClicked" text="Search" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="5" />
+      <Label text="Confirm to Delete" GridPane.columnIndex="1" GridPane.rowIndex="15" />
+      <CheckBox fx:id="deleteConfirmButton" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="15" />
    </children>
 </GridPane>

@@ -42,6 +42,8 @@ public class UpdateMemberPageController {
 	@FXML private Button memberSearchButton;
 	@FXML private Button updateMemberUpdateButton;
 	@FXML private Button deleteMemberdeleteButton;
+	@FXML private CheckBox deleteConfirmButton;
+	
 	private List<String> itemNames = new ArrayList<>();;
 	private List<Integer> itemQuantities = new ArrayList<>();; 
 	private Member m = null;
@@ -197,24 +199,27 @@ public class UpdateMemberPageController {
 		@FXML
 		public void deleteMemberClicked(ActionEvent event) {
 			String email = memberChoiceBox.getValue();
-			try {
-				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
-					memberChoiceBox.setValue(null);
-					passwordTextField.setText("");
-					nameTextField.setText("");
-					emergencyContactTextField.setText("");
-					nrWeeksChoiceBox.setValue(null);
-					guideRequiredCheckBox.setSelected(false);
-					hotelRequiredCheckBox.setSelected(false);
-					itemNameChoiceBox.setValue(null);
-					itemQuantitySpinner.setValueFactory(null);
-					memberItemsListView.setItems(null);
-					ClimbSafeFxmlView.getInstance().refresh();
+			boolean confirmDelete = deleteConfirmButton.isSelected();
+			if(confirmDelete) {
+				try {
+					if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
+						memberChoiceBox.setValue(null);
+						passwordTextField.setText("");
+						nameTextField.setText("");
+						emergencyContactTextField.setText("");
+						nrWeeksChoiceBox.setValue(null);
+						guideRequiredCheckBox.setSelected(false);
+						hotelRequiredCheckBox.setSelected(false);
+						itemNameChoiceBox.setValue(null);
+						itemQuantitySpinner.setValueFactory(null);
+						memberItemsListView.setItems(null);
+						ClimbSafeFxmlView.getInstance().refresh();
+					}
+				} catch (RuntimeException e) {
+					ViewUtils.showError(e.getMessage());
 				}
-			} catch (RuntimeException e) {
-				ViewUtils.showError(e.getMessage());
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
-			ClimbSafeFxmlView.getInstance().refresh();
 		}
 		
 		 private int getNumberFromField(ChoiceBox<Integer> field) {

@@ -7,6 +7,7 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
+import ca.mcgill.ecse.climbsafe.model.Guide;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
 import ca.mcgill.ecse.climbsafe.model.Member;
 
@@ -62,6 +63,15 @@ public class ClimbSafeController {
 	  return memberListString;
   }
   
+  public static List<String> getGuides(){
+	  List<Guide> guideList = climbSafe.getGuides();
+	  List<String> guideListString = new ArrayList<>();
+	  for(int i=0; i< guideList.size(); i++) {
+		  guideListString.add(guideList.get(i).getEmail());
+	  }
+	  return guideListString;
+  }
+  
   public static Member getMember(String email){
 	  List<Member> memberList = climbSafe.getMembers();
 	  Member m = null;
@@ -72,6 +82,28 @@ public class ClimbSafeController {
 		  }
 	  }
 	  return m;
+  }
+  
+  public static Guide getGuide(String email){
+	  List<Guide> guideList = climbSafe.getGuides();
+	  Guide g = null;
+	  for(int i=0; i< guideList.size(); i++) {
+		  if(guideList.get(i).getEmail() == email) {
+			  g = guideList.get(i);
+			  break;
+		  }
+	  }
+	  return g;
+  }
+  public static Equipment getEquipment(String equipment){
+	  List<Equipment> equipmentList = climbSafe.getEquipment();
+	  for(int i=0; i<equipmentList.size(); i++) {
+		  equipmentList.get(i).getName();
+		  if(equipmentList.get(i).getName() == equipment) {
+			  return equipmentList.get(i);
+		  }
+	  }
+	  return null;
   }
   
   public static List<String> getMemberItems(String email){

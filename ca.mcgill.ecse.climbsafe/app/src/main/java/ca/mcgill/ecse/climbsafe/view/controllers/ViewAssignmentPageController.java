@@ -5,17 +5,12 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.controller.*;
-import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
-import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
 public class ViewAssignmentPageController {
@@ -46,7 +41,7 @@ public class ViewAssignmentPageController {
   @FXML
   private Text assignmentCompletionText;
   
-  private List<TOAssignment> assignments; //need to figure out transfer objects so I can get assignments in initialize()
+  private List<TOAssignment> assignments; 
   
 
   public void initialize() {

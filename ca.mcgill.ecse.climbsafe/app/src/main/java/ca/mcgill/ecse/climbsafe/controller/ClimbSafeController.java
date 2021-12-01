@@ -112,11 +112,36 @@ public class ClimbSafeController {
   }
   
   public static List<String> getMemberItemsName(String email){
+	  List<EquipmentBundle> climbSafeBundle = climbSafe.getBundles();
+	  List<String> climbSafeBundleString = new ArrayList<>();
+	  List<List<String> > climbSafeBundleEquipmentString = new ArrayList<>();
+	  
+	  for(int i=0; i<climbSafeBundle.size(); i++) {
+		  climbSafeBundleString.add(climbSafeBundle.get(i).getName());
+		  List<String> bundleEquipments = new ArrayList<>();
+		  for(int x=0; x<climbSafeBundle.get(i).getBundleItems().size(); x++) {
+			  bundleEquipments.add(climbSafeBundle.get(i).getBundleItem(x).getQuantity()+ " " + climbSafeBundle.get(i).getBundleItem(x).getEquipment().getName());
+		  }
+		  climbSafeBundleEquipmentString.add(bundleEquipments);
+	  }
+	  
 	  Member member = getMember(email);
 	  List<String> itemNameList = new ArrayList<>();
 	  List<BookedItem> memberItemList = member.getBookedItems();
 	  for(int i=0; i<memberItemList.size(); i++) {
-		  itemNameList.add(memberItemList.get(i).getItem().getName());
+//		  itemNameList.add(memberItemList.get(i).getItem().getName());
+		  int bundleIndex = -1;
+		  for(int x=0; x<climbSafeBundleString.size(); x++) {
+			  if(climbSafeBundleString.get(x) == memberItemList.get(i).getItem().getName()) {
+				  bundleIndex = x;
+				  break;
+			  }
+		  }
+		  if(bundleIndex != -1) {
+			  itemNameList.add(memberItemList.get(i).getItem().getName() + ": " + climbSafeBundleEquipmentString.get(bundleIndex));
+		  }else {
+			  itemNameList.add(memberItemList.get(i).getItem().getName());  
+		  }
 	  }
 	  return itemNameList;
   }

@@ -38,6 +38,7 @@ public class RegisterMemberPageController {
 
 	@FXML private Button registerMemberRegisterButton;
 	private List<String> itemNames = new ArrayList<>();
+	private List<String> itemNamesWithBundle = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
 	
 	public void initialize() {
@@ -87,7 +88,7 @@ public class RegisterMemberPageController {
 					passwordTextField.setText("");
 					nameTextField.setText("");
 					emergencyContactTextField.setText("");
-					nrWeeksChoiceBox.setItems(null);
+					nrWeeksChoiceBox.setValue(null);
 					guideRequiredCheckBox.setSelected(false);
 					hotelRequiredCheckBox.setSelected(false);
 					itemNameChoiceBox.setValue(null);
@@ -104,12 +105,21 @@ public class RegisterMemberPageController {
 	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
-		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-		String itemName = itemNameChoiceBox.getValue().toString();
-		int itemQuantity = (int) itemQuantitySpinner.getValue();
+		ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
+		String itemName = null;
+		String wholeBundleName = null;
+		if(itemNameChoiceBox.getValue()!= null) {
+			itemName = itemNameChoiceBox.getValue().toString();
+			wholeBundleName = itemName;
+		}
+		if(wholeBundleName.contains(":")) {
+			String tempWordList[] = itemName.split(":");
+			itemName = tempWordList[0];
+		}
+		int itemQuantity = itemQuantitySpinner.getValue();
 		int indexOfItem = -1;
 
-		if(itemNames.toString().contains(itemName)) {
+		if(itemNames.size()!= 0 && itemNames.toString().contains(itemName)) {
 			//edit the quantity instead
 			for(int i =0; i<itemNames.size(); i++) {
 				if(itemNames.get(i) == itemName) {
@@ -118,6 +128,7 @@ public class RegisterMemberPageController {
 				}
 			}
 			if(itemQuantity == 0) {
+				itemNamesWithBundle.remove(indexOfItem);
 				itemNames.remove(indexOfItem);
 				itemQuantities.remove(indexOfItem);
 			}else {
@@ -126,18 +137,20 @@ public class RegisterMemberPageController {
 		}else {
 			//add new item
 			if(itemQuantity != 0) {
+				itemNamesWithBundle.add(wholeBundleName);
 				itemNames.add(itemName);
 				itemQuantities.add(itemQuantity);
 			}
 			itemNameChoiceBox.setValue(null);
-			itemQuantitySpinner.getValueFactory().setValue(null);
+			itemQuantitySpinner.getValueFactory().setValue(0);
 		}
 		
-		for(int i =0; i<itemNames.size(); i++) {
-			itemaNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNames.get(i));
+		for(int i =0; i<itemNamesWithBundle.size(); i++) {
+			
+			itemNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNamesWithBundle.get(i));
 		}
 
-		memberItemsListView.setItems(itemaNameAndQuantityList);
+		memberItemsListView.setItems(itemNameAndQuantityList);
 		int tempNrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		ClimbSafeFxmlView.getInstance().refresh();
 		if(tempNrWeeks!=-1) {

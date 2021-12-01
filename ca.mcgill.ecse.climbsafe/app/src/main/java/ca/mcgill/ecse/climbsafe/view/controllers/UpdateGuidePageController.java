@@ -23,10 +23,21 @@ import javafx.scene.control.TextField;
 public class UpdateGuidePageController {
 	
 	@FXML private TextField name;
-	@FXML private TextField email;
+	@FXML private ChoiceBox<String> guideChoice;
 	@FXML private PasswordField password;
 	@FXML private TextField emergencyContact;
 	@FXML private CheckBox permissionCheck;
 	
+	@FXML private Button deleteGuide;
+	@FXML private Button updateGuide;
+	
+	public void initialize() {
+		name.setText("");
+		password.setText("");
+		emergencyContact.setText("");
+		guideChoice.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, a -> {
+			guideChoice.setItems(ViewUtils.getGuides());
+		});
+	}
 
 }

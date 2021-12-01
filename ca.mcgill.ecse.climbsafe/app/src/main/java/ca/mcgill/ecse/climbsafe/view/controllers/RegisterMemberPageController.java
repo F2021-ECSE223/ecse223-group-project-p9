@@ -106,13 +106,13 @@ public class RegisterMemberPageController {
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
-		String itemName = null;
+		String itemName = "";
 		String wholeBundleName = null;
 		if(itemNameChoiceBox.getValue()!= null) {
 			itemName = itemNameChoiceBox.getValue().toString();
 			wholeBundleName = itemName;
 		}
-		if(wholeBundleName.contains(":")) {
+		if(wholeBundleName != null && wholeBundleName.contains(":")) {
 			String tempWordList[] = itemName.split(":");
 			itemName = tempWordList[0];
 		}
@@ -136,7 +136,7 @@ public class RegisterMemberPageController {
 			}
 		}else {
 			//add new item
-			if(itemQuantity != 0) {
+			if(itemQuantity != 0 && itemName != "") {
 				itemNamesWithBundle.add(wholeBundleName);
 				itemNames.add(itemName);
 				itemQuantities.add(itemQuantity);

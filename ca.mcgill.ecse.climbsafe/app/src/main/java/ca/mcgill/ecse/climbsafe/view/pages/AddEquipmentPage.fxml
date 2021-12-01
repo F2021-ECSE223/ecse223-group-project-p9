@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.AddEquipmentPageController">
+   <children>
+      <GridPane layoutX="5.0" layoutY="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6365509033203" minWidth="10.0" prefWidth="10.857142857142858" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="106.28570665631976" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.8571243286133" minWidth="10.0" prefWidth="180.14288330078122" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="273.1428309849331" minWidth="10.0" prefWidth="78.57139369419644" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.9999084472656" minWidth="10.0" prefWidth="243.00003487723217" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.85711233956476" minWidth="10.0" prefWidth="69.00003051757812" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="15.714303152901785" minHeight="10.0" prefHeight="10.0000125340053" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.57141603742327" minHeight="10.0" prefHeight="15.428584507533479" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="29.714272635323667" minHeight="10.0" prefHeight="29.714272635323667" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="18.714272635323653" minHeight="10.0" prefHeight="15.285714285714278" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="34.14286150251115" minHeight="10.0" prefHeight="31.285714285714278" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="18.714303152901778" minHeight="10.0" prefHeight="15.857155936104903" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.714272635323653" minHeight="10.0" prefHeight="30.714272635323653" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="18.14285714285714" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="34.14285714285714" minHeight="10.0" prefHeight="34.14285714285714" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="4.285740443638389" prefHeight="14.571446010044639" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="41.99997384207592" minHeight="10.0" prefHeight="17.85711669921875" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="29.285740443638417" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <TextField fx:id="addEquipmentName" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" />
+            <Label contentDisplay="TOP" text="Name" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label text="Weight" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <TextField fx:id="addEquipmentWeight" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" />
+            <Label text="Price" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <TextField fx:id="addEquipmentPrice" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+            <Button fx:id="addEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addEquipmentClick" text="Add Equipment" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="13" GridPane.valignment="CENTER" />
+            <Label contentDisplay="TOP" prefHeight="45.0" prefWidth="237.0" text="Add Equipment" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

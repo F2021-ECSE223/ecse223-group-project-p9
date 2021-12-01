@@ -83,7 +83,7 @@ public class UpdateMemberPageController {
 	public void memberSearchClicked(ActionEvent event) {
 		m = ClimbSafeController.getMember(memberChoiceBox.getValue());
 		nameTextField.setText(m.getName());
-		passwordTextField.setText(m.getName());
+		passwordTextField.setText(m.getPassword());
 		emergencyContactTextField.setText(m.getEmergencyContact());
 		guideRequiredCheckBox.setSelected(m.getGuideRequired());
 		hotelRequiredCheckBox.setSelected(m.getHotelRequired());

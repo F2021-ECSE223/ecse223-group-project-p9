@@ -48,7 +48,7 @@
       <Label text="Emergency Contact Number" GridPane.columnIndex="1" GridPane.rowIndex="8" />
       <TextField fx:id="emergencyContactTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
       <Label text="Number of Weeks" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <ChoiceBox fx:id="nrWeeksChoiceBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+      <ChoiceBox fx:id="nrWeeksChoiceBox" prefHeight="26.0" prefWidth="48.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
       <CheckBox fx:id="guideRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="10" />
       <Label text="Do you want a guide?" GridPane.columnIndex="1" GridPane.rowIndex="10" />
       <Label text="Do you want to book a hotel?" GridPane.columnIndex="1" GridPane.rowIndex="11" />

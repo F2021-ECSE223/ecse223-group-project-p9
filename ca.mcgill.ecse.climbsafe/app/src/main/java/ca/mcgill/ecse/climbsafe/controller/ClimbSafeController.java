@@ -74,6 +74,17 @@ public class ClimbSafeController {
 	  return m;
   }
   
+  public static Equipment getEquipment(String equipment){
+	  List<Equipment> equipmentList = climbSafe.getEquipment();
+	  for(int i=0; i<equipmentList.size(); i++) {
+		  equipmentList.get(i).getName();
+		  if(equipmentList.get(i).getName() == equipment) {
+			  return equipmentList.get(i);
+		  }
+	  }
+	  return null;
+  }
+  
   public static List<String> getMemberItems(String email){
 	  //getting climbsafe bundle and each bundle equipment into a list
 	  List<EquipmentBundle> climbSafeBundle = climbSafe.getBundles();

@@ -15,9 +15,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 
 
@@ -36,6 +34,7 @@ public class UpdateGuidePageController {
 		name.setText("");
 		password.setText("");
 		emergencyContact.setText("");
+		permissionCheck.setSelected(false);
 		guideChoice.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, a -> {
 			guideChoice.setItems(ViewUtils.getGuides());
 			guideChoice.setValue(null);
@@ -87,6 +86,7 @@ public class UpdateGuidePageController {
 				password.setText("");
 				name.setText("");
 				emergencyContact.setText("");
+				permissionCheck.setSelected(false);
 				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {

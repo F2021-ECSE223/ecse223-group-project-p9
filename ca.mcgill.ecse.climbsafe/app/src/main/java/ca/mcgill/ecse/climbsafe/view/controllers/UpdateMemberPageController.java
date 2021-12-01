@@ -83,7 +83,7 @@ public class UpdateMemberPageController {
 	public void memberSearchClicked(ActionEvent event) {
 		m = ClimbSafeController.getMember(memberChoiceBox.getValue());
 		nameTextField.setText(m.getName());
-		passwordTextField.setText(m.getName());
+		passwordTextField.setText(m.getPassword());
 		emergencyContactTextField.setText(m.getEmergencyContact());
 		guideRequiredCheckBox.setSelected(m.getGuideRequired());
 		hotelRequiredCheckBox.setSelected(m.getHotelRequired());
@@ -105,6 +105,11 @@ public class UpdateMemberPageController {
 		int nrWeeks = Integer.parseInt(nrWeeksChoiceBox.getValue().toString());
 		boolean guideRequired = guideRequiredCheckBox.isSelected();
 		boolean hotelRequired = hotelRequiredCheckBox.isSelected();
+		for(int i=0; i< itemNames.size(); i++) {
+			if(itemNames.get(i).contains(":")) {
+				itemNames.set(i, itemNames.get(i).split(":")[0]);
+			}
+		}
 		try {
 			if(successful(() -> ClimbSafeFeatureSet2Controller.updateMember(email, password, name, emergencyContact, nrWeeks, guideRequired, hotelRequired, itemNames, itemQuantities))) {
 				memberChoiceBox.setValue(null);
@@ -123,21 +128,19 @@ public class UpdateMemberPageController {
 			ViewUtils.showError(e.getMessage());
 		}
 	}
-
-
 	
 	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
 		String itemName = itemNameChoiceBox.getValue().toString();
-		int itemQuantity = (int) itemQuantitySpinner.getValue();
+		int itemQuantity = itemQuantitySpinner.getValue();
 		int indexOfItem = -1;
-
-		if(itemNames.toString().contains(itemName)) {
+		
+		if(itemNames.contains(itemName)) {
 			//edit the quantity instead
 			for(int i =0; i<itemNames.size(); i++) {
-				if(itemNames.get(i) == itemName) {
+				if(itemNames.get(i).equals(itemName)) {
 					indexOfItem = i;
 					break;
 				}

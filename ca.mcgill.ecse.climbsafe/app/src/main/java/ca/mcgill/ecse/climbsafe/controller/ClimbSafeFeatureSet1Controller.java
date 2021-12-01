@@ -22,7 +22,11 @@ public class ClimbSafeFeatureSet1Controller {
 	static String error = "";
 
 	public static void setup(Date startDate, int nrWeeks, int priceOfGuidePerWeek) throws InvalidInputException {
-		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();		
+		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();	
+		if(climbSafe.getStartDate() != null) {
+			String e = "NMC already setup.";
+			throw new InvalidInputException(e.trim());
+		}
 		String[] s = startDate.toString().split("-");
 		error = "";
 		if (!(Integer.parseInt(s[1])<=12)){

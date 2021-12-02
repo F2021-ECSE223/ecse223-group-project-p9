@@ -16,39 +16,44 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ChoiceBox;
 
 public class SetupNMCController {
 
-	@FXML private TextField numWeeksTextField;
-	@FXML private TextField weeklyPriceOfGuideTextField;
+	@FXML private ChoiceBox<Integer> numWeeksChoiceBox;
+	@FXML private ChoiceBox<Integer> weeklyPriceGuideChoiceBox;
 	@FXML private DatePicker dateBox;
 	@FXML private Button next;
 	
 	@FXML
 	public void initialize() {
-		numWeeksTextField.setText("");;
-		weeklyPriceOfGuideTextField.setText("");
+		numWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			numWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
+			numWeeksChoiceBox.setValue(null);
+		});
+		weeklyPriceGuideChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			weeklyPriceGuideChoiceBox.setItems(ViewUtils.getWeeklyPriceGuide());
+			weeklyPriceGuideChoiceBox.setValue(null);
+		});
 	  // set dateBox to be not editable so that the user must choose from the calendar
 	  dateBox.setEditable(false);
 
-	 
+	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(numWeeksChoiceBox);
+	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(weeklyPriceGuideChoiceBox);
 	}
 	
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
-
-		String numWeeks = numWeeksTextField.getText();
-		String weeklyPriceOfGuide = weeklyPriceOfGuideTextField.getText();
+		int nrWeeks =  Integer.parseInt(numWeeksChoiceBox.getValue().toString());
+		int priceOfGuidePerWeek = Integer.parseInt(weeklyPriceGuideChoiceBox.getValue().toString());
 		LocalDate d = dateBox.getValue();
 		Date date = Date.valueOf(d);
-		int nrWeeks = Integer.parseInt(numWeeks);
-		int priceOfGuidePerWeek = Integer.parseInt(weeklyPriceOfGuide);
 		try {
 			if(successful(() -> ClimbSafeFeatureSet1Controller.setup(date,  nrWeeks, priceOfGuidePerWeek))) {
-				numWeeksTextField.setText("");
-				weeklyPriceOfGuideTextField.setText("");
-				//somehow set dateBox to initial state or something
+				numWeeksChoiceBox.setValue(null);
+				weeklyPriceGuideChoiceBox.setValue(null);
+				ClimbSafeFxmlView.getInstance().refresh();
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

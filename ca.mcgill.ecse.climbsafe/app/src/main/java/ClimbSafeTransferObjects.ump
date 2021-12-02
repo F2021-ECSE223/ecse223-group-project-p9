@@ -14,3 +14,36 @@ class TOAssignment {
   authorizationCode;
   Integer refundedPercentageAmount;
 }
+
+class TOMember {
+	email;
+	name;
+	emergencyContactName;
+	emergencyContactEmail;
+	password;
+	nrWeeks;
+	guideRequired;
+	hotelRequired;
+	String[] bookedItems;
+}
+
+class TOGuide {
+	email;
+	name;
+	emergencyContactName;
+	emergencyContactEmail;
+	password;
+}
+
+class TOEquipment {
+	name;
+	weight;
+	pricePerWeek;
+}
+
+class TOBundles {
+	name;
+	discount;
+	String[] bundleItems;
+}
+	

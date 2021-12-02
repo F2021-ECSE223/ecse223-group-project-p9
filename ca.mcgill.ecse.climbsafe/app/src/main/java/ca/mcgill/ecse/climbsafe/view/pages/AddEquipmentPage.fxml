@@ -86,7 +86,7 @@
             </Label>
             <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="8" />
             <Spinner fx:id="weightSpinner" editable="true" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-            <Spinner fx:id="priceSpinner" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+            <Spinner fx:id="priceSpinner" editable="true" GridPane.columnIndex="2" GridPane.rowIndex="14" />
             <Text fx:id="returnMessageText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="17" />
          </children>
       </GridPane>

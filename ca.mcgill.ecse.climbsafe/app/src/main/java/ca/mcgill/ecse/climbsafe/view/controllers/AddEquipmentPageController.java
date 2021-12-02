@@ -22,14 +22,14 @@ public class AddEquipmentPageController {
 	public void initialize() {
 		weightSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
-			int maxQuantity = 99;
+			int maxQuantity = 9999999;
 			int initQuantity = 0;
 			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
 			weightSpinner.setValueFactory(valueFactory);
 		});
 		priceSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
-			int maxQuantity = 99;
+			int maxQuantity = 9999999;
 			int initQuantity = 0;
 			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
 			priceSpinner.setValueFactory(valueFactory);

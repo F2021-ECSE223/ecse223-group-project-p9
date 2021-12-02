@@ -6,6 +6,7 @@ import java.util.List;
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet5Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet6Controller;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
@@ -24,25 +25,25 @@ import javafx.scene.control.TextField;
 
 public class UpdateEquipmentBundleController {
 	@FXML private ChoiceBox<String> equipmentBundleChoiceBox;
-	@FXML private Button bundleSearchButton;
 	
-	@FXML private TextField bundleNameTextField;
+	@FXML private TextField newNameTextField;
 	
-	@FXML private ChoiceBox<String> itemChoiceBox;
-	@FXML private Spinner<Integer> itemQuantitySpinner;
-	@FXML private Button addEditButton;
-	
-	@FXML private ListView<String> itemsInBundleListView;
-	
-	@FXML private TextField discountTextField;
+	@FXML private ChoiceBox<String> itemInBundleChoiceBox;
+
+	@FXML private ChoiceBox<String> itemNotInBundleChoiceBox;
+
 //	@FXML private TextField priceTextField;
 	
-	@FXML private Button modifyButton;
+	@FXML private Button removeItemButton;
+	@FXML private Button addItemButton;
+	@FXML private Button updateButton;
 	@FXML private Button deleteButton;
+	@FXML private TextField discountTextField;
+	
 	
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
-	private EquipmentBundle b = null;
+	//private EquipmentBundle b = null;
 	
 	/**
 	 * @author SeJong Yoo
@@ -56,32 +57,34 @@ public class UpdateEquipmentBundleController {
 			equipmentBundleChoiceBox.setValue(null);
 		});
 		
-		itemChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-			itemChoiceBox.setItems(ViewUtils.getEquipments());
-			itemChoiceBox.setValue(null);
+		itemInBundleChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			//not correct
+			itemInBundleChoiceBox.setItems(ViewUtils.getEquipments());
+			itemInBundleChoiceBox.setValue(null);
 		});
 		
-		bundleNameTextField.setText("");
-		
-		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-			int initQuantity = 0;
-			int minQuantity = 0;
-			int maxQuantity = 99;
-			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(initQuantity, minQuantity, maxQuantity);
-			itemQuantitySpinner.setValueFactory(valueFactory);
+		itemNotInBundleChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			not correct
+			itemNotInBundleChoiceBox.setItems(ViewUtils.getEquipments());
+			itemNotInBundleChoiceBox.setValue(null);
 		});
+		
+		
+	
 		discountTextField.setText("");
-//		priceTextField.setText("");
+		newNameTextField.setText("");
 		
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(equipmentBundleChoiceBox);
-		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemChoiceBox);
-		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemInBundleChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNotInBundleChoiceBox);
 		
 	}
 	
 	@FXML
-	public void equipmentBundleSearchClicked(ActionEvent event) {
-		b = ClimbSafeController.getBundle(equipmentBundleChoiceBox.getValue());
+	public void updateEquipmentBundle(ActionEvent event) {
+		String newName = newNameTextField.getText();
+		
+		/*b = ClimbSafeController.getBundle(equipmentBundleChoiceBox.getValue());
 		System.out.println("Clicked");
 		System.out.println(b);
 		if(b != null) {
@@ -92,90 +95,25 @@ public class UpdateEquipmentBundleController {
 //			priceTextField.setText(b.getPrice);
 			itemsInBundleListView.setItems(ViewUtils.getBundleItemsAndQuantity(b.getName()));
 			ClimbSafeFxmlView.getInstance().refresh();
-		}
+		}*/
 	}
-	
-	//Event Listener on Button[#addEditItemClicked].onAction
-		@FXML
-		public void addEditItemClicked(ActionEvent event) {
-			ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-			String itemName = "";
-			if(itemChoiceBox.getValue() != null) {
-				itemName = itemChoiceBox.getValue().toString();
-			}
-			int itemQuantity = itemQuantitySpinner.getValue();
-			int indexOfItem = -1;
-
-			if(itemNames.contains(itemName)) {
-				//edit the quantity instead
-				for(int i =0; i<itemNames.size(); i++) {
-					if(itemNames.get(i).equals(itemName)) {
-						indexOfItem = i;
-						break;
-					}
-				}
-				if(itemQuantity == 0) {
-					itemNames.remove(indexOfItem);
-					itemQuantities.remove(indexOfItem);
-				}else {
-					itemQuantities.set(indexOfItem, itemQuantity);
-				}
-			}else {
-				//add new item
-				if(itemQuantity != 0 && itemName != "") {
-					itemNames.add(itemName);
-					itemQuantities.add(itemQuantity);
-				}
-				itemChoiceBox.setValue(null);
-				itemQuantitySpinner.getValueFactory().setValue(0);
-			}
-
-			for(int i =0; i<itemNames.size(); i++) {
-				itemaNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNames.get(i));
-			}
-
-//			memberItemsListView.setItems(itemaNameAndQuantityList);
-			ClimbSafeFxmlView.getInstance().refresh();
-//			if(m!= null) {
-//				memberChoiceBox.setValue(m.getEmail());
-//				nrWeeksChoiceBox.setValue(m.getNrWeeks());
-//			}
-		}
-	
-	@FXML
-	public void modifyEquipmentBundleClicked(ActionEvent event) {
-		String oldName = equipmentBundleChoiceBox.getValue();
-		String newName = bundleNameTextField.getText();
-		int discount = Integer.parseInt(discountTextField.getText());
-		try {
-			if(successful(() -> ClimbSafeFeatureSet5Controller.updateEquipmentBundle(oldName, newName, discount, itemNames, itemQuantities))) {
-				equipmentBundleChoiceBox.setValue(null);
-				bundleNameTextField.setText("");
-				itemChoiceBox.setValue(null);
-				itemQuantitySpinner.setValueFactory(null);
-				itemsInBundleListView.setItems(null);
-				discountTextField.setText("");
-				ClimbSafeFxmlView.getInstance().refresh();
-			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
-		}
-	}
-	
-	@FXML
-	public void deleteEquipmentBundleClicked(ActionEvent event) {
+	public void deleteEquipmentBundle(ActionEvent event) {
 		String name = equipmentBundleChoiceBox.getValue();
-		
 		try {
 			if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipmentBundle(name))) {
 				equipmentBundleChoiceBox.setValue(null);
 				ClimbSafeFxmlView.getInstance().refresh();
 			}
-			
-		} catch (RuntimeException e)  {
+		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
+		
 	}
+	public void removeItem(ActionEvent event) {
+	}
+	public void addItem(ActionEvent event) {
+	}
+	
 			
 
 }

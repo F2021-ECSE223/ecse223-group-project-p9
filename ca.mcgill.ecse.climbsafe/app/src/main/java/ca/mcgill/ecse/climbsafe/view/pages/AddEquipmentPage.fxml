@@ -18,9 +18,13 @@
 
 <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.AddEquipmentPageController">
    <children>
-      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView fx:id="winterBackground" fitHeight="552.0" fitWidth="811.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@./WallpaperClimbsafe.png" />
+            <Image url="@WallpaperClimbsafe.png" />
+         </image></ImageView>
+      <ImageView fx:id="fallBackground" fitHeight="552.0" fitWidth="811.0" layoutX="10.0" layoutY="10.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@FallWallpaperClimbsafe.png" />
          </image>
       </ImageView>
       <GridPane layoutX="14.0" layoutY="7.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="437.0" prefWidth="729.0" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="-14.0" AnchorPane.topAnchor="7.0">

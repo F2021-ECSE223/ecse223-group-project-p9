@@ -70,7 +70,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <fx:include layoutX="20.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" source="pages/ViewAssignmentPage.fxml" />
+                  <fx:include layoutX="20.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" source="pages/ViewAssignmentPage.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </content>
@@ -131,15 +131,6 @@
                         </Tab>
                      </tabs>
                   </TabPane>
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="StartFinishCancel">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <fx:include source="pages/StartFinishCancelTrip.fxml" />
                </children>
             </AnchorPane>
          </content>

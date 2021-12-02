@@ -15,7 +15,7 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ViewAssignmentPageController">
    <children>
-      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@WallpaperClimbsafe.png" />
          </image>

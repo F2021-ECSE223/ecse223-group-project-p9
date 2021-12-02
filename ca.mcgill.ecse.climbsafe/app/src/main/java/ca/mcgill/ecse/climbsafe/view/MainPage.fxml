@@ -90,6 +90,15 @@
                               </AnchorPane>
                         </content>
                       </Tab>
+                        <Tab text="Manage Trip Status">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <fx:include source="pages/StartFinishCancelTrip.fxml" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
                     </tabs>
                   </TabPane>
                </children>
@@ -122,15 +131,6 @@
                         </Tab>
                      </tabs>
                   </TabPane>
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="StartFinishCancel">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <fx:include source="pages/StartFinishCancelTrip.fxml" />
                </children>
             </AnchorPane>
          </content>

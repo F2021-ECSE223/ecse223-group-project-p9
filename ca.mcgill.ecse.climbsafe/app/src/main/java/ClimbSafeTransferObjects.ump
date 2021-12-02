@@ -39,7 +39,7 @@ class TOEquipment {
 	Integer pricePerWeek;
 }
 
-class TOBundles {
+class TOBundle {
 	name;
 	Integer discount;
 	String[] bundleItems;

@@ -5,6 +5,7 @@ import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.BookedItem;
+import ca.mcgill.ecse.climbsafe.model.BundleItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.Guide;
@@ -100,6 +101,22 @@ public class ClimbSafeController {
 		  TOEquipment.add(equip);
 	  }
 	  return TOEquipment;
+  }
+  public static List<TOBundle> getTOBundle(){
+	  List<EquipmentBundle> bundles = climbSafe.getBundles();
+	  List<TOBundle> TOBundles = new ArrayList<TOBundle>();
+	  TOBundle bundle;
+	  List<BundleItem> bundleItems;
+	  for(EquipmentBundle b: bundles) {
+		  bundle = new TOBundle(b.getName(), b.getDiscount());
+		  bundleItems = b.getBundleItems();
+		  for(BundleItem i: bundleItems) {
+			  bundle.addBundleItem(i.toString());
+		  }
+		  
+		  TOBundles.add(bundle);
+	  }
+	  return TOBundles;
   }
   
   public static List<String> getGuides(){

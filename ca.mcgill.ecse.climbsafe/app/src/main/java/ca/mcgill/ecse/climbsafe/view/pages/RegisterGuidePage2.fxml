@@ -37,7 +37,7 @@
             <RowConstraints maxHeight="108.00000871930803" minHeight="10.0" prefHeight="63.42858014787947" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Register Guide" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2">
+            <Label text="Guide Registration" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="2">
                <font>
                   <Font size="37.0" />
                </font>

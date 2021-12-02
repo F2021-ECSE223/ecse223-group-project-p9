@@ -14,19 +14,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="514.0" prefWidth="790.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.PayForMemberTripPageController">
+<AnchorPane prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.PayForMemberTripPageController">
    <children>
-      <ImageView fitHeight="485.0" fitWidth="737.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@WallpaperClimbsafe.png" />
          </image>
       </ImageView>
-      <GridPane prefHeight="291.0" prefWidth="648.0">
+      <GridPane layoutX="26.0" layoutY="14.0" prefHeight="291.0" prefWidth="648.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="10.0" prefWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="392.0000061035156" minWidth="10.0" prefWidth="139.79996337890626" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.7999755859375" minWidth="10.0" prefWidth="475.39997558593757" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="392.0000061035156" minWidth="10.0" prefWidth="161.28570556640625" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="572.7999755859375" minWidth="10.0" prefWidth="452.14286586216525" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="486.400048828125" minWidth="10.0" prefWidth="24.4000244140625" />
          </columnConstraints>
          <rowConstraints>
@@ -39,7 +38,7 @@
          <children>
             <Label text="Payment Authorization" textFill="WHITE" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.valignment="BASELINE" GridPane.vgrow="ALWAYS">
                <font>
-                  <Font size="35.0" />
+                  <Font size="37.0" />
                </font>
                <GridPane.margin>
                   <Insets top="50.0" />
@@ -49,11 +48,17 @@
                <GridPane.margin>
                   <Insets top="70.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
             <Label text="Authorization Code:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets top="60.0" />
                </GridPane.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
       
             <TextField fx:id="codeTextField" prefHeight="26.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.rowIndex="3" GridPane.vgrow="NEVER">

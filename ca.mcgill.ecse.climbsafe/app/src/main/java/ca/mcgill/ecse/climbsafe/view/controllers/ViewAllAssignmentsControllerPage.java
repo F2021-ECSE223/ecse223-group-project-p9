@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
 public class ViewAllAssignmentsControllerPage {
@@ -30,24 +31,29 @@ public class ViewAllAssignmentsControllerPage {
   @FXML
   private TableColumn<TOTableAssignment, String> codeColumn;
   @FXML
-  private TableColumn<TOTableAssignment, String> startWeekColumn;
-  @FXML
-  private TableColumn<TOTableAssignment, String> endWeekColumn;
+  private TableColumn<TOTableAssignment, String> startToEndColumn;
   @FXML
   private TableColumn<TOTableAssignment, String> tripStatusColumn;
   @FXML
   private TableColumn<TOTableAssignment, String> refundColumn;
   @FXML
-  private TableColumn<TOTableAssignment, String> guideCostColumn;
-  @FXML
-  private TableColumn<TOTableAssignment, String> equipCostColumn;
+  private TableColumn<TOTableAssignment, String> costColumn;
   @FXML
   private TableView<TOTableAssignment> assignmentTable;
   @FXML
   private Text assignmentCompletionText;
   
   public void initialize() {
-	  //add if statement for when no data in system
+	  memberEmailColumn.setCellValueFactory(new PropertyValueFactory<>("memberEmail"));
+	  memberNameColumn.setCellValueFactory(new PropertyValueFactory<>("memberName"));
+	  guideEmailColumn.setCellValueFactory(new PropertyValueFactory<>("guideEmail"));
+	  guideNameColumn.setCellValueFactory(new PropertyValueFactory<>("guideName"));
+	  codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
+	  startToEndColumn.setCellValueFactory(new PropertyValueFactory<>("startToEnd"));
+	  tripStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+	  refundColumn.setCellValueFactory(new PropertyValueFactory<>("refund"));
+
+
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 	  
 	  if(!(assignments.isEmpty())) {

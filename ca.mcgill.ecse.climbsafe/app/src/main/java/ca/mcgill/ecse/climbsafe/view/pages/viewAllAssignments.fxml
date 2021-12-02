@@ -62,14 +62,15 @@
                   <Insets bottom="10.0" left="6.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="viewbutton" mnemonicParsing="false" onAction="#viewClicked" text="View/Refresh Assignments" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button fx:id="viewbutton" mnemonicParsing="false" onAction="#viewClicked" text="View/Refresh Assignments" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="6.0" />
                </GridPane.margin>
             </Button>
-            <Text fx:id="assignmentCompletionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="413.73674392700195" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+
+            <Text fx:id="assignmentCompletionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.73674392700195" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
-                  <Insets bottom="10.0" left="6.0" />
+                  <Insets left="150.0" />
                </GridPane.margin>
             </Text>
          </children>

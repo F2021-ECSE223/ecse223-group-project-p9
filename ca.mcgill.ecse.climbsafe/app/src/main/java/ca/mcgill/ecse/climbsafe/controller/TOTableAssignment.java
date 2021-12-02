@@ -17,7 +17,8 @@ public class TOTableAssignment
   private String guideEmail;
   private String guideName;
   private String startToEnd;
-  private int cost;
+  private int equipCost;
+  private int guideCost;
   private String status;
   private String code;
   private String refund;
@@ -26,14 +27,15 @@ public class TOTableAssignment
   // CONSTRUCTOR
   //------------------------
 
-  public TOTableAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, String aStartToEnd, int aCost, String aStatus, String aCode, String aRefund)
+  public TOTableAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, String aStartToEnd, int aEquipCost, int aGuideCost, String aStatus, String aCode, String aRefund)
   {
     memberEmail = aMemberEmail;
     memberName = aMemberName;
     guideEmail = aGuideEmail;
     guideName = aGuideName;
     startToEnd = aStartToEnd;
-    cost = aCost;
+    equipCost = aEquipCost;
+    guideCost = aGuideCost;
     status = aStatus;
     code = aCode;
     refund = aRefund;
@@ -83,10 +85,18 @@ public class TOTableAssignment
     return wasSet;
   }
 
-  public boolean setCost(int aCost)
+  public boolean setEquipCost(int aEquipCost)
   {
     boolean wasSet = false;
-    cost = aCost;
+    equipCost = aEquipCost;
+    wasSet = true;
+    return wasSet;
+  }
+
+  public boolean setGuideCost(int aGuideCost)
+  {
+    boolean wasSet = false;
+    guideCost = aGuideCost;
     wasSet = true;
     return wasSet;
   }
@@ -140,9 +150,14 @@ public class TOTableAssignment
     return startToEnd;
   }
 
-  public int getCost()
+  public int getEquipCost()
   {
-    return cost;
+    return equipCost;
+  }
+
+  public int getGuideCost()
+  {
+    return guideCost;
   }
 
   public String getStatus()
@@ -172,7 +187,8 @@ public class TOTableAssignment
             "guideEmail" + ":" + getGuideEmail()+ "," +
             "guideName" + ":" + getGuideName()+ "," +
             "startToEnd" + ":" + getStartToEnd()+ "," +
-            "cost" + ":" + getCost()+ "," +
+            "equipCost" + ":" + getEquipCost()+ "," +
+            "guideCost" + ":" + getGuideCost()+ "," +
             "status" + ":" + getStatus()+ "," +
             "code" + ":" + getCode()+ "," +
             "refund" + ":" + getRefund()+ "]";

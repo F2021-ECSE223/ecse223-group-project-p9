@@ -8,7 +8,7 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet5Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet6Controller;
-import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
+import ca.mcgill.ecse.climbsafe.controller.TOBundle;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,7 +42,7 @@ public class UpdateEquipmentBundleController {
 	
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
-	private EquipmentBundle b = null;
+	private TOBundle b = null;
 	
 	/**
 	 * @author SeJong Yoo
@@ -81,7 +81,12 @@ public class UpdateEquipmentBundleController {
 	@FXML
 	public void equipmentBundleSearchClicked(ActionEvent event) {
 		if(equipmentBundleChoiceBox.getValue() != null) {
-			b = ClimbSafeController.getBundle(equipmentBundleChoiceBox.getValue());
+			List<TOBundle> myBundles = ClimbSafeController.getTOBundle();
+			for(TOBundle bundle: myBundles) {
+				if (bundle.getName() == equipmentBundleChoiceBox.getValue()) {
+					b = bundle;
+				}
+			}
 		}
 		if(b != null) {
 			itemNames = ViewUtils.getBundleItems(b.getName());

@@ -91,6 +91,16 @@ public class ClimbSafeController {
 	  return TOGuides;
 	  
   }
+  public static List<TOEquipment> getTOEquipment() {
+	  List<Equipment> equipment = climbSafe.getEquipment();
+	  List<TOEquipment> TOEquipment = new ArrayList<TOEquipment>();
+	  TOEquipment equip;
+	  for(Equipment e: equipment) {
+		  equip = new TOEquipment(e.getName(), e.getWeight(), e.getPricePerWeek());
+		  TOEquipment.add(equip);
+	  }
+	  return TOEquipment;
+  }
   
   public static List<String> getGuides(){
 	  List<Guide> guideList = climbSafe.getGuides();

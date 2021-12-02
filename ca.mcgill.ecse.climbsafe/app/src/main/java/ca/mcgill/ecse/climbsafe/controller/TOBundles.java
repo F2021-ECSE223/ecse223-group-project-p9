@@ -14,14 +14,14 @@ public class TOBundles
 
   //TOBundles Attributes
   private String name;
-  private String discount;
+  private int discount;
   private List<String> bundleItems;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOBundles(String aName, String aDiscount)
+  public TOBundles(String aName, int aDiscount)
   {
     name = aName;
     discount = aDiscount;
@@ -40,7 +40,7 @@ public class TOBundles
     return wasSet;
   }
 
-  public boolean setDiscount(String aDiscount)
+  public boolean setDiscount(int aDiscount)
   {
     boolean wasSet = false;
     discount = aDiscount;
@@ -67,7 +67,7 @@ public class TOBundles
     return name;
   }
 
-  public String getDiscount()
+  public int getDiscount()
   {
     return discount;
   }

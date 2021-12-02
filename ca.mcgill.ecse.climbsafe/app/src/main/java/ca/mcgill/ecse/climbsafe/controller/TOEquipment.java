@@ -13,14 +13,14 @@ public class TOEquipment
 
   //TOEquipment Attributes
   private String name;
-  private String weight;
-  private String pricePerWeek;
+  private int weight;
+  private int pricePerWeek;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOEquipment(String aName, String aWeight, String aPricePerWeek)
+  public TOEquipment(String aName, int aWeight, int aPricePerWeek)
   {
     name = aName;
     weight = aWeight;
@@ -39,7 +39,7 @@ public class TOEquipment
     return wasSet;
   }
 
-  public boolean setWeight(String aWeight)
+  public boolean setWeight(int aWeight)
   {
     boolean wasSet = false;
     weight = aWeight;
@@ -47,7 +47,7 @@ public class TOEquipment
     return wasSet;
   }
 
-  public boolean setPricePerWeek(String aPricePerWeek)
+  public boolean setPricePerWeek(int aPricePerWeek)
   {
     boolean wasSet = false;
     pricePerWeek = aPricePerWeek;
@@ -60,12 +60,12 @@ public class TOEquipment
     return name;
   }
 
-  public String getWeight()
+  public int getWeight()
   {
     return weight;
   }
 
-  public String getPricePerWeek()
+  public int getPricePerWeek()
   {
     return pricePerWeek;
   }

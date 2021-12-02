@@ -5,14 +5,14 @@ package ca.mcgill.ecse.climbsafe.controller;
 import java.util.*;
 
 // line 42 "../../../../../ClimbSafeTransferObjects.ump"
-public class TOBundles
+public class TOBundle
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //TOBundles Attributes
+  //TOBundle Attributes
   private String name;
   private int discount;
   private List<String> bundleItems;
@@ -21,7 +21,7 @@ public class TOBundles
   // CONSTRUCTOR
   //------------------------
 
-  public TOBundles(String aName, int aDiscount)
+  public TOBundle(String aName, int aDiscount)
   {
     name = aName;
     discount = aDiscount;

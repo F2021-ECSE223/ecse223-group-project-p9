@@ -4,18 +4,13 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
 import java.sql.Date;
 import java.time.*;
-import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-//import ca.mcgill.ecse.climbsafe.view.pages.;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ChoiceBox;
 
 public class SetupNMCController {

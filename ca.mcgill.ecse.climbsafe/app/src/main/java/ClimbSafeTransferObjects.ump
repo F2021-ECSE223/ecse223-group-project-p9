@@ -35,13 +35,13 @@ class TOGuide {
 
 class TOEquipment {
 	name;
-	weight;
-	pricePerWeek;
+	Integer weight;
+	Integer pricePerWeek;
 }
 
-class TOBundles {
+class TOBundle {
 	name;
-	discount;
+	Integer discount;
 	String[] bundleItems;
 }
 	

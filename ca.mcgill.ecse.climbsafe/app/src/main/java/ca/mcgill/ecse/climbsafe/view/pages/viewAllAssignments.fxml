@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ViewAllAssignmentsControllerPage">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ViewAllAssignmentsControllerPage">
    <children>
-      <ImageView fitHeight="549.0" fitWidth="945.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@WallpaperClimbsafe.png" />
          </image>
@@ -24,7 +24,8 @@
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="812.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="415.4000244140625" minWidth="10.0" prefWidth="184.80003662109374" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.2000030517578" minWidth="10.0" prefWidth="576.7999633789061" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="721.7141767229352" minWidth="10.0" prefWidth="597.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="706.2000030517578" minWidth="10.0" prefWidth="36.85714285714289" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="188.40001983642577" minHeight="10.0" prefHeight="149.20000762939452" vgrow="SOMETIMES" />
@@ -32,29 +33,29 @@
           <RowConstraints maxHeight="122.60003662109375" minHeight="10.0" prefHeight="89.60004882812501" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <TableView fx:id="assignmentTable" prefHeight="258.0" prefWidth="754.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+            <TableView fx:id="assignmentTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="776.0" GridPane.rowIndex="1">
               <columns>
-                <TableColumn fx:id="memberEmailColumn" prefWidth="99.99999701976776" text="Member Email" />
-                <TableColumn fx:id="memberNameColumn" prefWidth="95.99998474121094" text="Member Name" />
-                  <TableColumn fx:id="guideEmailColumn" prefWidth="97.5999755859375" text="Guide Email&#10;" />
-                  <TableColumn fx:id="guideNameColumn" prefWidth="106.4000244140625" text="Guide Name" />
-                  <TableColumn fx:id="startToEndColumn" prefWidth="74.4000244140625" text=" Start - End&#10;     Week" />
-                  <TableColumn fx:id="equipCostColumn" prefWidth="71.19998168945312" text="Equipment&#10;    Cost" />
-                  <TableColumn fx:id="guideCostColumn" prefWidth="63.199951171875" text="Guide&#10; Cost" />
-                  <TableColumn fx:id="codeColumn" prefWidth="58.39996337890625" text="Payment&#10;  Code" />
-                  <TableColumn fx:id="refundColumn" prefWidth="53.5999755859375" text="Refund" />
-                  <TableColumn fx:id="tripStatusColumn" prefWidth="83.2000732421875" text="Trip Status" />
+                <TableColumn fx:id="memberEmailColumn" prefWidth="103.9999989271164" text="Member Email" />
+                <TableColumn fx:id="memberNameColumn" prefWidth="91.99996185302734" text="Member Name" />
+                  <TableColumn fx:id="guideEmailColumn" prefWidth="84.00003051757812" text="Guide Email&#10;" />
+                  <TableColumn fx:id="guideNameColumn" prefWidth="83.4285888671875" text="Guide Name" />
+                  <TableColumn fx:id="startToEndColumn" prefWidth="80.5714111328125" text=" Start - End&#10;     Week" />
+                  <TableColumn fx:id="equipCostColumn" prefWidth="75.42855834960938" text="Equipment&#10;    Cost" />
+                  <TableColumn fx:id="guideCostColumn" prefWidth="60.00006103515625" text="Guide&#10; Cost" />
+                  <TableColumn fx:id="codeColumn" prefWidth="70.2857666015625" text="Payment&#10;  Code" />
+                  <TableColumn fx:id="refundColumn" prefWidth="53.1427001953125" text="Refund" />
+                  <TableColumn fx:id="tripStatusColumn" prefWidth="69.7142333984375" text="Trip Status" />
               </columns>
                <GridPane.margin>
                   <Insets left="2.0" />
                </GridPane.margin>
             </TableView>
-            <Label text="Assignment Initiation and View" textFill="WHITE" GridPane.columnSpan="2" GridPane.valignment="BOTTOM">
+            <Label text="  Assignment Initiation and View" textFill="WHITE" GridPane.columnSpan="2" GridPane.valignment="CENTER">
                <font>
                   <Font size="34.0" />
                </font>
                <GridPane.margin>
-                  <Insets bottom="15.0" left="7.0" />
+                  <Insets bottom="15.0" left="7.0" top="50.0" />
                </GridPane.margin>
             </Label>
             <Button fx:id="initiatebutton" mnemonicParsing="false" onAction="#initiateClicked" prefHeight="51.0" prefWidth="132.0" text="Initiate Assignment" textFill="#2fc1ff" GridPane.rowIndex="2">
@@ -67,7 +68,6 @@
                   <Insets right="6.0" />
                </GridPane.margin>
             </Button>
-
             <Text fx:id="assignmentCompletionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.73674392700195" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="150.0" />

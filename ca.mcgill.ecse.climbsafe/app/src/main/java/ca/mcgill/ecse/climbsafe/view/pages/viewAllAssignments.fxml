@@ -14,7 +14,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="812.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ViewAllAssignmentsControllerPage">
    <children>
       <ImageView fitHeight="549.0" fitWidth="945.0" pickOnBounds="true" preserveRatio="true">
@@ -67,7 +66,7 @@
                   <Insets right="6.0" />
                </GridPane.margin>
             </Button>
-            <Text fx:id="assignmentCompletionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.73674392700195" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Text fx:id="assignmentCompletionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="413.73674392700195" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="10.0" left="6.0" />
                </GridPane.margin>

@@ -45,21 +45,31 @@ public class SetupNMCController {
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
-		int nrWeeks =  Integer.parseInt(numWeeksChoiceBox.getValue().toString());
-		int priceOfGuidePerWeek = Integer.parseInt(weeklyPriceGuideChoiceBox.getValue().toString());
-		LocalDate d = dateBox.getValue();
-		Date date = Date.valueOf(d);
-		try {
-			if(successful(() -> ClimbSafeFeatureSet1Controller.setup(date,  nrWeeks, priceOfGuidePerWeek))) {
-				numWeeksChoiceBox.setValue(null);
-				weeklyPriceGuideChoiceBox.setValue(null);
-				ClimbSafeFxmlView.getInstance().refresh();
+		int nrWeeks =  getNumberFromField(numWeeksChoiceBox);
+		int priceOfGuidePerWeek = getNumberFromField(weeklyPriceGuideChoiceBox);
+		if(nrWeeks != -1 &&  priceOfGuidePerWeek != -1 && dateBox.getValue() != null) {
+			LocalDate d = dateBox.getValue();
+			Date date = Date.valueOf(d);
+			try {
+				if(successful(() -> ClimbSafeFeatureSet1Controller.setup(date,  nrWeeks, priceOfGuidePerWeek))) {
+					numWeeksChoiceBox.setValue(null);
+					weeklyPriceGuideChoiceBox.setValue(null);
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
 		}
-
 		
+	}
+	
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
+	private int getNumberFromField(ChoiceBox<Integer> field) {
+		if(field.getValue() != null) {
+			return field.getValue();
+		}else {
+			return -1;
+		}
 	}
 }
  

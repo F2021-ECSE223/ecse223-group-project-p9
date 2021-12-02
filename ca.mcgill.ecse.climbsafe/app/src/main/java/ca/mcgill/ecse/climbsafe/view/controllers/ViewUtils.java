@@ -83,6 +83,26 @@ public class ViewUtils {
 		}
 		return FXCollections.observableList(itemsAndBundles);
 	}
+	
+	public static ObservableList<String> getBundles(){
+		List<String> bundles = ClimbSafeController.getBundles();
+		return FXCollections.observableList(bundles);
+	}
+	
+	public static ObservableList<String> getBundleItemsAndQuantity(String bundleName){
+		List<String> bundles = ClimbSafeController.getBundleItemsAndQuantity(bundleName);
+		return FXCollections.observableList(bundles);
+	}
+	
+	public static ObservableList<String> getBundleItems(String bundleName){
+		List<String> bundles = ClimbSafeController.getBundleItems(bundleName);
+		return FXCollections.observableList(bundles);
+	}
+	
+	public static ObservableList<Integer> getBundleQuantity(String bundleName){
+		List<Integer> bundles = ClimbSafeController.getBundleQuantity(bundleName);
+		return FXCollections.observableList(bundles);
+	}
 
 	public static ObservableList<Integer> getNrWeeks(){
 		List<Integer> weeksInTotal = ClimbSafeController.getNrWeeks();
@@ -122,6 +142,13 @@ public class ViewUtils {
 		  List<Integer> weeklyPricesGuide = ClimbSafeController.getPriceOfGuidePerWeek();
 		  return FXCollections.observableList(weeklyPricesGuide);
 	  }
+	public static ObservableList<Integer> getQuantity(){
+		List<Integer> quantity = new ArrayList<Integer>();
+		for (int i=1; i<=99; i++)
+			quantity.add(i);
+		return FXCollections.observableList(quantity);
+	}
+	
 }
 
 

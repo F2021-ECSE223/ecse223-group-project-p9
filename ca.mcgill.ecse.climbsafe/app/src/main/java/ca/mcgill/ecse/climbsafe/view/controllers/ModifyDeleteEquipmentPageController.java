@@ -2,9 +2,12 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.util.List;
+
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet4Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet6Controller;
+import ca.mcgill.ecse.climbsafe.controller.TOEquipment;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
@@ -69,10 +72,14 @@ public class ModifyDeleteEquipmentPageController {
 	
 	@FXML
 	public void equipmentSearchClicked(ActionEvent event) {
-		Equipment e = ClimbSafeController.getEquipment(equipmentChoiceBox.getValue());
-		newNameModifyEquipment.setText(e.getName());
-		weightModifyEquipment.setText(String.valueOf(e.getWeight()));
-		priceModifyEquipment.setText(String.valueOf(e.getPricePerWeek()));
+		List<TOEquipment> e = ClimbSafeController.getTOEquipment();
+		for (TOEquipment myTOEquipment : e) {
+			if (myTOEquipment.getName() == equipmentChoiceBox.getValue()) {
+				newNameModifyEquipment.setText(myTOEquipment.getName());
+				weightModifyEquipment.setText(String.valueOf(myTOEquipment.getWeight()));
+				priceModifyEquipment.setText(String.valueOf(myTOEquipment.getPricePerWeek()));
+			}
+		}
 	}
 	
 	/**

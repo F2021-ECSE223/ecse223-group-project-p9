@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,10 +13,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ViewAssignmentPageController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ViewAssignmentPageController">
    <children>
-      <GridPane>
+      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@WallpaperClimbsafe.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="-8.0" layoutY="70.0" prefHeight="485.0" prefWidth="732.0">
         <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" maxWidth="114.39996337890625" minWidth="0.0" prefWidth="10.0" />
             <ColumnConstraints hgrow="ALWAYS" maxWidth="240.0" minWidth="10.0" prefWidth="194.0000244140625" />
@@ -23,28 +29,28 @@
           <ColumnConstraints hgrow="ALWAYS" maxWidth="106.40002441406244" minWidth="10.0" prefWidth="10.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints vgrow="ALWAYS" />
-            <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="30.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="52.85715593610491" minHeight="46.000008719308035" prefHeight="52.85715593610491" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="55.42857142857144" minHeight="12.857164655412952" prefHeight="18.57141549246652" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="59.9999782017299" minHeight="0.0" prefHeight="33.57144601004464" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="60.57145036969865" minHeight="30.0" prefHeight="54.142839704241084" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="55.42854963030135" minHeight="30.0" prefHeight="36.57140241350447" vgrow="ALWAYS" />
             <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="25.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="144.8" minHeight="32.79998168945313" prefHeight="104.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="36.00000871930803" minHeight="30.0" prefHeight="36.00000871930803" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="30.285723005022305" minHeight="24.571419852120528" prefHeight="30.285723005022305" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="31.428606305803555" minHeight="24.571419852120528" prefHeight="31.428606305803555" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="30.285749162946445" minHeight="23.428536551339278" prefHeight="30.285749162946445" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="30.0" minHeight="23.428536551339278" prefHeight="28.571393694196445" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="144.8" minHeight="32.79998168945313" prefHeight="98.857177734375" vgrow="ALWAYS" />
           <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
           <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="NEVER" />
         </rowConstraints>
          <children>
-            <Label text="Assignment View" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+            <Label text="Assignment View" textFill="WHITE" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="LEFT" GridPane.valignment="TOP">
                <font>
-                  <Font size="31.0" />
+                  <Font size="37.0" />
                </font>
             </Label>
-            <Label text="Member Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <Label text="Member Name:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -52,7 +58,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Guide Name:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+            <Label text="Guide Name:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -60,7 +66,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Start and End Week:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
+            <Label text="Start and End Week:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -68,7 +74,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Trip Status:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
+            <Label text="Trip Status:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -76,7 +82,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Authorization Code:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
+            <Label text="Authorization Code:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -84,7 +90,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Refund Amount" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
+            <Label text="Refund Amount" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -92,7 +98,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Total Cost:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
+            <Label text="Total Cost:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -100,12 +106,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="viewButton" mnemonicParsing="false" onAction="#viewClicked" text="View" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+            <Button fx:id="viewButton" mnemonicParsing="false" onAction="#viewClicked" text="View" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets bottom="30.0" />
                </GridPane.margin>
             </Button>
-            <Label text="Member E-mail:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <Label text="Member E-mail:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -113,7 +119,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Guide E-mail:" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+            <Label text="Guide E-mail:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -172,7 +178,7 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="initiateAssignmentsButton" mnemonicParsing="false" onAction="#initiateAssignmentClicked" prefHeight="50.0" prefWidth="196.0" text="Initiate Assignments" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <Button fx:id="initiateAssignmentsButton" mnemonicParsing="false" onAction="#initiateAssignmentClicked" prefHeight="50.0" prefWidth="196.0" text="Initiate Assignments" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

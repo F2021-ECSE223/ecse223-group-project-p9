@@ -46,6 +46,44 @@ public class ClimbSafeController {
 	  }
 	  return bundleAndEquipments;
   }
+  
+  public static EquipmentBundle getBundle(String bundleName){
+	  bundleName = bundleName.split(":")[0];
+	  List<EquipmentBundle> bundleList = climbSafe.getBundles();
+	  for(int i=0; i<bundleList.size(); i++) {
+		  if(bundleList.get(i).getName().equals(bundleName)) {
+			  return bundleList.get(i);
+		  }
+	  }
+	  return null;
+  }
+  
+  public static List<String> getBundleItemsAndQuantity(String bundleName){
+	  List<String> itemsInBundle = new ArrayList<>();
+	  List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
+	  for(int i=0; i<bundleItems.size(); i++) {
+		  itemsInBundle.add(bundleItems.get(i).getQuantity() + " " + bundleItems.get(i).getEquipment().getName());
+	  }
+	return itemsInBundle;
+  }
+  
+  public static List<String> getBundleItems(String bundleName){
+	  List<String> itemsInBundle = new ArrayList<>();
+	  List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
+	  for(int i=0; i<bundleItems.size(); i++) {
+		  itemsInBundle.add(bundleItems.get(i).getEquipment().getName());
+	  }
+	return itemsInBundle;
+  }
+  
+  public static List<Integer> getBundleQuantity(String bundleName){
+	  List<Integer> itemsInBundle = new ArrayList<>();
+	  List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
+	  for(int i=0; i<bundleItems.size(); i++) {
+		  itemsInBundle.add(bundleItems.get(i).getQuantity());
+	  }
+	return itemsInBundle;
+  }
 
   public static List<Integer> getNrWeeks(){
 	  int nrWeeksTotal = climbSafe.getNrWeeks();

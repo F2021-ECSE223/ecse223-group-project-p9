@@ -70,26 +70,35 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <fx:include layoutX="20.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" source="pages/ViewAssignmentPage.fxml" />
+                  <fx:include layoutX="20.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" source="pages/ViewAssignmentPage.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </content>
       </Tab>
       <Tab text="Trip Management">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="541.0" prefWidth="873.0">
                <children>
-                  <TabPane prefHeight="470.0" prefWidth="677.0" tabClosingPolicy="UNAVAILABLE">
+                  <TabPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="552.0" prefWidth="811.0" tabClosingPolicy="UNAVAILABLE">
                     <tabs>
                       <Tab text="Pay For Trip">
                         <content>
-                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="447.0" prefWidth="678.0">
+                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="501.0" prefWidth="811.0">
                                  <children>
-                                    <fx:include source="pages/PayForMemberTripPage.fxml" />
+                                    <fx:include minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="811.0" source="pages/PayForMemberTripPage.fxml" />
                                  </children>
                               </AnchorPane>
                         </content>
                       </Tab>
+                        <Tab text="Manage Trip Status">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <fx:include source="pages/StartFinishCancelTrip.fxml" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
                     </tabs>
                   </TabPane>
                </children>
@@ -126,13 +135,30 @@
             </AnchorPane>
          </content>
       </Tab>
-      <Tab text="StartFinishCancel">
+      <Tab text="Bundle">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <fx:include source="pages/StartFinishCancelTrip.fxml" />
-               </children>
-            </AnchorPane>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Register">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <fx:include source="pages/AddEquipmentBundle.fxml" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Update">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <fx:include source="pages/UpdateEquipmentBundle.fxml" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
          </content>
       </Tab>
   </tabs>

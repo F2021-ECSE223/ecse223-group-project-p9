@@ -25,7 +25,7 @@ public class ClimbSafeFeatureSet6Controller {
 	  try {
 		boolean found = false;
 		int index = 0;
-		while(!found && index<equipment.size()) {\
+		while(!found && index<equipment.size()) {
 			if(equipment.get(index).getName().equals(name)) {
 				found = true;	
 			}else {

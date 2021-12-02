@@ -93,7 +93,7 @@
             </Label>
             <CheckBox fx:id="hotelRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="12" />
             <PasswordField fx:id="passwordTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
-            <Button fx:id="registerMemberRegisterButton" mnemonicParsing="false" onAction="#registerMemberRegisterClicked" text="Register" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
+            <Button fx:id="registerMemberRegisterButton" mnemonicParsing="false" onAction="#registerMemberRegisterClicked" text="Register" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
             <Label contentDisplay="TOP" text="Register Member" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
                <font>
                   <Font size="37.0" />

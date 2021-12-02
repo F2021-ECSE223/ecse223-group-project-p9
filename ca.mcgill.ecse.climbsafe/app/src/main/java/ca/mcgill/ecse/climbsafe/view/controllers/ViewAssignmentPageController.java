@@ -2,7 +2,6 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.*;

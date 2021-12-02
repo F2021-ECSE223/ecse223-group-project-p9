@@ -7,7 +7,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 
 public class StartFinishCancelTripController {
 
@@ -37,7 +36,7 @@ public class StartFinishCancelTripController {
 	}
 
 	public void startTripsForWeek(ActionEvent event) {
-		int nrWeeks =  Integer.parseInt(nrWeeksChoiceBox.getValue().toString());
+		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		try {
 			if(successful(() ->AssignmentController.startTrips(nrWeeks))) {
 				nrWeeksChoiceBox.setValue(null);
@@ -51,26 +50,38 @@ public class StartFinishCancelTripController {
 
 	public void finishMemberTrip(ActionEvent event) {
 		String email = memberFinishChoiceBox.getValue();
-		try {
-			if(successful(() -> AssignmentController.finishTrip(email))) {
-				memberFinishChoiceBox.setValue(null);
-				ClimbSafeFxmlView.getInstance().refresh();
+		if(email != null) {
+			try {
+				if(successful(() -> AssignmentController.finishTrip(email))) {
+					memberFinishChoiceBox.setValue(null);
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
 		}
-
 	}
 
 	public void cancelMemberTrip(ActionEvent event) {
 		String email = memberCancelChoiceBox.getValue();
-		try {
-			if(successful(() -> AssignmentController.cancelTrip(email))) {
-				memberCancelChoiceBox.setValue(null);
-				ClimbSafeFxmlView.getInstance().refresh();
+		if(email != null) {
+			try {
+				if(successful(() -> AssignmentController.cancelTrip(email))) {
+					memberCancelChoiceBox.setValue(null);
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
+		}
+	}
+	
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
+	private int getNumberFromField(ChoiceBox<Integer> field) {
+		if(field.getValue() != null) {
+			return field.getValue();
+		}else {
+			return -1;
 		}
 	}
 }

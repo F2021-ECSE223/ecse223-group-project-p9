@@ -63,6 +63,35 @@ public class ClimbSafeController {
 	  return memberListString;
   }
   
+  public static List<TOMember> getTOMembers() {
+	  List<Member> members = climbSafe.getMembers();
+	  List<TOMember> TOMembers = new ArrayList<TOMember>();
+	  TOMember mem;
+	  List<BookedItem> bookedItems;
+	  for(Member m: members) {
+		  mem = new TOMember(m.getEmail(), m.getName(), m.getEmergencyContact(), m.getPassword(), m.getNrWeeks(), m.getGuideRequired(), m.getHotelRequired());
+		  bookedItems = m.getBookedItems();
+		  for(BookedItem b: bookedItems) {
+			  mem.addBookedItem(b.toString());
+		  }
+		  TOMembers.add(mem);
+	  }
+	  return TOMembers;
+	  
+  }
+  public static List<TOGuide> getTOGuides() {
+	  List<Guide> guides = climbSafe.getGuides();
+	  List<TOGuide> TOGuides = new ArrayList<TOGuide>();
+	  TOGuide guide;
+	  for(Guide g: guides) {
+		  guide = new TOGuide(g.getEmail(), g.getName(), g.getEmergencyContact(), g.getPassword());
+		  
+		  TOGuides.add(guide);
+	  }
+	  return TOGuides;
+	  
+  }
+  
   public static List<String> getGuides(){
 	  List<Guide> guideList = climbSafe.getGuides();
 	  List<String> guideListString = new ArrayList<>();

@@ -15,24 +15,22 @@ public class TOMember
   //TOMember Attributes
   private String email;
   private String name;
-  private String emergencyContactName;
-  private String emergencyContactEmail;
+  private String emergencyContact;
   private String password;
-  private String nrWeeks;
-  private String guideRequired;
-  private String hotelRequired;
+  private int nrWeeks;
+  private boolean guideRequired;
+  private boolean hotelRequired;
   private List<String> bookedItems;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOMember(String aEmail, String aName, String aEmergencyContactName, String aEmergencyContactEmail, String aPassword, String aNrWeeks, String aGuideRequired, String aHotelRequired)
+  public TOMember(String aEmail, String aName, String aEmergencyContact, String aPassword, int aNrWeeks, boolean aGuideRequired, boolean aHotelRequired)
   {
     email = aEmail;
     name = aName;
-    emergencyContactName = aEmergencyContactName;
-    emergencyContactEmail = aEmergencyContactEmail;
+    emergencyContact = aEmergencyContact;
     password = aPassword;
     nrWeeks = aNrWeeks;
     guideRequired = aGuideRequired;
@@ -60,18 +58,10 @@ public class TOMember
     return wasSet;
   }
 
-  public boolean setEmergencyContactName(String aEmergencyContactName)
+  public boolean setEmergencyContact(String aEmergencyContact)
   {
     boolean wasSet = false;
-    emergencyContactName = aEmergencyContactName;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setEmergencyContactEmail(String aEmergencyContactEmail)
-  {
-    boolean wasSet = false;
-    emergencyContactEmail = aEmergencyContactEmail;
+    emergencyContact = aEmergencyContact;
     wasSet = true;
     return wasSet;
   }
@@ -84,7 +74,7 @@ public class TOMember
     return wasSet;
   }
 
-  public boolean setNrWeeks(String aNrWeeks)
+  public boolean setNrWeeks(int aNrWeeks)
   {
     boolean wasSet = false;
     nrWeeks = aNrWeeks;
@@ -92,7 +82,7 @@ public class TOMember
     return wasSet;
   }
 
-  public boolean setGuideRequired(String aGuideRequired)
+  public boolean setGuideRequired(boolean aGuideRequired)
   {
     boolean wasSet = false;
     guideRequired = aGuideRequired;
@@ -100,7 +90,7 @@ public class TOMember
     return wasSet;
   }
 
-  public boolean setHotelRequired(String aHotelRequired)
+  public boolean setHotelRequired(boolean aHotelRequired)
   {
     boolean wasSet = false;
     hotelRequired = aHotelRequired;
@@ -132,14 +122,9 @@ public class TOMember
     return name;
   }
 
-  public String getEmergencyContactName()
+  public String getEmergencyContact()
   {
-    return emergencyContactName;
-  }
-
-  public String getEmergencyContactEmail()
-  {
-    return emergencyContactEmail;
+    return emergencyContact;
   }
 
   public String getPassword()
@@ -147,17 +132,17 @@ public class TOMember
     return password;
   }
 
-  public String getNrWeeks()
+  public int getNrWeeks()
   {
     return nrWeeks;
   }
 
-  public String getGuideRequired()
+  public boolean getGuideRequired()
   {
     return guideRequired;
   }
 
-  public String getHotelRequired()
+  public boolean getHotelRequired()
   {
     return hotelRequired;
   }
@@ -191,6 +176,16 @@ public class TOMember
     int index = bookedItems.indexOf(aBookedItem);
     return index;
   }
+  /* Code from template attribute_IsBoolean */
+  public boolean isGuideRequired()
+  {
+    return guideRequired;
+  }
+  /* Code from template attribute_IsBoolean */
+  public boolean isHotelRequired()
+  {
+    return hotelRequired;
+  }
 
   public void delete()
   {}
@@ -201,8 +196,7 @@ public class TOMember
     return super.toString() + "["+
             "email" + ":" + getEmail()+ "," +
             "name" + ":" + getName()+ "," +
-            "emergencyContactName" + ":" + getEmergencyContactName()+ "," +
-            "emergencyContactEmail" + ":" + getEmergencyContactEmail()+ "," +
+            "emergencyContact" + ":" + getEmergencyContact()+ "," +
             "password" + ":" + getPassword()+ "," +
             "nrWeeks" + ":" + getNrWeeks()+ "," +
             "guideRequired" + ":" + getGuideRequired()+ "," +

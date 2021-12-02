@@ -61,11 +61,15 @@ public class ViewAllAssignmentsControllerPage {
 
 
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
-	  
 	  if(!(assignments.isEmpty())) {
-			 assignmentCompletionText.setText("Assignments initialized.");
+		  if(assignments.size()==ClimbSafeController.getTOMembers().size()) {
+			  assignmentCompletionText.setText("Assignments initialized.");
+		  }else {
+			assignmentCompletionText.setText("Assignments initialized (incomplete for some members).");
+		  }
+			 
 	  }else {
-			 assignmentCompletionText.setText("Please initialize assignments before viewing.");
+			 assignmentCompletionText.setText("Please initiate assignments before viewing.");
 	  }
 	}
 
@@ -94,6 +98,10 @@ public class ViewAllAssignmentsControllerPage {
 				
 
 			} catch (RuntimeException e) {
+				String error = e.getMessage();
+				if(error.contains("all members")) {
+					assignmentCompletionText.setText("Assignments initialized (incomplete for some members).");
+				}
 				ViewUtils.showError(e.getMessage());
 			}
 	  

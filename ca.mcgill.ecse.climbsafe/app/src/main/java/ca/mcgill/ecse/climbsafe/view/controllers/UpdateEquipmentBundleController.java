@@ -80,7 +80,9 @@ public class UpdateEquipmentBundleController {
 	
 	@FXML
 	public void equipmentBundleSearchClicked(ActionEvent event) {
-		b = ClimbSafeController.getBundle(equipmentBundleChoiceBox.getValue());
+		if(equipmentBundleChoiceBox.getValue() != null) {
+			b = ClimbSafeController.getBundle(equipmentBundleChoiceBox.getValue());
+		}
 		if(b != null) {
 			itemNames = ViewUtils.getBundleItems(b.getName());
 			itemQuantities = ViewUtils.getBundleQuantity(b.getName());
@@ -142,20 +144,24 @@ public class UpdateEquipmentBundleController {
 	public void modifyEquipmentBundleClicked(ActionEvent event) {
 		String oldName = equipmentBundleChoiceBox.getValue();
 		String newName = bundleNameTextField.getText();
-		int discount = Integer.parseInt(discountTextField.getText());
-		try {
-			if(successful(() -> ClimbSafeFeatureSet5Controller.updateEquipmentBundle(oldName, newName, discount, itemNames, itemQuantities))) {
-				equipmentBundleChoiceBox.setValue(null);
-				bundleNameTextField.setText("");
-				itemChoiceBox.setValue(null);
-				itemQuantitySpinner.setValueFactory(null);
-				itemsInBundleListView.setItems(null);
-				discountTextField.setText("");
-				ClimbSafeFxmlView.getInstance().refresh();
+//		int discount = Integer.parseInt(discountTextField.getText());
+		int discount = getNumberFromField(discountTextField);
+		if(oldName != "" && newName != "" && discount != -1) {
+			try {
+				if(successful(() -> ClimbSafeFeatureSet5Controller.updateEquipmentBundle(oldName, newName, discount, itemNames, itemQuantities))) {
+					equipmentBundleChoiceBox.setValue(null);
+					bundleNameTextField.setText("");
+					itemChoiceBox.setValue(null);
+					itemQuantitySpinner.setValueFactory(null);
+					itemsInBundleListView.setItems(null);
+					discountTextField.setText("");
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
 		}
+		
 	}
 	
 	@FXML
@@ -177,6 +183,15 @@ public class UpdateEquipmentBundleController {
 			ViewUtils.showError(e.getMessage());
 		}
 		
+	}
+	
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
+	private int getNumberFromField(TextField field) {
+		if(field.getText() != "") {
+			return Integer.parseInt(field.getText());
+		}else {
+			return -1;
+		}
 	}
 			
 

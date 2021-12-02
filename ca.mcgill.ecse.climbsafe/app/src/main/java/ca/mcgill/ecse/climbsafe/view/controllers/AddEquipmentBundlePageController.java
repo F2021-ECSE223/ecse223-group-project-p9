@@ -31,7 +31,6 @@ public class AddEquipmentBundlePageController {
 
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
-//	ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
 
 	public void initialize() {
 		nameTextField.setText("");
@@ -42,7 +41,7 @@ public class AddEquipmentBundlePageController {
 		});
 		itemQuantityChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			itemQuantityChoiceBox.setItems(ViewUtils.getQuantity());
-			itemQuantityChoiceBox.setValue(null);
+			itemQuantityChoiceBox.setValue(0);
 		});
 
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNameChoiceBox);
@@ -50,22 +49,6 @@ public class AddEquipmentBundlePageController {
 
 	}
 
-//	public void addItemToBundle(ActionEvent event) {
-//		
-//		String itemName = itemNameChoiceBox.getValue();
-//		Integer quantity = itemQuantityChoiceBox.getValue();
-//		itemNames.add(itemName);
-//		itemQuantities.add(quantity);
-//		itemNameAndQuantityList.add(quantity + " " + itemName);
-//		
-//		
-//		itemsInBundleListView.setItems(itemNameAndQuantityList);
-//		
-//		itemNameChoiceBox.setValue(null);
-//		itemQuantityChoiceBox.setValue(null);
-//		ClimbSafeFxmlView.getInstance().refresh();
-//	}
-//	
 	//Event Listener on Button[#addEditItemClicked].onAction
 	ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
 		@FXML
@@ -104,7 +87,7 @@ public class AddEquipmentBundlePageController {
 					itemNameAndQuantityList.add(itemQuantity + " " + itemName);
 				}
 				itemNameChoiceBox.setValue(null);
-				itemQuantityChoiceBox.setValue(null);
+				itemQuantityChoiceBox.setValue(0);
 			}
 			itemsInBundleListView.setItems(itemNameAndQuantityList);
 			ClimbSafeFxmlView.getInstance().refresh();
@@ -113,22 +96,34 @@ public class AddEquipmentBundlePageController {
 	@FXML
 	public void addEquipmentBundle(ActionEvent event) {
 		String name = nameTextField.getText(); 
-		int discount = Integer.parseInt(discountTextField.getText());
-		try {
-			if (successful(() -> ClimbSafeFeatureSet5Controller.addEquipmentBundle(name, discount, itemNames, itemQuantities)) ) {
-				nameTextField.setText("");
-				discountTextField.setText("");
-				itemNameChoiceBox.setValue(null);
-				itemQuantityChoiceBox.setValue(null);
-				ClimbSafeFxmlView.getInstance().refresh();
-				itemsInBundleListView.setItems(null);
-			}	
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
+		int discount = getNumberFromField(discountTextField);
+		
+		if(name!="" && discount != -1) {
+			try {
+				if (successful(() -> ClimbSafeFeatureSet5Controller.addEquipmentBundle(name, discount, itemNames, itemQuantities)) ) {
+					nameTextField.setText("");
+					discountTextField.setText("");
+					itemNameChoiceBox.setValue(null);
+					itemQuantityChoiceBox.setValue(0);
+					ClimbSafeFxmlView.getInstance().refresh();
+					itemsInBundleListView.setItems(null);
+				}	
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
+			}
 		}
+		
 
 	}
-
+	
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
+	private int getNumberFromField(TextField field) {
+		if(field.getText() != "") {
+			return Integer.parseInt(field.getText());
+		}else {
+			return -1;
+		}
+	}
 	
 }
 

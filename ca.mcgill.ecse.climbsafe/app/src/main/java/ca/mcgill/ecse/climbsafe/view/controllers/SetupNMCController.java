@@ -11,44 +11,52 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.ChoiceBox;
 
 public class SetupNMCController {
 
-	@FXML private ChoiceBox<Integer> numWeeksChoiceBox;
-	@FXML private ChoiceBox<Integer> weeklyPriceGuideChoiceBox;
+	@FXML private Spinner<Integer> nrWeeksSpinner;
+	@FXML private Spinner<Integer> weeklyPriceSpinner;
 	@FXML private DatePicker dateBox;
 	@FXML private Button next;
 	
 	@FXML
 	public void initialize() {
-		numWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-			numWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
-			numWeeksChoiceBox.setValue(null);
+		nrWeeksSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 52;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			nrWeeksSpinner.setValueFactory(valueFactory);
 		});
-		weeklyPriceGuideChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-			weeklyPriceGuideChoiceBox.setItems(ViewUtils.getWeeklyPriceGuide());
-			weeklyPriceGuideChoiceBox.setValue(null);
+		weeklyPriceSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 9999;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			weeklyPriceSpinner.setValueFactory(valueFactory);
 		});
 	  // set dateBox to be not editable so that the user must choose from the calendar
 	  dateBox.setEditable(false);
 
-	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(numWeeksChoiceBox);
-	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(weeklyPriceGuideChoiceBox);
+	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksSpinner);
+	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(weeklyPriceSpinner);
 	}
 	
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
-		int nrWeeks =  getNumberFromField(numWeeksChoiceBox);
-		int priceOfGuidePerWeek = getNumberFromField(weeklyPriceGuideChoiceBox);
-		if(nrWeeks != -1 &&  priceOfGuidePerWeek != -1 && dateBox.getValue() != null) {
+		int nrWeeks =  nrWeeksSpinner.getValue();
+		int priceOfGuidePerWeek = weeklyPriceSpinner.getValue();
+		if(nrWeeks != 0 &&  priceOfGuidePerWeek != 0 && dateBox.getValue() != null) {
 			LocalDate d = dateBox.getValue();
 			Date date = Date.valueOf(d);
 			try {
 				if(successful(() -> ClimbSafeFeatureSet1Controller.setup(date,  nrWeeks, priceOfGuidePerWeek))) {
-					numWeeksChoiceBox.setValue(null);
-					weeklyPriceGuideChoiceBox.setValue(null);
+					nrWeeksSpinner.getValueFactory().setValue(0);
+					weeklyPriceSpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
 				}
 			} catch (RuntimeException e) {
@@ -58,13 +66,5 @@ public class SetupNMCController {
 		
 	}
 	
-	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
-	private int getNumberFromField(ChoiceBox<Integer> field) {
-		if(field.getValue() != null) {
-			return field.getValue();
-		}else {
-			return -1;
-		}
-	}
 }
  

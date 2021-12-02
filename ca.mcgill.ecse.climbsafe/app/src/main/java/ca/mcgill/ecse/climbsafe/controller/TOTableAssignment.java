@@ -3,44 +3,40 @@
 
 package ca.mcgill.ecse.climbsafe.controller;
 
-// line 3 "../../../../../ClimbSafeTransferObjects.ump"
-public class TOAssignment
+// line 48 "../../../../../ClimbSafeTransferObjects.ump"
+public class TOTableAssignment
 {
 
   //------------------------
   // MEMBER VARIABLES
   //------------------------
 
-  //TOAssignment Attributes
+  //TOTableAssignment Attributes
   private String memberEmail;
   private String memberName;
   private String guideEmail;
   private String guideName;
-  private int startWeek;
-  private int endWeek;
-  private int totalCostForGuide;
-  private int totalCostForEquipment;
+  private String startToEnd;
+  private int cost;
   private String status;
-  private String authorizationCode;
-  private int refundedPercentageAmount;
+  private String code;
+  private String refund;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, int aStartWeek, int aEndWeek, int aTotalCostForGuide, int aTotalCostForEquipment, String aStatus, String aAuthorizationCode, int aRefundedPercentageAmount)
+  public TOTableAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, String aStartToEnd, int aCost, String aStatus, String aCode, String aRefund)
   {
     memberEmail = aMemberEmail;
     memberName = aMemberName;
     guideEmail = aGuideEmail;
     guideName = aGuideName;
-    startWeek = aStartWeek;
-    endWeek = aEndWeek;
-    totalCostForGuide = aTotalCostForGuide;
-    totalCostForEquipment = aTotalCostForEquipment;
+    startToEnd = aStartToEnd;
+    cost = aCost;
     status = aStatus;
-    authorizationCode = aAuthorizationCode;
-    refundedPercentageAmount = aRefundedPercentageAmount;
+    code = aCode;
+    refund = aRefund;
   }
 
   //------------------------
@@ -79,34 +75,18 @@ public class TOAssignment
     return wasSet;
   }
 
-  public boolean setStartWeek(int aStartWeek)
+  public boolean setStartToEnd(String aStartToEnd)
   {
     boolean wasSet = false;
-    startWeek = aStartWeek;
+    startToEnd = aStartToEnd;
     wasSet = true;
     return wasSet;
   }
 
-  public boolean setEndWeek(int aEndWeek)
+  public boolean setCost(int aCost)
   {
     boolean wasSet = false;
-    endWeek = aEndWeek;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setTotalCostForGuide(int aTotalCostForGuide)
-  {
-    boolean wasSet = false;
-    totalCostForGuide = aTotalCostForGuide;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setTotalCostForEquipment(int aTotalCostForEquipment)
-  {
-    boolean wasSet = false;
-    totalCostForEquipment = aTotalCostForEquipment;
+    cost = aCost;
     wasSet = true;
     return wasSet;
   }
@@ -119,18 +99,18 @@ public class TOAssignment
     return wasSet;
   }
 
-  public boolean setAuthorizationCode(String aAuthorizationCode)
+  public boolean setCode(String aCode)
   {
     boolean wasSet = false;
-    authorizationCode = aAuthorizationCode;
+    code = aCode;
     wasSet = true;
     return wasSet;
   }
 
-  public boolean setRefundedPercentageAmount(int aRefundedPercentageAmount)
+  public boolean setRefund(String aRefund)
   {
     boolean wasSet = false;
-    refundedPercentageAmount = aRefundedPercentageAmount;
+    refund = aRefund;
     wasSet = true;
     return wasSet;
   }
@@ -155,27 +135,14 @@ public class TOAssignment
     return guideName;
   }
 
-  /**
-   * hotelName;
-   */
-  public int getStartWeek()
+  public String getStartToEnd()
   {
-    return startWeek;
+    return startToEnd;
   }
 
-  public int getEndWeek()
+  public int getCost()
   {
-    return endWeek;
-  }
-
-  public int getTotalCostForGuide()
-  {
-    return totalCostForGuide;
-  }
-
-  public int getTotalCostForEquipment()
-  {
-    return totalCostForEquipment;
+    return cost;
   }
 
   public String getStatus()
@@ -183,14 +150,14 @@ public class TOAssignment
     return status;
   }
 
-  public String getAuthorizationCode()
+  public String getCode()
   {
-    return authorizationCode;
+    return code;
   }
 
-  public int getRefundedPercentageAmount()
+  public String getRefund()
   {
-    return refundedPercentageAmount;
+    return refund;
   }
 
   public void delete()
@@ -204,12 +171,10 @@ public class TOAssignment
             "memberName" + ":" + getMemberName()+ "," +
             "guideEmail" + ":" + getGuideEmail()+ "," +
             "guideName" + ":" + getGuideName()+ "," +
-            "startWeek" + ":" + getStartWeek()+ "," +
-            "endWeek" + ":" + getEndWeek()+ "," +
-            "totalCostForGuide" + ":" + getTotalCostForGuide()+ "," +
-            "totalCostForEquipment" + ":" + getTotalCostForEquipment()+ "," +
+            "startToEnd" + ":" + getStartToEnd()+ "," +
+            "cost" + ":" + getCost()+ "," +
             "status" + ":" + getStatus()+ "," +
-            "authorizationCode" + ":" + getAuthorizationCode()+ "," +
-            "refundedPercentageAmount" + ":" + getRefundedPercentageAmount()+ "]";
+            "code" + ":" + getCode()+ "," +
+            "refund" + ":" + getRefund()+ "]";
   }
 }

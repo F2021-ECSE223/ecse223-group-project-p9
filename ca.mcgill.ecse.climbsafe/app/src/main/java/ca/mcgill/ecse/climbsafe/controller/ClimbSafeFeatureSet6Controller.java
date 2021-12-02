@@ -5,7 +5,6 @@ import java.util.*;
 
 import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.*;
-import ca.mcgill.ecse.climbsafe.model.Assignment.TripStatus;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet6Controller {
@@ -22,23 +21,30 @@ public class ClimbSafeFeatureSet6Controller {
 	public static void deleteEquipment(String name) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Equipment> equipment = climbSafe.getEquipment();
+	  String error="";
 	  try {
 		boolean found = false;
 		int index = 0;
-		while(!found) {
+		while(!found && index<equipment.size()) {
 			if(equipment.get(index).getName().equals(name)) {
 				found = true;	
 			}else {
 				index++;
 			}	
 		}
+		
+		if(found == false) {
+			error = "The piece of equipment doesn't exist and cannot be deleted";
+			throw new InvalidInputException(error.trim());
+		}
+		
 		int index2;
 		found = false;
 		List<EquipmentBundle> equipmentBundles = climbSafe.getBundles(); 
 		for(int i=0; i<equipmentBundles.size(); i++) {
 			List<BundleItem> bundleItems = equipmentBundles.get(i).getBundleItems();
 			index2 =0;
-			while(!found && index2<bundleItems.size()){
+			while(!found && index2<bundleItems.size()-1){
 				if(bundleItems.get(index2).getEquipment().getName().equals(name)) {
 					found = true;	
 				}
@@ -51,7 +57,7 @@ public class ClimbSafeFeatureSet6Controller {
 		if(found == false) {
 			equipment.get(index).delete();
 		}else {
-			String error = "The piece of equipment is in a bundle and cannot be deleted";
+			error = "The piece of equipment is in a bundle and cannot be deleted";
 			throw new InvalidInputException(error.trim());
 		}
 		ClimbSafePersistence.save();
@@ -66,7 +72,6 @@ public class ClimbSafeFeatureSet6Controller {
 	 *@author Kara Best
 	 */
 	public static void deleteEquipmentBundle(String name) {
-		
 		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 		List<EquipmentBundle> equipmentBundles = climbSafe.getBundles();
 		boolean found = false;
@@ -75,9 +80,7 @@ public class ClimbSafeFeatureSet6Controller {
 			if(equipmentBundles.get(index).getName().equals(name)) {
 				found = true;
 				equipmentBundles.get(index).delete();
-					
 			}
-			
 			index++;
 			if(index==equipmentBundles.size()) {
 				return;
@@ -94,6 +97,9 @@ public class ClimbSafeFeatureSet6Controller {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<TOAssignment> TOAssignments = new ArrayList<TOAssignment>();	  
 	  List<Assignment> assignments = climbSafe.getAssignments();
+	  if(assignments==null) {
+		  return TOAssignments;
+	  }
 	  int nrWeeks;
 	  int startWeek;
 	  int endWeek;
@@ -103,7 +109,6 @@ public class ClimbSafeFeatureSet6Controller {
 	  String memberEmail, memberName;
 	  String guideEmail = null;
 	  String guideName =null;
-	  String hotelName = null;
 	  boolean found = false;
 	  String status = null;
 	  String code = null;
@@ -118,7 +123,6 @@ public class ClimbSafeFeatureSet6Controller {
 		  totalCostForGuide =0;
 		  guideEmail = null;
 		  guideName = null;
-		  hotelName = null;
 		  nrWeeks = assignments.get(i).getMember().getNrWeeks();
 		  guideRequired = assignments.get(i).getMember().getGuideRequired();
 		  memberName = assignments.get(i).getMember().getName();
@@ -134,16 +138,20 @@ public class ClimbSafeFeatureSet6Controller {
 			  guideEmail = assignments.get(i).getGuide().getEmail();
 			  totalCostForGuide = climbSafe.getPriceOfGuidePerWeek()*nrWeeks;
 		  }
-		  if(assignments.get(i).getMember().getHotelRequired()) {
-			  hotelName = assignments.get(i).getHotel().getName();
-		  }
 		  if(assignments.get(i).getMember().hasBookedItems()) {
+			  boolean isBundle = false;
 			  List<BookedItem> bookedItems = assignments.get(i).getMember().getBookedItems();
 			  for(int j=0; j<bookedItems.size(); j++) {
+				  isBundle = false;
 				  index =0;
 				  found = false;
-				  if(bookedItems.get(j).getItem().getName().contains("bundle")) {
-					  List<EquipmentBundle> equipmentBundle = climbSafe.getBundles();
+				  List<EquipmentBundle> equipmentBundle = climbSafe.getBundles();
+				  for(EquipmentBundle b: equipmentBundle) {
+					  if(bookedItems.get(j).getItem().getName().equals(b.getName())) {
+						  isBundle = true;
+					  }
+				  }
+				  if(isBundle) {
 					  while(!found) {
 						  if(equipmentBundle.get(index).getName().equals(bookedItems.get(j).getItem().getName())) {
 							  found = true;
@@ -174,7 +182,7 @@ public class ClimbSafeFeatureSet6Controller {
 					  while(!found) {
 						  if(equipment.get(index).getName().equals(bookedItems.get(j).getItem().getName())) {
 							  found = true;
-						  }else {
+						  }else{
 							  index++;
 						  }
 					  }
@@ -183,7 +191,7 @@ public class ClimbSafeFeatureSet6Controller {
 				  
 			  }
 		  }
-		  TOAssignments.add(new TOAssignment(memberEmail, memberName, guideEmail, guideName, hotelName, startWeek, endWeek, totalCostForGuide, totalCostForEquipment, status, code, refund));
+		  TOAssignments.add(new TOAssignment(memberEmail, memberName, guideEmail, guideName, startWeek, endWeek, totalCostForGuide, totalCostForEquipment, status, code, refund));
 
 		  
 	  }

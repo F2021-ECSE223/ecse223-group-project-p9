@@ -20,7 +20,9 @@ public class ClimbSafeFeatureSet1Controller {
 	static String error = "";
 
 	public static void setup(Date startDate, int nrWeeks, int priceOfGuidePerWeek) throws InvalidInputException {
-		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
+		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();		
+		if (climbSafe.getStartDate()!=null)
+			return;
 		String[] s = startDate.toString().split("-");
 		error = "";
 		if (!(Integer.parseInt(s[1])<=12)){
@@ -82,8 +84,8 @@ public class ClimbSafeFeatureSet1Controller {
 	 */
 
 	public static void deleteGuide(String email) {
+		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 		if (email.indexOf("@") > 0 && email.indexOf("@") == email.lastIndexOf("@") && email.indexOf("@") < email.lastIndexOf(".") - 1 && email.lastIndexOf(".") < email.length() - 1) {
-			ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 			List<Guide> guides = climbSafe.getGuides();
 			boolean guideFound = false;
 			int i=0;

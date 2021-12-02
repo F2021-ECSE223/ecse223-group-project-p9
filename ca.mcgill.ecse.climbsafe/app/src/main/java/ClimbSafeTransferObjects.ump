@@ -5,7 +5,7 @@ class TOAssignment {
   memberName;
   guideEmail;
   guideName;
-  hotelName;
+  //hotelName;
   Integer startWeek;
   Integer endWeek;
   Integer totalCostForGuide;
@@ -14,3 +14,47 @@ class TOAssignment {
   authorizationCode;
   Integer refundedPercentageAmount;
 }
+
+class TOMember {
+	email;
+	name;
+	emergencyContact;
+	password;
+	Integer nrWeeks;
+	Boolean guideRequired;
+	Boolean hotelRequired;
+	String[] bookedItems;
+}
+
+class TOGuide {
+	email;
+	name;
+	emergencyContact;
+	password;
+}
+
+class TOEquipment {
+	name;
+	Integer weight;
+	Integer pricePerWeek;
+}
+
+class TOBundle {
+	name;
+	Integer discount;
+	String[] bundleItems;
+}
+
+class TOTableAssignment{
+	memberEmail;
+  memberName;
+  guideEmail;
+  guideName;
+  startToEnd;
+  Integer cost;
+  status;
+  code;
+  refund;
+ }
+  
+	

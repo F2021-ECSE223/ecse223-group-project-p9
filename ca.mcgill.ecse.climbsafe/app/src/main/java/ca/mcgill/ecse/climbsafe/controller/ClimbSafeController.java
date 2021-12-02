@@ -187,4 +187,12 @@ public class ClimbSafeController {
 	  }
 	  return itemsQuantityList;
   }
+  public static List<Integer> getPriceOfGuidePerWeek(){
+	  int weeklyPrice = climbSafe.getPriceOfGuidePerWeek();
+	  List<Integer> weeklyPricesGuide = new ArrayList<>();
+	  for(int i=0; i<=weeklyPrice; i++) {
+		  weeklyPricesGuide.add(i);
+	  }
+	  return weeklyPricesGuide;
+  }
 }

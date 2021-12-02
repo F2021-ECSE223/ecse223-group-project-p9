@@ -49,7 +49,7 @@ public class ViewAllAssignmentsControllerPage {
   public void viewClicked(ActionEvent event) {
     List<TOTableAssignment> assignments = ClimbSafeController.getTOTableAssignments();
     for(TOTableAssignment a: assignments) {
-    	
+    	assignmentTable.getItems().add(a);
     }
   }
 

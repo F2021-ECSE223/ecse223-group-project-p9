@@ -105,6 +105,9 @@ public class ClimbSafeController {
   public static List<TOTableAssignment> getTOTableAssignments() {
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 	  List<TOTableAssignment> assign = new ArrayList<TOTableAssignment>();
+	  if(assignments.isEmpty()) {
+		  return assign;
+	  }
 	  for(TOAssignment t: assignments) {
 		  String startToEnd = t.getStartWeek() + "-"+ t.getEndWeek();
 		  int cost = t.getTotalCostForEquipment()+t.getTotalCostForGuide();

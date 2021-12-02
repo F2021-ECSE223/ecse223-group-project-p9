@@ -18,6 +18,7 @@ public class AssignmentController {
 	 * @author Victor Micha
 	 */
 	public static void initiateAssignment() throws InvalidInputException{
+		error = "";
 		List<Member> members = climbSafe.getMembers();
 		List<Guide> guides = climbSafe.getGuides();
 		int g = 0;
@@ -125,6 +126,7 @@ public class AssignmentController {
 	 * @author Enzo Benoit-Jeannin
 	 */
 	public static void startTrips(int week) throws InvalidInputException{
+		error = "";
 		List<Assignment> myAssignments = climbSafe.getAssignments(); 
 
 		for (Assignment a : myAssignments) {
@@ -140,7 +142,6 @@ public class AssignmentController {
 		}
 		if(!error.isEmpty()) {
 			throw new InvalidInputException(error.trim());
-
 		}
 
 		try {
@@ -161,6 +162,7 @@ public class AssignmentController {
 	 * @author Enzo Benoit-Jeannin
 	 */
 	public static void cancelTrip(String email) throws InvalidInputException {	
+		error = "";
 		List<Assignment> myAssignments = climbSafe.getAssignments(); 
 		List<Member> members = climbSafe.getMembers();
 		try {
@@ -181,7 +183,6 @@ public class AssignmentController {
 					}
 				}
 			}
-
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
 					a.cancelTrip();
@@ -199,30 +200,35 @@ public class AssignmentController {
 	 * @author Kara Best
 	 */
 	public static void finishTrip(String email) throws InvalidInputException {
+		error = "";
 		List<Assignment> assignments = climbSafe.getAssignments();
-		String error ="";
 		try {
 			if(validMember(climbSafe.getMembers(), email)==-1) {
 				error = "Member with email address "+ email +" does not exist";
 				throw new InvalidInputException(error.trim());
+
 			}
 			for(Assignment a: assignments) {
 				if(a.getMember().getEmail().equals(email)){
 					if(a.getTripStatus().equals(TripStatus.Banned)) {
 						error = "Cannot finish the trip due to a ban";
 						throw new InvalidInputException(error.trim());
+
 					}else if(a.getTripStatus().equals(TripStatus.OnTrip)) {
 						a.finishTrip();
 						a.setRefund(0);
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
 						error = "Cannot finish a trip which has been cancelled";
 						throw new InvalidInputException(error.trim());
+
 					}else if(a.getTripStatus().equals(TripStatus.Assigned)|| a.getPaid() == true) {
 						error = "Cannot finish a trip which has not started";
 						throw new InvalidInputException(error.trim());
+
 					}else if(a.getTripStatus().equals(TripStatus.Finished)) {
 						error = "Cannot finish a trip which has already been finished";
 						throw new InvalidInputException(error.trim());
+
 					}
 				}
 			}	
@@ -240,6 +246,7 @@ public class AssignmentController {
 	 * @param code - payment code
 	 */
 	public static void payForTrip(String email, String code) throws InvalidInputException {
+		error = "";
 		List<Member> memberList = climbSafe.getMembers();
 		List<Assignment> allAssignments = climbSafe.getAssignments();
 		Assignment myAssignment = null;

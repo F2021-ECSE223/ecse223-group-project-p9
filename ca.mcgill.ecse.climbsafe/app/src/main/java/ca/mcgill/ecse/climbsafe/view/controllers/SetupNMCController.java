@@ -57,6 +57,7 @@ public class SetupNMCController {
 			Date date = Date.valueOf(d);
 			try {
 				if(successful(() -> ClimbSafeFeatureSet1Controller.setup(date,  nrWeeks, priceOfGuidePerWeek))) {
+					dateBox.setValue(null);
 					nrWeeksSpinner.getValueFactory().setValue(0);
 					weeklyPriceSpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();

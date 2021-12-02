@@ -69,6 +69,7 @@ public class AssignmentController {
 							if(guideNotFound) {
 								error += "Assignments could not be completed for all members\n";
 								if(m==members.size()-1) {
+									ClimbSafePersistence.save();
 									throw new InvalidInputException(error.trim());
 								}
 							}else { //to make sure assignments can be completed after
@@ -96,6 +97,7 @@ public class AssignmentController {
 						}else {
 							if (!(g+1<guides.size())) {
 								error += "Assignments could not be completed for all members\n";
+								ClimbSafePersistence.save();
 								throw new InvalidInputException(error.trim());
 							}
 							g++;

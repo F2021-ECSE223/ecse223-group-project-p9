@@ -89,8 +89,18 @@ public class ViewAllAssignmentsControllerPage {
 			  if(assignments.isEmpty()) {
 					 if(successful(() -> AssignmentController.initiateAssignment())) {
 						 assignmentCompletionText.setText("Assignments initialized.");
+						 List<TOTableAssignment> assignmentss = ClimbSafeController.getTOTableAssignments();
+						 assignmentTable.getItems().clear();
+						 for(TOTableAssignment a: assignmentss) {
+							 assignmentTable.getItems().add(a);
+						 }
 					 }else if(!ClimbSafeFeatureSet6Controller.getAssignments().isEmpty()) {
 						assignmentCompletionText.setText("Assignments initialized (incomplete for some members).");
+						List<TOTableAssignment> assignmentss = ClimbSafeController.getTOTableAssignments();
+						assignmentTable.getItems().clear();
+						for(TOTableAssignment a: assignmentss) {
+							assignmentTable.getItems().add(a);
+						}
 					 }
 			  }else {
 				  String e = "Assignments already initialized, cannot initialize again.";
@@ -99,9 +109,6 @@ public class ViewAllAssignmentsControllerPage {
 				
 
 			} catch (RuntimeException e) {
-				if(!ClimbSafeFeatureSet6Controller.getAssignments().isEmpty()) {
-					assignmentCompletionText.setText("Assignments initialized (incomplete for some members).");
-				}
 				ViewUtils.showError(e.getMessage());
 			}
 	  

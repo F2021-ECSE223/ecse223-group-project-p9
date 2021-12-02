@@ -8,7 +8,7 @@ import java.util.List;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
-import ca.mcgill.ecse.climbsafe.model.Member;
+import ca.mcgill.ecse.climbsafe.controller.TOMember;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,7 +49,7 @@ public class UpdateMemberPageController {
 
 	private List<String> itemNames = new ArrayList<>();;
 	private List<Integer> itemQuantities = new ArrayList<>();; 
-	private Member m = null;
+	private TOMember selectedTOMember = null;
 
 	public void initialize() {
 		passwordTextField.setText("");
@@ -86,20 +86,23 @@ public class UpdateMemberPageController {
 	// Event Listener on Button[#memberSearchClicked].onAction
 	@FXML
 	public void memberSearchClicked(ActionEvent event) {
-		m = ClimbSafeController.getMember(memberChoiceBox.getValue());
-		if(m != null) {
-			nameTextField.setText(m.getName());
-			passwordTextField.setText(m.getPassword());
-			emergencyContactTextField.setText(m.getEmergencyContact());
-			guideRequiredCheckBox.setSelected(m.getGuideRequired());
-			hotelRequiredCheckBox.setSelected(m.getHotelRequired());
-			memberItemsListView.setItems(ViewUtils.getMemberItems(m.getEmail()));
-			ClimbSafeFxmlView.getInstance().refresh();
-			memberChoiceBox.setValue(m.getEmail());
-			nrWeeksChoiceBox.setValue(m.getNrWeeks());
-			itemNames = ViewUtils.getMemberItemsName(m.getEmail());
-			itemQuantities = ViewUtils.getMemberItemsQuantity(m.getEmail());
-			updateMessageLabel.setText("");
+		List <TOMember> m = ClimbSafeController.getTOMembers();
+		for (TOMember myTOMember : m) {
+			if (myTOMember.getEmail() == memberChoiceBox.getValue()) {
+				selectedTOMember = myTOMember;
+				nameTextField.setText(myTOMember.getName());
+				passwordTextField.setText(myTOMember.getPassword());
+				emergencyContactTextField.setText(myTOMember.getEmergencyContact());
+				guideRequiredCheckBox.setSelected(myTOMember.getGuideRequired());
+				hotelRequiredCheckBox.setSelected(myTOMember.getHotelRequired());
+				memberItemsListView.setItems(ViewUtils.getMemberItems(myTOMember.getEmail()));
+				ClimbSafeFxmlView.getInstance().refresh();
+				memberChoiceBox.setValue(myTOMember.getEmail());
+				nrWeeksChoiceBox.setValue(myTOMember.getNrWeeks());
+				itemNames = ViewUtils.getMemberItemsName(myTOMember.getEmail());
+				itemQuantities = ViewUtils.getMemberItemsQuantity(myTOMember.getEmail());
+				updateMessageLabel.setText("");
+			}
 		}
 	}
 
@@ -194,9 +197,10 @@ public class UpdateMemberPageController {
 
 		memberItemsListView.setItems(itemaNameAndQuantityList);
 		ClimbSafeFxmlView.getInstance().refresh();
-		if(m!= null) {
-			memberChoiceBox.setValue(m.getEmail());
-			nrWeeksChoiceBox.setValue(m.getNrWeeks());
+		
+		if(selectedTOMember!= null) {
+			memberChoiceBox.setValue(selectedTOMember.getEmail());
+			nrWeeksChoiceBox.setValue(selectedTOMember.getNrWeeks());
 		}
 	}
 

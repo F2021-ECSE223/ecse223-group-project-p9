@@ -2,10 +2,12 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.util.List;
+
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet1Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet3Controller;
-import ca.mcgill.ecse.climbsafe.model.Guide;
+import ca.mcgill.ecse.climbsafe.controller.TOGuide;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +25,6 @@ public class UpdateGuidePageController {
 	@FXML private PasswordField passwordField;
 	@FXML private TextField emergencyContactTextField;
 	@FXML private CheckBox permissionCheckBox;
-	private Guide g = null;
 	@FXML private Button deleteGuideButton;
 	@FXML private Button updateGuideButton;
 	@FXML private Button guideSearchButton;
@@ -42,13 +43,15 @@ public class UpdateGuidePageController {
 	
 	@FXML
 	public void guideSearchClicked(ActionEvent event) {
-		g = ClimbSafeController.getGuide(guideChoiceBox.getValue());
-		if(g != null) {
-			nameTextField.setText(g.getName());
-			passwordField.setText(g.getPassword());
-			emergencyContactTextField.setText(g.getEmergencyContact());
-			ClimbSafeFxmlView.getInstance().refresh();
-			guideChoiceBox.setValue(g.getEmail());
+		List<TOGuide> g = ClimbSafeController.getTOGuides();
+		for (TOGuide myTOGuide : g) {
+			if (myTOGuide.getEmail() == guideChoiceBox.getValue()) {
+				nameTextField.setText(myTOGuide.getName());
+				passwordField.setText(myTOGuide.getPassword());
+				emergencyContactTextField.setText(myTOGuide.getEmergencyContact());
+				ClimbSafeFxmlView.getInstance().refresh();
+				guideChoiceBox.setValue(myTOGuide.getEmail());
+			}
 		}
 	}
 	

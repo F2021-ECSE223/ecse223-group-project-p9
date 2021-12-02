@@ -20,6 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class UpdateEquipmentBundleController {
 	@FXML private ChoiceBox<String> equipmentBundleChoiceBox;
@@ -37,6 +38,7 @@ public class UpdateEquipmentBundleController {
 	
 	@FXML private Button modifyButton;
 	@FXML private Button deleteButton;
+	@FXML private Text returnMessageText;
 	
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
@@ -69,8 +71,7 @@ public class UpdateEquipmentBundleController {
 			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
 		discountTextField.setText("");
-//		priceTextField.setText("");
-		
+		returnMessageText.setText("");
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(equipmentBundleChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
@@ -143,7 +144,6 @@ public class UpdateEquipmentBundleController {
 	public void modifyEquipmentBundleClicked(ActionEvent event) {
 		String oldName = equipmentBundleChoiceBox.getValue();
 		String newName = bundleNameTextField.getText();
-//		int discount = Integer.parseInt(discountTextField.getText());
 		int discount = getNumberFromField(discountTextField);
 		if(oldName != "" && newName != "" && discount != -1) {
 			try {
@@ -155,6 +155,7 @@ public class UpdateEquipmentBundleController {
 					itemsInBundleListView.setItems(null);
 					discountTextField.setText("");
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Equipment Bundle updated successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());
@@ -176,6 +177,7 @@ public class UpdateEquipmentBundleController {
 				itemsInBundleListView.setItems(null);
 				discountTextField.setText("");
 				ClimbSafeFxmlView.getInstance().refresh();
+				returnMessageText.setText("Equipment deleted successfully");
 			}
 			
 		} catch (RuntimeException e)  {

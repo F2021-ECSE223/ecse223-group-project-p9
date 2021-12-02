@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class AddEquipmentPageController {
 
@@ -16,6 +17,7 @@ public class AddEquipmentPageController {
 	@FXML private Button addEquipmentButton;
 	@FXML private Spinner<Integer> weightSpinner;
 	@FXML private Spinner<Integer> priceSpinner;
+	@FXML private Text returnMessageText;
 
 	public void initialize() {
 		weightSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
@@ -32,6 +34,7 @@ public class AddEquipmentPageController {
 			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
 			priceSpinner.setValueFactory(valueFactory);
 		});
+		returnMessageText.setText("");
 
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(weightSpinner);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(priceSpinner);
@@ -55,6 +58,7 @@ public class AddEquipmentPageController {
 					weightSpinner.getValueFactory().setValue(0);
 					priceSpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Equipment added successfully");
 				}
 			}
 		} catch (RuntimeException e) {

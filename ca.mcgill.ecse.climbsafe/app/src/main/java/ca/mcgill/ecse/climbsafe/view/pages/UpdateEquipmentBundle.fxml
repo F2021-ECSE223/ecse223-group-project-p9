@@ -53,5 +53,6 @@
          </font>
       </Text>
       <TextField fx:id="discountTextField" layoutX="209.0" layoutY="374.0" prefHeight="25.0" prefWidth="250.0" />
+      <Text fx:id="returnMessageText" layoutX="383.0" layoutY="492.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.32080078125" />
    </children>
 </AnchorPane>

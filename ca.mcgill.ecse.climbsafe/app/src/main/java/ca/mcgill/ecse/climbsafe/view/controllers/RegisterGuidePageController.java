@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class RegisterGuidePageController {
 	
@@ -16,6 +17,7 @@ public class RegisterGuidePageController {
 	@FXML private PasswordField password;
 	@FXML private TextField emergencyContact; 
 	@FXML private Button registerGuide;
+	@FXML private Text returnMessageText;
 
 	public void initialize() {
 		
@@ -23,6 +25,7 @@ public class RegisterGuidePageController {
 		email.setText("");
 		password.setText("");
 		emergencyContact.setText("");
+		returnMessageText.setText("");
 	}
 		
 	@FXML public void registerGuideClicked(ActionEvent event) {
@@ -41,6 +44,7 @@ public class RegisterGuidePageController {
 				email.setText("");
 				password.setText("");
 				emergencyContact.setText("");
+				returnMessageText.setText("Guide updated successfully");
 	}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

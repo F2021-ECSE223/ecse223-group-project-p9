@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.text.Text;
 import javafx.scene.control.ChoiceBox;
 
 public class SetupNMCController {
@@ -21,6 +22,7 @@ public class SetupNMCController {
 	@FXML private Spinner<Integer> weeklyPriceSpinner;
 	@FXML private DatePicker dateBox;
 	@FXML private Button next;
+	@FXML private Text returnMessageText;
 	
 	@FXML
 	public void initialize() {
@@ -40,7 +42,7 @@ public class SetupNMCController {
 		});
 	  // set dateBox to be not editable so that the user must choose from the calendar
 	  dateBox.setEditable(false);
-
+	  returnMessageText.setText("");
 	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksSpinner);
 	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(weeklyPriceSpinner);
 	}
@@ -58,6 +60,7 @@ public class SetupNMCController {
 					nrWeeksSpinner.getValueFactory().setValue(0);
 					weeklyPriceSpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("NMC info setup/updated successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());

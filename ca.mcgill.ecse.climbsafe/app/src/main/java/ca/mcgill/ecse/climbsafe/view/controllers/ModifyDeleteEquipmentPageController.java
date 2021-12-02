@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 /**
  * Assigns behavior of the TextFields and Buttons in the ModifyDeleteEquipment view page
  * @author Enzo Benoit-Jeannin
@@ -29,6 +30,7 @@ public class ModifyDeleteEquipmentPageController {
 	@FXML private ChoiceBox<String> deleteEquipmentName;
 	@FXML private Button deleteEquipmentButton;
 	@FXML private ChoiceBox<String> equipmentChoiceBox;
+	@FXML private Text returnMessageText;
 	
 	public void initialize() {
 		equipmentChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
@@ -39,6 +41,7 @@ public class ModifyDeleteEquipmentPageController {
 			deleteEquipmentName.setItems(ViewUtils.getEquipments());
 			deleteEquipmentName.setValue(null);
 		});
+		returnMessageText.setText("");
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(equipmentChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(deleteEquipmentName);
 	}
@@ -64,6 +67,7 @@ public class ModifyDeleteEquipmentPageController {
 					weightModifyEquipment.setText("");
 					priceModifyEquipment.setText("");
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Equipment updated successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());
@@ -98,6 +102,7 @@ public class ModifyDeleteEquipmentPageController {
 				if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipment(name))) {
 					deleteEquipmentName.setValue(null);
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Equipment deleted successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());

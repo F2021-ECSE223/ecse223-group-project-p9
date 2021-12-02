@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class AddEquipmentBundlePageController {
 	@FXML private TextField nameTextField;
@@ -27,6 +28,7 @@ public class AddEquipmentBundlePageController {
 
 	@FXML private Button addEquipmentButton;
 	@FXML private Button addItem;
+	@FXML private Text returnMessageText;
 
 
 	private List<String> itemNames = new ArrayList<>();
@@ -39,6 +41,7 @@ public class AddEquipmentBundlePageController {
 			itemNameChoiceBox.setItems(ViewUtils.getEquipments());
 			itemNameChoiceBox.setValue(null);
 		});
+		returnMessageText.setText("");
 		
 		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
@@ -111,6 +114,7 @@ public class AddEquipmentBundlePageController {
 					itemQuantitySpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
 					itemsInBundleListView.setItems(null);
+					returnMessageText.setText("Bundle added successfully");
 				}	
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());

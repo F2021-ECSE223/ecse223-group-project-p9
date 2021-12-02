@@ -16,6 +16,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 
 public class UpdateGuidePageController {
@@ -28,6 +29,7 @@ public class UpdateGuidePageController {
 	@FXML private Button deleteGuideButton;
 	@FXML private Button updateGuideButton;
 	@FXML private Button guideSearchButton;
+	@FXML private Text returnMessageText;
 
 	public void initialize() {
 		nameTextField.setText("");
@@ -39,6 +41,7 @@ public class UpdateGuidePageController {
 			guideChoiceBox.setValue(null);
 		});
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(guideChoiceBox);
+		returnMessageText.setText("");
 	}
 
 	@FXML
@@ -71,6 +74,7 @@ public class UpdateGuidePageController {
 					emergencyContactTextField.setText("");
 					permissionCheckBox.setSelected(false);
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Guide updated successfully");
 				}
 			}catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());
@@ -91,6 +95,7 @@ public class UpdateGuidePageController {
 					emergencyContactTextField.setText("");
 					permissionCheckBox.setSelected(false);
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Guide deleted successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());

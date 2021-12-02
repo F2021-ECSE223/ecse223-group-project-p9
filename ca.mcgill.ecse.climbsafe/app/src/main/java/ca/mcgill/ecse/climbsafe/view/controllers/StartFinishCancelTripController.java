@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.text.Text;
 
 public class StartFinishCancelTripController {
 
@@ -16,6 +17,7 @@ public class StartFinishCancelTripController {
 	@FXML private Button startTripButton;
 	@FXML private Button finishMemberTripButton;
 	@FXML private Button cancelMemberTripButton;
+	@FXML private Text returnMessageText;
 
 	public void initialize() {
 		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
@@ -30,6 +32,7 @@ public class StartFinishCancelTripController {
 			memberCancelChoiceBox.setItems(ViewUtils.getMembers());
 			memberCancelChoiceBox.setValue(null);
 		});
+		returnMessageText.setText("");
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberFinishChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberCancelChoiceBox);
@@ -41,6 +44,7 @@ public class StartFinishCancelTripController {
 			if(successful(() ->AssignmentController.startTrips(nrWeeks))) {
 				nrWeeksChoiceBox.setValue(null);
 				ClimbSafeFxmlView.getInstance().refresh();
+				returnMessageText.setText("Trip started successfully");
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
@@ -55,6 +59,7 @@ public class StartFinishCancelTripController {
 				if(successful(() -> AssignmentController.finishTrip(email))) {
 					memberFinishChoiceBox.setValue(null);
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Member finished trip successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());
@@ -69,6 +74,7 @@ public class StartFinishCancelTripController {
 				if(successful(() -> AssignmentController.cancelTrip(email))) {
 					memberCancelChoiceBox.setValue(null);
 					ClimbSafeFxmlView.getInstance().refresh();
+					returnMessageText.setText("Member cancelled trip successfully");
 				}
 			} catch (RuntimeException e) {
 				ViewUtils.showError(e.getMessage());

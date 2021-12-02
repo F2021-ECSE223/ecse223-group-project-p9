@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.AddEquipmentPageController">
    <children>
@@ -48,8 +49,6 @@
             <RowConstraints maxHeight="30.714272635323653" minHeight="10.0" prefHeight="30.714272635323653" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="18.14285714285714" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="34.14285714285714" minHeight="10.0" prefHeight="34.14285714285714" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="33.0" minHeight="4.285740443638389" prefHeight="14.571446010044639" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="41.99997384207592" minHeight="10.0" prefHeight="17.85711669921875" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="29.285740443638417" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -88,6 +87,7 @@
             <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="8" />
             <Spinner fx:id="weightSpinner" editable="true" GridPane.columnIndex="2" GridPane.rowIndex="12" />
             <Spinner fx:id="priceSpinner" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+            <Text fx:id="returnMessageText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="17" />
          </children>
       </GridPane>
    </children>

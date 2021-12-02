@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.ModifyDeleteEquipmentPageController">
    <children>
@@ -50,10 +51,6 @@
             <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.99997384207589" minHeight="10.0" prefHeight="33.42856270926339" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.0" minHeight="4.285740443638389" prefHeight="24.714285714285722" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="33.0" minHeight="0.0" prefHeight="5.5714111328125" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="20.142874581473222" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="36.571428571428555" minHeight="10.0" prefHeight="36.571428571428555" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="13.714303152901778" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="26.285714285714278" minHeight="10.0" prefHeight="26.285714285714278" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -78,7 +75,7 @@
                </font></Label>
             <TextField fx:id="weightModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="16" />
             <TextField fx:id="priceModifyEquipment" GridPane.columnIndex="2" GridPane.rowIndex="18" />
-            <Button fx:id="modifyEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifyEquipmentClick" prefHeight="50.0" prefWidth="180.0" text="Modify Equipment" textAlignment="CENTER" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="21">
+            <Button fx:id="modifyEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifyEquipmentClick" prefHeight="50.0" prefWidth="180.0" text="Modify Equipment" textAlignment="CENTER" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="20">
                <font>
                   <Font size="13.0" />
                </font></Button>
@@ -108,6 +105,7 @@
             <ChoiceBox fx:id="equipmentChoiceBox" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="12" />
             <ChoiceBox fx:id="deleteEquipmentName" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="12" />
             <Button fx:id="equipmentSearchButton" mnemonicParsing="false" onAction="#equipmentSearchClicked" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+            <Text fx:id="returnMessageText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="21" />
          </children>
       </GridPane>
    </children>

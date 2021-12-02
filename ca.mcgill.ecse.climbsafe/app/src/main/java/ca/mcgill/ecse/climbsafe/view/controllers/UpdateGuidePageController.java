@@ -65,7 +65,7 @@ public class UpdateGuidePageController {
 		String email = guideChoiceBox.getValue();
 		String password = passwordField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
-		if(name != "" && email != null && password != "" && emergencyContact != "") {
+		if(email != null) {
 			try {
 				if(successful(() -> ClimbSafeFeatureSet3Controller.updateGuide(email, password, name, emergencyContact))) {
 					guideChoiceBox.setValue(null);

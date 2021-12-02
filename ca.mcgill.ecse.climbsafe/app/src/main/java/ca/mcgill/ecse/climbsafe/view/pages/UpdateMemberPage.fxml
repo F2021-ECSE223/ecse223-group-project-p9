@@ -115,7 +115,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Spinner fx:id="itemQuantitySpinner" prefHeight="26.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Spinner fx:id="itemQuantitySpinner" editable="true" prefHeight="26.0" prefWidth="62.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                   <ChoiceBox fx:id="itemNameChoiceBox" prefHeight="26.0" prefWidth="255.0" />
                </children>
             </GridPane>

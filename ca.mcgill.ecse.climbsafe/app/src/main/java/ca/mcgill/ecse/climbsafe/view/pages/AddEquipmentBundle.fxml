@@ -44,6 +44,6 @@
       <ChoiceBox fx:id="itemNameChoiceBox" layoutX="209.0" layoutY="221.0" prefHeight="26.0" prefWidth="185.0" />
       <Button fx:id="addItem" layoutX="518.0" layoutY="222.0" mnemonicParsing="false" onAction="#addItemToBundle" text="Add Item" textFill="#2fc1ff" />
       <ListView fx:id="itemsInBundleListView" layoutX="14.0" layoutY="261.0" prefHeight="130.0" prefWidth="571.0" />
-      <Spinner fx:id="itemQuantitySpinner" layoutX="406.0" layoutY="221.0" prefHeight="26.0" prefWidth="56.0" />
+      <Spinner fx:id="itemQuantitySpinner" editable="true" layoutX="406.0" layoutY="221.0" prefHeight="26.0" prefWidth="56.0" />
    </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package ca.mcgill.ecse.climbsafe.controller;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,9 @@ public class ClimbSafeController {
 		  }
 	  }
 	  return null;
+  }
+  public static Date getNMCDate() {
+	  return climbSafe.getStartDate();
   }
   
   public static List<String> getBundleItemsAndQuantity(String bundleName){

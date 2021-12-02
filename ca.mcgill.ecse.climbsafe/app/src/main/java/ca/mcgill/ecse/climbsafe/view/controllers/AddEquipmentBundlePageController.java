@@ -13,13 +13,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 public class AddEquipmentBundlePageController {
 	@FXML private TextField nameTextField;
 	@FXML private TextField discountTextField;
 	@FXML private ChoiceBox<String> itemNameChoiceBox;
-	@FXML private ChoiceBox<Integer> itemQuantityChoiceBox;
+	@FXML private Spinner<Integer> itemQuantitySpinner;
 
 	@FXML private ListView<String> itemsInBundleListView;
 
@@ -37,13 +39,17 @@ public class AddEquipmentBundlePageController {
 			itemNameChoiceBox.setItems(ViewUtils.getEquipments());
 			itemNameChoiceBox.setValue(null);
 		});
-		itemQuantityChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-			itemQuantityChoiceBox.setItems(ViewUtils.getQuantity());
-			itemQuantityChoiceBox.setValue(0);
+		
+		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 99;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
 
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemNameChoiceBox);
-		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantityChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
 
 	}
 
@@ -56,7 +62,7 @@ public class AddEquipmentBundlePageController {
 			if(itemNameChoiceBox.getValue()!= null) {
 				itemName = itemNameChoiceBox.getValue().toString();
 			}
-			Integer itemQuantity = itemQuantityChoiceBox.getValue();
+			Integer itemQuantity = itemQuantitySpinner.getValue();
 			int indexOfItem = -1;
 
 			if(itemNames.size()!= 0 && itemNames.toString().contains(itemName)) {
@@ -85,7 +91,7 @@ public class AddEquipmentBundlePageController {
 					itemNameAndQuantityList.add(itemQuantity + " " + itemName);
 				}
 				itemNameChoiceBox.setValue(null);
-				itemQuantityChoiceBox.setValue(0);
+				itemQuantitySpinner.getValueFactory().setValue(0);
 			}
 			itemsInBundleListView.setItems(itemNameAndQuantityList);
 			ClimbSafeFxmlView.getInstance().refresh();
@@ -102,7 +108,7 @@ public class AddEquipmentBundlePageController {
 					nameTextField.setText("");
 					discountTextField.setText("");
 					itemNameChoiceBox.setValue(null);
-					itemQuantityChoiceBox.setValue(0);
+					itemQuantitySpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
 					itemsInBundleListView.setItems(null);
 				}	

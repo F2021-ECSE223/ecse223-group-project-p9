@@ -197,11 +197,12 @@ public class UpdateMemberPageController {
 		}
 
 		memberItemsListView.setItems(itemaNameAndQuantityList);
+		int tempNrWeeks = nrWeeksChoiceBox.getValue();
 		ClimbSafeFxmlView.getInstance().refresh();
 		
 		if(selectedTOMember!= null) {
 			memberChoiceBox.setValue(selectedTOMember.getEmail());
-			nrWeeksChoiceBox.setValue(selectedTOMember.getNrWeeks());
+			nrWeeksChoiceBox.setValue(tempNrWeeks);
 		}
 	}
 

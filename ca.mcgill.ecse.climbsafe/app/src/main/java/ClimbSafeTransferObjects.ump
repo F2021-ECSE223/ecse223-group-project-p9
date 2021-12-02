@@ -51,7 +51,8 @@ class TOTableAssignment{
   guideEmail;
   guideName;
   startToEnd;
-  Integer cost;
+  Integer equipCost;
+  Integer guideCost;
   status;
   code;
   refund;

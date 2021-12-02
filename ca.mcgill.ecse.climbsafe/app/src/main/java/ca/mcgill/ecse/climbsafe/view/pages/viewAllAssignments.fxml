@@ -39,11 +39,12 @@
                 <TableColumn fx:id="memberNameColumn" prefWidth="95.99998474121094" text="Member Name" />
                   <TableColumn fx:id="guideEmailColumn" prefWidth="97.5999755859375" text="Guide Email&#10;" />
                   <TableColumn fx:id="guideNameColumn" prefWidth="106.4000244140625" text="Guide Name" />
-                  <TableColumn fx:id="startToEndColumn" prefWidth="85.60003662109375" text=" Start - End&#10;     Week" />
-                  <TableColumn fx:id="costColumn" prefWidth="75.99996948242188" text="Total Cost" />
-                  <TableColumn fx:id="tripStatusColumn" prefWidth="92.800048828125" text="Trip Status" />
-                  <TableColumn fx:id="codeColumn" prefWidth="90.39990234375" text="Payment&#10;  Code" />
-                  <TableColumn fx:id="refundColumn" prefWidth="67.199951171875" text="Refund" />
+                  <TableColumn fx:id="startToEndColumn" prefWidth="74.4000244140625" text=" Start - End&#10;     Week" />
+                  <TableColumn fx:id="equipCostColumn" prefWidth="71.19998168945312" text="Equipment&#10;    Cost" />
+                  <TableColumn fx:id="guideCostColumn" prefWidth="63.199951171875" text="Guide&#10; Cost" />
+                  <TableColumn fx:id="codeColumn" prefWidth="58.39996337890625" text="Payment&#10;  Code" />
+                  <TableColumn fx:id="refundColumn" prefWidth="53.5999755859375" text="Refund" />
+                  <TableColumn fx:id="tripStatusColumn" prefWidth="83.2000732421875" text="Trip Status" />
               </columns>
                <GridPane.margin>
                   <Insets left="2.0" />
@@ -57,19 +58,19 @@
                   <Insets bottom="15.0" left="7.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="initiatebutton" mnemonicParsing="false" onAction="#initiateClicked" prefHeight="51.0" prefWidth="132.0" text="Initiate Assignment" GridPane.rowIndex="2">
+            <Button fx:id="initiatebutton" mnemonicParsing="false" onAction="#initiateClicked" prefHeight="51.0" prefWidth="132.0" text="Initiate Assignment" textFill="#2fc1ff" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="10.0" left="6.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="viewbutton" mnemonicParsing="false" onAction="#viewClicked" text="View/Refresh Assignments" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button fx:id="viewbutton" mnemonicParsing="false" onAction="#viewClicked" text="View/Refresh Assignments" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="6.0" />
                </GridPane.margin>
             </Button>
-            <Text fx:id="assignmentCompletionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.73674392700195" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="BOTTOM">
+            <Text fx:id="assignmentCompletionText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="171.73674392700195" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
-                  <Insets bottom="10.0" left="6.0" />
+                  <Insets left="150.0" />
                </GridPane.margin>
             </Text>
          </children>

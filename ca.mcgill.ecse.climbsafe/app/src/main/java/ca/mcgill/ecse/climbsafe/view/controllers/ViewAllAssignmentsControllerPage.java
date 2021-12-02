@@ -37,7 +37,9 @@ public class ViewAllAssignmentsControllerPage {
   @FXML
   private TableColumn<TOTableAssignment, String> refundColumn;
   @FXML
-  private TableColumn<TOTableAssignment, String> costColumn;
+  private TableColumn<TOTableAssignment, String> equipCostColumn;
+  @FXML
+  private TableColumn<TOTableAssignment, String> guideCostColumn;
   @FXML
   private TableView<TOTableAssignment> assignmentTable;
   @FXML
@@ -52,7 +54,9 @@ public class ViewAllAssignmentsControllerPage {
 	  startToEndColumn.setCellValueFactory(new PropertyValueFactory<>("startToEnd"));
 	  tripStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 	  refundColumn.setCellValueFactory(new PropertyValueFactory<>("refund"));
-	  costColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
+	  equipCostColumn.setCellValueFactory(new PropertyValueFactory<>("equipCost"));
+	  guideCostColumn.setCellValueFactory(new PropertyValueFactory<>("guideCost"));
+
 
 
 

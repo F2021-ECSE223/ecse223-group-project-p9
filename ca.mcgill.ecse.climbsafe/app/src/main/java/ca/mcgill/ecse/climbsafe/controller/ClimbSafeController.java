@@ -65,6 +65,24 @@ public class ClimbSafeController {
 	  }
 	return itemsInBundle;
   }
+  
+  public static List<String> getBundleItems(String bundleName){
+	  List<String> itemsInBundle = new ArrayList<>();
+	  List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
+	  for(int i=0; i<bundleItems.size(); i++) {
+		  itemsInBundle.add(bundleItems.get(i).getEquipment().getName());
+	  }
+	return itemsInBundle;
+  }
+  
+  public static List<Integer> getBundleQuantity(String bundleName){
+	  List<Integer> itemsInBundle = new ArrayList<>();
+	  List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
+	  for(int i=0; i<bundleItems.size(); i++) {
+		  itemsInBundle.add(bundleItems.get(i).getQuantity());
+	  }
+	return itemsInBundle;
+  }
 
   public static List<Integer> getNrWeeks(){
 	  int nrWeeksTotal = climbSafe.getNrWeeks();

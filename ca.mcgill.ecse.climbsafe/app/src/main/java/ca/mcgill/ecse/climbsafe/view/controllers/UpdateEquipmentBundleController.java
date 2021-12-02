@@ -35,7 +35,6 @@ public class UpdateEquipmentBundleController {
 	@FXML private ListView<String> itemsInBundleListView;
 	
 	@FXML private TextField discountTextField;
-//	@FXML private TextField priceTextField;
 	
 	@FXML private Button modifyButton;
 	@FXML private Button deleteButton;
@@ -64,10 +63,10 @@ public class UpdateEquipmentBundleController {
 		bundleNameTextField.setText("");
 		
 		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
-			int initQuantity = 0;
 			int minQuantity = 0;
 			int maxQuantity = 99;
-			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(initQuantity, minQuantity, maxQuantity);
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
 			itemQuantitySpinner.setValueFactory(valueFactory);
 		});
 		discountTextField.setText("");
@@ -82,16 +81,14 @@ public class UpdateEquipmentBundleController {
 	@FXML
 	public void equipmentBundleSearchClicked(ActionEvent event) {
 		b = ClimbSafeController.getBundle(equipmentBundleChoiceBox.getValue());
-		System.out.println("Clicked");
-		System.out.println(b);
 		if(b != null) {
+			itemNames = ViewUtils.getBundleItems(b.getName());
+			itemQuantities = ViewUtils.getBundleQuantity(b.getName());
 			bundleNameTextField.setText(b.getName());
-			//items in this list
 			discountTextField.setText(String.valueOf(b.getDiscount()));
-			//price controller isnt there....
-//			priceTextField.setText(b.getPrice);
 			itemsInBundleListView.setItems(ViewUtils.getBundleItemsAndQuantity(b.getName()));
 			ClimbSafeFxmlView.getInstance().refresh();
+			equipmentBundleChoiceBox.setValue(b.getName());
 		}
 	}
 	
@@ -134,12 +131,11 @@ public class UpdateEquipmentBundleController {
 				itemaNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNames.get(i));
 			}
 
-//			memberItemsListView.setItems(itemaNameAndQuantityList);
+			itemsInBundleListView.setItems(itemaNameAndQuantityList);
 			ClimbSafeFxmlView.getInstance().refresh();
-//			if(m!= null) {
-//				memberChoiceBox.setValue(m.getEmail());
-//				nrWeeksChoiceBox.setValue(m.getNrWeeks());
-//			}
+			if(b!= null) {
+				equipmentBundleChoiceBox.setValue(b.getName());
+			}
 		}
 	
 	@FXML
@@ -169,12 +165,18 @@ public class UpdateEquipmentBundleController {
 		try {
 			if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipmentBundle(name))) {
 				equipmentBundleChoiceBox.setValue(null);
+				bundleNameTextField.setText("");
+				itemChoiceBox.setValue(null);
+				itemQuantitySpinner.setValueFactory(null);
+				itemsInBundleListView.setItems(null);
+				discountTextField.setText("");
 				ClimbSafeFxmlView.getInstance().refresh();
 			}
 			
 		} catch (RuntimeException e)  {
 			ViewUtils.showError(e.getMessage());
 		}
+		
 	}
 			
 

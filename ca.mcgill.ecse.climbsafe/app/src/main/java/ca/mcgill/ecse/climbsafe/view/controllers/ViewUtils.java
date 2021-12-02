@@ -93,6 +93,16 @@ public class ViewUtils {
 		List<String> bundles = ClimbSafeController.getBundleItemsAndQuantity(bundleName);
 		return FXCollections.observableList(bundles);
 	}
+	
+	public static ObservableList<String> getBundleItems(String bundleName){
+		List<String> bundles = ClimbSafeController.getBundleItems(bundleName);
+		return FXCollections.observableList(bundles);
+	}
+	
+	public static ObservableList<Integer> getBundleQuantity(String bundleName){
+		List<Integer> bundles = ClimbSafeController.getBundleQuantity(bundleName);
+		return FXCollections.observableList(bundles);
+	}
 
 	public static ObservableList<Integer> getNrWeeks(){
 		List<Integer> weeksInTotal = ClimbSafeController.getNrWeeks();

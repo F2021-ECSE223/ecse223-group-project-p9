@@ -93,14 +93,10 @@ public class ClimbSafeFeatureSet5Controller {
 	  }
 	  try {
 		  EquipmentBundle bundleList = climbSafe.addBundle(name, discount);
-		  List<BundleItem> bundleItems = climbSafe.getBundleItems();
-		  
 		  for(int i=0; i<equipmentNames.size(); i++) {
-			  for(int x=0; x< bundleItems.size(); x++) {
-				  if(bundleItems.get(x).getBundle().getName() == equipmentNames.get(i)) {
-					  bundleList.addBundleItem(bundleItems.get(x).getBundle().getBundleItem(x));
-				  }
-			  }
+			  String equipmentName = equipmentNames.get(i);
+			  Equipment e = (Equipment) Equipment.getWithName(equipmentName);
+			  bundleList.addBundleItem(equipmentQuantities.get(i), climbSafe, e);
 		  }
 		  ClimbSafePersistence.save();
 	  } catch (RuntimeException e) {

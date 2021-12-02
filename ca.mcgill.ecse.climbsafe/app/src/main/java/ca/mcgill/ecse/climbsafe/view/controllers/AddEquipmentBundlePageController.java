@@ -84,7 +84,6 @@ public class AddEquipmentBundlePageController {
 					if(itemNames.get(i) == itemName) {
 						
 						indexOfItem = i;
-						System.out.println("indexOfItem: " + indexOfItem);
 						break;
 					}
 				}
@@ -122,6 +121,7 @@ public class AddEquipmentBundlePageController {
 				itemNameChoiceBox.setValue(null);
 				itemQuantityChoiceBox.setValue(null);
 				ClimbSafeFxmlView.getInstance().refresh();
+				itemsInBundleListView.setItems(null);
 			}	
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

@@ -105,13 +105,29 @@ public class ClimbSafeController {
   public static List<TOTableAssignment> getTOTableAssignments() {
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 	  List<TOTableAssignment> assign = new ArrayList<TOTableAssignment>();
+	  String guideEmail;
+	  String guideName;
+	  String code;
 	  if(assignments.isEmpty()) {
 		  return assign;
 	  }
 	  for(TOAssignment t: assignments) {
 		  String startToEnd = t.getStartWeek() + "-"+ t.getEndWeek();
-		  int cost = t.getTotalCostForEquipment()+t.getTotalCostForGuide();
-		  assign.add(new TOTableAssignment(t.getMemberEmail(), t.getMemberName(), t.getGuideEmail(), t.getGuideName(), startToEnd, cost, t.getStatus(), t.getAuthorizationCode(), t.getRefundedPercentageAmount()));
+		  Integer cost = t.getTotalCostForEquipment()+t.getTotalCostForGuide();
+		  String refund = t.getRefundedPercentageAmount()+"%";
+		  if(t.getGuideEmail()==null) {
+			  guideEmail = "N/A";
+			  guideName = "N/A";
+		  }else {
+			  guideEmail = t.getGuideEmail();
+			  guideName = t.getGuideName();
+		  }
+		  if(t.getAuthorizationCode()==null) {
+			  code = "N/A"; 
+		  }else {
+			  code = t.getAuthorizationCode();
+		  }
+		  assign.add(new TOTableAssignment(t.getMemberEmail(), t.getMemberName(), guideEmail, guideName, startToEnd, cost, t.getStatus(), code, refund));
 	  }
 	  return assign;
 	  

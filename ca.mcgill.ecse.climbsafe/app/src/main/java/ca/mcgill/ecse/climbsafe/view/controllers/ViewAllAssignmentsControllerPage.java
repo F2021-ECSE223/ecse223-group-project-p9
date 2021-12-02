@@ -52,6 +52,8 @@ public class ViewAllAssignmentsControllerPage {
 	  startToEndColumn.setCellValueFactory(new PropertyValueFactory<>("startToEnd"));
 	  tripStatusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 	  refundColumn.setCellValueFactory(new PropertyValueFactory<>("refund"));
+	  costColumn.setCellValueFactory(new PropertyValueFactory<>("cost"));
+
 
 
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
@@ -72,12 +74,10 @@ public class ViewAllAssignmentsControllerPage {
     }
   }
 
-  // Event Listener on Button[#addRouteButton].onAction
   @FXML
   public void initiateClicked(ActionEvent event) {
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 
-		  //need to refresh members/guides in the case where they are updated before assignment
 		  try {
 			  if(assignments.isEmpty()) {
 					 if(successful(() -> AssignmentController.initiateAssignment())) {

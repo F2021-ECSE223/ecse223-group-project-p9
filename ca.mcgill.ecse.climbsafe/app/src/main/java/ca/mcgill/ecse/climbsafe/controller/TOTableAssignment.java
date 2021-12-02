@@ -20,13 +20,13 @@ public class TOTableAssignment
   private int cost;
   private String status;
   private String code;
-  private int refund;
+  private String refund;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOTableAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, String aStartToEnd, int aCost, String aStatus, String aCode, int aRefund)
+  public TOTableAssignment(String aMemberEmail, String aMemberName, String aGuideEmail, String aGuideName, String aStartToEnd, int aCost, String aStatus, String aCode, String aRefund)
   {
     memberEmail = aMemberEmail;
     memberName = aMemberName;
@@ -107,7 +107,7 @@ public class TOTableAssignment
     return wasSet;
   }
 
-  public boolean setRefund(int aRefund)
+  public boolean setRefund(String aRefund)
   {
     boolean wasSet = false;
     refund = aRefund;
@@ -155,7 +155,7 @@ public class TOTableAssignment
     return code;
   }
 
-  public int getRefund()
+  public String getRefund()
   {
     return refund;
   }

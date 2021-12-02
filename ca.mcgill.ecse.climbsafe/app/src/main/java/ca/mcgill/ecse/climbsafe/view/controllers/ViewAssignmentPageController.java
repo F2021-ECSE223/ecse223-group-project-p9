@@ -35,10 +35,6 @@ public class ViewAssignmentPageController {
   private Text codeText;
   @FXML
   private ChoiceBox<String> memberChoiceBox;
-  @FXML
-  private Button InitiateAssignmentsButton;
-  @FXML
-  private Text assignmentCompletionText;
   
   private List<TOAssignment> assignments; 
   
@@ -52,11 +48,7 @@ public class ViewAssignmentPageController {
 			memberChoiceBox.setValue(null);
 		});	
 	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
-	  if(!(assignments.isEmpty())) {
-			 assignmentCompletionText.setText("Assignments initialized.");
-	  }else {
-			 assignmentCompletionText.setText("Please initialize assignments before viewing.");
-	  }
+	  
 	}
   @FXML
   public void viewClicked(ActionEvent event) {
@@ -131,25 +123,8 @@ public class ViewAssignmentPageController {
 	  
   }
   
-  @FXML
-  public void initiateAssignmentClicked(ActionEvent event) {
-
-	  //need to refresh members/guides in the case where they are updated before assignment
-	  try {
-		  if(assignments.isEmpty()) {
-				 if(successful(() -> AssignmentController.initiateAssignment())) {
-					 assignmentCompletionText.setText("Assignments initialized.");
-				 }
-		  }else {
-			  String e = "Assignments already initialized, cannot initialize again.";
-			  ViewUtils.showError(e);
-		  }
-			
-
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
-		}
-  }
+  
+  
 
 
   

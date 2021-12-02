@@ -66,15 +66,6 @@
             </TabPane>
          </content>
       </Tab>
-      <Tab text="Assignments">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <fx:include layoutX="20.0" layoutY="10.0" minHeight="0.0" minWidth="0.0" source="pages/ViewAssignmentPage.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
       <Tab text="Trip Management">
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="541.0" prefWidth="873.0">
@@ -153,6 +144,32 @@
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <fx:include source="pages/UpdateEquipmentBundle.fxml" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </content>
+      </Tab>
+      <Tab text="Assignments">
+         <content>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Initiate and View All">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <fx:include source="pages/viewAllAssignments.fxml" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Individual View">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <fx:include source="pages/ViewAssignmentPage.fxml" />
                            </children>
                         </AnchorPane>
                      </content>

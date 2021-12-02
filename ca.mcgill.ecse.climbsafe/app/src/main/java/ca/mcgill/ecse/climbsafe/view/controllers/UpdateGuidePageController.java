@@ -19,7 +19,7 @@ import javafx.scene.control.TextField;
 
 
 public class UpdateGuidePageController {
-	
+
 	@FXML private TextField nameTextField;
 	@FXML private ChoiceBox<String> guideChoiceBox;
 	@FXML private PasswordField passwordField;
@@ -28,7 +28,7 @@ public class UpdateGuidePageController {
 	@FXML private Button deleteGuideButton;
 	@FXML private Button updateGuideButton;
 	@FXML private Button guideSearchButton;
-	
+
 	public void initialize() {
 		nameTextField.setText("");
 		passwordField.setText("");
@@ -40,7 +40,7 @@ public class UpdateGuidePageController {
 		});
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(guideChoiceBox);
 	}
-	
+
 	@FXML
 	public void guideSearchClicked(ActionEvent event) {
 		List<TOGuide> g = ClimbSafeController.getTOGuides();
@@ -54,34 +54,35 @@ public class UpdateGuidePageController {
 			}
 		}
 	}
-	
-	
+
+
 	@FXML
 	public void updateGuideClicked(ActionEvent event) {
 		String name = nameTextField.getText();
 		String email = guideChoiceBox.getValue();
 		String password = passwordField.getText();
 		String emergencyContact = emergencyContactTextField.getText();
-		
-		try {
-			if(successful(() -> ClimbSafeFeatureSet3Controller.updateGuide(email, password, name, emergencyContact))) {
-				guideChoiceBox.setValue(null);
-				passwordField.setText("");
-				nameTextField.setText("");
-				emergencyContactTextField.setText("");
-				ClimbSafeFxmlView.getInstance().refresh();
-	}
+		if(name != "" && email != null && password != "" && emergencyContact != "") {
+			try {
+				if(successful(() -> ClimbSafeFeatureSet3Controller.updateGuide(email, password, name, emergencyContact))) {
+					guideChoiceBox.setValue(null);
+					passwordField.setText("");
+					nameTextField.setText("");
+					emergencyContactTextField.setText("");
+					permissionCheckBox.setSelected(false);
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			}catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
+			}
 		}
-		catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
-		}
 	}
-	
+
 	@FXML
 	public void deleteGuideClicked(ActionEvent event) {
 		String email = guideChoiceBox.getValue();
 		boolean confirmDelete = permissionCheckBox.isSelected();
-		if(confirmDelete) {
+		if(confirmDelete && email != null) {
 			try {
 				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteGuide(email))) {
 					guideChoiceBox.setValue(null);

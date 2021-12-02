@@ -61,7 +61,7 @@ public class ViewAllAssignmentsControllerPage {
 
 
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
-	  if(!(assignments.isEmpty())) {
+	  if(!(ClimbSafeFeatureSet6Controller.getAssignments().isEmpty())) {
 		  if(assignments.size()==ClimbSafeController.getTOMembers().size()) {
 			  assignmentCompletionText.setText("Assignments initialized.");
 		  }else {
@@ -85,11 +85,12 @@ public class ViewAllAssignmentsControllerPage {
   @FXML
   public void initiateClicked(ActionEvent event) {
 	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
-
 		  try {
 			  if(assignments.isEmpty()) {
 					 if(successful(() -> AssignmentController.initiateAssignment())) {
 						 assignmentCompletionText.setText("Assignments initialized.");
+					 }else if(!ClimbSafeFeatureSet6Controller.getAssignments().isEmpty()) {
+						assignmentCompletionText.setText("Assignments initialized (incomplete for some members).");
 					 }
 			  }else {
 				  String e = "Assignments already initialized, cannot initialize again.";
@@ -98,8 +99,7 @@ public class ViewAllAssignmentsControllerPage {
 				
 
 			} catch (RuntimeException e) {
-				String error = e.getMessage();
-				if(error.contains("all members")) {
+				if(!ClimbSafeFeatureSet6Controller.getAssignments().isEmpty()) {
 					assignmentCompletionText.setText("Assignments initialized (incomplete for some members).");
 				}
 				ViewUtils.showError(e.getMessage());

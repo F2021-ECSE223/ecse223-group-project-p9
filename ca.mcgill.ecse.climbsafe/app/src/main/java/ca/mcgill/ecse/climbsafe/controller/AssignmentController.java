@@ -67,9 +67,11 @@ public class AssignmentController {
 								index++;
 							}
 							if(guideNotFound) {
-								error = "Assignments could not be completed for all members";
-								throw new InvalidInputException(error.trim());
-							}
+								error += "Assignments could not be completed for all members\n";
+								if(m==members.size()-1) {
+									throw new InvalidInputException(error.trim());
+								}
+							}else { //to make sure assignments can be completed after
 							index--;
 							guide = guides.get(index);
 							int startWeek;
@@ -87,10 +89,13 @@ public class AssignmentController {
 							
 							g = temp;
 							guide = guides.get(g);
+							}
+				
+							
 							
 						}else {
 							if (!(g+1<guides.size())) {
-								error = "Assignments could not be completed for all members";
+								error += "Assignments could not be completed for all members\n";
 								throw new InvalidInputException(error.trim());
 							}
 							g++;

@@ -44,7 +44,7 @@ public class ClimbSafeFeatureSet6Controller {
 		for(int i=0; i<equipmentBundles.size(); i++) {
 			List<BundleItem> bundleItems = equipmentBundles.get(i).getBundleItems();
 			index2 =0;
-			while(!found && index2<bundleItems.size()-1){
+			while(!found && index2<bundleItems.size()){
 				if(bundleItems.get(index2).getEquipment().getName().equals(name)) {
 					found = true;	
 				}
@@ -54,7 +54,7 @@ public class ClimbSafeFeatureSet6Controller {
 				break;
 			}
 		}
-		if(found == false) {
+		if(!found) {
 			equipment.get(index).delete();
 		}else {
 			error = "The piece of equipment is in a bundle and cannot be deleted";

@@ -5,10 +5,8 @@ import ca.mcgill.ecse.climbsafe.application.ClimbSafeApplication;
 import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 import ca.mcgill.ecse.climbsafe.model.Guide;
-import ca.mcgill.ecse.climbsafe.model.Assignment;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import java.util.List;
-import ca.mcgill.ecse.climbsafe.model.*;
 
 public class ClimbSafeFeatureSet1Controller {
 

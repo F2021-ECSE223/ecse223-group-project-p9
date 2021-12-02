@@ -5,14 +5,11 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.*;
-import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.text.Text;
 
 public class ViewAllAssignmentsControllerPage {
 

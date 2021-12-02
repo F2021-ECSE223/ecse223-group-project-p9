@@ -8,7 +8,6 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet5Controller;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet6Controller;
-import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;

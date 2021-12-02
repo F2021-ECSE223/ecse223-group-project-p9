@@ -113,7 +113,6 @@ public class ClimbSafeController {
 		  for(BundleItem i: bundleItems) {
 			  bundle.addBundleItem(i.toString());
 		  }
-		  
 		  TOBundles.add(bundle);
 	  }
 	  return TOBundles;

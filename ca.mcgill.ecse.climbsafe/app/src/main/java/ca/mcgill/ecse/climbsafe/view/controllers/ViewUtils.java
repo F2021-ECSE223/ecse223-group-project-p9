@@ -123,6 +123,13 @@ public class ViewUtils {
 		List<Integer> itemsQuantityList = ClimbSafeController.getMemberItemsQuantity(email);
 		return FXCollections.observableList(itemsQuantityList);
 	}
+	public static ObservableList<Integer> getQuantity(){
+		List<Integer> quantity = new ArrayList<Integer>();
+		for (int i=1; i<=99; i++)
+			quantity.add(i);
+		return FXCollections.observableList(quantity);
+	}
+	
 }
 
 

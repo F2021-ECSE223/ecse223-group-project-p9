@@ -147,15 +147,14 @@ public class AssignmentController {
 				}
 			}
 		}
-		if(!error.isEmpty()) {
-			throw new InvalidInputException(error.trim());
-		}
-
 		try {
 			for (Assignment a : myAssignments) {
 				if (a.getStartWeek()==week) {
 					a.startTrip();
 				}
+			}
+			if(!error.isEmpty()) {
+				throw new InvalidInputException(error.trim());
 			}
 			ClimbSafePersistence.save();
 		}catch(RuntimeException e){

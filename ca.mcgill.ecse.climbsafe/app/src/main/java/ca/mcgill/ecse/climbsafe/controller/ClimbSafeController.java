@@ -79,6 +79,18 @@ public class ClimbSafeController {
 	  return TOMembers;
 	  
   }
+  public static List<TOGuide> getTOGuides() {
+	  List<Guide> guides = climbSafe.getGuides();
+	  List<TOGuide> TOGuides = new ArrayList<TOGuide>();
+	  TOGuide guide;
+	  for(Guide g: guides) {
+		  guide = new TOGuide(g.getEmail(), g.getName(), g.getEmergencyContact(), g.getPassword());
+		  
+		  TOGuides.add(guide);
+	  }
+	  return TOGuides;
+	  
+  }
   
   public static List<String> getGuides(){
 	  List<Guide> guideList = climbSafe.getGuides();

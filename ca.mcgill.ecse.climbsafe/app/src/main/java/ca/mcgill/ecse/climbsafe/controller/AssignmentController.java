@@ -42,7 +42,8 @@ public class AssignmentController {
 						assignment.setGuide(guide);
 						if (endWeek == climbSafe.getNrWeeks()){
 							if (!(g+1<guides.size())) {
-								error = "Assignments could not be completed for all members";
+								error += "Assignments could not be completed for all members";
+								ClimbSafePersistence.save();
 								throw new InvalidInputException(error.trim());
 							}
 							g++;
@@ -96,7 +97,7 @@ public class AssignmentController {
 							
 						}else {
 							if (!(g+1<guides.size())) {
-								error += "Assignments could not be completed for all members\n";
+								error += "Assignments could not be completed for all members";
 								ClimbSafePersistence.save();
 								throw new InvalidInputException(error.trim());
 							}
@@ -139,11 +140,11 @@ public class AssignmentController {
 		for (Assignment a : myAssignments) {
 			if (a.getStartWeek() == week) {
 				if (a.getTripStatus().equals(TripStatus.Banned)) {
-					error += "Cannot start the trip due to a ban\n";
+					error += "Cannot start the trip due to a ban for "+ a.getMember().getName()+ "\n";
 				}else if (a.getTripStatus().equals(TripStatus.Finished)) {
-					error+="Cannot start a trip which has finished\n";
+					error+="Cannot start a trip which has finished for "+ a.getMember().getName()+ "\n";
 				}else if (a.getTripStatus().equals(TripStatus.Cancelled)) {
-					error+="Cannot start a trip which has been cancelled\n";
+					error+="Cannot start a trip which has been cancelled for "+ a.getMember().getName()+ "\n";
 				}
 			}
 		}
@@ -180,10 +181,10 @@ public class AssignmentController {
 				for (Assignment a : myAssignments) {
 					if (a.getMember().getEmail().equals(email)) {
 						if (a.getTripStatus().equals(TripStatus.Banned)) {
-							error = "Cannot cancel the trip due to a ban";
+							error = "Cannot cancel the trip due to a ban for "+ a.getMember().getName();
 							throw new InvalidInputException(error.trim());
 						}else if (a.getTripStatus().equals(TripStatus.Finished)) {
-							error="Cannot cancel a trip which has finished";
+							error="Cannot cancel a trip which has finished for "+ a.getMember().getName();
 							throw new InvalidInputException(error.trim());
 						}
 					}
@@ -228,21 +229,21 @@ public class AssignmentController {
 			for(Assignment a: assignments) {
 				if(a.getMember().getEmail().equals(email)){
 					if(a.getTripStatus().equals(TripStatus.Banned)) {
-						error = "Cannot finish the trip due to a ban";
+						error = "Cannot finish the trip due to a ban for "+ a.getMember().getName();
 						throw new InvalidInputException(error.trim());
 
 					}else if(a.getTripStatus().equals(TripStatus.OnTrip)) {
 						a.finishTrip();
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
-						error = "Cannot finish a trip which has been cancelled";
+						error = "Cannot finish a trip which has been cancelled for "+ a.getMember().getName();
 						throw new InvalidInputException(error.trim());
 
 					}else if(a.getTripStatus().equals(TripStatus.Assigned)|| a.getPaid() == true) {
-						error = "Cannot finish a trip which has not started";
+						error = "Cannot finish a trip which has not started for "+ a.getMember().getName();
 						throw new InvalidInputException(error.trim());
 
 					}else if(a.getTripStatus().equals(TripStatus.Finished)) {
-						error = "Cannot finish a trip which has already been finished";
+						error = "Cannot finish a trip which has already been finished for "+ a.getMember().getName();
 						throw new InvalidInputException(error.trim());
 
 					}

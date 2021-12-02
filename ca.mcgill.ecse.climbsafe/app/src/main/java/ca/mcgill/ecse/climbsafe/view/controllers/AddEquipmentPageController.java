@@ -1,25 +1,43 @@
 package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
+
+import java.util.List;
+
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet4Controller;
+import ca.mcgill.ecse.climbsafe.controller.TOEquipment;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 
 public class AddEquipmentPageController {
 
 	@FXML private TextField addEquipmentName;
 	@FXML private Button addEquipmentButton;
+	@FXML private Button refreshEquipments;
 	@FXML private Spinner<Integer> weightSpinner;
 	@FXML private Spinner<Integer> priceSpinner;
 	@FXML private Text returnMessageText;
+	@FXML private TableColumn<TOEquipment, String> equipmentNames;
+	@FXML private TableView<TOEquipment> showEquipment;
 
 	public void initialize() {
+		equipmentNames.setCellValueFactory(new PropertyValueFactory<>("name"));
+		List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();
+	    showEquipment.getItems().clear();
+	    for(TOEquipment e: equipments) {
+	    	showEquipment.getItems().add(e);
+	    }
+	    
 		weightSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
 			int maxQuantity = 9999999;
@@ -61,9 +79,27 @@ public class AddEquipmentPageController {
 					returnMessageText.setText("Equipment added successfully");
 				}
 			}
+			List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();
+		    showEquipment.getItems().clear();
+		    for(TOEquipment e: equipments) {
+		    	showEquipment.getItems().add(e);
+		    }
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Refreshes the table showing all equipments in the application
+	 * @param event
+	 * @author Enzo Benoit-Jeannin
+	 */
+	@FXML
+	public void refreshClick(ActionEvent event) {
+		List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();
+	    showEquipment.getItems().clear();
+	    for(TOEquipment e: equipments) {
+	    	showEquipment.getItems().add(e);
+	    }
+	}
 }

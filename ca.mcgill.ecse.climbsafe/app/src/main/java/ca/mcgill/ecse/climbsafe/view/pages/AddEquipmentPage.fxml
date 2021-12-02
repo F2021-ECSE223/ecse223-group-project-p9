@@ -2,8 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
@@ -27,9 +28,9 @@
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6365509033203" minWidth="10.0" prefWidth="10.857142857142858" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="106.28570665631976" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="409.8571243286133" minWidth="10.0" prefWidth="246.57142857142856" />
-            <ColumnConstraints hgrow="ALWAYS" maxWidth="273.1428309849331" minWidth="10.0" prefWidth="138.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.9999084472656" minWidth="10.0" prefWidth="215.42859758649558" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.85711233956476" minWidth="10.0" prefWidth="92.71426827566961" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="273.1428309849331" minWidth="10.0" prefWidth="95.42859758649553" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.9999084472656" minWidth="10.0" prefWidth="215.9999651227679" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.85711233956476" minWidth="10.0" prefWidth="136.0000348772321" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints />
@@ -84,10 +85,22 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="8" />
             <Spinner fx:id="weightSpinner" editable="true" GridPane.columnIndex="2" GridPane.rowIndex="12" />
             <Spinner fx:id="priceSpinner" editable="true" GridPane.columnIndex="2" GridPane.rowIndex="14" />
             <Text fx:id="returnMessageText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.rowIndex="17" />
+            <TableView fx:id="showEquipment" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="10" GridPane.rowSpan="8">
+              <columns>
+                <TableColumn fx:id="equipmentNames" prefWidth="214.8571254014969" text="Equipments" />
+              </columns>
+            </TableView>
+            <Button fx:id="refreshEquipments" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshClick" prefHeight="29.0" prefWidth="90.0" text="Refresh" textAlignment="CENTER" textFill="#2fc1ff" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="19" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
          </children>
       </GridPane>
    </children>

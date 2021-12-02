@@ -3,7 +3,7 @@
 
 package ca.mcgill.ecse.climbsafe.controller;
 
-// line 30 "../../../../../ClimbSafeTransferObjects.ump"
+// line 29 "../../../../../ClimbSafeTransferObjects.ump"
 public class TOGuide
 {
 
@@ -14,20 +14,18 @@ public class TOGuide
   //TOGuide Attributes
   private String email;
   private String name;
-  private String emergencyContactName;
-  private String emergencyContactEmail;
+  private String emergencyContact;
   private String password;
 
   //------------------------
   // CONSTRUCTOR
   //------------------------
 
-  public TOGuide(String aEmail, String aName, String aEmergencyContactName, String aEmergencyContactEmail, String aPassword)
+  public TOGuide(String aEmail, String aName, String aEmergencyContact, String aPassword)
   {
     email = aEmail;
     name = aName;
-    emergencyContactName = aEmergencyContactName;
-    emergencyContactEmail = aEmergencyContactEmail;
+    emergencyContact = aEmergencyContact;
     password = aPassword;
   }
 
@@ -51,18 +49,10 @@ public class TOGuide
     return wasSet;
   }
 
-  public boolean setEmergencyContactName(String aEmergencyContactName)
+  public boolean setEmergencyContact(String aEmergencyContact)
   {
     boolean wasSet = false;
-    emergencyContactName = aEmergencyContactName;
-    wasSet = true;
-    return wasSet;
-  }
-
-  public boolean setEmergencyContactEmail(String aEmergencyContactEmail)
-  {
-    boolean wasSet = false;
-    emergencyContactEmail = aEmergencyContactEmail;
+    emergencyContact = aEmergencyContact;
     wasSet = true;
     return wasSet;
   }
@@ -85,14 +75,9 @@ public class TOGuide
     return name;
   }
 
-  public String getEmergencyContactName()
+  public String getEmergencyContact()
   {
-    return emergencyContactName;
-  }
-
-  public String getEmergencyContactEmail()
-  {
-    return emergencyContactEmail;
+    return emergencyContact;
   }
 
   public String getPassword()
@@ -109,8 +94,7 @@ public class TOGuide
     return super.toString() + "["+
             "email" + ":" + getEmail()+ "," +
             "name" + ":" + getName()+ "," +
-            "emergencyContactName" + ":" + getEmergencyContactName()+ "," +
-            "emergencyContactEmail" + ":" + getEmergencyContactEmail()+ "," +
+            "emergencyContact" + ":" + getEmergencyContact()+ "," +
             "password" + ":" + getPassword()+ "]";
   }
 }

@@ -18,20 +18,18 @@ class TOAssignment {
 class TOMember {
 	email;
 	name;
-	emergencyContactName;
-	emergencyContactEmail;
+	emergencyContact;
 	password;
-	nrWeeks;
-	guideRequired;
-	hotelRequired;
+	Integer nrWeeks;
+	Boolean guideRequired;
+	Boolean hotelRequired;
 	String[] bookedItems;
 }
 
 class TOGuide {
 	email;
 	name;
-	emergencyContactName;
-	emergencyContactEmail;
+	emergencyContact;
 	password;
 }
 

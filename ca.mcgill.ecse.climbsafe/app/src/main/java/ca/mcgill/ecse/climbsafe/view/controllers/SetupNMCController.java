@@ -71,14 +71,5 @@ public class SetupNMCController {
 			return -1;
 		}
 	}
-	
-	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
-	private int getDateFromField(ChoiceBox<Integer> field) {
-		if(field.getValue() != null) {
-			return field.getValue();
-		}else {
-			return -1;
-		}
-	}
 }
  

@@ -17,16 +17,9 @@ public class AssignmentController {
 	 * @throws InvalidInputException
 	 * @author Victor Micha
 	 */
-	public static void initiateAssignment() throws InvalidInputException{	//either fix this method for partial assignment or add if in view controller
+	public static void initiateAssignment() throws InvalidInputException{
 		List<Member> members = climbSafe.getMembers();
 		List<Guide> guides = climbSafe.getGuides();
-		if(members.isEmpty()) {
-			error = "No members registered in the system.";
-			throw new InvalidInputException(error.trim());
-		}else if(guides.isEmpty()) {
-			error = "No guides registered in the system.";
-			throw new InvalidInputException(error.trim());
-		}
 		int g = 0;
 		Guide guide = guides.get(g);
 		Member member;
@@ -66,8 +59,7 @@ public class AssignmentController {
 							while(guideNotFound&&index<guides.size()) {
 								if (guides.get(index).getAssignments().size()==0) {
 									guideNotFound = false;
-								}else if (//guideAvailableForNumWeeks(guides.get(index).getAssignments(), member.getNrWeeks(), guides.get(index))) {
-										guides.get(index).getAssignments().get(guides.get(index).getAssignments().size()-1).getEndWeek()+member.getNrWeeks()<=climbSafe.getNrWeeks()) {
+								}else if (guides.get(index).getAssignments().get(guides.get(index).getAssignments().size()-1).getEndWeek()+member.getNrWeeks()<=climbSafe.getNrWeeks()) {
 									guideNotFound = false;
 									
 								}
@@ -106,7 +98,7 @@ public class AssignmentController {
 					}
 				}
 				else {
-					new Assignment(1, member.getNrWeeks(), member, climbSafe);
+					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
 				}
 			}
 			ClimbSafePersistence.save();

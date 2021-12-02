@@ -77,8 +77,10 @@ public class ViewAssignmentPageController {
 			String refund;
 			String startAndEndWeek;
 			int totalCost;
+			boolean found = false;
 		 for(TOAssignment a : assignments) {
 			if(a.getMemberEmail().equals(memberChoiceBox.getValue())) {
+				found = true;
 				tripStatusText.setText(a.getStatus());
 				memberEmailText.setText(a.getMemberEmail());
 				memberNameText.setText(a.getMemberName());
@@ -104,6 +106,17 @@ public class ViewAssignmentPageController {
 				}
 
 			} 
+		 }
+		 if(found==false) {
+			tripStatusText.setText("N/A");
+			memberEmailText.setText("N/A");
+			memberNameText.setText("N/A");
+			refundText.setText("N/A");
+			startAndEndWeekText.setText("N/A");
+			guideEmailText.setText("N/A");
+			guideNameText.setText("N/A");
+			totalCostText.setText("N/A");
+			codeText.setText("N/A");
 		 }
 		  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 		 

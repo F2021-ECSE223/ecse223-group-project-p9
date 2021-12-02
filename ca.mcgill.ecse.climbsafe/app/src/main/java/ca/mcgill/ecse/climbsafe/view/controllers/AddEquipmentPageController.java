@@ -6,15 +6,37 @@ import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 public class AddEquipmentPageController {
 
 	@FXML private TextField addEquipmentName;
-	@FXML private TextField addEquipmentWeight;
-	@FXML private TextField addEquipmentPrice;
 	@FXML private Button addEquipmentButton;
+	@FXML private Spinner<Integer> weightSpinner;
+	@FXML private Spinner<Integer> priceSpinner;
 
+	public void initialize() {
+		weightSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 99;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			weightSpinner.setValueFactory(valueFactory);
+		});
+		priceSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 99;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			priceSpinner.setValueFactory(valueFactory);
+		});
+
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(weightSpinner);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(priceSpinner);
+	}
+	
 	/**
 	 * Describes what pressing the addEquipment Button does (event listener)
 	 * @author Enzo Benoit-Jeannin
@@ -23,29 +45,20 @@ public class AddEquipmentPageController {
 	@FXML
 	public void addEquipmentClick(ActionEvent event) {
 		String name = addEquipmentName.getText();
-		int weight = getNumberFromField(addEquipmentWeight);
-		int price = getNumberFromField(addEquipmentPrice);
+		int weight = weightSpinner.getValue();
+		int price = priceSpinner.getValue();
 		//try adding the new equipment or catch the error
 		try {
 			if(name!="" && weight != -1 && price != -1) {
 				if(successful(() -> ClimbSafeFeatureSet4Controller.addEquipment(name, weight, price))) {
 					addEquipmentName.setText("");
-					addEquipmentWeight.setText("");
-					addEquipmentPrice.setText("");
+					weightSpinner.getValueFactory().setValue(0);
+					priceSpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
 				}
 			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
-		}
-	}
-
-	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
-	private int getNumberFromField(TextField field) {
-		if(field.getText() != "") {
-			return Integer.parseInt(field.getText());
-		}else {
-			return -1;
 		}
 	}
 

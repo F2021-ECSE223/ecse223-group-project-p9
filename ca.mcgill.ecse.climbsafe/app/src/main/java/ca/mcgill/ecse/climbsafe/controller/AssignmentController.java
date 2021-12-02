@@ -185,6 +185,17 @@ public class AssignmentController {
 			}
 			for (Assignment a : myAssignments) {
 				if (a.getMember().getEmail().equals(email)) {
+					if(a.getAuthorizationCode()!="" && a.getAuthorizationCode()!=null) {
+						if(a.getTripStatus().equals(TripStatus.Assigned)) {
+							a.setRefund(50);
+						}else if(a.getTripStatus().equals(TripStatus.Finished)) {
+							a.setRefund(0);
+						}else {
+							a.setRefund(10);
+						}
+					}else {
+						a.setRefund(0);
+					}
 					a.cancelTrip();
 				}
 			}
@@ -216,7 +227,6 @@ public class AssignmentController {
 
 					}else if(a.getTripStatus().equals(TripStatus.OnTrip)) {
 						a.finishTrip();
-						a.setRefund(0);
 					}else if(a.getTripStatus().equals(TripStatus.Cancelled)) {
 						error = "Cannot finish a trip which has been cancelled";
 						throw new InvalidInputException(error.trim());

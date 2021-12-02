@@ -21,6 +21,8 @@ public class ClimbSafeFeatureSet1Controller {
 
 	public static void setup(Date startDate, int nrWeeks, int priceOfGuidePerWeek) throws InvalidInputException {
 		ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();		
+		if (climbSafe.getStartDate()!=null)
+			return;
 		String[] s = startDate.toString().split("-");
 		error = "";
 		if (!(Integer.parseInt(s[1])<=12)){

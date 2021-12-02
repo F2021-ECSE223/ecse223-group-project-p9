@@ -93,10 +93,12 @@ public class ViewAssignmentPageController {
 				if(a.getAuthorizationCode()==null) {
 					tripStatusText.setText(a.getStatus());
 					codeText.setText("Payment not yet authorized.");
-				}else {
+				}else if((a.getAuthorizationCode()!=null) && a.getStatus().equals("Assigned")){
 					codeText.setText(a.getAuthorizationCode());
 					tripStatusText.setText("Paid");
-
+				}else {
+					codeText.setText(a.getAuthorizationCode());
+					tripStatusText.setText(a.getStatus());
 				}
 
 			} 

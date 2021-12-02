@@ -125,9 +125,12 @@ public class ClimbSafeController {
 		  if(t.getAuthorizationCode()==null) {
 			  status = t.getStatus();
 			  code = "N/A"; 
-		  }else {
+		  }else if((t.getAuthorizationCode()!=null) && t.getStatus().equals("Assigned")){
 			  status = "Paid";
 			  code = t.getAuthorizationCode();
+		  }else {
+			  status = t.getStatus();
+			  code = t.getAuthorizationCode(); 
 		  }
 		  assign.add(new TOTableAssignment(t.getMemberEmail(), t.getMemberName(), guideEmail, guideName, startToEnd, t.getTotalCostForEquipment(),t.getTotalCostForGuide(), status, code, refund));
 	  }

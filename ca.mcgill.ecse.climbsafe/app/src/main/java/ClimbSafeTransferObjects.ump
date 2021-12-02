@@ -44,4 +44,17 @@ class TOBundle {
 	Integer discount;
 	String[] bundleItems;
 }
+
+class TOTableAssignment{
+	memberEmail;
+  memberName;
+  guideEmail;
+  guideName;
+  startToEnd;
+  Integer cost;
+  status;
+  code;
+  Integer refund;
+ }
+  
 	

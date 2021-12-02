@@ -102,6 +102,17 @@ public class ClimbSafeController {
 	  return memberListString;
   }
   
+  public static List<TOTableAssignment> getTOTableAssignments() {
+	  List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
+	  List<TOTableAssignment> assign = new ArrayList<TOTableAssignment>();
+	  for(TOAssignment t: assignments) {
+		  String startToEnd = t.getStartWeek() + "-"+ t.getEndWeek();
+		  int cost = t.getTotalCostForEquipment()+t.getTotalCostForGuide();
+		  assign.add(new TOTableAssignment(t.getMemberEmail(), t.getMemberName(), t.getGuideEmail(), t.getGuideName(), startToEnd, cost, t.getStatus(), t.getAuthorizationCode(), t.getRefundedPercentageAmount()));
+	  }
+	  return assign;
+	  
+  }
   public static List<TOMember> getTOMembers() {
 	  List<Member> members = climbSafe.getMembers();
 	  List<TOMember> TOMembers = new ArrayList<TOMember>();

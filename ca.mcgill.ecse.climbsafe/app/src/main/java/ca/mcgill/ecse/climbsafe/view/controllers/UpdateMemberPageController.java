@@ -223,6 +223,7 @@ public class UpdateMemberPageController {
 					itemNameChoiceBox.setValue(null);
 					itemQuantitySpinner.setValueFactory(null);
 					memberItemsListView.setItems(null);
+					deleteConfirmButton.setSelected(false);
 					ClimbSafeFxmlView.getInstance().refresh();
 					updateMessageLabel.setText("Member deleted successfully");
 				}

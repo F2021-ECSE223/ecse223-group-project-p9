@@ -135,5 +135,40 @@
             </AnchorPane>
          </content>
       </Tab>
+      <Tab text="StartFinishCancel">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <fx:include source="pages/StartFinishCancelTrip.fxml" />
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="Bundle">
+         <content>
+            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+               <tabs>
+                  <Tab text="Register">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <fx:include source="pages/AddEquipmentBundle.fxml" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab text="Update">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <fx:include source="pages/UpdateEquipmentBundle.fxml" />
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </content>
+      </Tab>
   </tabs>
 </TabPane>

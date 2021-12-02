@@ -117,6 +117,11 @@ public class ViewUtils {
 		List<Integer> itemsQuantityList = ClimbSafeController.getMemberItemsQuantity(email);
 		return FXCollections.observableList(itemsQuantityList);
 	}
+	
+	  public static ObservableList<Integer> getWeeklyPriceGuide(){
+		  List<Integer> weeklyPricesGuide = ClimbSafeController.getPriceOfGuidePerWeek();
+		  return FXCollections.observableList(weeklyPricesGuide);
+	  }
 }
 
 

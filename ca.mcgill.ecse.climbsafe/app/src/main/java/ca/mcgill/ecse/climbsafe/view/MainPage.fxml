@@ -8,16 +8,19 @@
   <tabs>
     <Tab text="SetupNMC">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <fx:include source="pages/SetupNMC.fxml" />
+               </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="Member">
          <content>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="561.0" prefWidth="832.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Register">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="448.0" prefWidth="514.0">
                            <children>
                               <fx:include source="pages/RegisterMemberPage.fxml" />
                            </children>
@@ -119,6 +122,15 @@
                         </Tab>
                      </tabs>
                   </TabPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </Tab>
+      <Tab text="StartFinishCancel">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <fx:include source="pages/StartFinishCancelTrip.fxml" />
                </children>
             </AnchorPane>
          </content>

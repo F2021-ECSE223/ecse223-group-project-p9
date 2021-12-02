@@ -17,21 +17,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="460.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.RegisterMemberPageController">
+<AnchorPane prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.RegisterMemberPageController">
    <children>
-      <ImageView fitHeight="471.0" fitWidth="689.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@WallpaperClimbsafe.png" />
          </image>
       </ImageView>
-      <GridPane layoutY="52.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="671.0">
+      <GridPane layoutX="14.0" layoutY="71.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="729.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6365509033203" minWidth="10.0" prefWidth="22.731035232543945" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="213.85716029575892" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.83917236328125" minWidth="10.0" prefWidth="320.57143729073664" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.72564697265625" minWidth="10.0" prefWidth="82.14284842354914" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.90924072265625" minWidth="10.0" prefWidth="30.54705810546875" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="205.14289202008925" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="351.9999651227679" minWidth="10.0" prefWidth="328.5714111328125" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.72564697265625" minWidth="10.0" prefWidth="93.57149832589289" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="78.90924072265625" minWidth="10.0" prefWidth="54.14278738839289" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints />
@@ -43,13 +42,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="38.00000871930803" minHeight="10.0" prefHeight="38.00000871930803" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="96.42852783203125" minHeight="-Infinity" prefHeight="87.28570556640625" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="34.00000871930803" minHeight="10.0" prefHeight="31.142892020089278" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="34.71426827566964" minHeight="10.0" prefHeight="29.99996512276786" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="25.571446010044667" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="23.714303152901778" minHeight="10.0" prefHeight="23.714303152901778" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.85712541852678" minHeight="10.0" prefHeight="34.57144601004467" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="96.42852783203125" minHeight="-Infinity" prefHeight="85.5714111328125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="36.85712541852678" minHeight="10.0" prefHeight="36.85712541852678" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="nameTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" />
@@ -97,7 +96,7 @@
             <Button fx:id="registerMemberRegisterButton" mnemonicParsing="false" onAction="#registerMemberRegisterClicked" text="Register" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="CENTER" />
             <Label contentDisplay="TOP" text="Register Member" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
                <font>
-                  <Font name="Champagne &amp; Limousines" size="37.0" />
+                  <Font size="37.0" />
                </font>
             </Label>
             <Button fx:id="addEditItemButton" mnemonicParsing="false" onAction="#addEditItemClicked" text="Add/Edit" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="13" />

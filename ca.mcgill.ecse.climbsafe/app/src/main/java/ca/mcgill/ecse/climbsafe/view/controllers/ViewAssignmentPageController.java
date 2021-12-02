@@ -52,6 +52,7 @@ public class ViewAssignmentPageController {
 	}
   @FXML
   public void viewClicked(ActionEvent event) {
+	  
 	  try {
 		 assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 		 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
@@ -60,7 +61,7 @@ public class ViewAssignmentPageController {
 			 ViewUtils.showError(e);
 			 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 
-		 }else if(memberChoiceBox.getValue().equals(null)) {
+		 }else if(memberChoiceBox.getValue() == null) {
 			 String e = "Please choose member.";
 			 ViewUtils.showError(e);
 			 ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);

@@ -209,7 +209,7 @@ public class UpdateMemberPageController {
 	public void deleteMemberClicked(ActionEvent event) {
 		String email = memberChoiceBox.getValue();
 		boolean confirmDelete = deleteConfirmButton.isSelected();
-		if(confirmDelete) {
+		if(confirmDelete && email != null) {
 			try {
 				if(successful(() -> ClimbSafeFeatureSet1Controller.deleteMember(email))) {
 					memberChoiceBox.setValue(null);

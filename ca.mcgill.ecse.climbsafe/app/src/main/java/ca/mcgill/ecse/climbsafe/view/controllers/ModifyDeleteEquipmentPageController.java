@@ -52,20 +52,22 @@ public class ModifyDeleteEquipmentPageController {
 	public void modifyEquipmentClick(ActionEvent event) {
 		String oldName = equipmentChoiceBox.getValue();
 		String newName = newNameModifyEquipment.getText();
-		int weight = Integer.parseInt(weightModifyEquipment.getText());
-		int price = Integer.parseInt(priceModifyEquipment.getText());
+		int weight = getNumberFromField(weightModifyEquipment);
+		int price = getNumberFromField(priceModifyEquipment);
 		
 		//try updating the equipment or catch the error
-		try {
-			if(successful(() -> ClimbSafeFeatureSet4Controller.updateEquipment(oldName, newName, weight, price))) {
-				equipmentChoiceBox.setValue(null);
-				newNameModifyEquipment.setText("");
-				weightModifyEquipment.setText("");
-				priceModifyEquipment.setText("");
-				ClimbSafeFxmlView.getInstance().refresh();
+		if(oldName != null && newName != "" && weight != -1 && price != -1) {
+			try {
+				if(successful(() -> ClimbSafeFeatureSet4Controller.updateEquipment(oldName, newName, weight, price))) {
+					equipmentChoiceBox.setValue(null);
+					newNameModifyEquipment.setText("");
+					weightModifyEquipment.setText("");
+					priceModifyEquipment.setText("");
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
 		}
 	}
 	
@@ -91,13 +93,24 @@ public class ModifyDeleteEquipmentPageController {
 		String name = deleteEquipmentName.getValue();
 		
 		//try deleting the equipment or catch the error
-		try {
-			if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipment(name))) {
-				deleteEquipmentName.setValue(null);
-				ClimbSafeFxmlView.getInstance().refresh();
+		if(name != null) {
+			try {
+				if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipment(name))) {
+					deleteEquipmentName.setValue(null);
+					ClimbSafeFxmlView.getInstance().refresh();
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
 			}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
+		}
+		
+	}
+	
+	private int getNumberFromField(TextField field) {
+		if(field.getText() != "") {
+			return Integer.parseInt(weightModifyEquipment.getText());
+		}else {
+			return -1;
 		}
 	}
 	

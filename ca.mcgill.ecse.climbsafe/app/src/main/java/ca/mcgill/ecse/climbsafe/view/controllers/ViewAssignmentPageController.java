@@ -74,7 +74,6 @@ public class ViewAssignmentPageController {
 		 for(TOAssignment a : assignments) {
 			if(a.getMemberEmail().equals(memberChoiceBox.getValue())) {
 				found = true;
-				tripStatusText.setText(a.getStatus());
 				memberEmailText.setText(a.getMemberEmail());
 				memberNameText.setText(a.getMemberName());
 				refund =a.getRefundedPercentageAmount()+"%";
@@ -92,9 +91,11 @@ public class ViewAssignmentPageController {
 				totalCost = a.getTotalCostForEquipment()+a.getTotalCostForGuide();
 				totalCostText.setText(String.valueOf(totalCost));
 				if(a.getAuthorizationCode()==null) {
+					tripStatusText.setText(a.getStatus());
 					codeText.setText("Payment not yet authorized.");
 				}else {
 					codeText.setText(a.getAuthorizationCode());
+					tripStatusText.setText("Paid");
 
 				}
 

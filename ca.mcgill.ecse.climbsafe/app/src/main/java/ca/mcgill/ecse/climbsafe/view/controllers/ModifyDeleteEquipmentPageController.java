@@ -113,7 +113,7 @@ public class ModifyDeleteEquipmentPageController {
 	
 	private int getNumberFromField(TextField field) {
 		if(field.getText() != "") {
-			return Integer.parseInt(weightModifyEquipment.getText());
+			return Integer.parseInt(field.getText());
 		}else {
 			return -1;
 		}

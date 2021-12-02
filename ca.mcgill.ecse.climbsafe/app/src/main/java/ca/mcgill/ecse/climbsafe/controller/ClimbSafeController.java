@@ -108,6 +108,7 @@ public class ClimbSafeController {
 	  String guideEmail;
 	  String guideName;
 	  String code;
+	  String status;
 	  if(assignments.isEmpty()) {
 		  return assign;
 	  }
@@ -122,11 +123,13 @@ public class ClimbSafeController {
 			  guideName = t.getGuideName();
 		  }
 		  if(t.getAuthorizationCode()==null) {
+			  status = t.getStatus();
 			  code = "N/A"; 
 		  }else {
+			  status = "Paid";
 			  code = t.getAuthorizationCode();
 		  }
-		  assign.add(new TOTableAssignment(t.getMemberEmail(), t.getMemberName(), guideEmail, guideName, startToEnd, t.getTotalCostForEquipment(),t.getTotalCostForGuide(), t.getStatus(), code, refund));
+		  assign.add(new TOTableAssignment(t.getMemberEmail(), t.getMemberName(), guideEmail, guideName, startToEnd, t.getTotalCostForEquipment(),t.getTotalCostForGuide(), status, code, refund));
 	  }
 	  return assign;
 	  

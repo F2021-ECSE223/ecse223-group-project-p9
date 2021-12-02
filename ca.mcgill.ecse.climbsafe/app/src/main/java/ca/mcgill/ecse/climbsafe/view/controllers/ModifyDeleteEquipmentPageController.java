@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 /**
@@ -22,14 +24,13 @@ import javafx.scene.text.Text;
  */
 public class ModifyDeleteEquipmentPageController {
 	
-//	@FXML private TextField oldNameModifyEquipment;
 	@FXML private TextField newNameModifyEquipment;
-	@FXML private TextField weightModifyEquipment;
-	@FXML private TextField priceModifyEquipment;
 	@FXML private Button modifyEquipmentButton;
 	@FXML private ChoiceBox<String> deleteEquipmentName;
 	@FXML private Button deleteEquipmentButton;
 	@FXML private ChoiceBox<String> equipmentChoiceBox;
+	@FXML private Spinner<Integer> weightSpinner;
+	@FXML private Spinner<Integer> priceSpinner;
 	@FXML private Text returnMessageText;
 	
 	public void initialize() {
@@ -41,9 +42,25 @@ public class ModifyDeleteEquipmentPageController {
 			deleteEquipmentName.setItems(ViewUtils.getEquipments());
 			deleteEquipmentName.setValue(null);
 		});
+		weightSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 9999999;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			weightSpinner.setValueFactory(valueFactory);
+		});
+		priceSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+			int minQuantity = 0;
+			int maxQuantity = 9999999;
+			int initQuantity = 0;
+			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
+			priceSpinner.setValueFactory(valueFactory);
+		});
 		returnMessageText.setText("");
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(equipmentChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(deleteEquipmentName);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(weightSpinner);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(priceSpinner);
 	}
 	
 	/**
@@ -55,8 +72,8 @@ public class ModifyDeleteEquipmentPageController {
 	public void modifyEquipmentClick(ActionEvent event) {
 		String oldName = equipmentChoiceBox.getValue();
 		String newName = newNameModifyEquipment.getText();
-		int weight = getNumberFromField(weightModifyEquipment);
-		int price = getNumberFromField(priceModifyEquipment);
+		int weight = weightSpinner.getValue();
+		int price = priceSpinner.getValue();
 		
 		//try updating the equipment or catch the error
 		if(oldName != null && newName != "" && weight != -1 && price != -1) {
@@ -64,8 +81,8 @@ public class ModifyDeleteEquipmentPageController {
 				if(successful(() -> ClimbSafeFeatureSet4Controller.updateEquipment(oldName, newName, weight, price))) {
 					equipmentChoiceBox.setValue(null);
 					newNameModifyEquipment.setText("");
-					weightModifyEquipment.setText("");
-					priceModifyEquipment.setText("");
+					weightSpinner.getValueFactory().setValue(0);
+					priceSpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
 					returnMessageText.setText("Equipment updated successfully");
 				}
@@ -81,8 +98,8 @@ public class ModifyDeleteEquipmentPageController {
 		for (TOEquipment myTOEquipment : e) {
 			if (myTOEquipment.getName() == equipmentChoiceBox.getValue()) {
 				newNameModifyEquipment.setText(myTOEquipment.getName());
-				weightModifyEquipment.setText(String.valueOf(myTOEquipment.getWeight()));
-				priceModifyEquipment.setText(String.valueOf(myTOEquipment.getPricePerWeek()));
+				weightSpinner.getValueFactory().setValue(myTOEquipment.getWeight());
+				priceSpinner.getValueFactory().setValue(myTOEquipment.getPricePerWeek());
 			}
 		}
 	}

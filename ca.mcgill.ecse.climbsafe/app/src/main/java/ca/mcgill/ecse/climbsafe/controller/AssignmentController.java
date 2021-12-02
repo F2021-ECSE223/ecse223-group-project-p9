@@ -106,7 +106,7 @@ public class AssignmentController {
 					}
 				}
 				else {
-					Assignment a = new Assignment(1, member.getNrWeeks(), member, climbSafe);
+					new Assignment(1, member.getNrWeeks(), member, climbSafe);
 				}
 			}
 			ClimbSafePersistence.save();

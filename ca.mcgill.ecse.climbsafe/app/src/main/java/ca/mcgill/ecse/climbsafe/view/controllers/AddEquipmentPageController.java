@@ -17,6 +17,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class AddEquipmentPageController {
@@ -29,8 +31,14 @@ public class AddEquipmentPageController {
 	@FXML private Text returnMessageText;
 	@FXML private TableColumn<TOEquipment, String> equipmentNames;
 	@FXML private TableView<TOEquipment> showEquipment;
+	@FXML private ImageView winterBackground;
+	@FXML private ImageView fallBackground;
+	@FXML private ImageView summerBackground;
+	@FXML private ImageView springBackground;
 
 	public void initialize() {
+		fallBackground.setOpacity(1);
+		
 		equipmentNames.setCellValueFactory(new PropertyValueFactory<>("name"));
 		List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();
 	    showEquipment.getItems().clear();

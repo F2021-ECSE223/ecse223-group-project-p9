@@ -93,7 +93,7 @@
                <GridPane.margin>
                   <Insets right="95.0" />
                </GridPane.margin></CheckBox>
-            <Label fx:id="t5" text="Delete Guide?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Label fx:id="t5" text="Delete account?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="15.0" />
                </font>

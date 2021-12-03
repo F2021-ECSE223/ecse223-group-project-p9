@@ -125,7 +125,7 @@ public class RegisterGuidePageController {
 				email.setText("");
 				password.setText("");
 				emergencyContact.setText("");
-				returnMessageText.setText("Guide updated successfully");
+				returnMessageText.setText("Guide registered successfully");
 	}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());

@@ -34,20 +34,20 @@
             <Image url="@SummerWallpaperClimbsafe.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="21.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="769.0">
+      <GridPane layoutX="21.0" layoutY="48.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="384.0" prefWidth="770.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="244.14283098493303" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.9999934605189" minWidth="10.0" prefWidth="288.1428833007812" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="387.0" minWidth="10.0" prefWidth="235.14280482700894" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.0" minWidth="10.0" prefWidth="181.8" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="410.9999934605189" minWidth="10.0" prefWidth="296.0000061035156" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="387.0" minWidth="10.0" prefWidth="293.5999938964844" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="171.5714351109096" minHeight="10.0" prefHeight="108.42857142857143" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="171.5714351109096" minHeight="10.0" prefHeight="52.14284406389508" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="171.5714351109096" minHeight="10.0" prefHeight="52.714298793247764" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="206.4285670689174" minHeight="10.0" prefHeight="39.142841884068076" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="206.4285670689174" minHeight="10.0" prefHeight="53.42856270926342" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="157.14283098493303" minHeight="10.0" prefHeight="52.714276994977695" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="157.14283098493303" minHeight="10.0" prefHeight="53.285723005022305" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label fx:id="t2" text="Select the Week:" textFill="#2fc1ff" GridPane.rowIndex="2">
@@ -65,9 +65,9 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button fx:id="startTripButton" mnemonicParsing="false" onAction="#startTripsForWeek" text="Start Trips for this week" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Button fx:id="finishMemberTripButton" mnemonicParsing="false" onAction="#finishMemberTrip" text="Finish the Trip for this Member" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Button fx:id="cancelMemberTripButton" mnemonicParsing="false" onAction="#cancelMemberTrip" text="Cancel the Trip for this Member" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <Button fx:id="startTripButton" mnemonicParsing="false" onAction="#startTripsForWeek" prefHeight="26.0" prefWidth="180.0" text="Start trips for this week" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button fx:id="finishMemberTripButton" mnemonicParsing="false" onAction="#finishMemberTrip" prefHeight="26.0" prefWidth="181.0" text="Finish the trip for this member" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button fx:id="cancelMemberTripButton" mnemonicParsing="false" onAction="#cancelMemberTrip" text="Cancel the trip for this member" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ChoiceBox fx:id="nrWeeksChoiceBox" prefHeight="26.0" prefWidth="263.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <ChoiceBox fx:id="memberFinishChoiceBox" prefHeight="26.0" prefWidth="261.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <ChoiceBox fx:id="memberCancelChoiceBox" prefHeight="26.0" prefWidth="264.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />

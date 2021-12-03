@@ -58,6 +58,10 @@ public class ClimbSafeController {
 		}
 		return null;
 	}
+	  /**
+	   * Gets NMC start date
+	 	 * @author Kara
+	 	 */
 	public static Date getNMCDate() {
 		return climbSafe.getStartDate();
 	}
@@ -194,6 +198,10 @@ public class ClimbSafeController {
 		}
 		return TOEquipment;
 	}
+	  /**
+	   * Gets list of bundle transfer objects
+	 	 * @author Kara
+	 	 */
 	public static List<TOBundle> getTOBundle(){
 		List<EquipmentBundle> bundles = climbSafe.getBundles();
 		List<TOBundle> TOBundles = new ArrayList<TOBundle>();

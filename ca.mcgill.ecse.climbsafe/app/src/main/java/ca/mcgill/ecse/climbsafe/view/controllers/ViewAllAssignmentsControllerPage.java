@@ -55,7 +55,7 @@ public class ViewAllAssignmentsControllerPage {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo  and Joey 
+	 * @author Enzo  and Joey and Kara
 	 */
 	public void initialize() {
 
@@ -156,7 +156,10 @@ public class ViewAllAssignmentsControllerPage {
 			assignmentCompletionText.setText("Please initiate assignments before viewing.");
 		}
 	}
-
+	  /**
+	   * Displays all assignments in table view when button is pressed
+	 	 * @author Kara
+	 	 */
 	@FXML
 	public void viewClicked(ActionEvent event) {
 		List<TOTableAssignment> assignments = ClimbSafeController.getTOTableAssignments();
@@ -165,7 +168,10 @@ public class ViewAllAssignmentsControllerPage {
 			assignmentTable.getItems().add(a);
 		}
 	}
-
+	  /**
+	   * Initiates assignment process when button is pressed
+	 	 * @author Kara
+	 	 */
 	@FXML
 	public void initiateClicked(ActionEvent event) {
 		List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();

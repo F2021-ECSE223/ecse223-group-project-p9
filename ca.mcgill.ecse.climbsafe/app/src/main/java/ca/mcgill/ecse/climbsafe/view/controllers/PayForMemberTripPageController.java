@@ -32,7 +32,7 @@ public class PayForMemberTripPageController {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo and Joey 
+	 * @author Enzo and Joey and Kara
 	 */
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
@@ -111,6 +111,13 @@ public class PayForMemberTripPageController {
 		});	
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 	}
+
+
+	/**
+	 * pay for trip selected in choice box
+	 * @author Kara
+	 * @param event
+	 */
 
 	@FXML
 	public void payClicked(ActionEvent event) {

@@ -159,6 +159,7 @@ public class ViewAllAssignmentsControllerPage {
 	  /**
 	   * Displays all assignments in table view when button is pressed
 	 	 * @author Kara
+	 	 * @param event
 	 	 */
 	@FXML
 	public void viewClicked(ActionEvent event) {
@@ -171,6 +172,7 @@ public class ViewAllAssignmentsControllerPage {
 	  /**
 	   * Initiates assignment process when button is pressed
 	 	 * @author Kara
+	 	 * @param event
 	 	 */
 	@FXML
 	public void initiateClicked(ActionEvent event) {

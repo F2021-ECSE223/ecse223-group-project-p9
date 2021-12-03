@@ -2,6 +2,7 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.*;
 
@@ -129,7 +130,7 @@ public class SetupNMCController {
 	}
 	
 	@FXML
-	public void SetupNMCInfo(ActionEvent event) {
+	public void SetupNMCInfo(ActionEvent event) throws IOException {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
 		int nrWeeks =  nrWeeksSpinner.getValue();
 		int priceOfGuidePerWeek = weeklyPriceSpinner.getValue();
@@ -143,6 +144,7 @@ public class SetupNMCController {
 					weeklyPriceSpinner.getValueFactory().setValue(0);
 					ClimbSafeFxmlView.getInstance().refresh();
 					returnMessageText.setText("NMC info setup/updated successfully");
+					ClimbSafeFxmlView.getInstance().stylingSet();
 				}
 				myDate = ClimbSafeController.getNMCDate().toString();
 				month = myDate.split("-")[1];

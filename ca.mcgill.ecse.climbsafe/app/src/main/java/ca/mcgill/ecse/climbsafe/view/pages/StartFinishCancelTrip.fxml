@@ -35,17 +35,17 @@
           <RowConstraints maxHeight="157.14283098493303" minHeight="10.0" prefHeight="53.285723005022305" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Select the Week:" textFill="#2fc1ff" GridPane.rowIndex="2">
+            <Label fx:id="t2" text="Select the Week:" textFill="#2fc1ff" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Select the Member: " textFill="#2fc1ff" GridPane.rowIndex="4">
+            <Label fx:id="t4" text="Select the Member: " textFill="#2fc1ff" GridPane.rowIndex="4">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Select the Member" textFill="#2fc1ff" GridPane.rowIndex="6">
+            <Label fx:id="t6" text="Select the Member" textFill="#2fc1ff" GridPane.rowIndex="6">
                <font>
                   <Font size="15.0" />
                </font>
@@ -61,17 +61,17 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label text="Start Trips :" textFill="#2fc1ff" GridPane.rowIndex="1">
+            <Label fx:id="t1" text="Start Trips :" textFill="#2fc1ff" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="Finish Trips :" textFill="#2fc1ff" GridPane.rowIndex="3">
+            <Label fx:id="t3" text="Finish Trips :" textFill="#2fc1ff" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="Cancel Trips :" textFill="#2fc1ff" GridPane.rowIndex="5">
+            <Label fx:id="t5" text="Cancel Trips :" textFill="#2fc1ff" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>

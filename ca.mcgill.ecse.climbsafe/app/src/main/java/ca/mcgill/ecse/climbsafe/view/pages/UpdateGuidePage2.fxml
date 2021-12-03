@@ -49,23 +49,23 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="t2" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="t1" text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <TextField fx:id="nameTextField" prefHeight="26.0" prefWidth="283.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label text="New Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="t3" text="New Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label fx:id="t4" text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="15.0" />
                </font>
@@ -73,7 +73,7 @@
             <ChoiceBox fx:id="guideChoiceBox" prefHeight="26.0" prefWidth="335.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="emergencyContactTextField" prefHeight="26.0" prefWidth="283.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Button fx:id="guideSearchButton" mnemonicParsing="false" onAction="#guideSearchClicked" text="Search" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label text="Once you delete your account, there is no going back. Please be certain." textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="7">
+            <Label fx:id="t6" text="Once you delete your account, there is no going back. Please be certain." textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
@@ -93,7 +93,7 @@
                <GridPane.margin>
                   <Insets right="95.0" />
                </GridPane.margin></CheckBox>
-            <Label text="Delete Guide?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Label fx:id="t5" text="Delete Guide?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="15.0" />
                </font>

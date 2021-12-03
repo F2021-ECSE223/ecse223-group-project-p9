@@ -61,13 +61,13 @@
             <RowConstraints maxHeight="42.71427263532365" minHeight="10.0" prefHeight="27.142865862165166" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="25.000008719308028" minHeight="10.0" prefHeight="19.285714285714278" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="33.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="33.99997384207589" minHeight="10.0" prefHeight="33.42856270926339" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="33.0" minHeight="4.285740443638389" prefHeight="24.714285714285722" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="26.285714285714278" minHeight="10.0" prefHeight="26.285714285714278" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -78,18 +78,27 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label fx:id="t2" contentDisplay="TOP" text="Choose &#10;equipment:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="11" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
+            <Label fx:id="t2" contentDisplay="TOP" text="Choose &#10;equipment:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="11" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
                <font>
                   <Font size="13.0" />
-               </font></Label>
-            <Label fx:id="t4" text="New Weight" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="16">
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Label>
+            <Label fx:id="t4" text="Weight:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
                <font>
                   <Font size="13.0" />
-               </font></Label>
-            <Label fx:id="t5" text="New Price" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="18">
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Label>
+            <Label fx:id="t5" text="Price:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="18">
                <font>
                   <Font size="13.0" />
-               </font></Label>
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Label>
             <Button fx:id="modifyEquipmentButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifyEquipmentClick" prefHeight="50.0" prefWidth="180.0" text="Modify Equipment" textAlignment="CENTER" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="20">
                <font>
                   <Font size="13.0" />
@@ -102,10 +111,13 @@
                <font>
                   <Font size="13.0" />
                </font></Label>
-            <Label fx:id="t3" contentDisplay="TOP" text="New Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="14">
+            <Label fx:id="t3" contentDisplay="TOP" text="Name:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="14">
                <font>
                   <Font size="13.0" />
-               </font></Label>
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin></Label>
             <TextField fx:id="newNameModifyEquipment" prefHeight="26.0" prefWidth="146.0" GridPane.columnIndex="2" GridPane.rowIndex="14" />
             <Label fx:id="t1" contentDisplay="TOP" prefHeight="31.0" prefWidth="223.0" text="Modify Equipment" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="10">
                <font>
@@ -123,9 +135,12 @@
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Label>
-            <ChoiceBox fx:id="equipmentChoiceBox" prefHeight="26.0" prefWidth="143.0" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+            <ChoiceBox fx:id="equipmentChoiceBox" prefHeight="26.0" prefWidth="182.0" GridPane.columnIndex="2" GridPane.rowIndex="12" />
             <ChoiceBox fx:id="deleteEquipmentName" prefWidth="150.0" GridPane.columnIndex="5" GridPane.halignment="RIGHT" GridPane.rowIndex="12" />
-            <Button fx:id="equipmentSearchButton" mnemonicParsing="false" onAction="#equipmentSearchClicked" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+            <Button fx:id="equipmentSearchButton" mnemonicParsing="false" onAction="#equipmentSearchClicked" text="Search" GridPane.columnIndex="3" GridPane.rowIndex="12">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin></Button>
             <Text fx:id="returnMessageText" fill="#8c8484" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="182.40003657341003" GridPane.columnIndex="2" GridPane.rowIndex="21">
                <font>
                   <Font name="System Italic" size="12.0" />

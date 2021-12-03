@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
+
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet5Controller;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;
@@ -16,6 +18,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class AddEquipmentBundlePageController {
@@ -23,18 +26,94 @@ public class AddEquipmentBundlePageController {
 	@FXML private TextField discountTextField;
 	@FXML private ChoiceBox<String> itemNameChoiceBox;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
-
 	@FXML private ListView<String> itemsInBundleListView;
-
 	@FXML private Button addEquipmentButton;
 	@FXML private Button addItem;
 	@FXML private Text returnMessageText;
-
-
+	@FXML private ImageView winterBackground;
+	@FXML private ImageView fallBackground;
+	@FXML private ImageView summerBackground;
+	@FXML private ImageView springBackground;
+	
+	private String myDate = ClimbSafeController.getNMCDate().toString();
+	private String month = myDate.split("-")[1];
+	private String day = myDate.split("-")[2];
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
+	
 
 	public void initialize() {
+		if (Integer.parseInt(month) < 3) {
+			winterBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			
+		}else if (Integer.parseInt(month) == 3) {
+			if (Integer.parseInt(day) < 20) {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month)< 6 && Integer.parseInt(month) > 3) {
+			springBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if (Integer.parseInt(month) == 6) {
+			if (Integer.parseInt(day) < 20) {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 9 && Integer.parseInt(month) > 6) {
+			summerBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 9) {
+			if (Integer.parseInt(day) < 22) {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 12 && Integer.parseInt(month) > 9){
+			fallBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 12) {
+			if (Integer.parseInt(day) < 21) {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}
+		
 		nameTextField.setText("");
 		discountTextField.setText("");
 		itemNameChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {

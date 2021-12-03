@@ -40,7 +40,7 @@
             <Image url="@SummerWallpaperClimbsafe.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="14.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="729.0">
+      <GridPane layoutX="14.0" layoutY="87.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="729.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6365509033203" minWidth="10.0" prefWidth="20.285701206752236" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="258.5714416503906" />

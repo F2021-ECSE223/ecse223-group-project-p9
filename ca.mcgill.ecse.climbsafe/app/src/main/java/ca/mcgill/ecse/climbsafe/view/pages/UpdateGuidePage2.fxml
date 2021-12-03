@@ -129,7 +129,13 @@
                </font>
             </Label>
             <PasswordField fx:id="passwordField" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Text fx:id="returnMessageText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="300.21630859375" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <Text fx:id="returnMessageText" fill="#8c8484" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="230.61632990837097" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="8" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font></Text>
          </children>
       </GridPane>
    </children>

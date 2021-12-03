@@ -23,28 +23,31 @@
             <Font size="37.0" />
          </font>
       </Text>
-      <Text fx:id="t1" fill="#2fc1ff" layoutX="19.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of Equipment Bundle">
+      <Text fx:id="t1" fill="#2fc1ff" layoutX="12.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of equipment bundle:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text fx:id="t2" fill="#2fc1ff" layoutX="19.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items in Bundle">
+      <Text fx:id="t2" fill="#2fc1ff" layoutX="60.0" layoutY="240.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add items to bundle:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text fx:id="t3" fill="#2fc1ff" layoutX="19.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount">
+      <Text fx:id="t3" fill="#2fc1ff" layoutX="114.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Set discount:">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="nameTextField" layoutX="209.0" layoutY="165.0" prefHeight="25.0" prefWidth="250.0" />
-      <TextField fx:id="discountTextField" layoutX="209.0" layoutY="402.0" prefHeight="25.0" prefWidth="250.0" />
+      <TextField fx:id="nameTextField" layoutX="216.0" layoutY="177.0" prefHeight="26.0" prefWidth="368.0" />
+      <TextField fx:id="discountTextField" layoutX="216.0" layoutY="401.0" prefHeight="26.0" prefWidth="368.0" />
       <Button fx:id="addEquipmentButton" layoutX="454.0" layoutY="436.0" mnemonicParsing="false" onAction="#addEquipmentBundle" prefHeight="26.0" prefWidth="129.0" text="Add Bundle" textFill="#2fc1ff" />
-      <ChoiceBox fx:id="itemNameChoiceBox" layoutX="209.0" layoutY="221.0" prefHeight="26.0" prefWidth="185.0" />
+      <ChoiceBox fx:id="itemNameChoiceBox" layoutX="215.0" layoutY="221.0" prefHeight="26.0" prefWidth="180.0" />
       <Button fx:id="addItem" layoutX="518.0" layoutY="222.0" mnemonicParsing="false" onAction="#addItemToBundle" text="Add Item" textFill="#2fc1ff" />
-      <ListView fx:id="itemsInBundleListView" layoutX="14.0" layoutY="261.0" prefHeight="130.0" prefWidth="571.0" />
+      <ListView fx:id="itemsInBundleListView" layoutX="217.0" layoutY="261.0" prefHeight="130.0" prefWidth="368.0" />
       <Spinner fx:id="itemQuantitySpinner" editable="true" layoutX="406.0" layoutY="221.0" prefHeight="26.0" prefWidth="56.0" />
-      <Text fx:id="returnMessageText" layoutX="105.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="339.21630859375" />
+      <Text fx:id="returnMessageText" fill="#8c8484" layoutX="105.0" layoutY="454.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="339.21630859375">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Text>
    </children>
 </AnchorPane>

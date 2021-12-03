@@ -148,10 +148,13 @@
                   <ChoiceBox fx:id="itemNameChoiceBox" prefHeight="26.0" prefWidth="255.0" />
                </children>
             </GridPane>
-            <Text fx:id="registerMessageLabel" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="220.80001544952393" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="BOTTOM">
+            <Text fx:id="registerMessageLabel" fill="#918e8e" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="220.80001544952393" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="15" GridPane.valignment="BOTTOM">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
+               <GridPane.margin>
+                  <Insets bottom="5.0" />
+               </GridPane.margin>
             </Text>
          </children>
       </GridPane>

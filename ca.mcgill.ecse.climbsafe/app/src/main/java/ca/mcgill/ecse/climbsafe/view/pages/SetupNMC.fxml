@@ -88,11 +88,17 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="next" mnemonicParsing="false" onAction="#SetupNMCInfo" prefHeight="26.0" prefWidth="113.0" text="Setup NMC" textFill="#ff3030" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                  <Button fx:id="next" mnemonicParsing="false" onAction="#SetupNMCInfo" prefHeight="26.0" prefWidth="113.0" text="SETUP/UPDATE" textFill="#ff3030" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
                      <GridPane.margin>
                         <Insets right="25.0" />
                      </GridPane.margin></Button>
-                  <Text fx:id="returnMessageText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="RIGHT" />
+                  <Text fx:id="returnMessageText" fill="#918e8e" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="167.2000184059143" GridPane.columnSpan="2" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font></Text>
                </children>
             </GridPane>
          </children>

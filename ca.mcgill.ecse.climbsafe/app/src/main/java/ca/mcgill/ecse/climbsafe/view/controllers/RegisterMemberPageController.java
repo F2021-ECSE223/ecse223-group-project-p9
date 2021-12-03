@@ -178,6 +178,7 @@ public class RegisterMemberPageController {
 					itemQuantitySpinner.setValueFactory(null);
 					memberItemsListView.setItems(null);
 					ClimbSafeFxmlView.getInstance().refresh();
+					registerMessageLabel.setText("");
 					registerMessageLabel.setText("Member registered successfully");
 				}
 			} catch (RuntimeException e) {

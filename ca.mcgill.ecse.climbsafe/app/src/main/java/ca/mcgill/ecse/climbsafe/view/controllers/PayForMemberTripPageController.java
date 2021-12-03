@@ -112,11 +112,13 @@ public class PayForMemberTripPageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 	}
 
+
 	/**
 	 * pay for trip selected in choice box
 	 * @author Kara
 	 * @param event
 	 */
+
 	@FXML
 	public void payClicked(ActionEvent event) {
 		String code = codeTextField.getText();
@@ -138,4 +140,8 @@ public class PayForMemberTripPageController {
 
 		}
 	}
+
+
+
+
 }

@@ -41,13 +41,10 @@ public class AddEquipmentBundlePageController {
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
 
-	ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
-
 
 	/**
-	 * Initializes the page originally
-	 * @author Joey Koay
-	 */
+	 * Initializes the page. It changes the background depending on the date setup in NMC.
+	 * @author Enzo  and Joey 
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);
@@ -140,13 +137,9 @@ public class AddEquipmentBundlePageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
 
 	}
-	
-	/**
-	 * Describes what pressing the add/edit Button does (event listener)
-	 * @author Joey Koay
-	 * @param event
-	 */
+
 	//Event Listener on Button[#addEditItemClicked].onAction
+	ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
 	@FXML
 	public void addItemToBundle(ActionEvent event) {
 
@@ -189,11 +182,6 @@ public class AddEquipmentBundlePageController {
 		ClimbSafeFxmlView.getInstance().refresh();
 	}
 
-	/**
-	 * Action for after pressing the add equipment bundle Button (event listener)
-	 * @author Joey Koay
-	 * @param event
-	 */
 	@FXML
 	public void addEquipmentBundle(ActionEvent event) {
 		String name = nameTextField.getText(); 
@@ -218,11 +206,7 @@ public class AddEquipmentBundlePageController {
 
 	}
 
-	/**
-	 * Returns the number from the given text field if present, otherwise appends error string to the given message.
-	 * @author ECSE 223 TA
-	 * @param TectField field - the desired field that we want to get the value from
-	 */
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
 	private int getNumberFromField(TextField field) {
 		if(field.getText() != "") {
 			return Integer.parseInt(field.getText());

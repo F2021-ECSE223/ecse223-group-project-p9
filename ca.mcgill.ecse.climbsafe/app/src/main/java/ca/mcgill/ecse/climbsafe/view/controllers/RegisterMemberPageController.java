@@ -155,11 +155,6 @@ public class RegisterMemberPageController {
 	}
 
 	// Event Listener on Button[#registerMemberRegisterClicked].onAction
-	/**
-	 * Action for after pressing the register member Button (event listener)
-	 * @author Joey Koay
-	 * @param event
-	 */
 	@FXML
 	public void registerMemberRegisterClicked(ActionEvent event) {
 		String email = emailTextField.getText();
@@ -197,11 +192,6 @@ public class RegisterMemberPageController {
 	}
 
 	//Event Listener on Button[#addEditItemClicked].onAction
-	/**
-	 * Action for after pressing the add/edit item Button (event listener)
-	 * @author Joey Koay
-	 * @param event
-	 */
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
@@ -257,11 +247,7 @@ public class RegisterMemberPageController {
 		}
 	}
 
-	/**
-	 * Returns the number from the given text field if present, otherwise appends error string to the given message.
-	 * @author ECSE 223 TA
-	 * @param ChoiceBox<Integer>  field - the desired field that we want to get the value from
-	 */
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
 	private int getNumberFromField(ChoiceBox<Integer> field) {
 		if(field.getValue() != null) {
 			return field.getValue();

@@ -31,7 +31,7 @@ public class StartFinishCancelTripController {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo, Victor and Joey 
+	 * @author Enzo  and Joey 
 	 */
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
@@ -121,13 +121,7 @@ public class StartFinishCancelTripController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberFinishChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberCancelChoiceBox);
 	}
-	
-	
-	/**
-	 * Action for after pressing the start trip Button (event listener)
-	 * @author Victor
-	 * @param event
-	 */
+
 	public void startTripsForWeek(ActionEvent event) {
 		returnMessageText.setText("");
 		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
@@ -143,11 +137,6 @@ public class StartFinishCancelTripController {
 
 	}
 
-	/**
-	 * Action for after pressing the finish trip Button (event listener)
-	 * @author Victor
-	 * @param event
-	 */
 	public void finishMemberTrip(ActionEvent event) {
 		returnMessageText.setText("");
 		String email = memberFinishChoiceBox.getValue();
@@ -165,11 +154,6 @@ public class StartFinishCancelTripController {
 		}
 	}
 
-	/**
-	 * Action for after pressing the cancel trip Button (event listener)
-	 * @author Victor
-	 * @param event
-	 */
 	public void cancelMemberTrip(ActionEvent event) {
 		returnMessageText.setText("");
 		String email = memberCancelChoiceBox.getValue();
@@ -187,11 +171,7 @@ public class StartFinishCancelTripController {
 		}
 	}
 
-	/**
-	 * Returns the number from the given text field if present, otherwise appends error string to the given message.
-	 * @author ECSE 223 TA
-	 * @param ChoiceBox<Integer>  field - the desired field that we want to get the value from
-	 */
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
 	private int getNumberFromField(ChoiceBox<Integer> field) {
 		if(field.getValue() != null) {
 			return field.getValue();

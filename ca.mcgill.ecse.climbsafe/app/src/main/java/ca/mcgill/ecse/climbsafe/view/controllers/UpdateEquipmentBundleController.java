@@ -157,11 +157,6 @@ public class UpdateEquipmentBundleController {
 
 	}
 
-	/**
-	 * Action for after pressing the search equipment bundle Button (event listener)
-	 * @author Joey Koay
-	 * @param event
-	 */
 	@FXML
 	public void equipmentBundleSearchClicked(ActionEvent event) {
 		if(equipmentBundleChoiceBox.getValue() != null) {
@@ -184,11 +179,6 @@ public class UpdateEquipmentBundleController {
 	}
 
 	//Event Listener on Button[#addEditItemClicked].onAction
-	/**
-	 * Action for after pressing the add/edit item Button (event listener)
-	 * @author Joey Koay and Sejong Yoo
-	 * @param event
-	 */
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
@@ -235,11 +225,6 @@ public class UpdateEquipmentBundleController {
 	}
 
 	@FXML
-	/**
-	 * Action for after pressing the update equipment bundle Button (event listener)
-	 * @author Joey Koay
-	 * @param event
-	 */
 	public void modifyEquipmentBundleClicked(ActionEvent event) {
 		String oldName = equipmentBundleChoiceBox.getValue();
 		String newName = bundleNameTextField.getText();
@@ -264,11 +249,6 @@ public class UpdateEquipmentBundleController {
 	}
 
 	@FXML
-	/**
-	 * Action for after pressing the delete equipment bundle Button (event listener)
-	 * @author Joey Koay
-	 * @param event
-	 */
 	public void deleteEquipmentBundleClicked(ActionEvent event) {
 		String name = equipmentBundleChoiceBox.getValue().split(":")[0];
 
@@ -290,11 +270,7 @@ public class UpdateEquipmentBundleController {
 
 	}
 
-	/**
-	 * Returns the number from the given text field if present, otherwise appends error string to the given message.
-	 * @author ECSE 223 TA
-	 * @param TextField field - the desired field that we want to get the value from
-	 */
+	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
 	private int getNumberFromField(TextField field) {
 		if(field.getText() != "") {
 			return Integer.parseInt(field.getText());

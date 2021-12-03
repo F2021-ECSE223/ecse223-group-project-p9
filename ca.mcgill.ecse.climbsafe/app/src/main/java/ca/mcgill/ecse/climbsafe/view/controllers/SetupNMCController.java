@@ -36,7 +36,7 @@ public class SetupNMCController {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo, Victor and Joey 
+	 * @author Enzo and Joey 
 	 */
 	@FXML
 	public void initialize() {
@@ -133,7 +133,7 @@ public class SetupNMCController {
 	}
 	  /**
 	   * Sets up NMC info when button is pressed
-	 	 * @author Victor and Joey
+	 	 * @author Victor
 	 	 */
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) throws IOException {

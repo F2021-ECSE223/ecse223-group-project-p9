@@ -105,7 +105,10 @@ public class ClimbSafeController {
 		}
 		return memberListString;
 	}
-
+	  /**
+	   * Gets list of assignment transfer objects for the view all table
+	 	 * @author Kara
+	 	 */
 	public static List<TOTableAssignment> getTOTableAssignments() {
 		List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 		List<TOTableAssignment> assign = new ArrayList<TOTableAssignment>();
@@ -141,6 +144,10 @@ public class ClimbSafeController {
 		return assign;
 
 	}
+	  /**
+	   * Gets list of member transfer objects
+	 	 * @author Kara
+	 	 */
 	public static List<TOMember> getTOMembers() {
 		List<Member> members = climbSafe.getMembers();
 		List<TOMember> TOMembers = new ArrayList<TOMember>();
@@ -157,6 +164,10 @@ public class ClimbSafeController {
 		return TOMembers;
 
 	}
+	  /**
+	   * Gets list of guide transfer objects
+	 	 * @author Kara
+	 	 */
 	public static List<TOGuide> getTOGuides() {
 		List<Guide> guides = climbSafe.getGuides();
 		List<TOGuide> TOGuides = new ArrayList<TOGuide>();
@@ -169,6 +180,10 @@ public class ClimbSafeController {
 		return TOGuides;
 
 	}
+	  /**
+	   * Gets list of equipment transfer objects
+	 	 * @author Kara
+	 	 */
 	public static List<TOEquipment> getTOEquipment() {
 		List<Equipment> equipment = climbSafe.getEquipment();
 		List<TOEquipment> TOEquipment = new ArrayList<TOEquipment>();

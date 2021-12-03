@@ -13,9 +13,24 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="811.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ca.mcgill.ecse.climbsafe.view.controllers.UpdateEquipmentBundleController">
    <children>
-      <ImageView fitHeight="552.0" fitWidth="811.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="winterBackground" fitHeight="552.0" fitWidth="811.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@WallpaperClimbsafe.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="fallBackground" fitHeight="552.0" fitWidth="811.0" layoutX="20.0" layoutY="20.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@FallWallpaperClimbsafe.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="springBackground" fitHeight="552.0" fitWidth="811.0" layoutX="30.0" layoutY="30.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@SpringWallpaperClimbsafe.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="summerBackground" fitHeight="552.0" fitWidth="811.0" layoutX="40.0" layoutY="40.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@SummerWallpaperClimbsafe.png" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="20.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Update Equipment Bundle">

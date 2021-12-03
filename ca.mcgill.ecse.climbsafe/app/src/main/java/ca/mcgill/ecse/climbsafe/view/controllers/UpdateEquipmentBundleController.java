@@ -20,6 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class UpdateEquipmentBundleController {
@@ -39,6 +40,14 @@ public class UpdateEquipmentBundleController {
 	@FXML private Button modifyButton;
 	@FXML private Button deleteButton;
 	@FXML private Text returnMessageText;
+	@FXML private ImageView winterBackground;
+	@FXML private ImageView fallBackground;
+	@FXML private ImageView summerBackground;
+	@FXML private ImageView springBackground;
+	
+	private String myDate = ClimbSafeController.getNMCDate().toString();
+	private String month = myDate.split("-")[1];
+	private String day = myDate.split("-")[2];
 	
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
@@ -50,7 +59,76 @@ public class UpdateEquipmentBundleController {
 	 */
 	
 	public void initialize() {
-		
+		if (Integer.parseInt(month) < 3) {
+			winterBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			
+		}else if (Integer.parseInt(month) == 3) {
+			if (Integer.parseInt(day) < 20) {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month)< 6 && Integer.parseInt(month) > 3) {
+			springBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if (Integer.parseInt(month) == 6) {
+			if (Integer.parseInt(day) < 20) {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 9 && Integer.parseInt(month) > 6) {
+			summerBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 9) {
+			if (Integer.parseInt(day) < 22) {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 12 && Integer.parseInt(month) > 9){
+			fallBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 12) {
+			if (Integer.parseInt(day) < 21) {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}
 		equipmentBundleChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			equipmentBundleChoiceBox.setItems(ViewUtils.getBundles());
 			equipmentBundleChoiceBox.setValue(null);

@@ -119,7 +119,8 @@ public class ViewAssignmentPageController {
 				fallBackground.setOpacity(0);
 				springBackground.setOpacity(0);
 			}
-		}	  assignments = ClimbSafeFeatureSet6Controller.getAssignments();
+		}	  
+	  assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 
 	  memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			memberChoiceBox.setItems(ViewUtils.getMembers());

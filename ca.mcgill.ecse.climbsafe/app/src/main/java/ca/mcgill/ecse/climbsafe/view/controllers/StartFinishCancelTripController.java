@@ -24,7 +24,7 @@ public class StartFinishCancelTripController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
@@ -39,7 +39,7 @@ public class StartFinishCancelTripController {
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -170,7 +170,7 @@ public class StartFinishCancelTripController {
 			}
 		}
 	}
-	
+
 	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
 	private int getNumberFromField(ChoiceBox<Integer> field) {
 		if(field.getValue() != null) {

@@ -2,8 +2,6 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
-import java.sql.Date;
-import java.util.Calendar;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
@@ -36,18 +34,18 @@ public class AddEquipmentPageController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
-	
+
 	public void initialize() {		
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -112,14 +110,14 @@ public class AddEquipmentPageController {
 				springBackground.setOpacity(0);
 			}
 		}
-		
+
 		equipmentNames.setCellValueFactory(new PropertyValueFactory<>("name"));
 		List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();
-	    showEquipment.getItems().clear();
-	    for(TOEquipment e: equipments) {
-	    	showEquipment.getItems().add(e);
-	    }
-	    
+		showEquipment.getItems().clear();
+		for(TOEquipment e: equipments) {
+			showEquipment.getItems().add(e);
+		}
+
 		weightSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
 			int maxQuantity = 9999999;
@@ -139,7 +137,7 @@ public class AddEquipmentPageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(weightSpinner);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(priceSpinner);
 	}
-	
+
 	/**
 	 * Describes what pressing the addEquipment Button does (event listener)
 	 * @author Enzo Benoit-Jeannin
@@ -162,15 +160,15 @@ public class AddEquipmentPageController {
 				}
 			}
 			List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();
-		    showEquipment.getItems().clear();
-		    for(TOEquipment e: equipments) {
-		    	showEquipment.getItems().add(e);
-		    }
+			showEquipment.getItems().clear();
+			for(TOEquipment e: equipments) {
+				showEquipment.getItems().add(e);
+			}
 		} catch (RuntimeException e) {
 			ViewUtils.showError(e.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Refreshes the table showing all equipments in the application
 	 * @param event
@@ -179,9 +177,9 @@ public class AddEquipmentPageController {
 	@FXML
 	public void refreshClick(ActionEvent event) {
 		List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();
-	    showEquipment.getItems().clear();
-	    for(TOEquipment e: equipments) {
-	    	showEquipment.getItems().add(e);
-	    }
+		showEquipment.getItems().clear();
+		for(TOEquipment e: equipments) {
+			showEquipment.getItems().add(e);
+		}
 	}
 }

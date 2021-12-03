@@ -17,7 +17,6 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.scene.control.ChoiceBox;
 
 public class SetupNMCController {
 
@@ -30,11 +29,11 @@ public class SetupNMCController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
-	
+
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
 	 * @author Enzo and Joey 
@@ -46,7 +45,7 @@ public class SetupNMCController {
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -111,7 +110,7 @@ public class SetupNMCController {
 				springBackground.setOpacity(0);
 			}
 		}
-		
+
 		nrWeeksSpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
 			int maxQuantity = 52;
@@ -126,13 +125,13 @@ public class SetupNMCController {
 			SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(minQuantity, maxQuantity, initQuantity);
 			weeklyPriceSpinner.setValueFactory(valueFactory);
 		});
-	  // set dateBox to be not editable so that the user must choose from the calendar
-	  dateBox.setEditable(false);
-	  returnMessageText.setText("");
-	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksSpinner);
-	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(weeklyPriceSpinner);
+		// set dateBox to be not editable so that the user must choose from the calendar
+		dateBox.setEditable(false);
+		returnMessageText.setText("");
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksSpinner);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(weeklyPriceSpinner);
 	}
-	
+
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) throws IOException {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct
@@ -158,7 +157,7 @@ public class SetupNMCController {
 					summerBackground.setOpacity(0);
 					fallBackground.setOpacity(0);
 					springBackground.setOpacity(0);
-					
+
 				}else if (Integer.parseInt(month) == 3) {
 					if (Integer.parseInt(day) < 20) {
 						winterBackground.setOpacity(1);
@@ -227,8 +226,8 @@ public class SetupNMCController {
 				ViewUtils.showError(e.getMessage());
 			}
 		}
-		
+
 	}
-	
+
 }
- 
+

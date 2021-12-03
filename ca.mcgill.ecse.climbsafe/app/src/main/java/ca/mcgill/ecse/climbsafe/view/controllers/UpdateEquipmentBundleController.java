@@ -26,17 +26,17 @@ import javafx.scene.text.Text;
 public class UpdateEquipmentBundleController {
 	@FXML private ChoiceBox<String> equipmentBundleChoiceBox;
 	@FXML private Button bundleSearchButton;
-	
+
 	@FXML private TextField bundleNameTextField;
-	
+
 	@FXML private ChoiceBox<String> itemChoiceBox;
 	@FXML private Spinner<Integer> itemQuantitySpinner;
 	@FXML private Button addEditButton;
-	
+
 	@FXML private ListView<String> itemsInBundleListView;
-	
+
 	@FXML private TextField discountTextField;
-	
+
 	@FXML private Button modifyButton;
 	@FXML private Button deleteButton;
 	@FXML private Text returnMessageText;
@@ -44,28 +44,28 @@ public class UpdateEquipmentBundleController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
-	
+
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
 	private TOBundle b = null;
-	
+
 	/**	
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
 	 * @author Enzo, Joey and SeJong Yoo
 	 * @param event
 	 */
-	
+
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -134,14 +134,14 @@ public class UpdateEquipmentBundleController {
 			equipmentBundleChoiceBox.setItems(ViewUtils.getBundles());
 			equipmentBundleChoiceBox.setValue(null);
 		});
-		
+
 		itemChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			itemChoiceBox.setItems(ViewUtils.getEquipments());
 			itemChoiceBox.setValue(null);
 		});
-		
+
 		bundleNameTextField.setText("");
-		
+
 		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
 			int maxQuantity = 99;
@@ -154,9 +154,9 @@ public class UpdateEquipmentBundleController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(equipmentBundleChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
-		
+
 	}
-	
+
 	@FXML
 	public void equipmentBundleSearchClicked(ActionEvent event) {
 		if(equipmentBundleChoiceBox.getValue() != null) {
@@ -177,53 +177,53 @@ public class UpdateEquipmentBundleController {
 			equipmentBundleChoiceBox.setValue(b.getName());
 		}
 	}
-	
+
 	//Event Listener on Button[#addEditItemClicked].onAction
-		@FXML
-		public void addEditItemClicked(ActionEvent event) {
-			ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
-			String itemName = "";
-			if(itemChoiceBox.getValue() != null) {
-				itemName = itemChoiceBox.getValue().toString();
-			}
-			int itemQuantity = itemQuantitySpinner.getValue();
-			int indexOfItem = -1;
-
-			if(itemNames.contains(itemName)) {
-				//edit the quantity instead
-				for(int i =0; i<itemNames.size(); i++) {
-					if(itemNames.get(i).equals(itemName)) {
-						indexOfItem = i;
-						break;
-					}
-				}
-				if(itemQuantity == 0) {
-					itemNames.remove(indexOfItem);
-					itemQuantities.remove(indexOfItem);
-				}else {
-					itemQuantities.set(indexOfItem, itemQuantity);
-				}
-			}else {
-				//add new item
-				if(itemQuantity != 0 && itemName != "") {
-					itemNames.add(itemName);
-					itemQuantities.add(itemQuantity);
-				}
-				itemChoiceBox.setValue(null);
-				itemQuantitySpinner.getValueFactory().setValue(0);
-			}
-
-			for(int i =0; i<itemNames.size(); i++) {
-				itemaNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNames.get(i));
-			}
-
-			itemsInBundleListView.setItems(itemaNameAndQuantityList);
-			ClimbSafeFxmlView.getInstance().refresh();
-			if(b!= null) {
-				equipmentBundleChoiceBox.setValue(b.getName());
-			}
+	@FXML
+	public void addEditItemClicked(ActionEvent event) {
+		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
+		String itemName = "";
+		if(itemChoiceBox.getValue() != null) {
+			itemName = itemChoiceBox.getValue().toString();
 		}
-	
+		int itemQuantity = itemQuantitySpinner.getValue();
+		int indexOfItem = -1;
+
+		if(itemNames.contains(itemName)) {
+			//edit the quantity instead
+			for(int i =0; i<itemNames.size(); i++) {
+				if(itemNames.get(i).equals(itemName)) {
+					indexOfItem = i;
+					break;
+				}
+			}
+			if(itemQuantity == 0) {
+				itemNames.remove(indexOfItem);
+				itemQuantities.remove(indexOfItem);
+			}else {
+				itemQuantities.set(indexOfItem, itemQuantity);
+			}
+		}else {
+			//add new item
+			if(itemQuantity != 0 && itemName != "") {
+				itemNames.add(itemName);
+				itemQuantities.add(itemQuantity);
+			}
+			itemChoiceBox.setValue(null);
+			itemQuantitySpinner.getValueFactory().setValue(0);
+		}
+
+		for(int i =0; i<itemNames.size(); i++) {
+			itemaNameAndQuantityList.add(itemQuantities.get(i) + " " + itemNames.get(i));
+		}
+
+		itemsInBundleListView.setItems(itemaNameAndQuantityList);
+		ClimbSafeFxmlView.getInstance().refresh();
+		if(b!= null) {
+			equipmentBundleChoiceBox.setValue(b.getName());
+		}
+	}
+
 	@FXML
 	public void modifyEquipmentBundleClicked(ActionEvent event) {
 		String oldName = equipmentBundleChoiceBox.getValue();
@@ -245,13 +245,13 @@ public class UpdateEquipmentBundleController {
 				ViewUtils.showError(e.getMessage());
 			}
 		}
-		
+
 	}
-	
+
 	@FXML
 	public void deleteEquipmentBundleClicked(ActionEvent event) {
 		String name = equipmentBundleChoiceBox.getValue().split(":")[0];
-		
+
 		try {
 			if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipmentBundle(name))) {
 				equipmentBundleChoiceBox.setValue(null);
@@ -263,13 +263,13 @@ public class UpdateEquipmentBundleController {
 				ClimbSafeFxmlView.getInstance().refresh();
 				returnMessageText.setText("Equipment deleted successfully");
 			}
-			
+
 		} catch (RuntimeException e)  {
 			ViewUtils.showError(e.getMessage());
 		}
-		
+
 	}
-	
+
 	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
 	private int getNumberFromField(TextField field) {
 		if(field.getText() != "") {
@@ -278,6 +278,6 @@ public class UpdateEquipmentBundleController {
 			return -1;
 		}
 	}
-			
+
 
 }

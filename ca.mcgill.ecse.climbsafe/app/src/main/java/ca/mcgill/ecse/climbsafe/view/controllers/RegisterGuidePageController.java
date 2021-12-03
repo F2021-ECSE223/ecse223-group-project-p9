@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class RegisterGuidePageController {
-	
+
 	@FXML private TextField name;
 	@FXML private TextField email;
 	@FXML private PasswordField password;
@@ -24,23 +24,23 @@ public class RegisterGuidePageController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
-	
+
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
 	 * @author Enzo  and Joey 
 	 */
 	public void initialize() {
-		
+
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -105,40 +105,40 @@ public class RegisterGuidePageController {
 				springBackground.setOpacity(0);
 			}
 		}
-		
+
 		name.setText("");
 		email.setText("");
 		password.setText("");
 		emergencyContact.setText("");
 		returnMessageText.setText("");
 	}
-		
+
 	@FXML public void registerGuideClicked(ActionEvent event) {
 		String Name = name.getText();
 		String Email = email.getText();
 		String Password = password.getText();
 		String EmergencyContact = emergencyContact.getText();
-		
-	
-	if(Name == "" || Email == "" || Password == "" || EmergencyContact == "") {
-		ViewUtils.showError("Please fill out all of the field");
-	} else {
-		try {
-			if(successful(() -> ClimbSafeFeatureSet3Controller.registerGuide(Email, Password, Name, EmergencyContact))) {
-				name.setText("");
-				email.setText("");
-				password.setText("");
-				emergencyContact.setText("");
-				returnMessageText.setText("");
-				returnMessageText.setText("Guide registered successfully");
-	}
-		} catch (RuntimeException e) {
-			ViewUtils.showError(e.getMessage());
+
+
+		if(Name == "" || Email == "" || Password == "" || EmergencyContact == "") {
+			ViewUtils.showError("Please fill out all of the field");
+		} else {
+			try {
+				if(successful(() -> ClimbSafeFeatureSet3Controller.registerGuide(Email, Password, Name, EmergencyContact))) {
+					name.setText("");
+					email.setText("");
+					password.setText("");
+					emergencyContact.setText("");
+					returnMessageText.setText("");
+					returnMessageText.setText("Guide registered successfully");
+				}
+			} catch (RuntimeException e) {
+				ViewUtils.showError(e.getMessage());
+			}
 		}
-	}
-		
-		
-		
-		
+
+
+
+
 	}		
 }

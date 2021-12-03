@@ -18,7 +18,6 @@ public class ClimbSafeFxmlView extends Application {
 	public static final EventType<Event> REFRESH_EVENT = new EventType<>("REFRESH");
 	private static ClimbSafeFxmlView instance;
 	private List<Node> refreshableNodes = new ArrayList<>();
-	private int a = 0;
 	private Stage p9climbSafe = null;
 
 	@Override

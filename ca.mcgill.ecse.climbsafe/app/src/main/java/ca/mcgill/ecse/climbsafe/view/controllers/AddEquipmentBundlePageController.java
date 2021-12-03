@@ -34,13 +34,13 @@ public class AddEquipmentBundlePageController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
 	private List<String> itemNames = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
-	
+
 
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
@@ -48,7 +48,7 @@ public class AddEquipmentBundlePageController {
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -113,7 +113,7 @@ public class AddEquipmentBundlePageController {
 				springBackground.setOpacity(0);
 			}
 		}
-		
+
 		nameTextField.setText("");
 		discountTextField.setText("");
 		itemNameChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
@@ -121,7 +121,7 @@ public class AddEquipmentBundlePageController {
 			itemNameChoiceBox.setValue(null);
 		});
 		returnMessageText.setText("");
-		
+
 		itemQuantitySpinner.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			int minQuantity = 0;
 			int maxQuantity = 99;
@@ -137,53 +137,53 @@ public class AddEquipmentBundlePageController {
 
 	//Event Listener on Button[#addEditItemClicked].onAction
 	ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
-		@FXML
-		public void addItemToBundle(ActionEvent event) {
-			
-			String itemName = "";
-			if(itemNameChoiceBox.getValue()!= null) {
-				itemName = itemNameChoiceBox.getValue().toString();
-			}
-			Integer itemQuantity = itemQuantitySpinner.getValue();
-			int indexOfItem = -1;
+	@FXML
+	public void addItemToBundle(ActionEvent event) {
 
-			if(itemNames.size()!= 0 && itemNames.toString().contains(itemName)) {
-				//edit the quantity instead
-				for(int i =0; i<itemNames.size(); i++) {
-					if(itemNames.get(i) == itemName) {
-						
-						indexOfItem = i;
-						break;
-					}
-				}
-				if(itemQuantity == 0) {
-					itemNameAndQuantityList.remove(indexOfItem);
-					itemNames.remove(indexOfItem);
-					itemQuantities.remove(indexOfItem);
-				}else {
-					itemQuantities.set(indexOfItem, itemQuantity);
-					itemNameAndQuantityList.set(indexOfItem, itemQuantity + " " + itemName);
-				}
-					
-			}else {
-				//add new item
-				if(itemQuantity != 0 && itemName != "") {
-					itemNames.add(itemName);
-					itemQuantities.add(itemQuantity);
-					itemNameAndQuantityList.add(itemQuantity + " " + itemName);
-				}
-				itemNameChoiceBox.setValue(null);
-				itemQuantitySpinner.getValueFactory().setValue(0);
-			}
-			itemsInBundleListView.setItems(itemNameAndQuantityList);
-			ClimbSafeFxmlView.getInstance().refresh();
+		String itemName = "";
+		if(itemNameChoiceBox.getValue()!= null) {
+			itemName = itemNameChoiceBox.getValue().toString();
 		}
+		Integer itemQuantity = itemQuantitySpinner.getValue();
+		int indexOfItem = -1;
+
+		if(itemNames.size()!= 0 && itemNames.toString().contains(itemName)) {
+			//edit the quantity instead
+			for(int i =0; i<itemNames.size(); i++) {
+				if(itemNames.get(i) == itemName) {
+
+					indexOfItem = i;
+					break;
+				}
+			}
+			if(itemQuantity == 0) {
+				itemNameAndQuantityList.remove(indexOfItem);
+				itemNames.remove(indexOfItem);
+				itemQuantities.remove(indexOfItem);
+			}else {
+				itemQuantities.set(indexOfItem, itemQuantity);
+				itemNameAndQuantityList.set(indexOfItem, itemQuantity + " " + itemName);
+			}
+
+		}else {
+			//add new item
+			if(itemQuantity != 0 && itemName != "") {
+				itemNames.add(itemName);
+				itemQuantities.add(itemQuantity);
+				itemNameAndQuantityList.add(itemQuantity + " " + itemName);
+			}
+			itemNameChoiceBox.setValue(null);
+			itemQuantitySpinner.getValueFactory().setValue(0);
+		}
+		itemsInBundleListView.setItems(itemNameAndQuantityList);
+		ClimbSafeFxmlView.getInstance().refresh();
+	}
 
 	@FXML
 	public void addEquipmentBundle(ActionEvent event) {
 		String name = nameTextField.getText(); 
 		int discount = getNumberFromField(discountTextField);
-		
+
 		if(name!="" && discount != -1) {
 			try {
 				if (successful(() -> ClimbSafeFeatureSet5Controller.addEquipmentBundle(name, discount, itemNames, itemQuantities)) ) {
@@ -199,10 +199,10 @@ public class AddEquipmentBundlePageController {
 				ViewUtils.showError(e.getMessage());
 			}
 		}
-		
+
 
 	}
-	
+
 	/** Returns the number from the given text field if present, otherwise appends error string to the given message. */
 	private int getNumberFromField(TextField field) {
 		if(field.getText() != "") {
@@ -211,6 +211,6 @@ public class AddEquipmentBundlePageController {
 			return -1;
 		}
 	}
-	
+
 }
 

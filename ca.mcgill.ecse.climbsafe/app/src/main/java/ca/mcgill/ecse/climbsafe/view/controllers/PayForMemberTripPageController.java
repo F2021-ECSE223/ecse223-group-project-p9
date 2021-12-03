@@ -13,34 +13,34 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class PayForMemberTripPageController {
-  @FXML
-  private TextField codeTextField;
-  @FXML
-  private Button payForTripButton;
-  @FXML
-  private Text completeText;
-  @FXML
-  private ChoiceBox<String> memberChoiceBox;
-  @FXML private ImageView winterBackground;
-  @FXML private ImageView fallBackground;
-  @FXML private ImageView summerBackground;
-  @FXML private ImageView springBackground;
-	
-  private String myDate = ClimbSafeController.getNMCDate().toString();
-  private String month = myDate.split("-")[1];
-  private String day = myDate.split("-")[2];
+	@FXML
+	private TextField codeTextField;
+	@FXML
+	private Button payForTripButton;
+	@FXML
+	private Text completeText;
+	@FXML
+	private ChoiceBox<String> memberChoiceBox;
+	@FXML private ImageView winterBackground;
+	@FXML private ImageView fallBackground;
+	@FXML private ImageView summerBackground;
+	@FXML private ImageView springBackground;
+
+	private String myDate = ClimbSafeController.getNMCDate().toString();
+	private String month = myDate.split("-")[1];
+	private String day = myDate.split("-")[2];
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
 	 * @author Enzo and Joey 
 	 */
-  public void initialize() {
-	  if (Integer.parseInt(month) < 3) {
+	public void initialize() {
+		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -105,36 +105,36 @@ public class PayForMemberTripPageController {
 				springBackground.setOpacity(0);
 			}
 		}
-	  memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
+		memberChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			memberChoiceBox.setItems(ViewUtils.getMembers());
 			memberChoiceBox.setValue(null);
 		});	
-	  ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 	}
 
-  @FXML
-  public void payClicked(ActionEvent event) {
-    String code = codeTextField.getText();
-    String memberEmail = memberChoiceBox.getValue();   
-    try {    	
-		if(successful(() -> AssignmentController.payForTrip(memberEmail, code))) {
-			codeTextField.setText("");
-			completeText.setText("Payment authorized.");
-			ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+	@FXML
+	public void payClicked(ActionEvent event) {
+		String code = codeTextField.getText();
+		String memberEmail = memberChoiceBox.getValue();   
+		try {    	
+			if(successful(() -> AssignmentController.payForTrip(memberEmail, code))) {
+				codeTextField.setText("");
+				completeText.setText("Payment authorized.");
+				ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 
-		}else {
-			completeText.setText("Could not be completed.");
+			}else {
+				completeText.setText("Could not be completed.");
+				ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
+
+			}
+		} catch (RuntimeException e) {
+			ViewUtils.showError(e.getMessage());
 			ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 
 		}
-	} catch (RuntimeException e) {
-		ViewUtils.showError(e.getMessage());
-		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
-
 	}
-  }
-  
 
-  
+
+
 
 }

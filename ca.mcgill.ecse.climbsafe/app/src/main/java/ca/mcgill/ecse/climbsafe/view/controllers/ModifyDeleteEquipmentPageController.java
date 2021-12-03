@@ -24,7 +24,7 @@ import javafx.scene.text.Text;
  *
  */
 public class ModifyDeleteEquipmentPageController {
-	
+
 	@FXML private TextField newNameModifyEquipment;
 	@FXML private Button modifyEquipmentButton;
 	@FXML private ChoiceBox<String> deleteEquipmentName;
@@ -37,12 +37,12 @@ public class ModifyDeleteEquipmentPageController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
-	
-	
+
+
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
 	 * @author Enzo  and Joey 
@@ -53,7 +53,7 @@ public class ModifyDeleteEquipmentPageController {
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -118,7 +118,7 @@ public class ModifyDeleteEquipmentPageController {
 				springBackground.setOpacity(0);
 			}
 		}
-		
+
 		equipmentChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			equipmentChoiceBox.setItems(ViewUtils.getEquipments());
 			equipmentChoiceBox.setValue(null);
@@ -147,7 +147,7 @@ public class ModifyDeleteEquipmentPageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(weightSpinner);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(priceSpinner);
 	}
-	
+
 	/**
 	 * Describes what pressing the modifyEquipment Button does (event listener)
 	 * @author Enzo Benoit-Jeannin
@@ -159,7 +159,7 @@ public class ModifyDeleteEquipmentPageController {
 		String newName = newNameModifyEquipment.getText();
 		int weight = weightSpinner.getValue();
 		int price = priceSpinner.getValue();
-		
+
 		//try updating the equipment or catch the error
 		if(oldName != null && newName != "" && weight != -1 && price != -1) {
 			try {
@@ -176,7 +176,7 @@ public class ModifyDeleteEquipmentPageController {
 			}
 		}
 	}
-	
+
 	@FXML
 	public void equipmentSearchClicked(ActionEvent event) {
 		List<TOEquipment> e = ClimbSafeController.getTOEquipment();
@@ -188,7 +188,7 @@ public class ModifyDeleteEquipmentPageController {
 			}
 		}
 	}
-	
+
 	/**
 	 * Describes what pressing the deleteEquipment Button does (event listener)
 	 * @author Enzo Benoit-Jeannin
@@ -197,7 +197,7 @@ public class ModifyDeleteEquipmentPageController {
 	@FXML
 	public void deleteEquipmentClick(ActionEvent event) {
 		String name = deleteEquipmentName.getValue();
-		
+
 		//try deleting the equipment or catch the error
 		if(name != null) {
 			try {
@@ -210,16 +210,7 @@ public class ModifyDeleteEquipmentPageController {
 				ViewUtils.showError(e.getMessage());
 			}
 		}
-		
+
 	}
-	
-	private int getNumberFromField(TextField field) {
-		if(field.getText() != "") {
-			return Integer.parseInt(field.getText());
-		}else {
-			return -1;
-		}
-	}
-	
-	
+
 }

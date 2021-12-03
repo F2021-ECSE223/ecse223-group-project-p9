@@ -50,7 +50,7 @@ public class UpdateMemberPageController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-	
+
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
@@ -58,7 +58,7 @@ public class UpdateMemberPageController {
 	private List<String> itemNames = new ArrayList<>();;
 	private List<Integer> itemQuantities = new ArrayList<>();; 
 	private TOMember selectedTOMember = null;
-	
+
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
 	 * @author Enzo  and Joey 
@@ -69,7 +69,7 @@ public class UpdateMemberPageController {
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
-			
+
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
 				winterBackground.setOpacity(1);
@@ -281,7 +281,7 @@ public class UpdateMemberPageController {
 		memberItemsListView.setItems(itemaNameAndQuantityList);
 		int tempNrWeeks = nrWeeksChoiceBox.getValue();
 		ClimbSafeFxmlView.getInstance().refresh();
-		
+
 		if(selectedTOMember!= null) {
 			memberChoiceBox.setValue(selectedTOMember.getEmail());
 			nrWeeksChoiceBox.setValue(tempNrWeeks);

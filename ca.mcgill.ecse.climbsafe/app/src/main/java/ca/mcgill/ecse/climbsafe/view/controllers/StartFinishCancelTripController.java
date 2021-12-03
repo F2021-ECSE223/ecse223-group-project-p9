@@ -119,6 +119,7 @@ public class StartFinishCancelTripController {
 	}
 
 	public void startTripsForWeek(ActionEvent event) {
+		returnMessageText.setText("");
 		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
 		nrWeeksChoiceBox.setValue(null);
 		try {
@@ -133,6 +134,7 @@ public class StartFinishCancelTripController {
 	}
 
 	public void finishMemberTrip(ActionEvent event) {
+		returnMessageText.setText("");
 		String email = memberFinishChoiceBox.getValue();
 		memberFinishChoiceBox.setValue(null);
 		if(email != null) {
@@ -149,6 +151,7 @@ public class StartFinishCancelTripController {
 	}
 
 	public void cancelMemberTrip(ActionEvent event) {
+		returnMessageText.setText("");
 		String email = memberCancelChoiceBox.getValue();
 		memberCancelChoiceBox.setValue(null);
 		if(email != null) {

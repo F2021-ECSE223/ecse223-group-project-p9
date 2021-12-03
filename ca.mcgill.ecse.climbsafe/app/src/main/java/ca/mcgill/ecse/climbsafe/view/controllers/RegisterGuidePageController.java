@@ -113,6 +113,11 @@ public class RegisterGuidePageController {
 		returnMessageText.setText("");
 	}
 
+	/**
+	 * Action for after pressing the register guide Button (event listener)
+	 * @author Joey Koay
+	 * @param event
+	 */
 	@FXML public void registerGuideClicked(ActionEvent event) {
 		String Name = name.getText();
 		String Email = email.getText();
@@ -136,9 +141,5 @@ public class RegisterGuidePageController {
 				ViewUtils.showError(e.getMessage());
 			}
 		}
-
-
-
-
 	}		
 }

@@ -42,7 +42,7 @@ public class UpdateGuidePageController {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo  and Joey 
+	 * @author Enzo, Eun-jun and Joey 
 	 */
 	public void initialize() {
 
@@ -129,6 +129,11 @@ public class UpdateGuidePageController {
 	}
 
 	@FXML
+	/**
+	 * Action for after pressing the search guide Button (event listener)
+	 * @author Joey Koay and Eun-Jun
+	 * @param event
+	 */
 	public void guideSearchClicked(ActionEvent event) {
 		List<TOGuide> g = ClimbSafeController.getTOGuides();
 		for (TOGuide myTOGuide : g) {
@@ -144,6 +149,11 @@ public class UpdateGuidePageController {
 
 
 	@FXML
+	/**
+	 * Action for after pressing the update guide Button (event listener)
+	 * @author Joey Koay and Eun-Jun
+	 * @param event
+	 */
 	public void updateGuideClicked(ActionEvent event) {
 		String name = nameTextField.getText();
 		String email = guideChoiceBox.getValue();
@@ -167,6 +177,11 @@ public class UpdateGuidePageController {
 	}
 
 	@FXML
+	/**
+	 * Action for after pressing the delete guide Button (event listener)
+	 * @author Joey Koay and Eun-Jun
+	 * @param event
+	 */
 	public void deleteGuideClicked(ActionEvent event) {
 		String email = guideChoiceBox.getValue();
 		boolean confirmDelete = permissionCheckBox.isSelected();
@@ -189,16 +204,3 @@ public class UpdateGuidePageController {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

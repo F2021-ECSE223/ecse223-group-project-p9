@@ -39,6 +39,10 @@ public class AddEquipmentPageController {
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
 
+	/**
+	 * Initializes the page originally
+	 * @author Joey Koay
+	 */
 	public void initialize() {		
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);

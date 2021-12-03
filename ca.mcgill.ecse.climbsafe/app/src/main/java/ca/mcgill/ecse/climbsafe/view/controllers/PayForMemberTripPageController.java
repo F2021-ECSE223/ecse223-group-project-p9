@@ -112,6 +112,11 @@ public class PayForMemberTripPageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 	}
 
+	/**
+	 * Action for after pressing the add equipment bundle Button (event listener)
+	 * @author Joey Koay & Enzo
+	 * @param event
+	 */
 	@FXML
 	public void payClicked(ActionEvent event) {
 		String code = codeTextField.getText();
@@ -133,8 +138,4 @@ public class PayForMemberTripPageController {
 
 		}
 	}
-
-
-
-
 }

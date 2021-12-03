@@ -62,7 +62,7 @@ public class UpdateMemberPageController {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo  and Joey 
+	 * @author Enzo  and Joey Koay
 	 */
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
@@ -167,6 +167,11 @@ public class UpdateMemberPageController {
 	}
 
 	// Event Listener on Button[#memberSearchClicked].onAction
+	/**
+	 * Action for after pressing the search member Button (event listener)
+	 * @author Joey Koay 
+	 * @param event
+	 */
 	@FXML
 	public void memberSearchClicked(ActionEvent event) {
 		List <TOMember> m = ClimbSafeController.getTOMembers();
@@ -189,6 +194,11 @@ public class UpdateMemberPageController {
 		}
 	}
 
+	/**
+	 * Action for after pressing the update member Button (event listener)
+	 * @author Joey Koay 
+	 * @param event
+	 */
 	// Event Listener on Button[#updateMemberUpdateClicked].onAction
 	@FXML
 	public void updateMemberUpdateClicked(ActionEvent event) {
@@ -240,6 +250,11 @@ public class UpdateMemberPageController {
 
 	}
 
+	/**
+	 * Action for after pressing the add/edit item Button (event listener)
+	 * @author Joey Koay 
+	 * @param event
+	 */
 	//Event Listener on Button[#addEditItemClicked].onAction
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
@@ -289,6 +304,11 @@ public class UpdateMemberPageController {
 		}
 	}
 
+	/**
+	 * Action for after pressing the delete member Button (event listener)
+	 * @author Joey Koay 
+	 * @param event
+	 */
 	//Event Listener on Button[#deleteMemberClicked].onAction
 	@FXML
 	public void deleteMemberClicked(ActionEvent event) {
@@ -318,6 +338,11 @@ public class UpdateMemberPageController {
 		}
 	}
 
+	/**
+	 * Returns the number from the given text field if present, otherwise appends error string to the given message.
+	 * @author ECSE 223 TA
+	 * @param ChoiceBox<Integer> field - the desired choice box that we want to get the value from
+	 */
 	private int getNumberFromField(ChoiceBox<Integer> field) {
 		if(field.getValue() != null) {
 			return field.getValue();

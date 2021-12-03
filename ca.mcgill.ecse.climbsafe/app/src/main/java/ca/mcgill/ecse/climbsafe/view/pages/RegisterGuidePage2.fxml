@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -44,11 +45,11 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="113.28570120675224" minHeight="10.0" prefHeight="113.28570120675224" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="64.71430315290178" minHeight="10.0" prefHeight="43.00001307896204" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="80.85712541852678" minHeight="4.85714067731584" prefHeight="48.714263916015625" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="145.8571537562779" minHeight="10.0" prefHeight="44.285723005022305" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="140.42859758649553" minHeight="10.0" prefHeight="55.857177734375" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="162.42860630580356" minHeight="10.0" prefHeight="53.14284842354908" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="47.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="47.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="47.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="47.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="47.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="108.00000871930803" minHeight="10.0" prefHeight="63.42858014787947" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
@@ -57,25 +58,37 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label fx:id="t1" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="t1" text="Name:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
             </Label>
-            <Label fx:id="t2" text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="t2" text="E-Mail:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
             </Label>
-            <Label fx:id="t3" text="Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="t3" text="Password:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
                   <Font size="15.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
             </Label>
-            <Label fx:id="t4" prefHeight="21.0" prefWidth="195.0" text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="t4" alignment="CENTER_RIGHT" prefHeight="21.0" prefWidth="195.0" text="Emergency contact number:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <font>
                   <Font size="15.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
             </Label>
             <TextField fx:id="name" prefHeight="26.0" prefWidth="354.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="email" prefHeight="26.0" prefWidth="354.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
@@ -91,7 +104,13 @@
               </rowConstraints>
                <children>
                   <Button fx:id="registerGuide" mnemonicParsing="false" onAction="#registerGuideClicked" prefHeight="25.0" prefWidth="155.0" text="Register" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Text fx:id="returnMessageText" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.halignment="RIGHT" />
+                  <Text fx:id="returnMessageText" fill="#8c8484" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="178.4000153541565" GridPane.halignment="RIGHT">
+                     <font>
+                        <Font name="System Italic" size="12.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="7.0" />
+                     </GridPane.margin></Text>
                </children>
             </GridPane>
          </children>

@@ -2,11 +2,13 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
 import ca.mcgill.ecse.climbsafe.controller.AssignmentController;
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class StartFinishCancelTripController {
@@ -18,8 +20,86 @@ public class StartFinishCancelTripController {
 	@FXML private Button finishMemberTripButton;
 	@FXML private Button cancelMemberTripButton;
 	@FXML private Text returnMessageText;
+	@FXML private ImageView winterBackground;
+	@FXML private ImageView fallBackground;
+	@FXML private ImageView summerBackground;
+	@FXML private ImageView springBackground;
+	
+	private String myDate = ClimbSafeController.getNMCDate().toString();
+	private String month = myDate.split("-")[1];
+	private String day = myDate.split("-")[2];
 
 	public void initialize() {
+		if (Integer.parseInt(month) < 3) {
+			winterBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			
+		}else if (Integer.parseInt(month) == 3) {
+			if (Integer.parseInt(day) < 20) {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month)< 6 && Integer.parseInt(month) > 3) {
+			springBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if (Integer.parseInt(month) == 6) {
+			if (Integer.parseInt(day) < 20) {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 9 && Integer.parseInt(month) > 6) {
+			summerBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 9) {
+			if (Integer.parseInt(day) < 22) {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 12 && Integer.parseInt(month) > 9){
+			fallBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 12) {
+			if (Integer.parseInt(day) < 21) {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}
 		nrWeeksChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			nrWeeksChoiceBox.setItems(ViewUtils.getNrWeeks());
 			nrWeeksChoiceBox.setValue(null);

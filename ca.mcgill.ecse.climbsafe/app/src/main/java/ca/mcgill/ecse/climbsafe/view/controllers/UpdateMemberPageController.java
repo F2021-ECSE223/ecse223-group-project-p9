@@ -58,11 +58,7 @@ public class UpdateMemberPageController {
 	private List<String> itemNames = new ArrayList<>();;
 	private List<Integer> itemQuantities = new ArrayList<>();; 
 	private TOMember selectedTOMember = null;
-	
-	/**
-	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo  and Joey 
-	 */
+
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);

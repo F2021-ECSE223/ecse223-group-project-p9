@@ -131,7 +131,10 @@ public class SetupNMCController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(nrWeeksSpinner);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(weeklyPriceSpinner);
 	}
-
+	  /**
+	   * Sets up NMC info when button is pressed
+	 	 * @author Victor
+	 	 */
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) throws IOException {
 		//assuming both inputs (numWeeks and weeklyPriceOfGuide) are correct

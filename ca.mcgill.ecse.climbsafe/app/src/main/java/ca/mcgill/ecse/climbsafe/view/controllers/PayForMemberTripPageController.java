@@ -32,7 +32,7 @@ public class PayForMemberTripPageController {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo and Joey 
+	 * @author Enzo and Joey and Kara
 	 */
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
@@ -113,8 +113,8 @@ public class PayForMemberTripPageController {
 	}
 
 	/**
-	 * Action for after pressing the add equipment bundle Button (event listener)
-	 * @author Joey Koay & Enzo
+	 * pay for trip selected in choice box
+	 * @author Kara
 	 * @param event
 	 */
 	@FXML

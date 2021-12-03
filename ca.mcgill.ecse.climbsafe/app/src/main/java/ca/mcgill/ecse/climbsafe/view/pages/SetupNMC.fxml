@@ -92,7 +92,7 @@
                      <GridPane.margin>
                         <Insets right="25.0" />
                      </GridPane.margin></Button>
-                  <Text fx:id="returnMessageText" fill="#918e8e" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="167.2000184059143" GridPane.columnSpan="2" GridPane.halignment="RIGHT">
+                  <Text fx:id="returnMessageText" fill="#8c8484" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="167.2000184059143" GridPane.columnSpan="2" GridPane.halignment="RIGHT">
                      <GridPane.margin>
                         <Insets right="50.0" />
                      </GridPane.margin>

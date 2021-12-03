@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -24,7 +25,7 @@
             <Image url="@WallpaperClimbsafe.png" />
          </image>
       </ImageView>
-      <GridPane layoutX="14.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="437.0" prefWidth="729.0">
+      <GridPane layoutX="14.0" layoutY="65.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="730.0">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="143.6365509033203" minWidth="10.0" prefWidth="20.285701206752236" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.8143424987793" minWidth="10.0" prefWidth="258.5714416503906" />
@@ -39,73 +40,73 @@
           <RowConstraints maxHeight="52.571419852120535" minHeight="10.0" prefHeight="52.571419852120535" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="56.000008719308035" minHeight="10.0" prefHeight="20.71429443359375" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="56.000008719308035" minHeight="0.0" prefHeight="25.5714111328125" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="39.42854963030135" minHeight="4.571419852120542" prefHeight="21.57144601004464" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="42.0" minHeight="0.0" prefHeight="28.71429443359375" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="43.4285670689174" minHeight="0.0" prefHeight="25.857138497488847" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="40.571428571428584" minHeight="9.571424211774541" prefHeight="24.142861502511153" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="47.42856270926339" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="38.28573172433036" minHeight="10.0" prefHeight="22.428597586495528" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="42.85712541852678" minHeight="10.0" prefHeight="25.285696847098194" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="45.71430315290178" minHeight="0.0" prefHeight="35.00005231584822" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="94.71430315290178" minHeight="10.0" prefHeight="44.85714285714283" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="44.28571428571428" minHeight="10.0" prefHeight="24.714285714285722" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="37.42862810407365" minHeight="10.0" prefHeight="28.285696847098222" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="38.57141985212053" minHeight="10.0" prefHeight="35.71430315290178" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.39999999999998" minHeight="-Infinity" prefHeight="34.39999999999998" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="94.71430315290178" minHeight="10.0" prefHeight="37.60000000000002" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label fx:id="t1" contentDisplay="TOP" text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Label fx:id="t1" contentDisplay="TOP" text="Choose member to update:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="t2" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Label fx:id="t2" text="Name:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="t3" text="New Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <Label fx:id="t3" text="Password:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="t4" text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Label fx:id="t4" text="Emergency contact number:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <TextField fx:id="emergencyContactTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" />
-            <Label fx:id="t5" text="Number of Weeks" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Label fx:id="t5" text="Number of weeks:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="nrWeeksChoiceBox" prefHeight="26.0" prefWidth="48.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
             <CheckBox fx:id="guideRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-            <Label fx:id="t6" text="Do you want a guide?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Label fx:id="t6" text="Is a guide required?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="t7" text="Do you want to book a hotel?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="12">
+            <Label fx:id="t7" text="Is a hotel booking required?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="12">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <CheckBox fx:id="hotelRequiredCheckBox" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="12" />
             <PasswordField fx:id="passwordTextField" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" />
-            <Button fx:id="updateMemberUpdateButton" mnemonicParsing="false" onAction="#updateMemberUpdateClicked" text="Update" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="17" GridPane.valignment="CENTER" />
-            <Label contentDisplay="TOP" text="Update Member" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+            <Button fx:id="updateMemberUpdateButton" mnemonicParsing="false" onAction="#updateMemberUpdateClicked" text="Update" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="16" GridPane.valignment="BOTTOM" />
+            <Label contentDisplay="TOP" text="Member Update" textFill="WHITE" textOverrun="CLIP" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
             <Button fx:id="addEditItemButton" mnemonicParsing="false" onAction="#addEditItemClicked" text="Add/Edit" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="13" />
-            <Label fx:id="t8" text="Items" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="13">
+            <Label fx:id="t8" text="Items:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="13">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ListView fx:id="memberItemsListView" prefHeight="200.0" prefWidth="549.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="14" GridPane.vgrow="ALWAYS" />
+            <ListView fx:id="memberItemsListView" prefHeight="66.0" prefWidth="478.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="14" GridPane.rowSpan="2" GridPane.vgrow="ALWAYS" />
             <GridPane GridPane.columnIndex="2" GridPane.rowIndex="13">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="239.315673828125" minWidth="10.0" prefWidth="221.52267456054688" />
@@ -119,22 +120,31 @@
                   <ChoiceBox fx:id="itemNameChoiceBox" prefHeight="26.0" prefWidth="255.0" />
                </children>
             </GridPane>
-            <Button fx:id="deleteMemberButton" mnemonicParsing="false" onAction="#deleteMemberClicked" text="Delete Member" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="17" />
-            <Label fx:id="t9" text="Once you delete your account, there is no going back. Please be certain." textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="15">
+            <Button fx:id="deleteMemberButton" mnemonicParsing="false" onAction="#deleteMemberClicked" text="Delete Member" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.rowIndex="16">
+               <GridPane.margin>
+                  <Insets top="5.0" />
+               </GridPane.margin></Button>
+            <Label fx:id="t9" prefHeight="30.0" prefWidth="362.0" text="Once the account is deleted, there is no going back. Please be certain." textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="17">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="12.0" />
                </font>
+               <GridPane.margin>
+                  <Insets right="150.0" />
+               </GridPane.margin>
             </Label>
             <TextField fx:id="nameTextField" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <ChoiceBox fx:id="memberChoiceBox" prefHeight="26.0" prefWidth="325.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <Button fx:id="memberSearchButton" mnemonicParsing="false" onAction="#memberSearchClicked" text="Search" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
-            <Label fx:id="t10" text="Confirm to Delete" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="16">
+            <Label fx:id="t10" text="Delete account?" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="16">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <CheckBox fx:id="deleteConfirmButton" mnemonicParsing="false" GridPane.columnIndex="2" GridPane.rowIndex="16" />
-            <Text fx:id="updateMessageLabel" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="17">
+            <CheckBox fx:id="deleteConfirmButton" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
+               <GridPane.margin>
+                  <Insets right="130.0" />
+               </GridPane.margin></CheckBox>
+            <Text fx:id="updateMessageLabel" fill="#8c8484" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="175.19998455047607" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="16">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>

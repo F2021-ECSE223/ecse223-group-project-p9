@@ -64,33 +64,48 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label fx:id="t2" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="t2" text="Name:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <font>
                   <Font size="15.0" />
                </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </Label>
-            <Label fx:id="t1" text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="t1" text="Choose guide:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </Label>
             <TextField fx:id="nameTextField" prefHeight="26.0" prefWidth="283.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label fx:id="t3" text="New Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="t3" text="Password:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4">
                <font>
                   <Font size="15.0" />
                </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </Label>
-            <Label fx:id="t4" text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Label fx:id="t4" text="Emergency contact number:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5">
                <font>
                   <Font size="15.0" />
                </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
             </Label>
             <ChoiceBox fx:id="guideChoiceBox" prefHeight="26.0" prefWidth="335.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="emergencyContactTextField" prefHeight="26.0" prefWidth="283.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <Button fx:id="guideSearchButton" mnemonicParsing="false" onAction="#guideSearchClicked" text="Search" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label fx:id="t6" text="Once you delete your account, there is no going back. Please be certain." textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="7">
+            <Button fx:id="guideSearchButton" mnemonicParsing="false" onAction="#guideSearchClicked" text="Search" textFill="#2fc1ff" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets top="5.0" />
+                  <Insets />
+               </GridPane.margin></Button>
+            <Label fx:id="t6" prefHeight="48.0" prefWidth="162.0" text="Once you delete this account, &#10;there is no going back. &#10;Please be certain." textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.rowSpan="2" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets right="90.0" top="5.0" />
                </GridPane.margin>
                <font>
                   <Font name="System Italic" size="12.0" />

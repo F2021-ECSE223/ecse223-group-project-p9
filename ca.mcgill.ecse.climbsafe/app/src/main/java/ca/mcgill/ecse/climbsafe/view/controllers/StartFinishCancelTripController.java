@@ -54,6 +54,7 @@ public class StartFinishCancelTripController {
 
 	public void finishMemberTrip(ActionEvent event) {
 		String email = memberFinishChoiceBox.getValue();
+		memberFinishChoiceBox.setValue(null);
 		if(email != null) {
 			try {
 				if(successful(() -> AssignmentController.finishTrip(email))) {
@@ -69,6 +70,7 @@ public class StartFinishCancelTripController {
 
 	public void cancelMemberTrip(ActionEvent event) {
 		String email = memberCancelChoiceBox.getValue();
+		memberCancelChoiceBox.setValue(null);
 		if(email != null) {
 			try {
 				if(successful(() -> AssignmentController.cancelTrip(email))) {

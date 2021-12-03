@@ -2,6 +2,8 @@ package ca.mcgill.ecse.climbsafe.view.controllers;
 
 import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
@@ -17,7 +19,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
@@ -35,9 +36,82 @@ public class AddEquipmentPageController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
-
-	public void initialize() {
-		fallBackground.setOpacity(1);
+	
+	String myDate = ClimbSafeController.getNMCDate().toString();
+	String month = myDate.split("-")[1];
+	String day = myDate.split("-")[2];
+	
+	public void initialize() {		
+		if (Integer.parseInt(month) < 3) {
+			winterBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			
+		}else if (Integer.parseInt(month) == 3) {
+			if (Integer.parseInt(day) < 20) {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month)< 6 && Integer.parseInt(month) > 3) {
+			springBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if (Integer.parseInt(month) == 6) {
+			if (Integer.parseInt(day) < 20) {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 9 && Integer.parseInt(month) > 6) {
+			summerBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 9) {
+			if (Integer.parseInt(day) < 22) {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 12 && Integer.parseInt(month) > 9){
+			fallBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 12) {
+			if (Integer.parseInt(day) < 21) {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}
 		
 		equipmentNames.setCellValueFactory(new PropertyValueFactory<>("name"));
 		List<TOEquipment> equipments = ClimbSafeController.getTOEquipment();

@@ -205,14 +205,34 @@ public class ClimbSafeFeatureSet5Controller {
 		  }
 		  
 		  EquipmentBundle myBundle = climbSafe.getBundle(myBundleIndex);
+		  String oldBundleName = myBundle.getName();
 		  myBundle.setDiscount(newDiscount);
 		  myBundle.setName(newName);
+		  
+		  
+		  
+		  List<ca.mcgill.ecse.climbsafe.model.Member> allMember = climbSafe.getMembers();
+		  List<List<String>> allMemberBookedItems = new ArrayList<>();
+		  List<ca.mcgill.ecse.climbsafe.model.Member> memberWhoHasTheBundle = new ArrayList<>();
+		  List<Integer> memberWhoHasTheBundleInt = new ArrayList<>();
+		  for(int x=0; x<allMember.size(); x++) {
+			  List<String> memberItems = new ArrayList<>();
+			  for(int i=0; i< allMember.get(x).getBookedItems().size(); i++) {
+				  if(allMember.get(x).getBookedItems().get(i).getItem().getName().equals(oldBundleName)){
+					  memberWhoHasTheBundle.add(allMember.get(x));
+					  memberWhoHasTheBundleInt.add(allMember.get(x).getBookedItems().get(i).getQuantity());
+				  }
+				  
+			  }
+			  allMemberBookedItems.add(memberItems);
+		  }
 		  
 		  for(int i=0; i<myBundle.getBundleItems().size(); i++) {
 			  BundleItem b = myBundle.getBundleItem(i);
 			  myBundle.removeBundleItem(b);
 			  myBundle.delete();
 		  }
+		  
 		  EquipmentBundle bundle2 = climbSafe.addBundle(newName, newDiscount);
 		  List<Equipment> listOfEquipments = climbSafe.getEquipment();
 		  
@@ -224,6 +244,11 @@ public class ClimbSafeFeatureSet5Controller {
 					  break;
 				  }
 			  }
+		  }
+		  
+		  for(int i=0; i<memberWhoHasTheBundle.size(); i++) {
+			  
+			  memberWhoHasTheBundle.get(i).addBookedItem(memberWhoHasTheBundleInt.get(i), climbSafe, bundle2);
 		  }
 		  ClimbSafePersistence.save();
 	  } catch (RuntimeException e) {

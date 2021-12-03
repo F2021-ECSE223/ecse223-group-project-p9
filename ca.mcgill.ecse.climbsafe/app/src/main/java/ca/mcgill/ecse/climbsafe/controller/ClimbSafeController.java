@@ -19,6 +19,11 @@ public class ClimbSafeController {
 
 	private ClimbSafeController() {}
 
+	/**
+	 * Get all item names
+ 	 * @author Joey Koay
+ 	 * @return string list of item names
+ 	 */
 	public static List<String> getItemNames(){
 		List<Equipment> itemNames = climbSafe.getEquipment();
 		List<String> itemNamesString = new ArrayList<>();
@@ -28,6 +33,11 @@ public class ClimbSafeController {
 		return itemNamesString;
 	}
 
+	/**
+	 * Get all bundle names
+ 	 * @author Joey Koay
+ 	 * @return string list of bundle names
+ 	 */
 	public static List<String> getBundles(){
 		List<EquipmentBundle> climbSafeBundle = climbSafe.getBundles();
 		List<String> climbSafeBundleString = new ArrayList<>();
@@ -48,6 +58,12 @@ public class ClimbSafeController {
 		return bundleAndEquipments;
 	}
 
+	/**
+	 * Get a specific bundle based on names
+	 * @param the name of the bundle
+ 	 * @author Joey Koay
+ 	 * @return the desired bundle
+ 	 */
 	public static EquipmentBundle getBundle(String bundleName){
 		bundleName = bundleName.split(":")[0];
 		List<EquipmentBundle> bundleList = climbSafe.getBundles();
@@ -66,6 +82,11 @@ public class ClimbSafeController {
 		return climbSafe.getStartDate();
 	}
 
+	/**
+	 * Get a specific bundle's item and quantity
+ 	 * @author Joey Koay
+ 	 * @return string list of item name and quantities
+ 	 */
 	public static List<String> getBundleItemsAndQuantity(String bundleName){
 		List<String> itemsInBundle = new ArrayList<>();
 		List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
@@ -75,6 +96,11 @@ public class ClimbSafeController {
 		return itemsInBundle;
 	}
 
+	/**
+	 * Get a specific bundle's items
+ 	 * @author Joey Koay
+ 	 * @return string list of item names
+ 	 */
 	public static List<String> getBundleItems(String bundleName){
 		List<String> itemsInBundle = new ArrayList<>();
 		List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
@@ -84,6 +110,11 @@ public class ClimbSafeController {
 		return itemsInBundle;
 	}
 
+	/**
+	 * Get a specific bundle's quantity
+ 	 * @author Joey Koay
+ 	 * @return integer list of item quantities
+ 	 */
 	public static List<Integer> getBundleQuantity(String bundleName){
 		List<Integer> itemsInBundle = new ArrayList<>();
 		List<BundleItem> bundleItems = getBundle(bundleName).getBundleItems();
@@ -93,6 +124,11 @@ public class ClimbSafeController {
 		return itemsInBundle;
 	}
 
+	/**
+	 * Get the number of weeks in a list form
+ 	 * @author Joey Koay
+ 	 * @return Integer list of week number
+ 	 */
 	public static List<Integer> getNrWeeks(){
 		int nrWeeksTotal = climbSafe.getNrWeeks();
 		List<Integer> weeksInTotal = new ArrayList<>();
@@ -101,6 +137,12 @@ public class ClimbSafeController {
 		}
 		return weeksInTotal;
 	}
+	
+	/**
+	 * Get all member names
+ 	 * @author Joey Koay
+ 	 * @return string list of member names
+ 	 */
 	public static List<String> getMembers(){
 		List<Member> memberList = climbSafe.getMembers();
 		List<String> memberListString = new ArrayList<>();
@@ -218,6 +260,11 @@ public class ClimbSafeController {
 		return TOBundles;
 	}
 
+	/**
+	 * Get all guide names
+ 	 * @author Joey Koay
+ 	 * @return string list of guide names
+ 	 */
 	public static List<String> getGuides(){
 		List<Guide> guideList = climbSafe.getGuides();
 		List<String> guideListString = new ArrayList<>();
@@ -227,6 +274,12 @@ public class ClimbSafeController {
 		return guideListString;
 	}
 
+	/**
+	 * Get a specific member with email
+	 * @param the member's email
+ 	 * @author Joey Koay
+ 	 * @return the desired member
+ 	 */
 	public static Member getMember(String email){
 		List<Member> memberList = climbSafe.getMembers();
 		Member m = null;
@@ -239,6 +292,12 @@ public class ClimbSafeController {
 		return m;
 	}
 
+	/**
+	 * Get a specific guide with email
+	 * @param the guide's email
+ 	 * @author Joey Koay
+ 	 * @return the desired guide
+ 	 */
 	public static Guide getGuide(String email){
 		List<Guide> guideList = climbSafe.getGuides();
 		Guide g = null;
@@ -250,6 +309,7 @@ public class ClimbSafeController {
 		}
 		return g;
 	}
+	
 	public static Equipment getEquipment(String equipment){
 		List<Equipment> equipmentList = climbSafe.getEquipment();
 		for(int i=0; i<equipmentList.size(); i++) {
@@ -261,6 +321,12 @@ public class ClimbSafeController {
 		return null;
 	}
 
+	/**
+	 * Get a specific member's items and quantity
+	 * @param the member's email
+ 	 * @author Joey Koay
+ 	 * @return string list of the name of the member's items and quantity
+ 	 */
 	public static List<String> getMemberItems(String email){
 		//getting climbsafe bundle and each bundle equipment into a list
 		List<EquipmentBundle> climbSafeBundle = climbSafe.getBundles();
@@ -298,6 +364,12 @@ public class ClimbSafeController {
 		return itemNameAndQuantityList;
 	}
 
+	/**
+	 * Get a specific member's items
+	 * @param the member's email
+ 	 * @author Joey Koay
+ 	 * @return string list of the name of the member's items
+ 	 */
 	public static List<String> getMemberItemsName(String email){
 		List<EquipmentBundle> climbSafeBundle = climbSafe.getBundles();
 		List<String> climbSafeBundleString = new ArrayList<>();
@@ -333,6 +405,12 @@ public class ClimbSafeController {
 		return itemNameList;
 	}
 
+	/**
+	 * Get a specific member's quantity
+	 * @param the member's email
+ 	 * @author Joey Koay
+ 	 * @return string list of the name of the member's quantity
+ 	 */
 	public static List<Integer> getMemberItemsQuantity(String email){
 		Member member = getMember(email);
 		List<Integer> itemsQuantityList = new ArrayList<>();
@@ -342,6 +420,7 @@ public class ClimbSafeController {
 		}
 		return itemsQuantityList;
 	}
+	
 	public static List<Integer> getPriceOfGuidePerWeek(){
 		int weeklyPrice = climbSafe.getPriceOfGuidePerWeek();
 		List<Integer> weeklyPricesGuide = new ArrayList<>();

@@ -173,7 +173,7 @@
                </GridPane.margin>
             </Text>
             <ChoiceBox fx:id="memberChoiceBox" prefHeight="26.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS" />
-            <Label text="Choose Member" textFill="#918e8e" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <Label text="Choose Member" textFill="#8c8484" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>

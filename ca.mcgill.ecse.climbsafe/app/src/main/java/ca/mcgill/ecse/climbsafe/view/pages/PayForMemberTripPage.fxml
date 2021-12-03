@@ -68,11 +68,11 @@
             </TextField>
             <Button fx:id="payForTripButton" mnemonicParsing="false" onAction="#payClicked" text="Pay" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
-                  <Insets top="30.0" />
+                  <Insets top="20.0" />
                </GridPane.margin>
             </Button>
       
-            <Text fx:id="completeText" fill="#848080" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="180.9999701976776" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
+            <Text fx:id="completeText" fill="#8c8484" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="180.9999701976776" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="BOTTOM" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets bottom="7.0" right="50.0" top="70.0" />
                </GridPane.margin>

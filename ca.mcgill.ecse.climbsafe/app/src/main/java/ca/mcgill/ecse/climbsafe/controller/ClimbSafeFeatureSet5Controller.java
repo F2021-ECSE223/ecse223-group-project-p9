@@ -8,6 +8,7 @@ import ca.mcgill.ecse.climbsafe.model.BundleItem;
 import ca.mcgill.ecse.climbsafe.model.ClimbSafe;
 import ca.mcgill.ecse.climbsafe.model.Equipment;
 import ca.mcgill.ecse.climbsafe.model.EquipmentBundle;
+import ca.mcgill.ecse.climbsafe.model.Member;
 import ca.mcgill.ecse.climbsafe.persistence.ClimbSafePersistence;
 
 public class ClimbSafeFeatureSet5Controller {
@@ -211,9 +212,9 @@ public class ClimbSafeFeatureSet5Controller {
 		  
 		  
 		  
-		  List<ca.mcgill.ecse.climbsafe.model.Member> allMember = climbSafe.getMembers();
+		  List<Member> allMember = climbSafe.getMembers();
 		  List<List<String>> allMemberBookedItems = new ArrayList<>();
-		  List<ca.mcgill.ecse.climbsafe.model.Member> memberWhoHasTheBundle = new ArrayList<>();
+		  List<Member> memberWhoHasTheBundle = new ArrayList<>();
 		  List<Integer> memberWhoHasTheBundleInt = new ArrayList<>();
 		  for(int x=0; x<allMember.size(); x++) {
 			  List<String> memberItems = new ArrayList<>();

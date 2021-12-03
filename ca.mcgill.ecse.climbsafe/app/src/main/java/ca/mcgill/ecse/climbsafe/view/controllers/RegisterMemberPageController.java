@@ -53,6 +53,10 @@ public class RegisterMemberPageController {
 	private List<String> itemNamesWithBundle = new ArrayList<>();
 	private List<Integer> itemQuantities = new ArrayList<>();
 
+	/**
+	 * Initializes the page. It changes the background depending on the date setup in NMC.
+	 * @author Enzo  and Joey 
+	 */
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);

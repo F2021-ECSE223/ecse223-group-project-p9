@@ -133,6 +133,7 @@ public class ViewAssignmentPageController {
 	  /**
 	   * Shows individual member assignment of member chosen in choice box
 	 	 * @author Kara
+	 	 * @param event
 	 	 */
 	@FXML
 	public void viewClicked(ActionEvent event) {

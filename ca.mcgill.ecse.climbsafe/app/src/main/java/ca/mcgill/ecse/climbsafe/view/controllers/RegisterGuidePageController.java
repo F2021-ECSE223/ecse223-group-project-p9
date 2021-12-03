@@ -28,7 +28,11 @@ public class RegisterGuidePageController {
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
 	private String day = myDate.split("-")[2];
-
+	
+	/**
+	 * Initializes the page. It changes the background depending on the date setup in NMC.
+	 * @author Enzo  and Joey 
+	 */
 	public void initialize() {
 		
 		if (Integer.parseInt(month) < 3) {

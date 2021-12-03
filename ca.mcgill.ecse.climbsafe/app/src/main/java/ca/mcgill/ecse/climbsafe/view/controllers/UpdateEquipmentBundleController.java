@@ -53,8 +53,9 @@ public class UpdateEquipmentBundleController {
 	private List<Integer> itemQuantities = new ArrayList<>();
 	private TOBundle b = null;
 	
-	/**
-	 * @author SeJong Yoo
+	/**	
+	 * Initializes the page. It changes the background depending on the date setup in NMC.
+	 * @author Enzo, Joey and SeJong Yoo
 	 * @param event
 	 */
 	

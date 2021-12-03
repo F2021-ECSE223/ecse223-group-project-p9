@@ -48,7 +48,7 @@ public class ViewAssignmentPageController {
 
 	/**
 	 * Initializes the page. It changes the background depending on the date setup in NMC.
-	 * @author Enzo  and Joey 
+	 * @author Enzo  and Joey and Kara
 	 */
 	public void initialize() {
 		if (Integer.parseInt(month) < 3) {
@@ -130,6 +130,10 @@ public class ViewAssignmentPageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberChoiceBox);
 
 	}
+	  /**
+	   * Shows individual member assignment of member chosen in choice box
+	 	 * @author Kara
+	 	 */
 	@FXML
 	public void viewClicked(ActionEvent event) {
 

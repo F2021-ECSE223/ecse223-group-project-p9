@@ -37,9 +37,9 @@ public class AddEquipmentPageController {
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
 	
-	String myDate = ClimbSafeController.getNMCDate().toString();
-	String month = myDate.split("-")[1];
-	String day = myDate.split("-")[2];
+	private String myDate = ClimbSafeController.getNMCDate().toString();
+	private String month = myDate.split("-")[1];
+	private String day = myDate.split("-")[2];
 	
 	public void initialize() {		
 		if (Integer.parseInt(month) < 3) {

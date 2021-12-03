@@ -44,7 +44,7 @@
                   <Insets top="50.0" />
                </GridPane.margin>
             </Label>
-            <Label text="Member E-mail:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t1" text="Member E-mail:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets top="70.0" />
                </GridPane.margin>
@@ -52,7 +52,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Authorization Code:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t2" text="Authorization Code:" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets top="60.0" />
                </GridPane.margin>

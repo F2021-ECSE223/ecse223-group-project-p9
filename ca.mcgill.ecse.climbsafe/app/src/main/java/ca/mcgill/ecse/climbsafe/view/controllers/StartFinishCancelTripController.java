@@ -40,9 +40,9 @@ public class StartFinishCancelTripController {
 
 	public void startTripsForWeek(ActionEvent event) {
 		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
+		nrWeeksChoiceBox.setValue(null);
 		try {
 			if(successful(() ->AssignmentController.startTrips(nrWeeks))) {
-				nrWeeksChoiceBox.setValue(null);
 				ClimbSafeFxmlView.getInstance().refresh();
 				returnMessageText.setText("Trip started successfully");
 			}

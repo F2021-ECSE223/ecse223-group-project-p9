@@ -83,7 +83,7 @@ public class UpdateEquipmentBundleController {
 		if(equipmentBundleChoiceBox.getValue() != null) {
 			List<TOBundle> myBundles = ClimbSafeController.getTOBundle();
 			for(TOBundle bundle: myBundles) {
-				if (bundle.getName() == equipmentBundleChoiceBox.getValue()) {
+				if (bundle.getName().equals(equipmentBundleChoiceBox.getValue().split(":")[0])) {
 					b = bundle;
 				}
 			}
@@ -172,7 +172,6 @@ public class UpdateEquipmentBundleController {
 	@FXML
 	public void deleteEquipmentBundleClicked(ActionEvent event) {
 		String name = equipmentBundleChoiceBox.getValue().split(":")[0];
-		System.out.println(name);
 		
 		try {
 			if(successful(() -> ClimbSafeFeatureSet6Controller.deleteEquipmentBundle(name))) {

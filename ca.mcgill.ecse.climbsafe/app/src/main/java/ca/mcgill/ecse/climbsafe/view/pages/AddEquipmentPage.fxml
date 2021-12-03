@@ -75,15 +75,15 @@
          </rowConstraints>
          <children>
             <TextField fx:id="addEquipmentName" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" />
-            <Label contentDisplay="TOP" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Label fx:id="t1" contentDisplay="TOP" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label text="Weight" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="12">
+            <Label fx:id="t2" text="Weight" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="12">
                <font>
                   <Font size="15.0" />
                </font></Label>
-            <Label text="Price" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="14">
+            <Label fx:id="t3" text="Price" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="14">
                <font>
                   <Font size="15.0" />
                </font></Label>

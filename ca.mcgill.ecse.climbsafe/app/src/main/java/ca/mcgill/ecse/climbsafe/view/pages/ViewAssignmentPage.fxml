@@ -50,7 +50,7 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label text="Member Name:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t1" text="Member Name:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -58,7 +58,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Guide Name:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t3" text="Guide Name:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -66,7 +66,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Start and End Week:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t5" text="Start and End Week:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -74,7 +74,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Trip Status:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t6" text="Trip Status:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="7" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -82,7 +82,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Authorization Code:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t7" text="Authorization Code:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="8" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -90,7 +90,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Refund Amount" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t8" text="Refund Amount" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="9" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -98,7 +98,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Total Cost:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t9" text="Total Cost:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="10" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -111,7 +111,7 @@
                   <Insets bottom="30.0" />
                </GridPane.margin>
             </Button>
-            <Label text="Member E-mail:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t2" text="Member E-mail:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>
@@ -119,7 +119,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label text="Guide E-mail:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
+            <Label fx:id="t4" text="Guide E-mail:" textFill="#2fc1ff" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.vgrow="ALWAYS">
                <GridPane.margin>
                   <Insets left="60.0" top="50.0" />
                </GridPane.margin>

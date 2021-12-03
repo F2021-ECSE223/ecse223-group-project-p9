@@ -23,12 +23,12 @@
             <Font size="37.0" />
          </font>
       </Text>
-      <Text fill="#2fc1ff" layoutX="20.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of Equipment Bundle">
+      <Text fx:id="t2" fill="#2fc1ff" layoutX="20.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of Equipment Bundle">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text fill="#2fc1ff" layoutX="20.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items in Bundle">
+      <Text fx:id="t3" fill="#2fc1ff" layoutX="20.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Items in Bundle">
          <font>
             <Font size="15.0" />
          </font>
@@ -41,13 +41,13 @@
       <Button fx:id="deleteButton" layoutX="479.0" layoutY="447.0" mnemonicParsing="false" onAction="#deleteEquipmentBundleClicked" prefHeight="26.0" prefWidth="78.0" text="Delete" textFill="#2fc1ff" />
       <ChoiceBox fx:id="itemChoiceBox" layoutX="210.0" layoutY="229.0" prefHeight="26.0" prefWidth="202.0" />
       <ChoiceBox fx:id="equipmentBundleChoiceBox" layoutX="209.0" layoutY="167.0" prefHeight="26.0" prefWidth="292.0" />
-      <Text fill="#2fc1ff" layoutX="20.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Bundle List">
+      <Text fx:id="t1" fill="#2fc1ff" layoutX="20.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Bundle List">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
       <Button fx:id="bundleSearchButton" layoutX="507.0" layoutY="167.0" mnemonicParsing="false" onAction="#equipmentBundleSearchClicked" text="Search" textFill="#2fc1ff" />
-      <Text fill="#2fc1ff" layoutX="23.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount">
+      <Text fx:id="t4" fill="#2fc1ff" layoutX="23.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discount">
          <font>
             <Font size="15.0" />
          </font>

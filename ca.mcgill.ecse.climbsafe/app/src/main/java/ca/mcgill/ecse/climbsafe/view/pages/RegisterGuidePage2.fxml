@@ -42,22 +42,22 @@
                   <Font size="37.0" />
                </font>
             </Label>
-            <Label text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="t1" text="Name" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="t2" text="Email" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="t3" text="Password" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label prefHeight="21.0" prefWidth="195.0" text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="t4" prefHeight="21.0" prefWidth="195.0" text="Emergency Contact Number" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="15.0" />
                </font>

@@ -34,7 +34,7 @@
             <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Select season start date:" textFill="#2fc1ff" GridPane.rowIndex="1">
+            <Label fx:id="t1" text="Select season start date:" textFill="#2fc1ff" GridPane.rowIndex="1">
                <font>
                   <Font size="15.0" />
                </font>
@@ -42,14 +42,14 @@
                   <Insets left="48.0" />
                </GridPane.margin></Label>
             <DatePicker fx:id="dateBox" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Set the number of weeks:" textFill="#2fc1ff" GridPane.rowIndex="2">
+            <Label fx:id="t2" text="Set the number of weeks:" textFill="#2fc1ff" GridPane.rowIndex="2">
                <font>
                   <Font size="15.0" />
                </font>
                <GridPane.margin>
                   <Insets left="40.0" />
                </GridPane.margin></Label>
-            <Label text="Set the weekly price for a guide:" textFill="#2fc1ff" GridPane.rowIndex="3">
+            <Label fx:id="t3" text="Set the weekly price for a guide:" textFill="#2fc1ff" GridPane.rowIndex="3">
                <font>
                   <Font size="15.0" />
                </font>

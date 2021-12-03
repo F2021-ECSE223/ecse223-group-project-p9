@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 public class ViewAllAssignmentsControllerPage {
@@ -44,8 +45,88 @@ public class ViewAllAssignmentsControllerPage {
   private TableView<TOTableAssignment> assignmentTable;
   @FXML
   private Text assignmentCompletionText;
+  @FXML private ImageView winterBackground;
+  @FXML private ImageView fallBackground;
+  @FXML private ImageView summerBackground;
+  @FXML private ImageView springBackground;
+	
+  private String myDate = ClimbSafeController.getNMCDate().toString();
+  private String month = myDate.split("-")[1];
+  private String day = myDate.split("-")[2];
   
   public void initialize() {
+	  
+	  if (Integer.parseInt(month) < 3) {
+			winterBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			
+		}else if (Integer.parseInt(month) == 3) {
+			if (Integer.parseInt(day) < 20) {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month)< 6 && Integer.parseInt(month) > 3) {
+			springBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			summerBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if (Integer.parseInt(month) == 6) {
+			if (Integer.parseInt(day) < 20) {
+				springBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 9 && Integer.parseInt(month) > 6) {
+			summerBackground.setOpacity(1);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+			fallBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 9) {
+			if (Integer.parseInt(day) < 22) {
+				summerBackground.setOpacity(1);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+			}else {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}else if (Integer.parseInt(month) < 12 && Integer.parseInt(month) > 9){
+			fallBackground.setOpacity(1);
+			summerBackground.setOpacity(0);
+			winterBackground.setOpacity(0);
+			springBackground.setOpacity(0);
+		}else if(Integer.parseInt(month) == 12) {
+			if (Integer.parseInt(day) < 21) {
+				fallBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				winterBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}else {
+				winterBackground.setOpacity(1);
+				summerBackground.setOpacity(0);
+				fallBackground.setOpacity(0);
+				springBackground.setOpacity(0);
+			}
+		}	
+	  
 	  memberEmailColumn.setCellValueFactory(new PropertyValueFactory<>("memberEmail"));
 	  memberNameColumn.setCellValueFactory(new PropertyValueFactory<>("memberName"));
 	  guideEmailColumn.setCellValueFactory(new PropertyValueFactory<>("guideEmail"));

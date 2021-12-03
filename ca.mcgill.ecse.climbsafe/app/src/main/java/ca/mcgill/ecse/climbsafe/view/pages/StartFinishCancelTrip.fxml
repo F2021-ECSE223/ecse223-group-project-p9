@@ -93,6 +93,9 @@
             </Label>
          </children>
       </GridPane>
-      <Text fx:id="returnMessageText" layoutX="406.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="314.21630859375" />
+      <Text fx:id="returnMessageText" fill="#8c8484" layoutX="367.0" layoutY="453.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="RIGHT" wrappingWidth="314.21630859375">
+         <font>
+            <Font name="System Italic" size="12.0" />
+         </font></Text>
    </children>
 </AnchorPane>

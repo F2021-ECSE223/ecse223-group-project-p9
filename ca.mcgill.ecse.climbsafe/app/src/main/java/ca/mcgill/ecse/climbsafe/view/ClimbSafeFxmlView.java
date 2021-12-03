@@ -4,15 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TabPane;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 
@@ -29,7 +26,7 @@ public class ClimbSafeFxmlView extends Application {
 		instance = this;
 		try {
 			var root = (TabPane) FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-			//      root.setStyle(ClimbSafeApplication.DARK_MODE ? "-fx-base: rgba(20, 20, 20, 255);" : "");
+			// root.setStyle(ClimbSafeApplication.DARK_MODE ? "-fx-base: rgba(20, 20, 20, 255);" : "");
 			var scene = new Scene(root);
 			p9climbSafe = primaryStage;
 			primaryStage.setScene(scene);
@@ -46,45 +43,14 @@ public class ClimbSafeFxmlView extends Application {
 	}
 
 	public void stylingSet() throws IOException {
-
-		Stage p9climbSafe2 = new Stage();
-
-//		TabPane s = null;
-//		try {
-//			s = (TabPane) FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 		var root = (TabPane) FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-		p9climbSafe.close();
 		var scene = new Scene(root);
-		p9climbSafe2.setScene(scene);
-		//rimaryStage.setScene(scene);
-		p9climbSafe2.setMinWidth(800);
-		p9climbSafe2.setMinHeight(600);
-		p9climbSafe2.setTitle("P9 ClimbSafe");
-		p9climbSafe2.show();
+		p9climbSafe.setScene(scene);
+		p9climbSafe.setMinWidth(800);
+		p9climbSafe.setMinHeight(600);
+		p9climbSafe.setTitle("P9 ClimbSafe");
+		p9climbSafe.show();
 		refresh();
-
-		//	  scene.addEventFilter(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-		//  	    @Override
-		//  	    public void handle(MouseEvent mouseEvent) {
-		//  	        System.out.println("mouse click detected! " + a);
-		//  	        a++;
-		//  	        if(a == 6) {
-		//  	        	TabPane s = null;
-		//					try {
-		//						s = (TabPane) FXMLLoader.load(getClass().getResource("MainPage.fxml"));
-		//					} catch (IOException e) {
-		//						e.printStackTrace();
-		//					}
-		//  	        	var scene = new Scene(s);
-		//  	        	p9climbSafe.setScene(scene);
-		//  	            
-		//  	        }
-		//  	    }
-		//  	    
-		//  	});
 	}
 
 	// Register the node for receiving refresh events

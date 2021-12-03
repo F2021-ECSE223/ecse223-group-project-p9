@@ -25,6 +25,7 @@
             <Image url="@WallpaperClimbsafe.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="summerBackground" fitHeight="552.0" fitWidth="811.0" layoutX="10.0" layoutY="10.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@SummerWallpaperClimbsafe.png" />
          </image>

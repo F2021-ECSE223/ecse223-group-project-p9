@@ -5,6 +5,7 @@ import static ca.mcgill.ecse.climbsafe.view.controllers.ViewUtils.successful;
 import java.util.ArrayList;
 import java.util.List;
 
+import ca.mcgill.ecse.climbsafe.controller.ClimbSafeController;
 import ca.mcgill.ecse.climbsafe.controller.ClimbSafeFeatureSet2Controller;
 import ca.mcgill.ecse.climbsafe.view.ClimbSafeFxmlView;
 import javafx.collections.FXCollections;

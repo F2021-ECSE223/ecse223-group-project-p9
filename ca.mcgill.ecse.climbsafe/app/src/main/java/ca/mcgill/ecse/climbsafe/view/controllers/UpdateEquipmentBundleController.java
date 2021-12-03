@@ -156,7 +156,11 @@ public class UpdateEquipmentBundleController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(itemQuantitySpinner);
 
 	}
-
+	/**
+	 * Displays selected bundle info in textfields
+	 * @param event
+	 * @author Kara and Enzo and Joey
+	 */
 	@FXML
 	public void equipmentBundleSearchClicked(ActionEvent event) {
 		if(equipmentBundleChoiceBox.getValue() != null) {
@@ -177,8 +181,11 @@ public class UpdateEquipmentBundleController {
 			equipmentBundleChoiceBox.setValue(b.getName());
 		}
 	}
-
-	//Event Listener on Button[#addEditItemClicked].onAction
+	/**
+	 * Adds item to list view
+	 * @param event
+	 * @author Kara and Joey and Enzo
+	 */
 	@FXML
 	public void addEditItemClicked(ActionEvent event) {
 		ObservableList<String> itemaNameAndQuantityList = FXCollections.observableArrayList();
@@ -223,7 +230,11 @@ public class UpdateEquipmentBundleController {
 			equipmentBundleChoiceBox.setValue(b.getName());
 		}
 	}
-
+	/**
+	 * modifies specified bundle with new info
+	 * @param event
+	 * @author Kara and Joey
+	 */
 	@FXML
 	public void modifyEquipmentBundleClicked(ActionEvent event) {
 		String oldName = equipmentBundleChoiceBox.getValue();
@@ -247,7 +258,11 @@ public class UpdateEquipmentBundleController {
 		}
 
 	}
-
+	/**
+	 * Deletes equipment bundle when button pressed 
+	 * @param event
+	 * @author Kara and Enzo and Joey
+	 */
 	@FXML
 	public void deleteEquipmentBundleClicked(ActionEvent event) {
 		String name = equipmentBundleChoiceBox.getValue().split(":")[0];

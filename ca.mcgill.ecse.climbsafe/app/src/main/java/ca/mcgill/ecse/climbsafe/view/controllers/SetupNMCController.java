@@ -133,7 +133,7 @@ public class SetupNMCController {
 	}
 	  /**
 	   * Sets up NMC info when button is pressed
-	 	 * @author Victor
+	 	 * @author Victor and Enzo and Joey
 	 	 */
 	@FXML
 	public void SetupNMCInfo(ActionEvent event) throws IOException {

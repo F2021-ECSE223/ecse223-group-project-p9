@@ -139,8 +139,12 @@ public class AddEquipmentBundlePageController {
 
 	}
 
-	//Event Listener on Button[#addEditItemClicked].onAction
 	ObservableList<String> itemNameAndQuantityList = FXCollections.observableArrayList();
+	/**
+	 * Adds item to bundle when button pressed
+	 * @param event
+	 * @author Joey and enzo and Kara
+	 */
 	@FXML
 	public void addItemToBundle(ActionEvent event) {
 
@@ -182,7 +186,11 @@ public class AddEquipmentBundlePageController {
 		itemsInBundleListView.setItems(itemNameAndQuantityList);
 		ClimbSafeFxmlView.getInstance().refresh();
 	}
-
+	/**
+	 * Adds new equipment bundle when button pressed 
+	 * @param event
+	 * @author Enzo and Joey and Kara
+	 */
 	@FXML
 	public void addEquipmentBundle(ActionEvent event) {
 		String name = nameTextField.getText(); 

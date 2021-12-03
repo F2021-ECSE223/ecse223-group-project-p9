@@ -121,7 +121,11 @@ public class StartFinishCancelTripController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberFinishChoiceBox);
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(memberCancelChoiceBox);
 	}
-
+	/**
+	 * Starts trips for specified week when button pressed 
+	 * @param event
+	 * @author Victor
+	 */
 	public void startTripsForWeek(ActionEvent event) {
 		returnMessageText.setText("");
 		int nrWeeks = getNumberFromField(nrWeeksChoiceBox);
@@ -136,7 +140,11 @@ public class StartFinishCancelTripController {
 		}
 
 	}
-
+	/**
+	 * Finishes member's trip selected in choice box
+	 * @param event
+	 * @author Victor
+	 */
 	public void finishMemberTrip(ActionEvent event) {
 		returnMessageText.setText("");
 		String email = memberFinishChoiceBox.getValue();
@@ -153,7 +161,11 @@ public class StartFinishCancelTripController {
 			}
 		}
 	}
-
+	/**
+	 * Cancels member's trip when button pressed
+	 * @param event
+	 * @author Victor
+	 */
 	public void cancelMemberTrip(ActionEvent event) {
 		returnMessageText.setText("");
 		String email = memberCancelChoiceBox.getValue();

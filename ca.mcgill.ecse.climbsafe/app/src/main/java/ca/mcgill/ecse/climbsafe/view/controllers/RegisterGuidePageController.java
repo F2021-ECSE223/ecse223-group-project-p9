@@ -112,7 +112,11 @@ public class RegisterGuidePageController {
 		emergencyContact.setText("");
 		returnMessageText.setText("");
 	}
-
+	/**
+	 * Registers guide when button pressed
+	 * @param event
+	 * @author Joey 
+	 */
 	@FXML public void registerGuideClicked(ActionEvent event) {
 		String Name = name.getText();
 		String Email = email.getText();

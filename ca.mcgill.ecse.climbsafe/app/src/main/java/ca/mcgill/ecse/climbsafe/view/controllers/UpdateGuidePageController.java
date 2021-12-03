@@ -127,7 +127,11 @@ public class UpdateGuidePageController {
 		ClimbSafeFxmlView.getInstance().registerRefreshEvent(guideChoiceBox);
 		returnMessageText.setText("");
 	}
-
+	/**
+	 * Enters guide info into test fields when button pressed
+	 * @param event
+	 * @author Joey
+	 */
 	@FXML
 	public void guideSearchClicked(ActionEvent event) {
 		List<TOGuide> g = ClimbSafeController.getTOGuides();
@@ -142,7 +146,11 @@ public class UpdateGuidePageController {
 		}
 	}
 
-
+	/**
+	 * Guide updated when button pressed
+	 * @param event
+	 * @author Joey
+	 */
 	@FXML
 	public void updateGuideClicked(ActionEvent event) {
 		String name = nameTextField.getText();
@@ -165,7 +173,11 @@ public class UpdateGuidePageController {
 			}
 		}
 	}
-
+	/**
+	 * Deletes guide when button pressed
+	 * @param event
+	 * @author Joey
+	 */
 	@FXML
 	public void deleteGuideClicked(ActionEvent event) {
 		String email = guideChoiceBox.getValue();

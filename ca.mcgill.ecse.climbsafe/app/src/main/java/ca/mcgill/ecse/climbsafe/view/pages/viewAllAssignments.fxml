@@ -73,12 +73,12 @@
                   <Insets bottom="15.0" left="7.0" top="50.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="initiatebutton" mnemonicParsing="false" onAction="#initiateClicked" prefHeight="51.0" prefWidth="132.0" text="Initiate Assignment" textFill="#2fc1ff" GridPane.rowIndex="2">
+            <Button fx:id="initiateButton" mnemonicParsing="false" onAction="#initiateClicked" prefHeight="51.0" prefWidth="132.0" text="Initiate Assignment" textFill="#2fc1ff" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="10.0" left="6.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="viewbutton" mnemonicParsing="false" onAction="#viewClicked" text="Refresh Assignments" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+            <Button fx:id="viewButton" mnemonicParsing="false" onAction="#viewClicked" text="Refresh Assignments" textFill="#2fc1ff" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets right="6.0" />
                </GridPane.margin>

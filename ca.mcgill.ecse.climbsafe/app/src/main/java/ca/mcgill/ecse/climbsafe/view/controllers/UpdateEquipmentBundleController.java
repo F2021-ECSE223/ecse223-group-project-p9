@@ -21,6 +21,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class UpdateEquipmentBundleController {
@@ -44,6 +45,10 @@ public class UpdateEquipmentBundleController {
 	@FXML private ImageView fallBackground;
 	@FXML private ImageView summerBackground;
 	@FXML private ImageView springBackground;
+	@FXML private Text t1;
+	@FXML private Text t2;
+	@FXML private Text t3;
+	@FXML private Text t4;
 
 	private String myDate = ClimbSafeController.getNMCDate().toString();
 	private String month = myDate.split("-")[1];
@@ -60,11 +65,14 @@ public class UpdateEquipmentBundleController {
 	 */
 
 	public void initialize() {
+		Color fontColor = Color.BLACK;
+		String hexCode = "#000000";
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
+			hexCode = "#2fc1ff";
 
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
@@ -72,64 +80,84 @@ public class UpdateEquipmentBundleController {
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#2fc1ff";
 			}else {
 				springBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#ce87bd";
 			}
 		}else if (Integer.parseInt(month)< 6 && Integer.parseInt(month) > 3) {
 			springBackground.setOpacity(1);
 			winterBackground.setOpacity(0);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
+			hexCode = "#ce87bd";
 		}else if (Integer.parseInt(month) == 6) {
 			if (Integer.parseInt(day) < 20) {
 				springBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#ce87bd";
 			}else {
 				summerBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#69bc4c";
 			}
 		}else if (Integer.parseInt(month) < 9 && Integer.parseInt(month) > 6) {
 			summerBackground.setOpacity(1);
 			winterBackground.setOpacity(0);
 			springBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
+			hexCode = "#69bc4c";
 		}else if(Integer.parseInt(month) == 9) {
 			if (Integer.parseInt(day) < 22) {
 				summerBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#69bc4c";
 			}else {
 				fallBackground.setOpacity(1);
 				summerBackground.setOpacity(0);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#771102";
 			}
 		}else if (Integer.parseInt(month) < 12 && Integer.parseInt(month) > 9){
 			fallBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			winterBackground.setOpacity(0);
 			springBackground.setOpacity(0);
+			hexCode = "#771102";
 		}else if(Integer.parseInt(month) == 12) {
 			if (Integer.parseInt(day) < 21) {
 				fallBackground.setOpacity(1);
 				summerBackground.setOpacity(0);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#771102";
 			}else {
 				winterBackground.setOpacity(1);
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#2fc1ff";
 			}
 		}
+		fontColor = Color.web(hexCode);
+		t1.setFill(fontColor);
+		t2.setFill(fontColor);
+		t3.setFill(fontColor);
+		t4.setFill(fontColor);
+		bundleSearchButton.setStyle("-fx-text-fill: " + hexCode);
+		addEditButton.setStyle("-fx-text-fill: " + hexCode);
+		modifyButton.setStyle("-fx-text-fill: " + hexCode);
+		deleteButton.setStyle("-fx-text-fill: " + hexCode);
 		equipmentBundleChoiceBox.addEventHandler(ClimbSafeFxmlView.REFRESH_EVENT, e -> {
 			equipmentBundleChoiceBox.setItems(ViewUtils.getBundles());
 			equipmentBundleChoiceBox.setValue(null);

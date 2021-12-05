@@ -12,6 +12,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class ViewAllAssignmentsControllerPage {
@@ -58,12 +59,14 @@ public class ViewAllAssignmentsControllerPage {
 	 * @author Enzo  and Joey and Kara
 	 */
 	public void initialize() {
-
+		Color fontColor = Color.BLACK;
+		String hexCode = "#000000";
 		if (Integer.parseInt(month) < 3) {
 			winterBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
 			springBackground.setOpacity(0);
+			hexCode = "#2fc1ff";
 
 		}else if (Integer.parseInt(month) == 3) {
 			if (Integer.parseInt(day) < 20) {
@@ -71,64 +74,78 @@ public class ViewAllAssignmentsControllerPage {
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#2fc1ff";
 			}else {
 				springBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#ce87bd";
 			}
 		}else if (Integer.parseInt(month)< 6 && Integer.parseInt(month) > 3) {
 			springBackground.setOpacity(1);
 			winterBackground.setOpacity(0);
 			summerBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
+			hexCode = "#ce87bd";
 		}else if (Integer.parseInt(month) == 6) {
 			if (Integer.parseInt(day) < 20) {
 				springBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#ce87bd";
 			}else {
 				summerBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#69bc4c";
 			}
 		}else if (Integer.parseInt(month) < 9 && Integer.parseInt(month) > 6) {
 			summerBackground.setOpacity(1);
 			winterBackground.setOpacity(0);
 			springBackground.setOpacity(0);
 			fallBackground.setOpacity(0);
+			hexCode = "#69bc4c";
 		}else if(Integer.parseInt(month) == 9) {
 			if (Integer.parseInt(day) < 22) {
 				summerBackground.setOpacity(1);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
+				hexCode = "#69bc4c";
 			}else {
 				fallBackground.setOpacity(1);
 				summerBackground.setOpacity(0);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#771102";
 			}
 		}else if (Integer.parseInt(month) < 12 && Integer.parseInt(month) > 9){
 			fallBackground.setOpacity(1);
 			summerBackground.setOpacity(0);
 			winterBackground.setOpacity(0);
 			springBackground.setOpacity(0);
+			hexCode = "#771102";
 		}else if(Integer.parseInt(month) == 12) {
 			if (Integer.parseInt(day) < 21) {
 				fallBackground.setOpacity(1);
 				summerBackground.setOpacity(0);
 				winterBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#771102";
 			}else {
 				winterBackground.setOpacity(1);
 				summerBackground.setOpacity(0);
 				fallBackground.setOpacity(0);
 				springBackground.setOpacity(0);
+				hexCode = "#2fc1ff";
 			}
-		}	
+		}
+		fontColor = Color.web(hexCode);
+		initiateButton.setStyle("-fx-text-fill: " + hexCode);
+		viewButton.setStyle("-fx-text-fill: " + hexCode);
 
 		memberEmailColumn.setCellValueFactory(new PropertyValueFactory<>("memberEmail"));
 		memberNameColumn.setCellValueFactory(new PropertyValueFactory<>("memberName"));
@@ -140,9 +157,6 @@ public class ViewAllAssignmentsControllerPage {
 		refundColumn.setCellValueFactory(new PropertyValueFactory<>("refund"));
 		equipCostColumn.setCellValueFactory(new PropertyValueFactory<>("equipCost"));
 		guideCostColumn.setCellValueFactory(new PropertyValueFactory<>("guideCost"));
-
-
-
 
 		List<TOAssignment> assignments = ClimbSafeFeatureSet6Controller.getAssignments();
 		if(!(ClimbSafeFeatureSet6Controller.getAssignments().isEmpty())) {

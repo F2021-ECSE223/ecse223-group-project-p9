@@ -16,8 +16,6 @@ public class ClimbSafeFeatureSet6Controller {
 	 *@throws InvalidInputException if equipment does not exist
 	 *@author Kara Best
 	 */
-	//do i delete a bundle if theres less than 3 items w/o it or do I throw exception
-	//at least 2 different kinds of equipment
 	public static void deleteEquipment(String name) throws InvalidInputException {
 	  ClimbSafe climbSafe = ClimbSafeApplication.getClimbSafe();
 	  List<Equipment> equipment = climbSafe.getEquipment();

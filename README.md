@@ -1,2 +1,2 @@
 # ECSE223-Group-Project-P9
-ECSE223-Group-Project-P9 created by GitHub Classroom
+Team Members: Kara Best, Joey Koay, Victor Micha, Enzo Benoit-Jeannin, Eun-Jun Chang, SeJong Yoon
